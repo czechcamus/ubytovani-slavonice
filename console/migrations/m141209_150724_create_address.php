@@ -23,7 +23,7 @@ class m141209_150724_create_address extends Migration
                 'updated_by' => 'integer'
             ]
         );
-        $this->addForeignKey('address_type_key', 'address', 'address_type_id', 'address-type', 'id');
+        $this->addForeignKey('address_type_key', 'address', 'address_type_id', 'address_type', 'id');
     }
 
     public function safeDown()

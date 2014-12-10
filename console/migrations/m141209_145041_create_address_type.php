@@ -9,7 +9,7 @@ class m141209_145041_create_address_type extends Migration
     public function safeUp()
     {
         $this->createTable(
-            'address-type',
+            'address_type',
             [
                 'id' => 'pk',
                 'title' => 'string(45) NOT NULL'
@@ -19,6 +19,6 @@ class m141209_145041_create_address_type extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('address-type');
+        $this->dropTable('address_type');
     }
 }

@@ -9,7 +9,7 @@ class m141209_152650_create_email_type extends Migration
     public function safeUp()
     {
         $this->createTable(
-            'email-type',
+            'email_type',
             [
                 'id' => 'pk',
                 'title' => 'string(45)'
@@ -19,6 +19,6 @@ class m141209_152650_create_email_type extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('email-type');
+        $this->dropTable('email_type');
     }
 }

@@ -9,7 +9,7 @@ class m141209_184735_create_phone_type extends Migration
     public function safeUp()
     {
         $this->createTable(
-            'phone-type',
+            'phone_type',
             [
                 'id' => 'pk',
                 'title' => 'string(45)'
@@ -19,6 +19,6 @@ class m141209_184735_create_phone_type extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('phone-type');
+        $this->dropTable('phone_type');
     }
 }

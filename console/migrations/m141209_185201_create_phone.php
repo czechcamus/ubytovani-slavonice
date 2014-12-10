@@ -16,7 +16,7 @@ class m141209_185201_create_phone extends Migration
                 'number' => 'string(15) NOT NULL'
             ]
         );
-        $this->addForeignKey('phone_type_key', 'phone', 'phone_type_id', 'phone-type', 'id');
+        $this->addForeignKey('phone_type_key', 'phone', 'phone_type_id', 'phone_type', 'id');
     }
 
     public function safeDown()

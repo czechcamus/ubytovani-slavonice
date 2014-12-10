@@ -20,7 +20,7 @@ class m141209_153513_create_email extends Migration
                 'updated_by' => 'integer'
             ]
         );
-        $this->addForeignKey('email_type_key', 'email', 'email_type_id', 'email-type', 'id');
+        $this->addForeignKey('email_type_key', 'email', 'email_type_id', 'email_type', 'id');
     }
 
     public function safeDown()
