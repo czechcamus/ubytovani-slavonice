@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\utilities\SubModelController;
 use Yii;
 
 

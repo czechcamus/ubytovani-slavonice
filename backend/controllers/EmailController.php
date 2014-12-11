@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\utilities\SubModelController;
 use Yii;
 
 
@@ -11,4 +12,5 @@ use Yii;
 class EmailController extends SubModelController
 {
     public $modelClass = 'common\models\subject\Email';
+    public $relationName = 'person';
 }

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
+/* @var $searchModel common\models\subject\SearchAddress */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('back', 'Addresses');
@@ -12,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="address-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('back', 'Create {modelClass}', [
@@ -21,20 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'address_type_id',
             'street',
             'house_nr',
             'city',
-            // 'postal_code',
-            // 'created_at',
-            // 'created_by',
-            // 'updated_at',
-            // 'updated_by',
-            // 'state_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

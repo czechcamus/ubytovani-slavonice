@@ -1,19 +1,29 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Pavel
+ * Date: 11.12.2014
+ * Time: 15:37
+ */
 
-namespace backend\controllers;
+namespace backend\utilities;
+
 
 use Yii;
-use common\models\subject\Subject;
-use common\models\subject\SearchSubject;
+use yii\data\ActiveDataProvider;
+use yii\db\ActiveRecord;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SubjectController implements the CRUD actions for Subject model.
+ * SubModelController implements the CRUD actions for ActiveRecord model.
  */
-class SubjectController extends Controller
+class TypeModelController extends Controller
 {
+    /** @var  string name of the main ActiveRecord model class */
+    public $modelClass;
+
     public function behaviors()
     {
         return [
@@ -27,22 +37,20 @@ class SubjectController extends Controller
     }
 
     /**
-     * Lists all Subject models.
+     * Lists all ActiveRecord models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SearchSubject();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model = new $this->modelClass;
+        $query = $model::find();
+        $dataProvider = new ActiveDataProvider(compact('query'));
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index', compact('dataProvider'));
     }
 
     /**
-     * Displays a single Subject model.
+     * Displays a single ActiveRecord model.
      * @param integer $id
      * @return mixed
      */
@@ -54,29 +62,29 @@ class SubjectController extends Controller
     }
 
     /**
-     * Creates a new Subject model.
+     * Creates a new ActiveRecord model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Subject();
+        /** @var ActiveRecord $model */
+        $model = new $this->modelClass;
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->redirect(['update', 'id' => $model->id]);
+            return $this->redirect(['index']);
 
         return $this->render('create', compact('model'));
     }
 
     /**
-     * Updates an existing Subject model.
+     * Updates an existing ActiveRecord model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
-        $this->storeReturnUrl();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
@@ -86,7 +94,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * Deletes an existing Subject model.
+     * Deletes an existing ActiveRecord model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -99,26 +107,18 @@ class SubjectController extends Controller
     }
 
     /**
-     * Finds the Subject model based on its primary key value.
+     * Finds the ActiveRecord model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Subject the loaded model
+     * @return ActiveRecord the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Subject::findOne($id)) !== null) {
-            return $model;
-        } else {
+        $model = call_user_func([$this->modelClass, 'findOne'], $id);
+        if (!$model)
             throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
 
-    /**
-     * Stores actual page url.
-     */
-    private function storeReturnUrl()
-    {
-        Yii::$app->user->returnUrl = Yii::$app->request->url;
+        return $model;
     }
 }

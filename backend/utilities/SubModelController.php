@@ -1,103 +1,43 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\utilities;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+
 
 /**
  * SubModelController implements the CRUD actions for ActiveRecord model.
  */
-class SubModelController extends Controller
+class SubModelController extends TypeModelController
 {
-    /** @var  string name of the main ActiveRecord model class */
-    public $modelClass;
-
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
+    /** @var  string name of relation_id property */
+    public $relationName;
 
     /**
-     * Displays a single ActiveRecord model.
-     * @param integer $id
-     * @return mixed
+     * Not implemented.
+     * @return bool
      */
-    public function actionView($id)
+    public function actionIndex()
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return false;
     }
 
     /**
      * Creates a new ActiveRecord model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param integer $relation_id of main model
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($relation_id)
     {
         /** @var ActiveRecord $model */
         $model = new $this->modelClass;
+        $model->{$this->relationName . '_id'} = $relation_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->goBack();
 
         return $this->render('create', compact('model'));
-    }
-
-    /**
-     * Updates an existing ActiveRecord model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->redirect(['view', 'id' => $model->id]);
-
-        return $this->render('update', compact('model'));
-    }
-
-    /**
-     * Deletes an existing ActiveRecord model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the ActiveRecord model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return ActiveRecord the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        $model = call_user_func([$this->modelClass, 'findOne'], $id);
-        if (!$model)
-            throw new NotFoundHttpException('The requested page does not exist.');
-
-        return $model;
     }
 }

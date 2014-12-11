@@ -2,12 +2,14 @@
 
 namespace backend\controllers;
 
+use backend\utilities\TypeModelController;
 use Yii;
+
 
 /**
  * AddressTypeController implements the CRUD actions for AddressType model.
  */
-class AddressTypeController extends SubModelController
+class AddressTypeController extends TypeModelController
 {
     public $modelClass = 'common\models\subject\AddressType';
 }
