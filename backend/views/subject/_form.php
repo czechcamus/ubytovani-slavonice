@@ -21,24 +21,28 @@ use yii\bootstrap\ActiveForm;
     <?= $form->field($model, 'tax_nr')->textInput(['maxlength' => 14]) ?>
 
     <?php if (!$model->isNewRecord): ?>
-        <h2><?= Yii::t('back', 'Responsible People'); ?></h2>
-        <?= \yii\grid\GridView::widget([
-            'dataProvider' => new \yii\data\ActiveDataProvider([
-                'query' => $model->getPeople(),
-                'pagination' => false
-            ]),
-            'columns' => [
-                'name',
-                'surname',
-                [
-                    'class' => \yii\grid\ActionColumn::className(),
-                    'controller' => 'person',
-                    'header' => Html::a('<i class="glyphicon glyphicon-plus"></i>&nbsp;' .
-                        Yii::t('back', 'Add new'), ['person/create', 'relation_id' => $model->id]),
-                    'template' => '{update}{delete}',
-                ]
-            ]
-        ]); ?>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-6">
+                <h2><?= Yii::t('back', 'Responsible People'); ?></h2>
+                <?= \yii\grid\GridView::widget([
+                    'dataProvider' => new \yii\data\ActiveDataProvider([
+                        'query' => $model->getPeople(),
+                        'pagination' => false
+                    ]),
+                    'columns' => [
+                        'name',
+                        'surname',
+                        [
+                            'class' => \yii\grid\ActionColumn::className(),
+                            'controller' => 'person',
+                            'header' => Html::a('<i class="glyphicon glyphicon-plus"></i>&nbsp;' .
+                                Yii::t('back', 'Add new'), ['person/create', 'relation_id' => $model->id]),
+                            'template' => '{update}{delete}',
+                        ]
+                    ]
+                ]); ?>
+            </div>
+        </div>
     <?php endif; ?>
 
     <div class="form-group">

@@ -4,6 +4,7 @@ namespace backend\utilities;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\web\NotFoundHttpException;
 
 
 /**
@@ -16,11 +17,10 @@ class SubModelController extends TypeModelController
 
     /**
      * Not implemented.
-     * @return bool
      */
     public function actionIndex()
     {
-        return false;
+        throw new NotFoundHttpException('Unable to resolve the request "person/index".');
     }
 
     /**
@@ -31,12 +31,17 @@ class SubModelController extends TypeModelController
      */
     public function actionCreate($relation_id)
     {
+        $session = Yii::$app->session;
+
         /** @var ActiveRecord $model */
         $model = new $this->modelClass;
         $model->{$this->relationName . '_id'} = $relation_id;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save())
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($session->has('returnUrl'))
+                return $this->redirect($session->get('returnUrl'));
             return $this->goBack();
+        }
 
         return $this->render('create', compact('model'));
     }
@@ -49,10 +54,16 @@ class SubModelController extends TypeModelController
      */
     public function actionUpdate($id)
     {
+        $session = Yii::$app->session;
+
+        /** @var ActiveRecord $model */
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save())
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($session->has('returnUrl'))
+                return $this->redirect($session->get('returnUrl'));
             return $this->goBack();
+        }
 
         return $this->render('update', compact('model'));
     }

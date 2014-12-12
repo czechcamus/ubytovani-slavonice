@@ -20,6 +20,50 @@ use yii\bootstrap\ActiveForm;
 
     <?= $form->field($model, 'back_title')->textInput(['maxlength' => 20]) ?>
 
+    <?php if (!$model->isNewRecord): ?>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-6">
+                <h2><?= Yii::t('back', 'Phones'); ?></h2>
+                <?= \yii\grid\GridView::widget([
+                    'dataProvider' => new \yii\data\ActiveDataProvider([
+                        'query' => $model->getPhones(),
+                        'pagination' => false
+                    ]),
+                    'columns' => [
+                        'number',
+                        'phoneType.title',
+                        [
+                            'class' => \yii\grid\ActionColumn::className(),
+                            'controller' => 'phone',
+                            'header' => Html::a('<i class="glyphicon glyphicon-plus"></i>&nbsp;' .
+                                Yii::t('back', 'Add new'), ['phone/create', 'relation_id' => $model->id]),
+                            'template' => '{update}{delete}',
+                        ]
+                    ]
+                ]); ?>
+
+                <h2><?= Yii::t('back', 'Emails'); ?></h2>
+                <?= \yii\grid\GridView::widget([
+                    'dataProvider' => new \yii\data\ActiveDataProvider([
+                        'query' => $model->getEmails(),
+                        'pagination' => false
+                    ]),
+                    'columns' => [
+                        'address',
+                        'emailType.title',
+                        [
+                            'class' => \yii\grid\ActionColumn::className(),
+                            'controller' => 'email',
+                            'header' => Html::a('<i class="glyphicon glyphicon-plus"></i>&nbsp;' .
+                                Yii::t('back', 'Add new'), ['email/create', 'relation_id' => $model->id]),
+                            'template' => '{update}{delete}',
+                        ]
+                    ]
+                ]); ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-6">
             <?= Html::submitButton($model->isNewRecord ? Yii::t('back', 'Create') : Yii::t('back', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
