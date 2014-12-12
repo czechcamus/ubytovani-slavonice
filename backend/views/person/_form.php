@@ -10,7 +10,10 @@ use yii\bootstrap\ActiveForm;
 
 <div class="person-form">
 
-    <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
+    <?php $form = ActiveForm::begin([
+        'layout' => 'horizontal',
+        'fieldConfig' => Yii::$app->params['fieldConfig']
+    ]); ?>
 
     <?= $form->field($model, 'front_title')->textInput(['maxlength' => 20]) ?>
 
@@ -22,7 +25,7 @@ use yii\bootstrap\ActiveForm;
 
     <?php if (!$model->isNewRecord): ?>
         <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-6">
+            <div class="col-sm-offset-2 col-sm-8">
                 <h2><?= Yii::t('back', 'Phones'); ?></h2>
                 <?= \yii\grid\GridView::widget([
                     'dataProvider' => new \yii\data\ActiveDataProvider([
@@ -65,7 +68,7 @@ use yii\bootstrap\ActiveForm;
     <?php endif; ?>
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-6">
+        <div class="col-sm-offset-2 col-sm-8">
             <?= Html::submitButton($model->isNewRecord ? Yii::t('back', 'Create') : Yii::t('back', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     </div>

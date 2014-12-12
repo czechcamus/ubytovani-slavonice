@@ -12,7 +12,10 @@ $typeList = \yii\helpers\ArrayHelper::map(\common\models\subject\PhoneType::find
 
 <div class="phone-form">
 
-    <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
+    <?php $form = ActiveForm::begin([
+        'layout' => 'horizontal',
+        'fieldConfig' => Yii::$app->params['fieldConfig']
+    ]); ?>
 
     <?= $form->field($model, 'phone_type_id')->dropDownList($typeList, ['prompt' => Yii::t('back', '-- choose a type --')]) ?>
 

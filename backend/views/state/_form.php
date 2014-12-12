@@ -10,7 +10,10 @@ use yii\bootstrap\ActiveForm;
 
 <div class="state-form">
 
-    <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
+    <?php $form = ActiveForm::begin([
+        'layout' => 'horizontal',
+        'fieldConfig' => Yii::$app->params['fieldConfig']
+    ]); ?>
 
     <?= $form->field($model, 'acronym')->textInput(['maxlength' => 3]) ?>
 
