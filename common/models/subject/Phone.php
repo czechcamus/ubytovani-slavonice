@@ -32,7 +32,7 @@ class Phone extends \yii\db\ActiveRecord
     {
         return [
             [['phone_type_id', 'person_id'], 'integer'],
-            [['number'], 'required'],
+            [['number', 'phone_type_id', 'person_id'], 'required'],
             [['number'], 'string', 'max' => 15]
         ];
     }

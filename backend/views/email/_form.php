@@ -6,13 +6,15 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Email */
 /* @var $form yii\bootstrap\ActiveForm */
+
+$typeList = \yii\helpers\ArrayHelper::map(\common\models\subject\EmailType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
 ?>
 
 <div class="email-form">
 
     <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
 
-    <?= $form->field($model, 'email_type_id')->textInput() ?>
+    <?= $form->field($model, 'email_type_id')->dropDownList($typeList, ['prompt' => Yii::t('back', '-- choose a type --')]) ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => 45]) ?>
 

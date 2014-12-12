@@ -9,6 +9,7 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('back', 'Subjects');
 $this->params['breadcrumbs'][] = $this->title;
+$modelClass = Yii::t('back', 'Subject');
 ?>
 <div class="subject-index">
 
@@ -16,9 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('back', 'Create {modelClass}', [
-    'modelClass' => 'Subject',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('back', 'Create {modelClass}', compact('modelClass')), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -27,10 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'title',
             'company_nr',
-            'tax_nr',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

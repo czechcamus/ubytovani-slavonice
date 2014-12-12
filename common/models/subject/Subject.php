@@ -54,6 +54,7 @@ class Subject extends ActiveRecord
     public function rules()
     {
         return [
+            [['title'], 'required'],
             [['note'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],

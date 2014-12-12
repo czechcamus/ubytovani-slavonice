@@ -32,8 +32,8 @@ class Email extends \yii\db\ActiveRecord
     {
         return [
             [['email_type_id', 'person_id'], 'integer'],
-            [['address'], 'required'],
-            [['address'], 'string', 'max' => 45]
+            [['address', 'email_type_id', 'person_id'], 'required'],
+            [['address'], 'email']
         ];
     }
 

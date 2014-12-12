@@ -3,6 +3,7 @@
 namespace common\models\subject;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "person".
@@ -18,7 +19,7 @@ use Yii;
  * @property Subject $subject
  * @property Phone[] $phones
  */
-class Person extends \yii\db\ActiveRecord
+class Person extends ActiveRecord
 {
     /**
      * @inheritdoc
