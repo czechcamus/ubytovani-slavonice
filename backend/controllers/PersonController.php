@@ -12,4 +12,5 @@ use Yii;
 class PersonController extends SubModelController
 {
     public $modelClass = 'common\models\subject\Person';
+    public $relationName = 'subject';
 }
