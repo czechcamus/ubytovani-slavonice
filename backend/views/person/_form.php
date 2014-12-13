@@ -41,6 +41,14 @@ use yii\bootstrap\ActiveForm;
                             'header' => Html::a('<i class="glyphicon glyphicon-plus"></i>&nbsp;' .
                                 Yii::t('back', 'Add new'), ['phone/create', 'relation_id' => $model->id]),
                             'template' => '{update}{delete}',
+                            'buttons' => [
+                                'update' => function($url, $model, $key) {
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' .$model->id, [
+                                        'title' => Yii::t('back', 'Update'),
+                                        'data-pjax' => '0',
+                                    ]);
+                                }
+                            ]
                         ]
                     ]
                 ]); ?>

@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Subject' => 'ubytovatele',
+    'Phone' => 'telefon',
     '-- choose a type --' => '-- vyberte typ --',
     'Add new' => 'Přidat nový',
     'Address Types' => 'Typy adres',
@@ -29,12 +29,14 @@ return [
     'Email Types' => 'Typy emailů',
     'Emails' => 'Emaily',
     'People' => 'Osoby',
+    'Person' => 'osobu',
     'Phone Types' => 'Typy telefonů',
     'Phones' => 'Telefony',
     'Reset' => 'Resetovat',
     'Responsible People' => 'Odpovědné osoby',
     'Search' => 'Hledat',
     'States' => 'Státy',
+    'Subject' => 'ubytovatele',
     'Subjects' => 'Ubytovatelé',
     'Update' => 'Změnit',
     'Update {modelClass}: ' => 'Změnit {modelClass}: ',

@@ -4,7 +4,6 @@ namespace backend\utilities;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yii\web\NotFoundHttpException;
 
 
 /**
@@ -16,12 +15,17 @@ class SubModelController extends TypeModelController
     public $relationName;
 
     /**
-     * Not implemented.
+     * @return array overwrites not implemented actions
      */
-    public function actionIndex()
+    public function actions()
     {
-        throw new NotFoundHttpException('Unable to resolve the request "person/index".');
+        $actions = parent::actions();
+        return array_merge($actions, [
+            'index' => ['class' => NotFoundAction::className(), 'route' => 'person/index'],
+            'view' => ['class' => NotFoundAction::className(), 'route' => 'person/view'],
+        ]);
     }
+
 
     /**
      * Creates a new ActiveRecord model.
@@ -43,16 +47,18 @@ class SubModelController extends TypeModelController
             return $this->goBack();
         }
 
-        return $this->render('create', compact('model'));
+        return $this->render('create', compact('model', 'relation_id'));
     }
 
     /**
      * Updates an existing ActiveRecord model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
+     * @param integer $relation_id
+     * @throws \yii\web\NotFoundHttpException
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $relation_id = null)
     {
         $session = Yii::$app->session;
 
@@ -65,6 +71,6 @@ class SubModelController extends TypeModelController
             return $this->goBack();
         }
 
-        return $this->render('update', compact('model'));
+        return $this->render('update', compact('model', 'relation_id'));
     }
 }

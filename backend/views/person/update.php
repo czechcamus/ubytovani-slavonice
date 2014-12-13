@@ -4,13 +4,15 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Person */
+/* @var $relation_id integer */
+/* @var $subjectModel common\models\subject\Subject */
 
-$this->title = Yii::t('back', 'Update {modelClass}: ', [
-    'modelClass' => 'Person',
-]) . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'People'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('back', 'Update');
+$subjectModel = \common\models\subject\Subject::findOne($relation_id);
+$modelClass = Yii::t('back', 'Person');
+$this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->name . ' ' . $model->surname;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Subjects'), 'url' => ['subject/index']];
+$this->params['breadcrumbs'][] = ['label' => $subjectModel->title, 'url' => ['subject/update', 'id' => $subjectModel->id]];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="person-update">
 

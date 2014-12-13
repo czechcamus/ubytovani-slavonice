@@ -22,7 +22,7 @@ $typeList = \yii\helpers\ArrayHelper::map(\common\models\subject\PhoneType::find
     <?= $form->field($model, 'number')->textInput(['maxlength' => 15]) ?>
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-6">
+        <div class="col-sm-offset-2 col-sm-8">
             <?= Html::submitButton($model->isNewRecord ? Yii::t('back', 'Create') : Yii::t('back', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     </div>
