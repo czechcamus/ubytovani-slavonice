@@ -40,10 +40,10 @@ use yii\bootstrap\ActiveForm;
                             'controller' => 'phone',
                             'header' => Html::a('<i class="glyphicon glyphicon-plus"></i>&nbsp;' .
                                 Yii::t('back', 'Add new'), ['phone/create', 'relation_id' => $model->id]),
-                            'template' => '{update}{delete}',
+                            'template' => '{update} {delete}',
                             'buttons' => [
                                 'update' => function($url, $model, $key) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' .$model->id, [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' .$model->person_id, [
                                         'title' => Yii::t('back', 'Update'),
                                         'data-pjax' => '0',
                                     ]);
@@ -67,7 +67,15 @@ use yii\bootstrap\ActiveForm;
                             'controller' => 'email',
                             'header' => Html::a('<i class="glyphicon glyphicon-plus"></i>&nbsp;' .
                                 Yii::t('back', 'Add new'), ['email/create', 'relation_id' => $model->id]),
-                            'template' => '{update}{delete}',
+                            'template' => '{update} {delete}',
+                            'buttons' => [
+                                'update' => function($url, $model, $key) {
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->person_id, [
+                                        'title' => Yii::t('back', 'Update'),
+                                        'data-pjax' => '0',
+                                    ]);
+                                }
+                            ]
                         ]
                     ]
                 ]); ?>

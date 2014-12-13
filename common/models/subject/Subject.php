@@ -89,4 +89,12 @@ class Subject extends ActiveRecord
     {
         return $this->hasMany(Person::className(), ['subject_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAddresses()
+    {
+        return $this->hasMany(Address::className(), ['subject_id' => 'id']);
+    }
 }

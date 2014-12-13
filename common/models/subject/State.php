@@ -2,19 +2,19 @@
 
 namespace common\models\subject;
 
-use common\models\SubModel;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "state".
  *
  * @property integer $id
- * @property string $title
+ * @property string $name
  * @property string $acronym
  *
  * @property Address[] $addresses
  */
-class State extends SubModel
+class State extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -29,12 +29,11 @@ class State extends SubModel
      */
     public function rules()
     {
-        $parentRules = parent::rules();
-        $currentRules = [
-            [['acronym'], 'required'],
+        return [
+            [['name', 'acronym'], 'required'],
+            [['name'], 'string', 'max' => 45],
             [['acronym'], 'string', 'max' => 3]
         ];
-        return array_merge($parentRules, $currentRules);
     }
 
     /**
@@ -42,11 +41,10 @@ class State extends SubModel
      */
     public function attributeLabels()
     {
-        $parentLabels = parent::attributeLabels();
-        $currentLabels = [
+        return [
+            'name' => Yii::t('app', 'Country'),
             'acronym' => Yii::t('app', 'Acronym'),
         ];
-        return array_merge($parentLabels, $currentLabels);
     }
 
     /**

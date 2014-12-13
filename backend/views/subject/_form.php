@@ -43,7 +43,36 @@ use yii\bootstrap\ActiveForm;
                             'template' => '{update} {delete}',
                             'buttons' => [
                                 'update' => function($url, $model, $key) {
-                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' .$model->id, [
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->subject_id, [
+                                        'title' => Yii::t('back', 'Update'),
+                                        'data-pjax' => '0',
+                                    ]);
+                                }
+                            ]
+                        ]
+                    ]
+                ]); ?>
+
+                <h2><?= Yii::t('back', 'Contact addresses'); ?></h2>
+                <?= \yii\grid\GridView::widget([
+                    'dataProvider' => new \yii\data\ActiveDataProvider([
+                        'query' => $model->getAddresses(),
+                        'pagination' => false
+                    ]),
+                    'columns' => [
+                        'street',
+                        'house_nr',
+                        'city',
+                        'postal_code',
+                        [
+                            'class' => \yii\grid\ActionColumn::className(),
+                            'controller' => 'address',
+                            'header' => Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
+                                Yii::t('back', 'Add new'), ['address/create', 'relation_id' => $model->id]),
+                            'template' => '{update} {delete}',
+                            'buttons' => [
+                                'update' => function($url, $model, $key) {
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->subject_id, [
                                         'title' => Yii::t('back', 'Update'),
                                         'data-pjax' => '0',
                                     ]);

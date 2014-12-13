@@ -4,20 +4,20 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Address */
+/* @var $relation_id integer */
+/* @var $subjectModel common\models\subject\Subject */
 
-$this->title = Yii::t('back', 'Update {modelClass}: ', [
-    'modelClass' => 'Address',
-]) . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Addresses'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('back', 'Update');
+$subjectModel = \common\models\subject\Subject::findOne($relation_id);
+$modelClass = Yii::t('back', 'Address');
+$this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . implode(', ', array_filter($model->getAttributes(['street', 'house_nr', 'city', 'postal_code'])));
+$this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Subjects'), 'url' => ['subject/index']];
+$this->params['breadcrumbs'][] = ['label' => $subjectModel->title, 'url' => ['subject/update', 'id' => $subjectModel->id]];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="address-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?= $this->render('_form', compact('model')) ?>
 
 </div>

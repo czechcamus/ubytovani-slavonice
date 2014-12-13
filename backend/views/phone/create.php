@@ -9,7 +9,7 @@ use yii\helpers\Html;
 /* @var $personModel common\models\subject\Person */
 /* @var $subjectModel common\models\subject\Subject */
 
-$modelClass = Yii::t('back', 'Person');
+$modelClass = Yii::t('back', 'Phone');
 $personModel = \common\models\subject\Person::findOne($relation_id);
 $subjectModel = \common\models\subject\Subject::findOne($personModel->subject_id);
 $this->title = Yii::t('back', 'Create {modelClass}', compact('modelClass'));

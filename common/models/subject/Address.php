@@ -3,8 +3,6 @@
 namespace common\models\subject;
 
 use Yii;
-use yii\behaviors\BlameableBehavior;
-use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 /**
@@ -21,7 +19,9 @@ use yii\db\ActiveRecord;
  * @property string $updated_at
  * @property integer $updated_by
  * @property integer $state_id
+ * @property integer $subject_id
  *
+ * @property Subject $subject
  * @property State $state
  * @property AddressType $addressType
  */
@@ -35,28 +35,14 @@ class Address extends ActiveRecord
         return 'address';
     }
 
-    public function behaviors()
-    {
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'value' => function ($event) {
-                    return date('Y-m-d H:i:s');
-                },
-            ],
-            'blame' => BlameableBehavior::className(),
-        ];
-    }
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['address_type_id', 'created_by', 'updated_by', 'state_id'], 'integer'],
-            [['city', 'postal_code'], 'required'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['address_type_id', 'subject_id', 'state_id'], 'integer'],
+            [['city', 'postal_code', 'address_type_id', 'subject_id', 'state_id'], 'required'],
             [['street', 'city'], 'string', 'max' => 45],
             [['house_nr', 'postal_code'], 'string', 'max' => 10]
         ];
@@ -74,11 +60,8 @@ class Address extends ActiveRecord
             'house_nr' => Yii::t('app', 'House Nr'),
             'city' => Yii::t('app', 'City'),
             'postal_code' => Yii::t('app', 'Postal Code'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'created_by' => Yii::t('app', 'Created By'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'updated_by' => Yii::t('app', 'Updated By'),
             'state_id' => Yii::t('app', 'State ID'),
+            'subject_id' => Yii::t('app', 'Subject ID'),
         ];
     }
 
@@ -96,5 +79,13 @@ class Address extends ActiveRecord
     public function getAddressType()
     {
         return $this->hasOne(AddressType::className(), ['id' => 'address_type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubject()
+    {
+        return $this->hasOne(Subject::className(), ['id' => 'subject_id']);
     }
 }

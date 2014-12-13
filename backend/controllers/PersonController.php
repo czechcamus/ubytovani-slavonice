@@ -21,7 +21,7 @@ class PersonController extends SubModelController
      * @param integer $relation_id of main model
      * @return mixed
      */
-    public function actionCreate($relation_id = null)
+    public function actionCreate($relation_id)
     {
         /** @var Person $model */
         $model = new $this->modelClass;
@@ -41,7 +41,7 @@ class PersonController extends SubModelController
      * @throws \yii\web\NotFoundHttpException
      * @return mixed
      */
-    public function actionUpdate($id, $relation_id = null)
+    public function actionUpdate($id, $relation_id)
     {
         $this->storeReturnUrl();
         $model = $this->findModel($id);

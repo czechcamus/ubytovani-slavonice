@@ -6,13 +6,19 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Address */
 /* @var $form yii\bootstrap\ActiveForm */
+
+$typeList = \yii\helpers\ArrayHelper::map(\common\models\subject\AddressType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
+$stateList = \yii\helpers\ArrayHelper::map(\common\models\subject\State::find()->orderBy('name')->asArray()->all(), 'id', 'name');
 ?>
 
 <div class="address-form">
 
-    <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
+    <?php $form = ActiveForm::begin([
+        'layout' => 'horizontal',
+        'fieldConfig' => Yii::$app->params['fieldConfig']
+    ]); ?>
 
-    <?= $form->field($model, 'address_type_id')->textInput() ?>
+    <?= $form->field($model, 'address_type_id')->dropDownList($typeList, ['prompt' => Yii::t('back', '-- choose a type --')]) ?>
 
     <?= $form->field($model, 'street')->textInput(['maxlength' => 45]) ?>
 
@@ -22,18 +28,10 @@ use yii\bootstrap\ActiveForm;
 
     <?= $form->field($model, 'postal_code')->textInput(['maxlength' => 10]) ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
-
-    <?= $form->field($model, 'state_id')->textInput() ?>
+    <?= $form->field($model, 'state_id')->dropDownList($stateList, ['prompt' => Yii::t('back', '-- choose a country --')]) ?>
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-6">
+        <div class="col-sm-offset-2 col-sm-8">
             <?= Html::submitButton($model->isNewRecord ? Yii::t('back', 'Create') : Yii::t('back', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     </div>
