@@ -6,11 +6,11 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$modelClass = Yii::t('back', 'Address Type');
-$this->title = Yii::t('back', 'Address Types');
+$modelClass = Yii::t('back', 'Person Type');
+$this->title = Yii::t('back', 'Person Types');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="address-type-index">
+<div class="person-type-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

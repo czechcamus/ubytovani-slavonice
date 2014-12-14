@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('back', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('back', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('back', 'Are you sure you want to delete this item and his all subitems?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,15 +28,36 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'title',
             'note:ntext',
+            [
+                'label' => Yii::t('back', 'People'),
+                'format' => 'html',
+                'value' => $model->renderPeople(),
+            ],
+            [
+                'label' => Yii::t('back', 'Addresses'),
+                'format' => 'html',
+                'value' => $model->renderAddresses(),
+            ],
             'company_nr',
             'tax_nr',
-            'created_at',
-            'created_by',
-            'updated_at',
-            'updated_by',
+            [
+                'attribute' => 'created_at',
+                'format' => 'datetime',
+            ],
+            [
+                'attribute' => 'created_by',
+                'value' => $model->creator->username,
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => 'datetime',
+            ],
+            [
+                'attribute' => 'updated_by',
+                'value' => $model->updater->username,
+            ],
         ],
     ]) ?>
 

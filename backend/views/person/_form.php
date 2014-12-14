@@ -6,6 +6,8 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Person */
 /* @var $form yii\bootstrap\ActiveForm */
+
+$typeList = \yii\helpers\ArrayHelper::map(\common\models\subject\PersonType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
 ?>
 
 <div class="person-form">
@@ -14,6 +16,8 @@ use yii\bootstrap\ActiveForm;
         'layout' => 'horizontal',
         'fieldConfig' => Yii::$app->params['fieldConfig']
     ]); ?>
+
+    <?= $form->field($model, 'person_type_id')->dropDownList($typeList, ['prompt' => Yii::t('back', '-- choose a type --')]) ?>
 
     <?= $form->field($model, 'front_title')->textInput(['maxlength' => 20]) ?>
 
@@ -42,7 +46,7 @@ use yii\bootstrap\ActiveForm;
                                 Yii::t('back', 'Add new'), ['phone/create', 'relation_id' => $model->id]),
                             'template' => '{update} {delete}',
                             'buttons' => [
-                                'update' => function($url, $model, $key) {
+                                'update' => function($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' .$model->person_id, [
                                         'title' => Yii::t('back', 'Update'),
                                         'data-pjax' => '0',
@@ -69,7 +73,7 @@ use yii\bootstrap\ActiveForm;
                                 Yii::t('back', 'Add new'), ['email/create', 'relation_id' => $model->id]),
                             'template' => '{update} {delete}',
                             'buttons' => [
-                                'update' => function($url, $model, $key) {
+                                'update' => function($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->person_id, [
                                         'title' => Yii::t('back', 'Update'),
                                         'data-pjax' => '0',

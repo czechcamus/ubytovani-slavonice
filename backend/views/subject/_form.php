@@ -33,6 +33,12 @@ use yii\bootstrap\ActiveForm;
                         'pagination' => false
                     ]),
                     'columns' => [
+                        [
+                            'label' => Yii::t('back', 'Person Type'),
+                            'value' => function ($data) {
+                                return $data->personType->title;
+                            },
+                        ],
                         'name',
                         'surname',
                         [
@@ -42,7 +48,7 @@ use yii\bootstrap\ActiveForm;
                                 Yii::t('back', 'Add new'), ['person/create', 'relation_id' => $model->id]),
                             'template' => '{update} {delete}',
                             'buttons' => [
-                                'update' => function($url, $model, $key) {
+                                'update' => function($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->subject_id, [
                                         'title' => Yii::t('back', 'Update'),
                                         'data-pjax' => '0',
@@ -71,7 +77,7 @@ use yii\bootstrap\ActiveForm;
                                 Yii::t('back', 'Add new'), ['address/create', 'relation_id' => $model->id]),
                             'template' => '{update} {delete}',
                             'buttons' => [
-                                'update' => function($url, $model, $key) {
+                                'update' => function($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->subject_id, [
                                         'title' => Yii::t('back', 'Update'),
                                         'data-pjax' => '0',

@@ -18,6 +18,7 @@ use yii\db\ActiveRecord;
  * @property Email[] $emails
  * @property Subject $subject
  * @property Phone[] $phones
+ * @property PersonType $personType
  */
 class Person extends ActiveRecord
 {
@@ -35,8 +36,8 @@ class Person extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'surname'], 'required'],
-            [['subject_id'], 'integer'],
+            [['name', 'surname', 'person_type_id'], 'required'],
+            [['subject_id', 'person_type_id'], 'integer'],
             [['front_title', 'back_title'], 'string', 'max' => 20],
             [['name', 'surname'], 'string', 'max' => 30]
         ];
@@ -54,6 +55,7 @@ class Person extends ActiveRecord
             'surname' => Yii::t('app', 'Surname'),
             'back_title' => Yii::t('app', 'Back Title'),
             'subject_id' => Yii::t('app', 'Subject ID'),
+            'person_type_id' => Yii::t('app', 'Person Type'),
         ];
     }
 
@@ -79,5 +81,13 @@ class Person extends ActiveRecord
     public function getPhones()
     {
         return $this->hasMany(Phone::className(), ['person_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPersonType()
+    {
+        return $this->hasOne(PersonType::className(), ['id' => 'person_type_id']);
     }
 }

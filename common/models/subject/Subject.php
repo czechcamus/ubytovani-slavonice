@@ -2,10 +2,12 @@
 
 namespace common\models\subject;
 
+use common\models\User;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "subject".
@@ -20,7 +22,10 @@ use yii\db\ActiveRecord;
  * @property string $updated_at
  * @property integer $updated_by
  *
+ * @property User $creator
+ * @property User $updater
  * @property Person[] $people
+ * @property Address[] $addresses
  */
 class Subject extends ActiveRecord
 {
@@ -40,7 +45,7 @@ class Subject extends ActiveRecord
         return [
             'timestamp' => [
                 'class' => TimestampBehavior::className(),
-                'value' => function ($event) {
+                'value' => function () {
                     return date('Y-m-d H:i:s');
                 },
             ],
@@ -96,5 +101,49 @@ class Subject extends ActiveRecord
     public function getAddresses()
     {
         return $this->hasMany(Address::className(), ['subject_id' => 'id']);
+    }
+
+    /**
+     * @return string HTML code for displaying addresses
+     */
+    public function renderAddresses()
+    {
+        $addressesString = '';
+        foreach ($this->addresses as $address)
+        {
+            $addressesString .= Html::tag('em', $address->addressType->title . ': ');
+            $addressesString .= implode(', ', array_filter($address->toArray(['street', 'house_nr', 'city', 'postal_code']))) . '<br />';
+        }
+
+        return $addressesString;
+    }
+
+    /**
+     * @return string HTML code for displaying people
+     */
+    public function renderPeople()
+    {
+        $peopleString = '';
+        foreach ($this->people as $person) {
+            $peopleString .= '';
+        }
+
+        return $peopleString;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreator()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdater()
+    {
+        return$this->hasOne(User::className(), ['id' => 'updated_by']);
     }
 }
