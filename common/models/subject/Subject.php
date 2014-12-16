@@ -125,7 +125,7 @@ class Subject extends ActiveRecord
     {
         $peopleString = '';
         foreach ($this->people as $person) {
-            $peopleString .= '';
+            //$peopleString .= Html::tag('em', $person->personType->title . ': ');
         }
 
         return $peopleString;
@@ -144,6 +144,19 @@ class Subject extends ActiveRecord
      */
     public function getUpdater()
     {
-        return$this->hasOne(User::className(), ['id' => 'updated_by']);
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    /**
+     * Checks completion of subject related data
+     * @param $id subject id
+     * @return bool
+     */
+    public function checkCompletion($id)
+    {
+        $sql = 'SELECT DISTINCT subject.id FROM subject, person, phone WHERE subject.id=:id AND subject.id=person.subject_id AND person.id=phone.person_id';
+        $phoneSubjects = self::findBySql($sql, [':id' => $id])->all();
+        $addressSubjects = self::find()->where(['id' => $id])->with('addresses')->all();
+        return ($phoneSubjects AND $addressSubjects) ? true : false;
     }
 }

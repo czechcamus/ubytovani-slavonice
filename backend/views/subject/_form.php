@@ -6,6 +6,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Subject */
 /* @var $form yii\bootstrap\ActiveForm */
+//TODO: místo odpovědné osoby, kontaktní osoby
 ?>
 
 <div class="subject-form">

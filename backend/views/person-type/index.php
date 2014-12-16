@@ -6,6 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+//TODO: místo person type(s) contact type(s)
 $modelClass = Yii::t('back', 'Person Type');
 $this->title = Yii::t('back', 'Person Types');
 $this->params['breadcrumbs'][] = $this->title;

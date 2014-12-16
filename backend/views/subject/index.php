@@ -6,6 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\subject\SearchSubject */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $model common\models\subject\Subject */
 
 $this->title = Yii::t('back', 'Subjects');
 $this->params['breadcrumbs'][] = $this->title;
@@ -23,6 +24,12 @@ $modelClass = Yii::t('back', 'Subject');
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'rowOptions' => function($model, $key) {
+            return $model->checkCompletion($key) ? [] : [
+                'class' => 'subject-uncompleted',
+                'title' => Yii::t('back', 'Subject uncompleted'),
+            ];
+        },
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

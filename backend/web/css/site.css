@@ -90,7 +90,12 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+/* My stylles --- */
 .required label:after {
     content: ' (!) ';
     color: #a94442;
+}
+
+.subject-uncompleted td {
+    background-color: #e57373;
 }
