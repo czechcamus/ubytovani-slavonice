@@ -125,7 +125,8 @@ class Subject extends ActiveRecord
     {
         $peopleString = '';
         foreach ($this->people as $person) {
-            //$peopleString .= Html::tag('em', $person->personType->title . ': ');
+            $peopleString .= Html::tag('em', $person->personType->title . ': ');
+            $peopleString .= implode(' ', array_filter($person->toArray(['name', 'surname']))) . '<br />';
         }
 
         return $peopleString;

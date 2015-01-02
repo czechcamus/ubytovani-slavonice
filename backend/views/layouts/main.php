@@ -32,7 +32,14 @@ AppAsset::register($this);
                 ],
             ]);
             $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => Yii::t('back', 'Home'), 'url' => ['/site/index']],
+                ['label' => Yii::t('back', 'Subjects'), 'url' => ['/subject/index']],
+                ['label' => Yii::t('back', 'Settings'), 'items' => [
+                    ['label' => Yii::t('back', 'Address Types'), 'url' => ['/address-type/index']],
+                    ['label' => Yii::t('back', 'Email Types'), 'url' => ['/email-type/index']],
+                    ['label' => Yii::t('back', 'Phone Types'), 'url' => ['/phone-type/index']],
+                    ['label' => Yii::t('back', 'States'), 'url' => ['/state/index']],
+                ]],
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

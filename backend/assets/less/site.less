@@ -1,3 +1,13 @@
+/* Variables --- */
+@error-color: #a94442;
+@error-bg-color: #fdf7f7;
+@uncompleted-color: #ffd3de;
+@error-border-color: #eed3d7;
+@light-gray: #999;
+@lighter-gray: #f5f5f5;
+@warning-color: #c55;
+
+/* My styles --- */
 html,
 body {
     height: 100%;
@@ -16,8 +26,8 @@ body {
 
 .footer {
     height: 60px;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
+    background-color: @lighter-gray;
+    border-top: 1px solid darken(@lighter-gray, 10%);
     padding-top: 20px;
 }
 
@@ -32,7 +42,7 @@ body {
 }
 
 .not-set {
-    color: #c55;
+    color: @warning-color;
     font-style: italic;
 }
 
@@ -79,23 +89,22 @@ a.desc:after {
 .hint-block {
     display: block;
     margin-top: 5px;
-    color: #999;
+    color: @light-gray;
 }
 
 .error-summary {
-    color: #a94442;
-    background: #fdf7f7;
-    border-left: 3px solid #eed3d7;
+    color: @error-color;
+    background: @error-bg-color;
+    border-left: 3px solid @error-border-color;
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
 
-/* My stylles --- */
 .required label:after {
     content: ' (!) ';
-    color: #a94442;
+    color: @error-color;
 }
 
 .subject-uncompleted td {
-    background-color: #ffd3de;
+    background-color: @uncompleted-color;
 }

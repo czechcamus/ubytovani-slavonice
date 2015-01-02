@@ -67,6 +67,12 @@ use yii\bootstrap\ActiveForm;
                         'pagination' => false
                     ]),
                     'columns' => [
+                        [
+                            'label' => Yii::t('back', 'Address Type'),
+                            'value' => function ($data) {
+                                return $data->addressType->title;
+                            },
+                        ],
                         'street',
                         'house_nr',
                         'city',
