@@ -3,6 +3,7 @@
 namespace common\models\subject;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "email".
@@ -15,7 +16,7 @@ use Yii;
  * @property Person $person
  * @property EmailType $emailType
  */
-class Email extends \yii\db\ActiveRecord
+class Email extends ActiveRecord
 {
     /**
      * @inheritdoc
