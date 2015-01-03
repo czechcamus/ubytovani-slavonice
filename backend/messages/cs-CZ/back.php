@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Home' => 'Úvod',
-    'Settings' => 'Nastavení',
+    'Internet Type' => 'Typ internetového připojení',
+    'Internet Types' => 'Typy internetových připojení',
     '-- choose a country --' => '-- vyberte zemi --',
     '-- choose a type --' => '-- vyberte typ --',
     'Add new' => 'Přidat',
@@ -35,6 +35,7 @@ return [
     'Email Type' => 'Typ emailu',
     'Email Types' => 'Typy emailů',
     'Emails' => 'Emaily',
+    'Home' => 'Úvod',
     'People' => 'Kontakty',
     'Person' => 'osobu',
     'Person Type' => 'Typ kontaktu',
@@ -46,6 +47,7 @@ return [
     'Reset' => 'Resetovat',
     'Responsible People' => 'Odpovědné osoby',
     'Search' => 'Hledat',
+    'Settings' => 'Nastavení',
     'State' => 'zemi',
     'States' => 'Země',
     'Subject' => 'ubytovatele',
