@@ -15,15 +15,12 @@ use yii\db\ActiveRecord;
  * @property string $title
  * @property integer $nr
  * @property string $note
- * @property integer $wc
- * @property integer $bath
- * @property integer $douche
- * @property integer $tv
- * @property integer $phone
  *
  * @property Price[] $prices
  * @property RoomType $roomType
  * @property Subject $subject
+ * @property RoomRoomProperty[] $roomRoomProperties
+ * @property RoomProperty[] $roomProperties
  */
 class Room extends ActiveRecord
 {
@@ -41,7 +38,7 @@ class Room extends ActiveRecord
     public function rules()
     {
         return [
-            [['subject_id', 'room_type_id', 'nr', 'wc', 'bath', 'douche', 'tv', 'phone'], 'integer'],
+            [['subject_id', 'room_type_id', 'nr'], 'integer'],
             [['title'], 'string', 'max' => 45],
             [['note'], 'string', 'max' => 150]
         ];
@@ -59,11 +56,6 @@ class Room extends ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'nr' => Yii::t('app', 'Nr'),
             'note' => Yii::t('app', 'Note'),
-            'wc' => Yii::t('app', 'Wc'),
-            'bath' => Yii::t('app', 'Bath'),
-            'douche' => Yii::t('app', 'Douche'),
-            'tv' => Yii::t('app', 'Tv'),
-            'phone' => Yii::t('app', 'Phone'),
         ];
     }
 
@@ -90,4 +82,20 @@ class Room extends ActiveRecord
     {
         return $this->hasOne(Subject::className(), ['id' => 'subject_id']);
     }
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getRoomRoomProperties()
+	{
+		return $this->hasMany(RoomRoomProperty::className(), ['room_id' => 'id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getRoomProperties()
+	{
+		return $this->hasMany(RoomProperty::className(), ['id' => 'room_property_id'])->via('roomRoomProperties');
+	}
 }

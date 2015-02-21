@@ -83,3 +83,7 @@ a.desc:after {
 .subject-uncompleted td {
   background-color: #ffd3de;
 }
+.property-type,
+.type-options {
+  display: none;
+}

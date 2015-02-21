@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\facility\RoomType */
 
-$modelClass = Yii::t('back', 'Internet Type');
+$modelClass = Yii::t('back', 'Room Type');
 $this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Room Types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->title;

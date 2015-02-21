@@ -21,8 +21,8 @@ class SubModelController extends TypeModelController
     {
         $actions = parent::actions();
         return array_merge($actions, [
-            'index' => ['class' => NotFoundAction::className(), 'route' => 'person/index'],
-            'view' => ['class' => NotFoundAction::className(), 'route' => 'person/view'],
+            'index' => ['class' => NotFoundAction::className(), 'route' => $this->relationName . '/index'],
+            'view' => ['class' => NotFoundAction::className(), 'route' => $this->relationName . '/view'],
         ]);
     }
 

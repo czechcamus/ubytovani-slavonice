@@ -34,7 +34,11 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' => Yii::t('back', 'Home'), 'url' => ['/site/index']],
                 ['label' => Yii::t('back', 'Subjects'), 'url' => ['/subject/index']],
+	            ['label' => Yii::t('back', 'Facilities'), 'url' => ['/facility/index']],
                 ['label' => Yii::t('back', 'Settings'), 'items' => [
+	                ['label' => Yii::t('back', 'Facility Properties'), 'url' => ['/facility-property/index']],
+	                ['label' => Yii::t('back', 'Room Properties'), 'url' => ['/room-property/index']],
+	                '<li role="presentation" class="divider"></li>',
                     ['label' => Yii::t('back', 'Address Types'), 'url' => ['/address-type/index']],
                     ['label' => Yii::t('back', 'Email Types'), 'url' => ['/email-type/index']],
                     ['label' => Yii::t('back', 'Phone Types'), 'url' => ['/phone-type/index']],

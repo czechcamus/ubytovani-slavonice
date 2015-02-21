@@ -12,6 +12,7 @@ namespace backend\utilities;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,17 +25,26 @@ class TypeModelController extends Controller
     /** @var  string name of the main ActiveRecord model class */
     public $modelClass;
 
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
+	public function behaviors()
+	{
+		return [
+			'verbs' => [
+				'class' => VerbFilter::className(),
+				'actions' => [
+					'delete' => ['post'],
+				],
+			],
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'roles' => ['@'],
+						'allow' => true
+					]
+				]
+			]
+		];
+	}
 
     /**
      * Lists all ActiveRecord models.
@@ -42,6 +52,7 @@ class TypeModelController extends Controller
      */
     public function actionIndex()
     {
+	    /** @var ActiveRecord $model */
         $model = new $this->modelClass;
         $query = $model::find();
         $dataProvider = new ActiveDataProvider(compact('query'));

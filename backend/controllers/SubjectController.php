@@ -9,6 +9,7 @@ use common\models\subject\Phone;
 use Yii;
 use common\models\subject\Subject;
 use common\models\subject\SearchSubject;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -27,6 +28,15 @@ class SubjectController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+	            'class' => AccessControl::className(),
+	            'rules' => [
+		            [
+			            'roles' => ['@'],
+			            'allow' => true
+		            ]
+	            ]
+            ]
         ];
     }
 
