@@ -10,5 +10,5 @@ use backend\utilities\TypeModelController;
  */
 class PersonTypeController extends TypeModelController
 {
-    public $modelClass = 'common\models\subject\PersonType';
+    public $modelClass = 'common\models\type\PersonType';
 }

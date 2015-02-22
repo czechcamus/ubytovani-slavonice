@@ -10,5 +10,5 @@ use backend\utilities\TypeModelController;
  */
 class InternetTypeController extends TypeModelController
 {
-    public $modelClass = 'common\models\facility\InternetType';
+    public $modelClass = 'common\models\type\InternetType';
 }

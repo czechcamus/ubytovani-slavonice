@@ -1,13 +1,15 @@
 <?php
 
+use common\models\type\EmailType;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\subject\Email */
+/* @var $model common\models\Email */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$typeList = \yii\helpers\ArrayHelper::map(\common\models\subject\EmailType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
+$typeList = ArrayHelper::map(EmailType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
 ?>
 
 <div class="email-form">

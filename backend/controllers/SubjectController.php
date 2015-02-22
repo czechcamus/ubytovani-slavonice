@@ -2,10 +2,10 @@
 
 namespace backend\controllers;
 
-use common\models\subject\Address;
-use common\models\subject\Email;
+use common\models\Address;
+use common\models\Email;
+use common\models\Phone;
 use common\models\subject\Person;
-use common\models\subject\Phone;
 use Yii;
 use common\models\subject\Subject;
 use common\models\subject\SearchSubject;
@@ -107,15 +107,6 @@ class SubjectController extends Controller
      */
     public function actionDelete($id)
     {
-        if (($people = Person::findAll(['subject_id' => $id])) !== null) {
-            foreach ($people as $person) {
-                Phone::deleteAll(['person_id' => $person->id]);
-                Email::deleteAll(['person_id' => $person->id]);
-                $person->delete();
-            }
-        }
-        Address::deleteAll(['subject_id' => $id]);
-
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

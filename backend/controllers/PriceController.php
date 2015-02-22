@@ -10,6 +10,6 @@ use backend\utilities\SubModelController;
  */
 class PriceController extends SubModelController
 {
-    public $modelClass = 'common\models\subject\Price';
+    public $modelClass = 'common\models\facility\Price';
     public $relationName = 'room';
 }

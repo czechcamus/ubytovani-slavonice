@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\subject\AddressType */
+/* @var $model common\models\type\AddressType */
 
 $modelClass = Yii::t('back', 'Address Type');
 $this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->title;

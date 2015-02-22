@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\subject\PhoneType */
+/* @var $model common\models\type\PhoneType */
 
 $modelClass = Yii::t('back', 'Phone Type');
 $this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->title;

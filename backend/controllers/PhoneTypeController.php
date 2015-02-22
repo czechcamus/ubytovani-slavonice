@@ -10,5 +10,5 @@ use Yii;
  */
 class PhoneTypeController extends TypeModelController
 {
-    public $modelClass = 'common\models\subject\PhoneType';
+    public $modelClass = 'common\models\type\PhoneType';
 }

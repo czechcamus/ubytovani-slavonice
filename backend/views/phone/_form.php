@@ -1,13 +1,15 @@
 <?php
 
+use common\models\type\PhoneType;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\subject\Phone */
+/* @var $model common\models\Phone */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$typeList = \yii\helpers\ArrayHelper::map(\common\models\subject\PhoneType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
+$typeList = ArrayHelper::map(PhoneType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
 ?>
 
 <div class="phone-form">

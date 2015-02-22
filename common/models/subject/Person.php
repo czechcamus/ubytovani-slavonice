@@ -2,6 +2,10 @@
 
 namespace common\models\subject;
 
+use common\models\Email;
+use common\models\Phone;
+use common\models\type\PersonType;
+use common\utilities\PersonsRelationsDelete;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -59,6 +63,16 @@ class Person extends ActiveRecord
         ];
     }
 
+	/**
+	 * @return array configuration of behaviors.
+	 */
+	public function behaviors()
+	{
+		return [
+			'relationsDelete' => PersonsRelationsDelete::className()
+		];
+	}
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -90,4 +104,5 @@ class Person extends ActiveRecord
     {
         return $this->hasOne(PersonType::className(), ['id' => 'person_type_id']);
     }
+
 }

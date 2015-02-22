@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\ParkingType */
+/* @var $model common\models\type\ParkingType */
 
 $modelClass = Yii::t('back', 'Internet Type');
 $this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->title;

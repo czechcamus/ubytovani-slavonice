@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\RoomType */
+/* @var $model common\models\type\RoomType */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
@@ -16,7 +16,6 @@ use yii\bootstrap\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 45]) ?>
-    <?= $form->field($model, 'bed_nr')->textInput(['maxlength' => 1]) ?>
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-8">

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\PlaceType */
+/* @var $model common\models\type\PlaceType */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 

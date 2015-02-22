@@ -11,5 +11,5 @@ use Yii;
  */
 class StateController extends TypeModelController
 {
-    public $modelClass = 'common\models\subject\State';
+    public $modelClass = 'common\models\State';
 }

@@ -1,5 +1,7 @@
 <?php
 
+use common\models\type\PersonType;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -7,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $model common\models\subject\Person */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$typeList = \yii\helpers\ArrayHelper::map(\common\models\subject\PersonType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
+$typeList = ArrayHelper::map(PersonType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
 ?>
 
 <div class="person-form">

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\InternetType */
+/* @var $model common\models\type\InternetType */
 
 $modelClass = Yii::t('back', 'Internet Type');
 $this->title = Yii::t('back', 'Create {modelClass}', compact('modelClass'));

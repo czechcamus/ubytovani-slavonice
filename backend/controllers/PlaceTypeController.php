@@ -10,5 +10,5 @@ use backend\utilities\TypeModelController;
  */
 class PlaceTypeController extends TypeModelController
 {
-    public $modelClass = 'common\models\facility\PlaceType';
+    public $modelClass = 'common\models\type\PlaceType';
 }

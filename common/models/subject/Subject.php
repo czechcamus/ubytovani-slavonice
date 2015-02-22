@@ -2,7 +2,9 @@
 
 namespace common\models\subject;
 
+use common\models\Address;
 use common\models\User;
+use common\utilities\SubjectsRelationsDelete;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -50,6 +52,7 @@ class Subject extends ActiveRecord
                 },
             ],
             'blame' => BlameableBehavior::className(),
+	        'relationsDelete' => SubjectsRelationsDelete::className()
         ];
     }
 
@@ -155,7 +158,7 @@ class Subject extends ActiveRecord
      */
     public function checkCompletion($id)
     {
-        $sql = 'SELECT DISTINCT subject.id FROM subject, person, phone WHERE subject.id=:id AND subject.id=person.subject_id AND person.id=phone.person_id';
+        $sql = 'SELECT DISTINCT subject.id FROM subject, person, phone WHERE subject.id = :id AND subject.id = person.subject_id AND person.id = phone.person_id';
         $phoneSubjects = self::findBySql($sql, [':id' => $id])->all();
         $addressSubjects = self::find()->where(['id' => $id])->with('addresses')->all();
         return ($phoneSubjects AND $addressSubjects) ? true : false;

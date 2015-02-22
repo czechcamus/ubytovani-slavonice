@@ -11,6 +11,6 @@ use Yii;
  */
 class PhoneController extends SubModelController
 {
-    public $modelClass = 'common\models\subject\Phone';
+    public $modelClass = 'common\models\Phone';
     public $relationName = 'person';
 }

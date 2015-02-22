@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\RoomType */
+/* @var $model common\models\type\RoomType */
 
 $modelClass = Yii::t('back', 'Room Type');
 $this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->title;

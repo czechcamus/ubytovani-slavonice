@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\ParkingType */
+/* @var $model common\models\type\ParkingType */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 

@@ -1,14 +1,15 @@
 <?php
 
+use common\models\subject\Subject;
 use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\subject\Address */
+/* @var $model common\models\Address */
 /* @var $relation_id integer */
 /* @var $subjectModel common\models\subject\Subject */
 
-$subjectModel = \common\models\subject\Subject::findOne($relation_id);
+$subjectModel = Subject::findOne($relation_id);
 $modelClass = Yii::t('back', 'Address');
 $this->title = Yii::t('back', 'Create {modelClass}', compact('modelClass'));
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Subjects'), 'url' => ['subject/index']];

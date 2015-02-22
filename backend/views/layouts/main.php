@@ -42,6 +42,7 @@ AppAsset::register($this);
                     ['label' => Yii::t('back', 'Address Types'), 'url' => ['/address-type/index']],
                     ['label' => Yii::t('back', 'Email Types'), 'url' => ['/email-type/index']],
                     ['label' => Yii::t('back', 'Phone Types'), 'url' => ['/phone-type/index']],
+	                ['label' => Yii::t('back', 'Person Types'), 'url' => ['/person-type/index']],
                     ['label' => Yii::t('back', 'Facility Types'), 'url' => ['/facility-type/index']],
                     ['label' => Yii::t('back', 'Place Types'), 'url' => ['/place-type/index']],
                     ['label' => Yii::t('back', 'Internet Types'), 'url' => ['/internet-type/index']],

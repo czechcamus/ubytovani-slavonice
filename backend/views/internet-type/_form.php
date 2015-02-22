@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\InternetType */
+/* @var $model common\models\type\InternetType */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 

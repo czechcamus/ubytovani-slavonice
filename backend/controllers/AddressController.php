@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use backend\utilities\SubModelController;
-use common\models\subject\Address;
+use common\models\Address;
 use Yii;
 
 /**
@@ -11,7 +11,7 @@ use Yii;
  */
 class AddressController extends SubModelController
 {
-    public $modelClass = 'common\models\subject\Address';
+    public $modelClass = 'common\models\Address';
     public $relationName = 'subject';
 
     /**

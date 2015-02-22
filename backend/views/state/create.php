@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\subject\State */
+/* @var $model common\models\State */
 
 $modelClass = Yii::t('back', 'State');
 $this->title = Yii::t('back', 'Create {modelClass}', compact('modelClass'));

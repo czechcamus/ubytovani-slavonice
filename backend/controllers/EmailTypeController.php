@@ -10,5 +10,5 @@ use Yii;
  */
 class EmailTypeController extends TypeModelController
 {
-    public $modelClass = 'common\models\subject\EmailType';
+    public $modelClass = 'common\models\type\EmailType';
 }

@@ -11,5 +11,5 @@ use Yii;
  */
 class AddressTypeController extends TypeModelController
 {
-    public $modelClass = 'common\models\subject\AddressType';
+    public $modelClass = 'common\models\type\AddressType';
 }

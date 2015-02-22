@@ -1,14 +1,17 @@
 <?php
 
+use common\models\State;
+use common\models\type\AddressType;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\subject\Address */
+/* @var $model common\models\Address */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$typeList = \yii\helpers\ArrayHelper::map(\common\models\subject\AddressType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
-$stateList = \yii\helpers\ArrayHelper::map(\common\models\subject\State::find()->orderBy('name')->asArray()->all(), 'id', 'name');
+$typeList = ArrayHelper::map(AddressType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
+$stateList = ArrayHelper::map(State::find()->orderBy('name')->asArray()->all(), 'id', 'name');
 ?>
 
 <div class="address-form">

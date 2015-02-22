@@ -10,5 +10,5 @@ use backend\utilities\TypeModelController;
  */
 class RoomTypeController extends TypeModelController
 {
-    public $modelClass = 'common\models\facility\RoomType';
+    public $modelClass = 'common\models\type\RoomType';
 }

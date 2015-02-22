@@ -10,5 +10,5 @@ use backend\utilities\TypeModelController;
  */
 class ParkingTypeController extends TypeModelController
 {
-    public $modelClass = 'common\models\facility\ParkingType';
+    public $modelClass = 'common\models\type\ParkingType';
 }

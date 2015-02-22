@@ -11,6 +11,6 @@ use Yii;
  */
 class EmailController extends SubModelController
 {
-    public $modelClass = 'common\models\subject\Email';
+    public $modelClass = 'common\models\Email';
     public $relationName = 'person';
 }

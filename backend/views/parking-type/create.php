@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\ParkingType */
+/* @var $model common\models\type\ParkingType */
 
 $modelClass = Yii::t('back', 'Parking Type');
 $this->title = Yii::t('back', 'Create {modelClass}', compact('modelClass'));
