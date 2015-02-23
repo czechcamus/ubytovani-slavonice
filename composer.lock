@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "50e3a123d0a1ecd74aac840e691a08e9",
+    "hash": "b84c1a4fc6a51e45e23c5e5140215228",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -339,6 +339,91 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
+        },
+        {
+            "name": "moonlandsoft/bootui-datetimepicker",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moonlandsoft/bootui-datetimepicker.git",
+                "reference": "d67536e3269c00692a4e68c6856157226cf3519d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moonlandsoft/bootui-datetimepicker/zipball/d67536e3269c00692a4e68c6856157226cf3519d",
+                "reference": "d67536e3269c00692a4e68c6856157226cf3519d",
+                "shasum": ""
+            },
+            "require": {
+                "moonlandsoft/helpers": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "bootui\\datetimepicker\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Moh Khoirul Anam",
+                    "email": "moh.khoirul.anaam@gmail.com"
+                }
+            ],
+            "description": "Bootstrap Datepicker and Timepicker in one extentions",
+            "keywords": [
+                "DateTimePicker",
+                "bootstrap",
+                "datepicker",
+                "extension",
+                "timepicker",
+                "yii2"
+            ],
+            "time": "2015-01-23 22:43:56"
+        },
+        {
+            "name": "moonlandsoft/helpers",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moonlandsoft/helpers.git",
+                "reference": "8a8c981b17112f04e1da0bd0de8d56adfb8e5adf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moonlandsoft/helpers/zipball/8a8c981b17112f04e1da0bd0de8d56adfb8e5adf",
+                "reference": "8a8c981b17112f04e1da0bd0de8d56adfb8e5adf",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "moonland\\helpers\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Moh Khoirul Anam",
+                    "email": "moh.khoirul.anaam@gmail.com"
+                }
+            ],
+            "description": "Helper for all widgets",
+            "keywords": [
+                "extension",
+                "yii2"
+            ],
+            "time": "2015-01-23 14:45:15"
         },
         {
             "name": "swiftmailer/swiftmailer",

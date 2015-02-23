@@ -9,7 +9,9 @@
 namespace backend\models;
 
 
+use common\models\subject\Subject;
 use common\models\type\FacilityType;
+use common\models\type\PlaceType;
 use Yii;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
@@ -62,14 +64,15 @@ class FacilityForm extends Model
 	 */
 	public function rules() {
 		return [
-			[['facility_type_id', 'title', 'subject_id', 'person_id', 'place_type_id', 'city', 'postal_code'], 'required'],
-			[['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_type_id'], 'integer'],
-			[['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to'], 'date'],
-			['partner', 'boolean'],
-			[['title', 'weburl', 'certificate'], 'string', 'max' => 100],
-			[['street', 'city'], 'string', 'max' => 45],
-			[['house_nr', 'postal_code'], 'string', 'max' => 10],
-			[['properties'], 'safe']
+			[['title', 'subject_id', 'person_id', 'city', 'postal_code'], 'required', 'on' => ['create', 'update']],
+			[['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_type_id'], 'integer', 'on' => ['create', 'update']],
+			[['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to'], 'date', 'on' => ['create', 'update']],
+			['stars', 'integer', 'min' => 1, 'max' => 5, 'on' => ['create', 'update']],
+			['partner', 'boolean', 'on' => ['create', 'update']],
+			[['title', 'weburl', 'certificate'], 'string', 'max' => 100, 'on' => ['create', 'update']],
+			[['street', 'city'], 'string', 'max' => 45, 'on' => ['create', 'update']],
+			[['house_nr', 'postal_code'], 'string', 'max' => 10, 'on' => ['create', 'update']],
+			[['facility_type_id', 'place_type_id', 'properties'], 'safe', 'on' => ['create', 'update']]
 		];
 	}
 
@@ -114,6 +117,23 @@ class FacilityForm extends Model
 	 * @return array
 	 */
 	public function getFacilityTypeOptions() {
-		return ArrayHelper::map(FacilityType::find()->all(), 'id', 'title');
+		/** @noinspection PhpUndefinedMethodInspection */
+		return ArrayHelper::map(FacilityType::find()->orderBy('title')->all(), 'id', 'title');
+	}
+
+	/**
+	 * Gets subjects for drop down list
+	 * @return array
+	 */
+	public function getSubjectOptions() {
+		return ArrayHelper::map(Subject::find()->completed()->orderBy('title')->all(), 'id', 'title');
+	}
+
+	/**
+	 * Gets place types for drop down list
+	 * @return array
+	 */
+	public function getPlaceTypeOptions() {
+		return ArrayHelper::map(PlaceType::find()->orderBy('title')->all(), 'id', 'title');
 	}
 }

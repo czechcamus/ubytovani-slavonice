@@ -101,8 +101,8 @@ use yii\bootstrap\ActiveForm;
                                         'data-pjax' => '0',
                                     ]);
                                 },
-                                'delete' => function($url, $model) {
-	                                return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url . '&relation_id=' . $model->subject_id, [
+                                'delete' => function($url) {
+	                                return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
 		                                'title' => Yii::t('back', 'Delete'),
 		                                'data-method' => 'post',
 		                                'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),

@@ -5,6 +5,8 @@ namespace backend\controllers;
 use backend\utilities\SubModelController;
 use common\models\subject\Person;
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\web\Response;
 
 
 /**
@@ -54,6 +56,22 @@ class PersonController extends SubModelController
 
         return $this->render('update', compact('model', 'relation_id'));
     }
+
+	/**
+	 * Gets people list of given subject
+	 * @return \yii\console\Response|Response
+	 */
+	public function actionGetPeopleList() {
+		$subject_id = Yii::$app->request->get('subId');
+		$items = ArrayHelper::map(Person::find()->where('subject_id = :subject_id', [
+			':subject_id' => $subject_id
+		])->all(), 'id', 'title');
+
+		$response = Yii::$app->response;
+		$response->format = Response::FORMAT_JSON;
+		$response->data = $items;
+		return $response;
+	}
 
     /**
      * Stores actual page url.

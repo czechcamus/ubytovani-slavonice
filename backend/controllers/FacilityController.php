@@ -68,6 +68,7 @@ class FacilityController extends Controller
     public function actionCreate()
     {
         $model = new FacilityForm();
+	    $model->scenario = 'create';
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             return $this->redirect(['update', 'id' => $model->facility_id]);
@@ -87,6 +88,7 @@ class FacilityController extends Controller
 	    $this->storeReturnUrl();
         $model = new FacilityForm();
 	    $model->loadModel($id);
+	    $model->scenario = 'update';
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             return $this->redirect(['view', 'id' => $model->facility_id]);

@@ -4,6 +4,7 @@ namespace common\models\subject;
 
 use common\models\Address;
 use common\models\User;
+use common\utilities\StatusQuery;
 use common\utilities\SubjectsRelationsDelete;
 use Yii;
 use yii\behaviors\BlameableBehavior;
@@ -73,7 +74,16 @@ class Subject extends ActiveRecord
         ];
     }
 
-    /**
+	/**
+	 * @inheritdoc
+	 * @return StatusQuery
+	 */
+	public static function find()
+	{
+		return new StatusQuery(get_called_class());
+	}
+
+	/**
      * @inheritdoc
      */
     public function attributeLabels()
