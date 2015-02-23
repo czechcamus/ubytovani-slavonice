@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\RoomProperty */
+/* @var $model common\models\property\RoomProperty */
 
 $modelClass = Yii::t('back', 'Room Property');
 $this->title = Yii::t('back', 'Create {modelClass}', compact('modelClass'));

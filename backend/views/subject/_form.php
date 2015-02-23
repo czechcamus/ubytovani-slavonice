@@ -1,5 +1,8 @@
 <?php
 
+use yii\data\ActiveDataProvider;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -28,8 +31,8 @@ use yii\bootstrap\ActiveForm;
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
                 <h2><?= Yii::t('back', 'Responsible People'); ?></h2>
-                <?= \yii\grid\GridView::widget([
-                    'dataProvider' => new \yii\data\ActiveDataProvider([
+                <?= GridView::widget([
+                    'dataProvider' => new ActiveDataProvider([
                         'query' => $model->getPeople(),
                         'pagination' => false
                     ]),
@@ -43,7 +46,7 @@ use yii\bootstrap\ActiveForm;
                         'name',
                         'surname',
                         [
-                            'class' => \yii\grid\ActionColumn::className(),
+                            'class' => ActionColumn::className(),
                             'controller' => 'person',
                             'header' => Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
                                 Yii::t('back', 'Add new'), ['person/create', 'relation_id' => $model->id]),
@@ -54,6 +57,14 @@ use yii\bootstrap\ActiveForm;
                                         'title' => Yii::t('back', 'Update'),
                                         'data-pjax' => '0',
                                     ]);
+                                },
+                                'delete' => function($url, $model) {
+	                                return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url . '&relation_id=' . $model->subject_id, [
+		                                'title' => Yii::t('back', 'Delete'),
+		                                'data-method' => 'post',
+		                                'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+		                                'data-pjax' => '0',
+	                                ]);
                                 }
                             ]
                         ]
@@ -61,8 +72,8 @@ use yii\bootstrap\ActiveForm;
                 ]); ?>
 
                 <h2><?= Yii::t('back', 'Contact addresses'); ?></h2>
-                <?= \yii\grid\GridView::widget([
-                    'dataProvider' => new \yii\data\ActiveDataProvider([
+                <?= GridView::widget([
+                    'dataProvider' => new ActiveDataProvider([
                         'query' => $model->getAddresses(),
                         'pagination' => false
                     ]),
@@ -78,7 +89,7 @@ use yii\bootstrap\ActiveForm;
                         'city',
                         'postal_code',
                         [
-                            'class' => \yii\grid\ActionColumn::className(),
+                            'class' => ActionColumn::className(),
                             'controller' => 'address',
                             'header' => Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
                                 Yii::t('back', 'Add new'), ['address/create', 'relation_id' => $model->id]),
@@ -89,6 +100,14 @@ use yii\bootstrap\ActiveForm;
                                         'title' => Yii::t('back', 'Update'),
                                         'data-pjax' => '0',
                                     ]);
+                                },
+                                'delete' => function($url, $model) {
+	                                return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url . '&relation_id=' . $model->subject_id, [
+		                                'title' => Yii::t('back', 'Delete'),
+		                                'data-method' => 'post',
+		                                'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+		                                'data-pjax' => '0',
+	                                ]);
                                 }
                             ]
                         ]

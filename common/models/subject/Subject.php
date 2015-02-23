@@ -9,6 +9,8 @@ use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\db\Query;
 use yii\helpers\Html;
 
 /**
@@ -19,6 +21,7 @@ use yii\helpers\Html;
  * @property string $note
  * @property string $company_nr
  * @property string $tax_nr
+ * @property integer $completed
  * @property string $created_at
  * @property integer $created_by
  * @property string $updated_at
@@ -47,9 +50,7 @@ class Subject extends ActiveRecord
         return [
             'timestamp' => [
                 'class' => TimestampBehavior::className(),
-                'value' => function () {
-                    return date('Y-m-d H:i:s');
-                },
+                'value' => new Expression('NOW()'),
             ],
             'blame' => BlameableBehavior::className(),
 	        'relationsDelete' => SubjectsRelationsDelete::className()
@@ -64,7 +65,7 @@ class Subject extends ActiveRecord
         return [
             [['title'], 'required'],
             [['note'], 'string'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at', 'completed'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
             [['title'], 'string', 'max' => 45],
             [['company_nr'], 'string', 'max' => 10],
@@ -83,6 +84,7 @@ class Subject extends ActiveRecord
             'note' => Yii::t('app', 'Note'),
             'company_nr' => Yii::t('app', 'Company Nr'),
             'tax_nr' => Yii::t('app', 'Tax Nr'),
+            'completed' => Yii::t('app', 'Completed'),
             'created_at' => Yii::t('app', 'Created At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_at' => Yii::t('app', 'Updated At'),
@@ -153,14 +155,14 @@ class Subject extends ActiveRecord
 
     /**
      * Checks completion of subject related data
-     * @param $id subject id
      * @return bool
      */
-    public function checkCompletion($id)
+    public function checkCompletion()
     {
-        $sql = 'SELECT DISTINCT subject.id FROM subject, person, phone WHERE subject.id = :id AND subject.id = person.subject_id AND person.id = phone.person_id';
-        $phoneSubjects = self::findBySql($sql, [':id' => $id])->all();
-        $addressSubjects = self::find()->where(['id' => $id])->with('addresses')->all();
-        return ($phoneSubjects AND $addressSubjects) ? true : false;
+	    $query = new Query();
+	    $addresses = $query->select('id')->from('address')->where(['subject_id' => $this->id])->count();
+	    $persons = $query->select('id')->from('person')->where(['subject_id' => $this->id])->column();
+	    $phones = $query->select('id')->from('phone')->where(['in', 'person_id', $persons])->count();
+        return ($addresses AND $phones);
     }
 }

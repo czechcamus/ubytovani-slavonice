@@ -48,6 +48,8 @@ AppAsset::register($this);
                     ['label' => Yii::t('back', 'Internet Types'), 'url' => ['/internet-type/index']],
                     ['label' => Yii::t('back', 'Parking Types'), 'url' => ['/parking-type/index']],
                     ['label' => Yii::t('back', 'Room Types'), 'url' => ['/room-type/index']],
+	                '<li role="presentation" class="divider"></li>',
+	                ['label' => Yii::t('back', 'Value Added Taxes'), 'url' => ['/tax/index']],
                     '<li role="presentation" class="divider"></li>',
                     ['label' => Yii::t('back', 'States'), 'url' => ['/state/index']],
                 ]],

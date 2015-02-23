@@ -116,7 +116,7 @@ class TypeModelController extends Controller
     {
         $model = call_user_func([$this->modelClass, 'findOne'], $id);
         if (!$model)
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException(Yii::t('back', 'The requested page does not exist.'));
 
         return $model;
     }

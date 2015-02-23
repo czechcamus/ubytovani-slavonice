@@ -4,6 +4,7 @@ namespace common\models;
 
 use common\models\subject\Person;
 use common\models\type\PhoneType;
+use common\utilities\SaveSubjectCompletion;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -20,13 +21,27 @@ use yii\db\ActiveRecord;
  */
 class Phone extends ActiveRecord
 {
-    /**
+
+	/**
      * @inheritdoc
      */
     public static function tableName()
     {
         return 'phone';
     }
+
+	/**
+	 * @return array configuration of behaviors.
+	 */
+	public function behaviors()
+	{
+		return [
+			'saveSubjectCompletion' => [
+				'class' => SaveSubjectCompletion::className(),
+				'subject_id' => Person::findOne(Yii::$app->request->get('relation_id'))->subject_id
+			]
+		];
+	}
 
     /**
      * @inheritdoc

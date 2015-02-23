@@ -2,11 +2,14 @@
 
 namespace common\models\facility;
 
+use common\models\TypeModel;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "object_property".
  *
+ * @property integer $id
  * @property integer $object_id
  * @property integer $property_id
  * @property string $property_note
@@ -14,9 +17,9 @@ use Yii;
  * @property string $fee
  * @property string $fee_note
  *
- * @property Type $type
+ * @property TypeModel $type
  */
-class ObjectProperty extends \yii\db\ActiveRecord
+class ObjectProperty extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -45,6 +48,7 @@ class ObjectProperty extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+	        'id' => Yii::t('app', 'ID'),
             'object_id' => Yii::t('app', 'Object ID'),
             'property_id' => Yii::t('app', 'Property ID'),
             'property_note' => Yii::t('app', 'Property Note'),
@@ -59,6 +63,6 @@ class ObjectProperty extends \yii\db\ActiveRecord
      */
     public function getType()
     {
-        return $this->hasOne(Type::className(), ['id' => 'type_id']);
+        return $this->hasOne(TypeModel::className(), ['id' => 'type_id']);
     }
 }

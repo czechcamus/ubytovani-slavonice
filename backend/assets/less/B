@@ -37,7 +37,7 @@ a.desc:after {
   position: relative;
   top: 1px;
   display: inline-block;
-  font-family: 'Glyphicons Halflings', sans-serif;
+  font-family: 'Glyphicons Halflings';
   font-style: normal;
   font-weight: normal;
   line-height: 1;
@@ -85,4 +85,5 @@ a.desc:after {
 }
 .type-options {
   display: none;
+  color: #008000;
 }

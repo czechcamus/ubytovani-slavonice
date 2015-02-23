@@ -23,9 +23,9 @@ $modelClass = Yii::t('back', 'Subject');
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'rowOptions' => function($model, $key) {
+        'rowOptions' => function($model) {
 	        /* @var $model common\models\subject\Subject */
-            return $model->checkCompletion($key) ? [] : [
+            return $model->completed ? [] : [
                 'class' => 'subject-uncompleted',
                 'title' => Yii::t('back', 'Subject uncompleted'),
             ];

@@ -2,8 +2,14 @@
 
 namespace common\models\facility;
 
+use common\models\property\FacilityProperty;
+use common\models\type\FacilityType;
+use common\models\type\PlaceType;
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "facility".
@@ -27,6 +33,7 @@ use yii\db\ActiveRecord;
  * @property string $certificate
  * @property integer $stars
  * @property string $description
+ * @property integer $completed
  * @property string $created_at
  * @property integer $created_by
  * @property string $updated_at
@@ -34,7 +41,7 @@ use yii\db\ActiveRecord;
  *
  * @property FacilityType $facilityType
  * @property PlaceType $placeType
- * @property FacilityFacilityProperty[] $facilityFacilityProperties
+ * @property ObjectProperty[] $objectProperties
  * @property FacilityProperty[] $facilityProperties
  */
 class Facility extends ActiveRecord
@@ -47,6 +54,21 @@ class Facility extends ActiveRecord
         return 'facility';
     }
 
+	/**
+	 * @return array configuration of behaviors.
+	 */
+	public function behaviors()
+	{
+		return [
+			'timestamp' => [
+				'class' => TimestampBehavior::className(),
+				'value' => new Expression('NOW()'),
+			],
+			'blame' => BlameableBehavior::className(),
+			//'relationsDelete' => SubjectsRelationsDelete::className()
+		];
+	}
+
     /**
      * @inheritdoc
      */
@@ -55,7 +77,7 @@ class Facility extends ActiveRecord
         return [
             [['subject_id', 'person_id', 'partner', 'place_type_id', 'facility_type_id', 'stars', 'created_by', 'updated_by'], 'integer'],
             [['title', 'city', 'postal_code'], 'required'],
-            [['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to', 'created_at', 'updated_at'], 'safe'],
+            [['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to', 'created_at', 'updated_at', 'completed'], 'safe'],
             [['description'], 'string'],
             [['title', 'weburl', 'certificate'], 'string', 'max' => 100],
             [['street', 'city'], 'string', 'max' => 45],
@@ -88,6 +110,7 @@ class Facility extends ActiveRecord
             'certificate' => Yii::t('app', 'Certificate'),
             'stars' => Yii::t('app', 'Stars'),
             'description' => Yii::t('app', 'Description'),
+            'completed' => Yii::t('app', 'Completed'),
             'created_at' => Yii::t('app', 'Created At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_at' => Yii::t('app', 'Updated At'),
@@ -114,9 +137,9 @@ class Facility extends ActiveRecord
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getFacilityFacilityProperties()
+	public function getObjectProperties()
 	{
-		return $this->hasMany(FacilityFacilityProperty::className(), ['facility_id' => 'id']);
+		return $this->hasMany(ObjectProperty::className(), ['object_id' => 'id']);
 	}
 
 	/**
@@ -124,6 +147,6 @@ class Facility extends ActiveRecord
 	 */
 	public function getFacilityProperties()
 	{
-		return $this->hasMany(FacilityProperty::className(), ['id' => 'facility_property_id'])->via('facilityFacilityProperties');
+		return $this->hasMany(FacilityProperty::className(), ['id' => 'facility_property_id'])->via('objectProperties');
 	}
 }

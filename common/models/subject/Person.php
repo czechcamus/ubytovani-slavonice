@@ -18,6 +18,7 @@ use yii\db\ActiveRecord;
  * @property string $surname
  * @property string $back_title
  * @property integer $subject_id
+ * @property integer $person_type_id
  *
  * @property Email[] $emails
  * @property Subject $subject

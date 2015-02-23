@@ -4,6 +4,7 @@ namespace common\models;
 
 use common\models\subject\Subject;
 use common\models\type\AddressType;
+use common\utilities\SaveSubjectCompletion;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -29,6 +30,7 @@ use yii\db\ActiveRecord;
  */
 class Address extends ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -36,6 +38,20 @@ class Address extends ActiveRecord
     {
         return 'address';
     }
+
+	/**
+	 * @return array configuration of behaviors.
+	 */
+	public function behaviors()
+	{
+		return [
+			'saveSubjectCompletion' => [
+				'class' => SaveSubjectCompletion::className(),
+				'subject_id' => Yii::$app->request->get('relation_id')
+			]
+		];
+	}
+
 
     /**
      * @inheritdoc

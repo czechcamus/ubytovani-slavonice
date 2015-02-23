@@ -4,14 +4,14 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\property\FacilityProperty */
+/* @var $model common\models\facility\Tax */
 
-$modelClass = Yii::t('back', 'Facility Property');
+$modelClass = Yii::t('back', 'Value Added Tax');
 $this->title = Yii::t('back', 'Create {modelClass}', compact('modelClass'));
-$this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Facility Properties'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Taxes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="facility-property-create">
+<div class="tax-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

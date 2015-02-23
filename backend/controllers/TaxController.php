@@ -3,17 +3,17 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\subject\Subject;
-use common\models\subject\SearchSubject;
+use common\models\facility\Tax;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SubjectController implements the CRUD actions for Subject model.
+ * TaxController implements the CRUD actions for Tax model.
  */
-class SubjectController extends Controller
+class TaxController extends Controller
 {
     public function behaviors()
     {
@@ -37,56 +37,41 @@ class SubjectController extends Controller
     }
 
     /**
-     * Lists all Subject models.
+     * Lists all Tax models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SearchSubject();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+        $dataProvider = new ActiveDataProvider([
+            'query' => Tax::find(),
         ]);
+
+        return $this->render('index', compact('dataProvider'));
     }
 
     /**
-     * Displays a single Subject model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Subject model.
+     * Creates a new Tax model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Subject();
+        $model = new Tax();
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->redirect(['update', 'id' => $model->id]);
+            return $this->redirect(['index']);
 
         return $this->render('create', compact('model'));
     }
 
     /**
-     * Updates an existing Subject model.
+     * Updates an existing Tax model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
-        $this->storeReturnUrl();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
@@ -96,7 +81,7 @@ class SubjectController extends Controller
     }
 
     /**
-     * Deletes an existing Subject model.
+     * Deletes an existing Tax model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,26 +94,17 @@ class SubjectController extends Controller
     }
 
     /**
-     * Finds the Subject model based on its primary key value.
+     * Finds the Tax model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Subject the loaded model
+     * @return Tax the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Subject::findOne($id)) !== null) {
+        if (($model = Tax::findOne($id)) !== null)
             return $model;
-        } else {
-            throw new NotFoundHttpException(Yii::t('back', 'The requested page does not exist.'));
-        }
-    }
-
-    /**
-     * Stores actual page url.
-     */
-    private function storeReturnUrl()
-    {
-        Yii::$app->user->returnUrl = Yii::$app->request->url;
+        else
+	        throw new NotFoundHttpException(Yii::t('back', 'The requested page does not exist.'));
     }
 }

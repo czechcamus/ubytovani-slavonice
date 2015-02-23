@@ -1,29 +1,24 @@
 <?php
 
+use yii\bootstrap\ActiveField;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\jui\Spinner;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\property\RoomProperty */
+/* @var $model common\models\facility\Tax */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
-<div class="room-property-form">
+<div class="tax-form">
 
     <?php $form = ActiveForm::begin([
 	    'layout' => 'horizontal',
+	    'fieldClass' => ActiveField::className(),
 	    'fieldConfig' => Yii::$app->params['fieldConfig']
     ]); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => 45]) ?>
-
-	<?= $form->field($model, 'types')->checkbox(['id' => 'typeSwitch']) ?>
-
-	<div class="type-options">
-		<?= $form->field($model, 'model_type')->dropDownList($model->getTypeOptions()) ?>
-	</div>
-
-	<?= $form->field($model, 'fees')->checkbox() ?>
+    <?= $form->field($model, 'tax_value')->widget(Spinner::className()) ?>
 
     <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-8">

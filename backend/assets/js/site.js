@@ -3,5 +3,5 @@
  */
 
 $('#typeSwitch').on('click', function() {
-    $('.property-type').toggle();
+    $('.type-options').toggle();
 });

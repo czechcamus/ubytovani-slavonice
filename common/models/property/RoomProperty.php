@@ -1,7 +1,9 @@
 <?php
 
-namespace common\models\facility;
+namespace common\models\property;
 
+use common\models\facility\ObjectProperty;
+use common\models\facility\Room;
 use common\models\PropertyModel;
 use common\utilities\PropertyTypeAttribute;
 use Yii;
@@ -52,5 +54,28 @@ class RoomProperty extends PropertyModel
 	public function getRooms()
 	{
 		return $this->hasMany(Room::className(), ['id' => 'object_id'])->via('roomProperties');
+	}
+
+	/**
+	 * Types for dropdownlist - according type of property tables
+	 * @return array
+	 */
+	public function getTypeOptions()
+	{
+		return [
+			'' => Yii::t('app', '-- not selected --'),
+			self::INTERNET_MODEL => Yii::t('app', 'Type of Internet'),
+		];
+	}
+
+	/**
+	 * Returns title of selected type
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getTypeOptionTitle($id)
+	{
+		$options = $this->getTypeOptions();
+		return $options[$id];
 	}
 }
