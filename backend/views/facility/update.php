@@ -3,21 +3,17 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\Facility */
+/* @var $model backend\models\FacilityForm */
 
-$this->title = Yii::t('back', 'Update {modelClass}: ', [
-    'modelClass' => 'Facility',
-]) . ' ' . $model->title;
+$modelClass = Yii::t('back', 'Facility');
+$this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Facilities'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('back', 'Update');
+$this->params['breadcrumbs'][] = $model->title;
 ?>
 <div class="facility-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?= $this->render('_form', compact('model')) ?>
 
 </div>

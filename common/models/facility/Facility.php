@@ -3,6 +3,8 @@
 namespace common\models\facility;
 
 use common\models\property\FacilityProperty;
+use common\models\subject\Person;
+use common\models\subject\Subject;
 use common\models\type\FacilityType;
 use common\models\type\PlaceType;
 use Yii;
@@ -43,6 +45,8 @@ use yii\db\Expression;
  * @property PlaceType $placeType
  * @property ObjectProperty[] $objectProperties
  * @property FacilityProperty[] $facilityProperties
+ * @property Subject $subject
+ * @property Person $person
  */
 class Facility extends ActiveRecord
 {
@@ -92,11 +96,11 @@ class Facility extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'subject_id' => Yii::t('app', 'Subject ID'),
-            'person_id' => Yii::t('app', 'Person ID'),
+            'subject_id' => Yii::t('app', 'Subject'),
+            'person_id' => Yii::t('app', 'Person'),
             'partner' => Yii::t('app', 'Partner'),
-            'place_type_id' => Yii::t('app', 'Place Type ID'),
-            'facility_type_id' => Yii::t('app', 'Facility Type ID'),
+            'place_type_id' => Yii::t('app', 'Place Type'),
+            'facility_type_id' => Yii::t('app', 'Facility Type'),
             'title' => Yii::t('app', 'Title'),
             'weburl' => Yii::t('app', 'Weburl'),
             'street' => Yii::t('app', 'Street'),
@@ -148,5 +152,19 @@ class Facility extends ActiveRecord
 	public function getFacilityProperties()
 	{
 		return $this->hasMany(FacilityProperty::className(), ['id' => 'facility_property_id'])->via('objectProperties');
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getSubject() {
+		return $this->hasOne(Subject::className(), ['id' => 'subject_id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getPerson() {
+		return $this->hasOne(Person::className(), ['id' => 'person_id']);
 	}
 }

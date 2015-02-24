@@ -7,51 +7,57 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\facility\SearchFacility */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+$modelClass = Yii::t('back', 'Facility');
 $this->title = Yii::t('back', 'Facilities');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="facility-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('back', 'Create {modelClass}', [
-    'modelClass' => 'Facility',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('back', 'Create {modelClass}', compact('modelClass')), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
+	    'id' => 'facility-grid',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'subject_id',
-            'person_id',
-            'partner',
-            'place_type_id',
-            // 'facility_type_id',
-            // 'title',
-            // 'weburl:url',
-            // 'street',
-            // 'house_nr',
-            // 'city',
-            // 'postal_code',
-            // 'checkin_from',
-            // 'checkin_to',
-            // 'checkout_from',
-            // 'checkout_to',
-            // 'certificate',
-            // 'stars',
-            // 'description:ntext',
-            // 'created_at',
-            // 'created_by',
-            // 'updated_at',
-            // 'updated_by',
+	        'title',
+	        [
+		        'attribute' => 'facility_type_id',
+		        'label' => Yii::t('back', 'Facility Type'),
+		        'value' => function($model) {
+			        return $model->facilityType->title;
+		        }
+	        ],
+	        [
+		        'attribute' => 'subject_id',
+		        'label' => Yii::t('back', 'Subject'),
+		        'value' => function($model) {
+			        return $model->subject->title;
+		        }
+	        ],
+	        [
+		        'attribute' => 'place_type_id',
+		        'label' => Yii::t('back', 'Place Type'),
+		        'value' => function($model) {
+			        return $model->placeType->title;
+		        }
+	        ],
+	        [
+		        'attribute' => 'partner',
+		        'value' => function($model) {
+			        return $model->partner ? Yii::t('back', 'Yes') : Yii::t('back', 'No');
+		        }
+	        ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+	            'class' => 'yii\grid\ActionColumn',
+            ],
         ],
     ]); ?>
 

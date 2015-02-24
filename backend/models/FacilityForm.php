@@ -9,7 +9,9 @@
 namespace backend\models;
 
 
+use common\models\facility\Facility;
 use common\models\subject\Subject;
+use common\models\subject\Person;
 use common\models\type\FacilityType;
 use common\models\type\PlaceType;
 use Yii;
@@ -66,9 +68,10 @@ class FacilityForm extends Model
 		return [
 			[['title', 'subject_id', 'person_id', 'city', 'postal_code'], 'required', 'on' => ['create', 'update']],
 			[['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_type_id'], 'integer', 'on' => ['create', 'update']],
-			[['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to'], 'date', 'on' => ['create', 'update']],
+			[['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to'], 'date', 'format' => 'HH:mm', 'on' => ['create', 'update']],
 			['stars', 'integer', 'min' => 1, 'max' => 5, 'on' => ['create', 'update']],
 			['partner', 'boolean', 'on' => ['create', 'update']],
+			['description', 'string'],
 			[['title', 'weburl', 'certificate'], 'string', 'max' => 100, 'on' => ['create', 'update']],
 			[['street', 'city'], 'string', 'max' => 45, 'on' => ['create', 'update']],
 			[['house_nr', 'postal_code'], 'string', 'max' => 10, 'on' => ['create', 'update']],
@@ -104,12 +107,46 @@ class FacilityForm extends Model
 		];
 	}
 
-	public function loadModel($id) {
-		//TODO dodělat natažení dat
+	/**
+	 * Saves Facility model
+	 * @param bool $insert
+	 */
+	public function saveModel($insert = true) {
+		$facility = new Facility();
+		if ($this->facility_id)
+			$facility->id = $this->facility_id;
+		$facility->isNewRecord = $insert;
+		$facility->attributes = $this->toArray();
+		if ($insert)
+			$facility->completed = false;
+		$facility->save(false);
+		if ($insert)
+			$this->facility_id = $facility->id;
 	}
 
-	public function deleteModel() {
-		//TODO dodělat smazání dat
+	/**
+	 * Loads Facility model into FacilityForm
+	 * @param $id
+	 */
+	public function loadModel($id) {
+		$facility = Facility::findOne($id);
+		foreach ($facility->attributes as $key => $value) {
+			if (property_exists($this, $key))
+				$this->$key = $value;
+		}
+		$this->facility_id = $facility->id;
+	}
+
+	/**
+	 * Deletes Facility model
+	 * @param $id
+	 *
+	 * @throws \Exception
+	 */
+	public function deleteModel($id) {
+		$facility = Facility::findOne($id);
+		$facility->delete();
+		//TODO dodělat mazání součástí a relací
 	}
 
 	/**
@@ -135,5 +172,15 @@ class FacilityForm extends Model
 	 */
 	public function getPlaceTypeOptions() {
 		return ArrayHelper::map(PlaceType::find()->orderBy('title')->all(), 'id', 'title');
+	}
+
+	/**
+	 * Gets people for drop down list according subject
+	 * @return array
+	 */
+	public function getPersonOptions() {
+		return ArrayHelper::map(ArrayHelper::toArray(Person::find()->where('subject_id = :subject_id', [
+			':subject_id' => $this->subject_id
+		])->all()), 'id', 'title');
 	}
 }

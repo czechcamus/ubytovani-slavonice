@@ -71,6 +71,7 @@ class FacilityController extends Controller
 	    $model->scenario = 'create';
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+	        $model->saveModel();
             return $this->redirect(['update', 'id' => $model->facility_id]);
         }
 
@@ -91,7 +92,8 @@ class FacilityController extends Controller
 	    $model->scenario = 'update';
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            return $this->redirect(['view', 'id' => $model->facility_id]);
+	        $model->saveModel(false);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', compact('model'));
@@ -106,8 +108,7 @@ class FacilityController extends Controller
     public function actionDelete($id)
     {
 	    $model = new FacilityForm();
-	    $model->loadModel($id);
-	    $model->deleteModel();
+	    $model->deleteModel($id);
 
         return $this->redirect(['index']);
     }

@@ -4,11 +4,21 @@
 
 var subjectSelector = $('#subject-id');
 var personSelector = $('#person-id');
+var partnerSwitch = $('#partner-switch');
+var partnerFields = $('#partner-fields');
 
 // Toggles visibility of partner fields
-$('#partner-switch').on('click', function() {
-   $('#partner-fields').toggle();
+partnerSwitch.on('click', function() {
+    if ($(this).prop('checked') == true) {
+        partnerFields.show();
+    } else {
+        partnerFields.hide();
+    }
 });
+
+if (partnerSwitch.prop('checked') == true) {
+    partnerFields.show();
+}
 
 // If subject changes, updates person list
 subjectSelector.on('change', function() {
