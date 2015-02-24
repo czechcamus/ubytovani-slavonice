@@ -28,7 +28,7 @@ FormFacilityAsset::register($this);
 	<?= $form->field($model, 'subject_id')->dropDownList($model->getSubjectOptions(), [
 		'prompt' => Yii::t('back', '-- not selected --'),
 		'id' => 'subject-id',
-		'data-source-selector' => Url::to(['person/get-people-list'])
+		'data-source-url' => Url::to(['person/get-people-list'])
 	]) ?>
 
     <?= $form->field($model, 'person_id')->dropDownList([], [

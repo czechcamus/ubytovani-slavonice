@@ -7,6 +7,7 @@ use common\models\Phone;
 use common\models\type\PersonType;
 use common\utilities\PersonsRelationsDelete;
 use Yii;
+use yii\base\Arrayable;
 use yii\db\ActiveRecord;
 
 /**
@@ -106,4 +107,29 @@ class Person extends ActiveRecord
         return $this->hasOne(PersonType::className(), ['id' => 'person_type_id']);
     }
 
+	/**
+	 * Default fields returned by toArray method
+	 * @return array
+	 */
+	public function fields() {
+		return [
+			'id',
+			'title' => function($model) {
+				return $model->name . ' ' . $model->surname;
+			}
+		];
+	}
+
+	/**
+	 * Extra fields those can be returned by toArray method
+	 * @return array
+	 */
+	public function extraFields() {
+		return [
+			'front_title',
+			'name',
+			'surname',
+			'back_title'
+		];
+	}
 }

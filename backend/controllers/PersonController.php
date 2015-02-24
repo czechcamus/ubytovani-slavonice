@@ -63,13 +63,13 @@ class PersonController extends SubModelController
 	 */
 	public function actionGetPeopleList() {
 		$subject_id = Yii::$app->request->get('subId');
-		$items = ArrayHelper::map(Person::find()->where('subject_id = :subject_id', [
+		$items =  ArrayHelper::toArray(Person::find()->where('subject_id = :subject_id', [
 			':subject_id' => $subject_id
-		])->all(), 'id', 'title');
+		])->all());
 
 		$response = Yii::$app->response;
 		$response->format = Response::FORMAT_JSON;
-		$response->data = $items;
+		$response->data = ArrayHelper::map($items, 'id', 'title');
 		return $response;
 	}
 
