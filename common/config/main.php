@@ -6,5 +6,13 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'formatter' => [
+	        'dateFormat' => 'dd.MM.yyyy',
+	        'timeFormat' => 'HH:mm',
+	        'defaultTimeZone' => 'Europe/Prague',
+	        'decimalSeparator' => ',',
+	        'thousandSeparator' => ' ',
+	        'currencyCode' => 'CZK',
+        ]
     ],
 ];

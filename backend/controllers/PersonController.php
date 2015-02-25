@@ -61,7 +61,7 @@ class PersonController extends SubModelController
 	 * Gets people list of given subject
 	 * @return \yii\console\Response|Response
 	 */
-	public function actionGetPeopleList() {
+	public function actionGetSubjectPersonList() {
 		$subject_id = Yii::$app->request->get('subId');
 		$items =  ArrayHelper::toArray(Person::find()->where('subject_id = :subject_id', [
 			':subject_id' => $subject_id

@@ -10,6 +10,8 @@ namespace backend\models;
 
 
 use common\models\facility\Facility;
+use common\models\facility\ObjectProperty;
+use common\models\property\FacilityProperty;
 use common\models\subject\Subject;
 use common\models\subject\Person;
 use common\models\type\FacilityType;
@@ -134,6 +136,10 @@ class FacilityForm extends Model
 			if (property_exists($this, $key))
 				$this->$key = $value;
 		}
+		$this->checkin_from = Yii::$app->formatter->asTime($this->checkin_from);
+		$this->checkin_to = Yii::$app->formatter->asTime($this->checkin_to);
+		$this->checkout_from = Yii::$app->formatter->asTime($this->checkout_from);
+		$this->checkout_to = Yii::$app->formatter->asTime($this->checkout_to);
 		$this->facility_id = $facility->id;
 	}
 
@@ -147,6 +153,32 @@ class FacilityForm extends Model
 		$facility = Facility::findOne($id);
 		$facility->delete();
 		//TODO dodělat mazání součástí a relací
+	}
+
+	/**
+	 * Initializes Facility properties
+	 */
+	public function initProperties() {
+		$properties = FacilityProperty::find()->orderBy('title')->all();
+		/** @var FacilityProperty $property */
+		foreach ($properties as $property) {
+			if (isset($this->facility_id)) {
+				$propertyValues = ArrayHelper::toArray(ObjectProperty::find()->where('object_id = :facility_id AND property_id = :property_id', [
+					':facility_id' => $this->facility_id,
+					':property_id' => $property->id
+				])->one(), ['property_note', 'id']);
+				$this->properties[$property->id]['value'] = true;
+			} else {
+				$propertyValues['property_note'] = $propertyValues['id'] = null;
+				$this->properties[$property->id]['value'] = false;
+			}
+			$this->properties[$property->id]['property_id'] = $property->id;
+			$this->properties[$property->id]['property_title'] = $property->title;
+			$this->properties[$property->id]['types'] = $property->types;
+			$this->properties[$property->id]['fees'] = $property->fees;
+			$this->properties[$property->id]['property_note'] = $propertyValues['property_note'];
+			$this->properties[$property->id]['id'] = $propertyValues['id'];
+		}
 	}
 
 	/**
@@ -179,8 +211,12 @@ class FacilityForm extends Model
 	 * @return array
 	 */
 	public function getPersonOptions() {
-		return ArrayHelper::map(ArrayHelper::toArray(Person::find()->where('subject_id = :subject_id', [
-			':subject_id' => $this->subject_id
-		])->all()), 'id', 'title');
+		if (isset($this->subject_id))
+			$items =  ArrayHelper::map(ArrayHelper::toArray(Person::find()->where('subject_id = :subject_id', [
+				':subject_id' => $this->subject_id
+			])->all()), 'id', 'title');
+		else
+			$items = [];
+		return $items;
 	}
 }

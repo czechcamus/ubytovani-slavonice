@@ -69,6 +69,7 @@ class FacilityController extends Controller
     {
         $model = new FacilityForm();
 	    $model->scenario = 'create';
+	    $model->initProperties();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 	        $model->saveModel();
@@ -90,6 +91,7 @@ class FacilityController extends Controller
         $model = new FacilityForm();
 	    $model->loadModel($id);
 	    $model->scenario = 'update';
+	    $model->initProperties();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 	        $model->saveModel(false);
