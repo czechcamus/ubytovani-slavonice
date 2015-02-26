@@ -2,9 +2,7 @@
 
 namespace common\models\facility;
 
-use common\models\PropertyModel;
 use Yii;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "fee".
@@ -13,12 +11,12 @@ use yii\db\ActiveRecord;
  * @property string $title
  * @property string $value
  * @property integer $tax_id
- * @property integer $property_id
+ * @property integer $object_property_id
  *
+ * @property ObjectProperty $objectProperty
  * @property Tax $tax
- * @property PropertyModel $property
  */
-class Fee extends ActiveRecord
+class Fee extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -34,9 +32,9 @@ class Fee extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'value', 'property_id'], 'required'],
+            [['title', 'value'], 'required'],
             [['value'], 'number'],
-            [['tax_id', 'property_id'], 'integer'],
+            [['tax_id', 'object_property_id'], 'integer'],
             [['title'], 'string', 'max' => 100]
         ];
     }
@@ -51,8 +49,16 @@ class Fee extends ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'value' => Yii::t('app', 'Value'),
             'tax_id' => Yii::t('app', 'Tax ID'),
-            'property_id' => Yii::t('app', 'Property ID'),
+            'object_property_id' => Yii::t('app', 'Object Property ID'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getObjectProperty()
+    {
+        return $this->hasOne(ObjectProperty::className(), ['id' => 'object_property_id']);
     }
 
     /**
@@ -61,13 +67,5 @@ class Fee extends ActiveRecord
     public function getTax()
     {
         return $this->hasOne(Tax::className(), ['id' => 'tax_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProperty()
-    {
-        return $this->hasOne(PropertyModel::className(), ['id' => 'property_id']);
     }
 }

@@ -11,6 +11,7 @@ namespace backend\models;
 
 use common\models\facility\Facility;
 use common\models\facility\ObjectProperty;
+use common\models\facility\ObjectPropertyType;
 use common\models\property\FacilityProperty;
 use common\models\subject\Subject;
 use common\models\subject\Person;
@@ -218,5 +219,20 @@ class FacilityForm extends Model
 		else
 			$items = [];
 		return $items;
+	}
+
+	/**
+	 * Gets property types related to facility property with given property_id
+	 * @param $property_id
+	 * @return ObjectPropertyType[]
+	 */
+	public function getPropertyTypes($property_id) {
+		$objectProperty = ObjectProperty::find([
+			'object_id' => $this->facility_id,
+			'property_id' => $property_id
+		])->with('objectPropertyTypes')->one();
+
+		/** @noinspection PhpUndefinedFieldInspection */
+		return $objectProperty->objectPropertyTypes;
 	}
 }

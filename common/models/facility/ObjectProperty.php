@@ -13,6 +13,9 @@ use yii\db\ActiveRecord;
  * @property integer $object_id
  * @property integer $property_id
  * @property string $property_note
+ *
+ * @propertx ObjectPropertyType[] $objectPropertyTypes
+ * @property Fee[] $fees
  */
 class ObjectProperty extends ActiveRecord
 {
@@ -48,4 +51,18 @@ class ObjectProperty extends ActiveRecord
             'property_note' => Yii::t('app', 'Property Note'),
         ];
     }
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getObjectPropertyTypes() {
+		return $this->hasMany(ObjectPropertyType::className(), ['object_property_id' => 'id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getFees() {
+		return $this->hasMany(Fee::className(), ['object_property_id' => 'id']);
+	}
 }
