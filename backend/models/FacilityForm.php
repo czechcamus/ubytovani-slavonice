@@ -10,6 +10,7 @@ namespace backend\models;
 
 
 use common\models\facility\Facility;
+use common\models\facility\Fee;
 use common\models\facility\ObjectProperty;
 use common\models\facility\ObjectPropertyType;
 use common\models\property\FacilityProperty;
@@ -72,7 +73,6 @@ class FacilityForm extends Model
 			[['title', 'subject_id', 'person_id', 'city', 'postal_code'], 'required', 'on' => ['create', 'update']],
 			[['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_type_id'], 'integer', 'on' => ['create', 'update']],
 			[['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to'], 'date', 'format' => 'HH:mm', 'on' => ['create', 'update']],
-			['stars', 'integer', 'min' => 1, 'max' => 5, 'on' => ['create', 'update']],
 			['partner', 'boolean', 'on' => ['create', 'update']],
 			['description', 'string'],
 			[['title', 'weburl', 'certificate'], 'string', 'max' => 100, 'on' => ['create', 'update']],
@@ -111,7 +111,7 @@ class FacilityForm extends Model
 	}
 
 	/**
-	 * Saves Facility model
+	 * Saves Facility model and his relations
 	 * @param bool $insert
 	 */
 	public function saveModel($insert = true) {
@@ -125,6 +125,25 @@ class FacilityForm extends Model
 		$facility->save(false);
 		if ($insert)
 			$this->facility_id = $facility->id;
+		//Properties
+		foreach ($this->properties as $property) {
+			$objectProperty = ObjectProperty::find()->where([
+				'object_id' => $facility->id,
+				'property_id' => $property['property_id']
+			])->one();
+			if (isset($property['value'])) {
+				if (!$objectProperty) {
+					$objectProperty = new ObjectProperty();
+					$objectProperty->object_id = $facility->id;
+					$objectProperty->property_id = $property['property_id'];
+				}
+				$objectProperty->property_note = $property['property_note'];
+				$objectProperty->save(false);
+			} else {
+				if ($objectProperty)
+					$objectProperty->delete();
+			}
+		}
 	}
 
 	/**
@@ -164,21 +183,30 @@ class FacilityForm extends Model
 		/** @var FacilityProperty $property */
 		foreach ($properties as $property) {
 			if (isset($this->facility_id)) {
-				$propertyValues = ArrayHelper::toArray(ObjectProperty::find()->where('object_id = :facility_id AND property_id = :property_id', [
+				$objectProperty = ObjectProperty::find()->where('object_id = :facility_id AND property_id = :property_id', [
 					':facility_id' => $this->facility_id,
 					':property_id' => $property->id
-				])->one(), ['property_note', 'id']);
-				$this->properties[$property->id]['value'] = true;
+				])->one();
+				if ($objectProperty) {
+					$propertyValues = ArrayHelper::toArray($objectProperty, ['property_note', 'id']);
+					$propertyValues['value'] = true;
+				} else {
+					$propertyValues['property_note'] = $propertyValues['id'] = null;
+					$propertyValues['value'] = false;
+				}
 			} else {
 				$propertyValues['property_note'] = $propertyValues['id'] = null;
-				$this->properties[$property->id]['value'] = false;
+				$propertyValues['value'] = false;
 			}
-			$this->properties[$property->id]['property_id'] = $property->id;
-			$this->properties[$property->id]['property_title'] = $property->title;
-			$this->properties[$property->id]['types'] = $property->types;
-			$this->properties[$property->id]['fees'] = $property->fees;
-			$this->properties[$property->id]['property_note'] = $propertyValues['property_note'];
-			$this->properties[$property->id]['id'] = $propertyValues['id'];
+			$this->properties[] = [
+				'property_id' => $property->id,
+				'value' => $propertyValues['value'],
+				'property_title' => $property->title,
+				'types' => $property->types,
+				'fees' => $property->fees,
+				'property_note' => $propertyValues['property_note'],
+				'id' => $propertyValues['id']
+			];
 		}
 	}
 
@@ -227,12 +255,25 @@ class FacilityForm extends Model
 	 * @return ObjectPropertyType[]
 	 */
 	public function getPropertyTypes($property_id) {
-		$objectProperty = ObjectProperty::find([
+		$objectPropertyId = ObjectProperty::find([
 			'object_id' => $this->facility_id,
 			'property_id' => $property_id
-		])->with('objectPropertyTypes')->one();
+		])->select('id')->scalar();
 
-		/** @noinspection PhpUndefinedFieldInspection */
-		return $objectProperty->objectPropertyTypes;
+		return ObjectPropertyType::find()->where(['object_property_id' => $objectPropertyId])->with('types');
+	}
+
+	/**
+	 * Gets fees related to facility property with given property_id
+	 * @param $property_id
+	 * @return Fee[]
+	 */
+	public function getFees($property_id) {
+		$objectPropertyId = ObjectProperty::find([
+			'object_id' => $this->facility_id,
+			'property_id' => $property_id
+		])->select('id')->scalar();
+
+		return Fee::find()->where(['object_property_id' => $objectPropertyId])->with('taxes');
 	}
 }

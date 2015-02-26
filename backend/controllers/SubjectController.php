@@ -71,6 +71,7 @@ class SubjectController extends Controller
     public function actionCreate()
     {
         $model = new Subject();
+	    $model->completed = false;
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
             return $this->redirect(['update', 'id' => $model->id]);

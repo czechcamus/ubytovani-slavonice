@@ -1,8 +1,7 @@
 <?php
 
 use backend\assets\FormFacilityAsset;
-use bootui\datetimepicker\Timepicker;
-use yii\bootstrap\Button;
+use kartik\datecontrol\DateControl;
 use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
@@ -61,13 +60,21 @@ FormFacilityAsset::register($this);
 
 		<?= $form->field($model, 'stars')->widget(Spinner::className()) ?>
 
-	    <?= $form->field($model, 'checkin_from')->widget(Timepicker::className()) ?>
+	    <?= $form->field($model, 'checkin_from')->widget(DateControl::classname(), [
+		    'type' => DateControl::FORMAT_TIME,
+	    ]) ?>
 
-	    <?= $form->field($model, 'checkin_to')->widget(Timepicker::className()) ?>
+	    <?= $form->field($model, 'checkin_to')->widget(DateControl::classname(), [
+		    'type' => DateControl::FORMAT_TIME
+	    ]) ?>
 
-	    <?= $form->field($model, 'checkout_from')->widget(Timepicker::className()) ?>
+	    <?= $form->field($model, 'checkout_from')->widget(DateControl::classname(), [
+		    'type' => DateControl::FORMAT_TIME
+	    ]) ?>
 
-	    <?= $form->field($model, 'checkout_to')->widget(Timepicker::className()) ?>
+	    <?= $form->field($model, 'checkout_to')->widget(DateControl::classname(), [
+		    'type' => DateControl::FORMAT_TIME
+	    ]) ?>
 
 	    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
@@ -76,9 +83,10 @@ FormFacilityAsset::register($this);
 			<h4><?= Yii::t('back', 'Facility Properties') ?></h4>
 
 			<?php
-			foreach ($model->properties as $property) {
+			foreach ($model->properties as $key => $property) {
 				echo '<div class="col-sm-offset-2 col-sm-8"><div class="checkbox">';
-				echo Html::checkbox('properties[' . $property['property_id'] . ']', $property['value'], [
+				echo Html::hiddenInput('FacilityForm[properties][' . $key . '][property_id]', $property['property_id']);
+				echo Html::checkbox('FacilityForm[properties][' . $key . '][value]', $property['value'], [
 					'label' => $property['property_title'],
 					'labelOptions' => [
 						'id' => 'property_' . $property['property_id'],
@@ -87,17 +95,17 @@ FormFacilityAsset::register($this);
 					'onclick' => 'togglePropertyNote(' . $property['property_id'] . ')'
 				]);
 				echo '<div class="property-details">';
-				echo Html::textInput('properties[' . $property['property_id'] . '][property_note]', $property['property_note'], [
+				echo Html::textInput('FacilityForm[properties][' . $key . '][property_note]', $property['property_note'], [
 					'class' => 'form-control',
 					'placeholder' => Yii::t('back', 'Property Note')
 				]);
 				echo '</div></div></div>';
-				if (isset($model->facility_id) && $property['types']) {
+				if (isset($model->facility_id) && ($property['value'] == true) && $property['types']) {
 					echo '<div class="col-sm-offset-2 col-sm-8">';
                     echo '<strong>' . Yii::t('back', 'Types') . '</strong>';
 					echo GridView::widget([
 						'dataProvider' => new ActiveDataProvider([
-							'query' => $model->getPropertyTypes($property['id']),
+							'query' => $model->getPropertyTypes($property['property_id']),
 							'pagination' => false
 						]),
 						'columns' => [
@@ -134,12 +142,12 @@ FormFacilityAsset::register($this);
 					]);
 					echo '</div>';
 				}
-				if (isset($model->facility_id) && $property['fees']) {
+				if (isset($model->facility_id) && ($property['value'] == true) && $property['fees']) {
 					echo '<div class="col-sm-offset-2 col-sm-8">';
-					echo '<strong>' . Yii::t('back', 'Types') . '</strong>';
+					echo '<strong>' . Yii::t('back', 'Fees') . '</strong>';
 					echo GridView::widget([
 						'dataProvider' => new ActiveDataProvider([
-							'query' => $model->getFees($property['id']),
+							'query' => $model->getFees($property['property_id']),
 							'pagination' => false
 						]),
 						'columns' => [

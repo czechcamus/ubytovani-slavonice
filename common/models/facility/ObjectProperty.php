@@ -3,6 +3,7 @@
 namespace common\models\facility;
 
 use common\models\TypeModel;
+use common\utilities\ObjectPropertysRelationsDelete;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -26,6 +27,16 @@ class ObjectProperty extends ActiveRecord
     {
         return 'object_property';
     }
+
+	/**
+	 * @return array configuration of behaviors.
+	 */
+	public function behaviors()
+	{
+		return [
+			'relationsDelete' => ObjectPropertysRelationsDelete::className()
+		];
+	}
 
     /**
      * @inheritdoc
