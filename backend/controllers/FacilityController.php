@@ -75,7 +75,6 @@ class FacilityController extends Controller
             return $this->redirect(['update', 'id' => $model->facility_id]);
         }
 
-	    $model->initProperties();
         return $this->render('create', compact('model'));
     }
 
@@ -97,7 +96,6 @@ class FacilityController extends Controller
             return $this->redirect(['index']);
         }
 
-	    $model->initProperties();
         return $this->render('update', compact('model'));
     }
 

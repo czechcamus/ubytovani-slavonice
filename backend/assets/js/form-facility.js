@@ -16,10 +16,6 @@ partnerSwitch.on('click', function() {
     }
 });
 
-if (partnerSwitch.prop('checked') == true) {
-    partnerFields.show();
-}
-
 // If subject changes, updates person list
 subjectSelector.on('change', function() {
    changePersonList();

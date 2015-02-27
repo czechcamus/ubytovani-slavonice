@@ -48,19 +48,7 @@ return [
 			'autoWidgetSettings' => [
 				Module::FORMAT_DATE => ['type' => 2, 'pluginOptions' => ['autoclose' => true]],
 				Module::FORMAT_DATETIME => [],
-				Module::FORMAT_TIME => [],
-			],
-
-			// custom widget settings that will be used to render the date input instead of kartik\widgets,
-			// this will be used when autoWidget is set to false at module or widget level.
-			'widgetSettings' => [
-				Module::FORMAT_DATE => [
-					'class' => 'yii\jui\DatePicker',
-					'options' => [
-						'dateFormat' => 'php:d.M.Y',
-						'options' => ['class' => 'form-control'],
-					]
-				]
+				Module::FORMAT_TIME => ['pluginOptions' => ['defaultTime' => false]]
 			]
 		]
 	]

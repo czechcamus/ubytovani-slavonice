@@ -14,6 +14,7 @@ use common\models\facility\Fee;
 use common\models\facility\ObjectProperty;
 use common\models\facility\ObjectPropertyType;
 use common\models\property\FacilityProperty;
+use common\models\PropertyModel;
 use common\models\subject\Subject;
 use common\models\subject\Person;
 use common\models\type\FacilityType;
@@ -125,24 +126,26 @@ class FacilityForm extends Model
 		$facility->save(false);
 		if ($insert)
 			$this->facility_id = $facility->id;
+
 		//Properties
-		foreach ($this->properties as $property) {
-			$objectProperty = ObjectProperty::find()->where([
-				'object_id' => $facility->id,
-				'property_id' => $property['property_id']
-			])->one();
-			if (isset($property['value'])) {
-				if (!$objectProperty) {
-					$objectProperty = new ObjectProperty();
-					$objectProperty->object_id = $facility->id;
-					$objectProperty->property_id = $property['property_id'];
-				}
-				$objectProperty->property_note = $property['property_note'];
-				$objectProperty->save(false);
+		$properties = FacilityProperty::find()->orderBy('title')->all();
+		/** @var PropertyModel $property */
+		foreach ($properties as $key => $property) {
+			$propertyInputs = Yii::$app->request->post('FacilityForm')['properties'][$key];
+			if (isset($propertyInputs['id'])) {
+				$propertyInputs = Yii::$app->request->post('FacilityForm')['properties'][$key];
+				$objectProperty = ObjectProperty::findOne($propertyInputs['id']);
+				$objectProperty->property_value = isset($propertyInputs['property_value']) ? $propertyInputs['property_value'] : false;
+				$objectProperty->property_note = $propertyInputs['property_note'];
 			} else {
-				if ($objectProperty)
-					$objectProperty->delete();
+				$objectProperty = new ObjectProperty();
+				$objectProperty->id = 0;
+				$objectProperty->property_value = 0;
+				$objectProperty->property_note = '';
 			}
+			$objectProperty->object_id = $facility->id;
+			$objectProperty->property_id = $property->id;
+			$objectProperty->save(false);
 		}
 	}
 
@@ -157,6 +160,7 @@ class FacilityForm extends Model
 				$this->$key = $value;
 		}
 		$this->facility_id = $facility->id;
+		$this->initProperties();
 	}
 
 	/**
@@ -174,33 +178,27 @@ class FacilityForm extends Model
 	/**
 	 * Initializes Facility properties
 	 */
-	public function initProperties() {
+	protected function initProperties() {
 		$this->properties = [];
 		$properties = FacilityProperty::find()->orderBy('title')->all();
-		$formPropertyValues = Yii::$app->request->post('FacilityForm')['properties'];
 		/** @var FacilityProperty $property */
 		foreach ($properties as $key => $property) {
-			$propertyValues['property_note'] = null;
-			$propertyValues['id'] = null;
-			$propertyValues['value'] = false;
-			if (isset($this->facility_id) && empty($formPropertyValues)) {    // update and no form data
-				$objectProperty = ObjectProperty::find()->where('object_id = :facility_id AND property_id = :property_id', [
-					':facility_id' => $this->facility_id,
-					':property_id' => $property->id
-				])->one();
-				if ($objectProperty) {
-					$propertyValues  = ArrayHelper::toArray($objectProperty, ['property_note', 'id']);
-					$propertyValues['value'] = true;
-				}
-			}
-			if (!empty($formPropertyValues)) { // create or update and form data
-				$propertyValues['property_note'] = $formPropertyValues[$key]['property_note'];
-				$propertyValues['value'] = isset($formPropertyValues[$key]['value']) ? $formPropertyValues[$key]['value'] : false;
+			$objectProperty = ObjectProperty::find()->where('object_id = :facility_id AND property_id = :property_id', [
+				':facility_id' => $this->facility_id,
+				':property_id' => $property->id
+			])->one();
+
+			if ($objectProperty) {
+				$propertyValues = ArrayHelper::toArray($objectProperty, ['property_value', 'property_note', 'id']);
+			} else {
+				$propertyValues['property_value'] = false;
+				$propertyValues['property_note'] = '';
+				$propertyValues['id'] = null;
 			}
 
 			$this->properties[] = [
 				'property_id' => $property->id,
-				'value' => $propertyValues['value'],
+				'property_value' => $propertyValues['property_value'],
 				'property_title' => $property->title,
 				'types' => $property->types,
 				'fees' => $property->fees,

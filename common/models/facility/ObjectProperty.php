@@ -14,6 +14,7 @@ use yii\db\ActiveRecord;
  * @property integer $object_id
  * @property integer $property_id
  * @property string $property_note
+ * @property integer $property_value
  *
  * @propertx ObjectPropertyType[] $objectPropertyTypes
  * @property Fee[] $fees
@@ -46,6 +47,7 @@ class ObjectProperty extends ActiveRecord
         return [
             [['object_id', 'property_id'], 'required'],
             [['object_id', 'property_id'], 'integer'],
+	        ['property_value', 'boolean'],
             [['property_note'], 'string', 'max' => 255]
         ];
     }
@@ -59,6 +61,7 @@ class ObjectProperty extends ActiveRecord
 	        'id' => Yii::t('app', 'ID'),
             'object_id' => Yii::t('app', 'Object ID'),
             'property_id' => Yii::t('app', 'Property ID'),
+	        'property_value' => Yii::t('app', 'Property Value'),
             'property_note' => Yii::t('app', 'Property Note'),
         ];
     }

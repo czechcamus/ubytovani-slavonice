@@ -2,3 +2,7 @@
 .property-details {
   display: none;
 }
+#partner-fields.visible,
+.property-details.visible {
+  display: block;
+}
