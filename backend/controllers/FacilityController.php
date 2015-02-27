@@ -69,13 +69,13 @@ class FacilityController extends Controller
     {
         $model = new FacilityForm();
 	    $model->scenario = 'create';
-	    $model->initProperties();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 	        $model->saveModel();
             return $this->redirect(['update', 'id' => $model->facility_id]);
         }
 
+	    $model->initProperties();
         return $this->render('create', compact('model'));
     }
 
@@ -91,13 +91,13 @@ class FacilityController extends Controller
         $model = new FacilityForm();
 	    $model->loadModel($id);
 	    $model->scenario = 'update';
-	    $model->initProperties();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 	        $model->saveModel(false);
             return $this->redirect(['index']);
         }
 
+	    $model->initProperties();
         return $this->render('update', compact('model'));
     }
 

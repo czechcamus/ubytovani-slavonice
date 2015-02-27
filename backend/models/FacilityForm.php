@@ -156,10 +156,6 @@ class FacilityForm extends Model
 			if (property_exists($this, $key))
 				$this->$key = $value;
 		}
-		$this->checkin_from = Yii::$app->formatter->asTime($this->checkin_from);
-		$this->checkin_to = Yii::$app->formatter->asTime($this->checkin_to);
-		$this->checkout_from = Yii::$app->formatter->asTime($this->checkout_from);
-		$this->checkout_to = Yii::$app->formatter->asTime($this->checkout_to);
 		$this->facility_id = $facility->id;
 	}
 
@@ -179,25 +175,29 @@ class FacilityForm extends Model
 	 * Initializes Facility properties
 	 */
 	public function initProperties() {
+		$this->properties = [];
 		$properties = FacilityProperty::find()->orderBy('title')->all();
+		$formPropertyValues = Yii::$app->request->post('FacilityForm')['properties'];
 		/** @var FacilityProperty $property */
-		foreach ($properties as $property) {
-			if (isset($this->facility_id)) {
+		foreach ($properties as $key => $property) {
+			$propertyValues['property_note'] = null;
+			$propertyValues['id'] = null;
+			$propertyValues['value'] = false;
+			if (isset($this->facility_id) && empty($formPropertyValues)) {    // update and no form data
 				$objectProperty = ObjectProperty::find()->where('object_id = :facility_id AND property_id = :property_id', [
 					':facility_id' => $this->facility_id,
 					':property_id' => $property->id
 				])->one();
 				if ($objectProperty) {
-					$propertyValues = ArrayHelper::toArray($objectProperty, ['property_note', 'id']);
+					$propertyValues  = ArrayHelper::toArray($objectProperty, ['property_note', 'id']);
 					$propertyValues['value'] = true;
-				} else {
-					$propertyValues['property_note'] = $propertyValues['id'] = null;
-					$propertyValues['value'] = false;
 				}
-			} else {
-				$propertyValues['property_note'] = $propertyValues['id'] = null;
-				$propertyValues['value'] = false;
 			}
+			if (!empty($formPropertyValues)) { // create or update and form data
+				$propertyValues['property_note'] = $formPropertyValues[$key]['property_note'];
+				$propertyValues['value'] = isset($formPropertyValues[$key]['value']) ? $formPropertyValues[$key]['value'] : false;
+			}
+
 			$this->properties[] = [
 				'property_id' => $property->id,
 				'value' => $propertyValues['value'],
