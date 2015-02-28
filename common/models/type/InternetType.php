@@ -12,8 +12,6 @@ use Yii;
  *
  * @property integer $id
  * @property string $title
- *
- * @property Facility[] $facilities
  */
 class InternetType extends TypeModel
 {
@@ -37,12 +35,4 @@ class InternetType extends TypeModel
 	{
 		return parent::find()->where(['model_type' => self::INTERNET_TYPE]);
 	}
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFacilities()
-    {
-        return $this->hasMany(Facility::className(), ['internet_type_id' => 'id']);
-    }
 }

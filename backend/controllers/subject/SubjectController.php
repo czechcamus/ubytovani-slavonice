@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\controllers\subject;
 
 use Yii;
 use common\models\subject\Subject;

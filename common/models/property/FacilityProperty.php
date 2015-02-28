@@ -16,6 +16,9 @@ use Yii;
  * @property integer $model_type
  * @property integer $types
  * @property integer $fees
+ *
+ * @property ObjectProperty[] $objectProperties
+ * @property Facility[] $facilities
  */
 class FacilityProperty extends PropertyModel
 {
@@ -43,7 +46,7 @@ class FacilityProperty extends PropertyModel
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getFacilityProperties()
+	public function getObjectProperties()
 	{
 		return $this->hasMany(ObjectProperty::className(), ['property_id' => 'id']);
 	}
@@ -53,7 +56,7 @@ class FacilityProperty extends PropertyModel
 	 */
 	public function getFacilities()
 	{
-		return $this->hasMany(Facility::className(), ['id' => 'object_id'])->via('facilityProperties');
+		return $this->hasMany(Facility::className(), ['id' => 'object_id'])->via('objectProperties');
 	}
 
 	/**
@@ -64,6 +67,7 @@ class FacilityProperty extends PropertyModel
 	{
 		return [
 			'' => Yii::t('app', '-- not selected --'),
+			self::CATERING_MODEL => Yii::t('app', 'Type of Catering'),
 			self::INTERNET_MODEL => Yii::t('app', 'Type of Internet'),
 			self::PARKING_MODEL =>  Yii::t('app', 'Type of Parking')
 		];

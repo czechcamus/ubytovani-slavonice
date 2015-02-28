@@ -66,8 +66,6 @@ class Subject extends ActiveRecord
         return [
             [['title'], 'required'],
             [['note'], 'string'],
-            [['created_at', 'updated_at', 'completed'], 'safe'],
-            [['created_by', 'updated_by'], 'integer'],
             [['title'], 'string', 'max' => 45],
             [['company_nr'], 'string', 'max' => 10],
             [['tax_nr'], 'string', 'max' => 14]
@@ -89,7 +87,6 @@ class Subject extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
             'note' => Yii::t('app', 'Note'),
             'company_nr' => Yii::t('app', 'Company Nr'),
@@ -141,7 +138,7 @@ class Subject extends ActiveRecord
         $peopleString = '';
         foreach ($this->people as $person) {
             $peopleString .= Html::tag('em', $person->personType->title . ': ');
-            $peopleString .= implode(' ', array_filter($person->toArray(['name', 'surname']))) . '<br />';
+            $peopleString .= implode(' ', array_filter($person->toArray(['name', 'surname'], ['name', 'surname']))) . '<br />';
         }
 
         return $peopleString;

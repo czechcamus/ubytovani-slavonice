@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\controllers\type;
 
 use backend\utilities\TypeModelController;
 use Yii;

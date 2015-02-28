@@ -22,6 +22,7 @@ class PropertyModel extends ActiveRecord
 
 	const INTERNET_MODEL = TypeModel::INTERNET_TYPE;
 	const PARKING_MODEL = TypeModel::PARKING_TYPE;
+	const CATERING_MODEL = TypeModel::CATERING_TYPE;
 
     /**
      * @inheritdoc

@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\controllers\facility;
 
 use backend\utilities\SubModelController;
 use common\models\facility\ObjectPropertyType;

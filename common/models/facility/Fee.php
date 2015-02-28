@@ -3,6 +3,7 @@
 namespace common\models\facility;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "fee".
@@ -16,7 +17,7 @@ use Yii;
  * @property ObjectProperty $objectProperty
  * @property Tax $tax
  */
-class Fee extends \yii\db\ActiveRecord
+class Fee extends ActiveRecord
 {
     /**
      * @inheritdoc

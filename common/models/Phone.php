@@ -47,7 +47,7 @@ class Phone extends ActiveRecord
     {
         return [
             [['phone_type_id', 'person_id'], 'integer'],
-            [['number', 'phone_type_id', 'person_id'], 'required'],
+            [['number', 'phone_type_id'], 'required'],
             [['number'], 'string', 'max' => 15]
         ];
     }
@@ -58,10 +58,9 @@ class Phone extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'phone_type_id' => Yii::t('app', 'Phone Type ID'),
+            'phone_type_id' => Yii::t('app', 'Phone Type'),
             'number' => Yii::t('app', 'Number'),
-            'person_id' => Yii::t('app', 'Person ID'),
+            'person_id' => Yii::t('app', 'Person'),
         ];
     }
 

@@ -35,7 +35,7 @@ class Email extends ActiveRecord
     {
         return [
             [['email_type_id', 'person_id'], 'integer'],
-            [['address', 'email_type_id', 'person_id'], 'required'],
+            [['address', 'email_type_id'], 'required'],
             [['address'], 'email']
         ];
     }
@@ -46,10 +46,9 @@ class Email extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'email_type_id' => Yii::t('app', 'Email Type ID'),
+            'email_type_id' => Yii::t('app', 'Email Type'),
             'address' => Yii::t('app', 'Address'),
-            'person_id' => Yii::t('app', 'Person ID'),
+            'person_id' => Yii::t('app', 'Person'),
         ];
     }
 

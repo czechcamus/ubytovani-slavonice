@@ -23,6 +23,7 @@ class TypeModel extends ActiveRecord
 	const PHONE_TYPE = 7;
 	const PLACE_TYPE = 8;
 	const ROOM_TYPE = 9;
+	const CATERING_TYPE = 10;
 
     /**
      * @inheritdoc
@@ -32,16 +33,16 @@ class TypeModel extends ActiveRecord
         return 'type';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['model_type'], 'integer'],
-            [['title'], 'string', 'max' => 45]
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function rules()
+	{
+		return [
+			[['title'], 'required'],
+			[['title'], 'string', 'max' => 45]
+		];
+	}
 
     /**
      * @inheritdoc

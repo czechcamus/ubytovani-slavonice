@@ -16,6 +16,9 @@ use Yii;
  * @property integer $model_type
  * @property integer $types
  * @property integer $fees
+ *
+ * @property ObjectProperty[] $objectProperties
+ * @property Room[] $rooms
  */
 class RoomProperty extends PropertyModel
 {
@@ -43,7 +46,7 @@ class RoomProperty extends PropertyModel
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getRoomProperties()
+	public function getObjectProperties()
 	{
 		return $this->hasMany(ObjectProperty::className(), ['property_id' => 'id']);
 	}
@@ -53,7 +56,7 @@ class RoomProperty extends PropertyModel
 	 */
 	public function getRooms()
 	{
-		return $this->hasMany(Room::className(), ['id' => 'object_id'])->via('roomProperties');
+		return $this->hasMany(Room::className(), ['id' => 'object_id'])->via('objectProperties');
 	}
 
 	/**

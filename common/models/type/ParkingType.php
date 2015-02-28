@@ -37,12 +37,4 @@ class ParkingType extends TypeModel
 	{
 		return parent::find()->where(['model_type' => self::PARKING_TYPE]);
 	}
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFacilities()
-    {
-        return $this->hasMany(Facility::className(), ['parking_type_id' => 'id']);
-    }
 }

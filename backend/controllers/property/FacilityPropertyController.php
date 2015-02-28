@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\controllers\property;
 
 use backend\utilities\PropertyModelController;
 use Yii;

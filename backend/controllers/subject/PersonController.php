@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\controllers\subject;
 
 use backend\utilities\SubModelController;
 use common\models\subject\Person;

@@ -17,10 +17,6 @@ use yii\db\ActiveRecord;
  * @property string $house_nr
  * @property string $city
  * @property string $postal_code
- * @property string $created_at
- * @property integer $created_by
- * @property string $updated_at
- * @property integer $updated_by
  * @property integer $state_id
  * @property integer $subject_id
  *
@@ -57,7 +53,7 @@ class Address extends ActiveRecord
     {
         return [
             [['address_type_id', 'subject_id', 'state_id'], 'integer'],
-            [['city', 'postal_code', 'address_type_id', 'subject_id', 'state_id'], 'required'],
+            [['city', 'postal_code', 'address_type_id', 'state_id'], 'required'],
             [['street', 'city'], 'string', 'max' => 45],
             [['house_nr', 'postal_code'], 'string', 'max' => 10]
         ];
@@ -69,14 +65,13 @@ class Address extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
             'address_type_id' => Yii::t('app', 'Address Type ID'),
             'street' => Yii::t('app', 'Street'),
             'house_nr' => Yii::t('app', 'House Nr'),
             'city' => Yii::t('app', 'City'),
             'postal_code' => Yii::t('app', 'Postal Code'),
-            'state_id' => Yii::t('app', 'State ID'),
-            'subject_id' => Yii::t('app', 'Subject ID'),
+            'state_id' => Yii::t('app', 'State'),
+            'subject_id' => Yii::t('app', 'Subject')
         ];
     }
 

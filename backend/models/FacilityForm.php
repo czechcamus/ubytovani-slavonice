@@ -128,6 +128,7 @@ class FacilityForm extends Model
 			$this->facility_id = $facility->id;
 
 		//Properties
+		/** @noinspection PhpUndefinedMethodInspection */
 		$properties = FacilityProperty::find()->orderBy('title')->all();
 		/** @var PropertyModel $property */
 		foreach ($properties as $key => $property) {
