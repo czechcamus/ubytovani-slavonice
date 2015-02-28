@@ -18,24 +18,6 @@ class PersonController extends SubModelController
     public $relationName = 'subject';
 
     /**
-     * Creates a new Person model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @param integer $relation_id of main model
-     * @return mixed
-     */
-    public function actionCreate($relation_id)
-    {
-        /** @var Person $model */
-        $model = new $this->modelClass;
-        $model->{$this->relationName . '_id'} = $relation_id;
-
-        if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->redirect(['update', 'id' => $model->id, 'relation_id' => $relation_id]);
-
-        return $this->render('create', compact('model', 'relation_id'));
-    }
-
-    /**
      * Updates an existing Person model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id

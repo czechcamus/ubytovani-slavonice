@@ -35,9 +35,9 @@ use yii\helpers\Html;
 			echo '<div style="padding-top: 10px">';
 			echo '<em>' . Yii::t('back', 'Types') . '</em>';
 			echo GridView::widget([
+				'layout' => "{items}",
 				'dataProvider' => new ActiveDataProvider([
-					'query' => $model->getPropertyTypes($property['id']),
-					'pagination' => false
+					'query' => $model->getPropertyTypes($property['id'])
 				]),
 				'columns' => [
 					[
@@ -77,9 +77,9 @@ use yii\helpers\Html;
 			echo '<div style="padding-top: 10px">';
 			echo '<em>' . Yii::t('back', 'Fees') . '</em>';
 			echo GridView::widget([
+				'layout' => "{items}",
 				'dataProvider' => new ActiveDataProvider([
-					'query' => $model->getFees($property['id']),
-					'pagination' => false
+					'query' => $model->getFees($property['id'])
 				]),
 				'columns' => [
 					'title',

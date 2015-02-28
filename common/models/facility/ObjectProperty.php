@@ -2,7 +2,7 @@
 
 namespace common\models\facility;
 
-use common\models\TypeModel;
+use common\models\PropertyModel;
 use common\utilities\ObjectPropertysRelationsDelete;
 use Yii;
 use yii\db\ActiveRecord;
@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
  * @property string $property_note
  * @property integer $property_value
  *
+ * @property PropertyModel $property
  * @propertx ObjectPropertyType[] $objectPropertyTypes
  * @property Fee[] $fees
  */
@@ -78,5 +79,12 @@ class ObjectProperty extends ActiveRecord
 	 */
 	public function getFees() {
 		return $this->hasMany(Fee::className(), ['object_property_id' => 'id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getProperty() {
+		return $this->hasOne(PropertyModel::className(), ['id' => 'property_id']);
 	}
 }

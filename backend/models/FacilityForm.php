@@ -253,12 +253,9 @@ class FacilityForm extends Model
 	 * @return ObjectPropertyType[]
 	 */
 	public function getPropertyTypes($property_id) {
-		$objectPropertyId = ObjectProperty::find([
-			'object_id' => $this->facility_id,
-			'property_id' => $property_id
-		])->select('id')->scalar();
-
-		return ObjectPropertyType::find()->where(['object_property_id' => $objectPropertyId])->with('types');
+		return ObjectPropertyType::find()->where([
+			'object_property_id' => $property_id
+		]);
 	}
 
 	/**
@@ -267,11 +264,8 @@ class FacilityForm extends Model
 	 * @return Fee[]
 	 */
 	public function getFees($property_id) {
-		$objectPropertyId = ObjectProperty::find([
-			'object_id' => $this->facility_id,
-			'property_id' => $property_id
-		])->select('id')->scalar();
-
-		return Fee::find()->where(['object_property_id' => $objectPropertyId])->with('taxes');
+		return Fee::find()->where([
+			'object_property_id' => $property_id
+		]);
 	}
 }

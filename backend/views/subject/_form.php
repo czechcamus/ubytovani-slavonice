@@ -32,10 +32,10 @@ use yii\bootstrap\ActiveForm;
             <div class="col-sm-offset-2 col-sm-8">
                 <h2><?= Yii::t('back', 'Responsible People'); ?></h2>
                 <?= GridView::widget([
+	                'layout' => "{items}",
                     'dataProvider' => new ActiveDataProvider([
-                        'query' => $model->getPeople(),
-                        'pagination' => false
-                    ]),
+                        'query' => $model->getPeople()
+                   ]),
                     'columns' => [
                         [
                             'label' => Yii::t('back', 'Person Type'),
@@ -73,9 +73,9 @@ use yii\bootstrap\ActiveForm;
 
                 <h2><?= Yii::t('back', 'Contact addresses'); ?></h2>
                 <?= GridView::widget([
+	                'layout' => "{items}",
                     'dataProvider' => new ActiveDataProvider([
-                        'query' => $model->getAddresses(),
-                        'pagination' => false
+                        'query' => $model->getAddresses()
                     ]),
                     'columns' => [
                         [

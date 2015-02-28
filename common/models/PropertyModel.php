@@ -20,8 +20,8 @@ class PropertyModel extends ActiveRecord
 	const ROOM_PROPERTY = 1;
 	const FACILITY_PROPERTY = 2;
 
-	const INTERNET_MODEL = 1;
-	const PARKING_MODEL = 2;
+	const INTERNET_MODEL = TypeModel::INTERNET_TYPE;
+	const PARKING_MODEL = TypeModel::PARKING_TYPE;
 
     /**
      * @inheritdoc

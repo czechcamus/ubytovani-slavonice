@@ -41,8 +41,11 @@ class SubModelController extends TypeModelController
         $model->{$this->relationName . '_id'} = $relation_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if ($session->has('returnUrl'))
+            if ($session->has('returnUrl')) {
+	            $session->remove('returnUrl');
                 return $this->redirect($session->get('returnUrl'));
+            }
+
             return $this->goBack();
         }
 
@@ -65,8 +68,11 @@ class SubModelController extends TypeModelController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if ($session->has('returnUrl'))
+            if ($session->has('returnUrl')) {
+	            $session->remove('returnUrl');
                 return $this->redirect($session->get('returnUrl'));
+            }
+
             return $this->goBack();
         }
 
@@ -85,8 +91,10 @@ class SubModelController extends TypeModelController
 
         $this->findModel($id)->delete();
 
-        if ($session->has('returnUrl'))
+        if ($session->has('returnUrl')) {
+	        $session->remove('returnUrl');
             return $this->redirect($session->get('returnUrl'));
+        }
 
         return $this->goBack();
     }

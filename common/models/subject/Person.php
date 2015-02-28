@@ -7,7 +7,6 @@ use common\models\Phone;
 use common\models\type\PersonType;
 use common\utilities\PersonsRelationsDelete;
 use Yii;
-use yii\base\Arrayable;
 use yii\db\ActiveRecord;
 
 /**

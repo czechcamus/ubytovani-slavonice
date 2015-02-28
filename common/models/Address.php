@@ -4,7 +4,7 @@ namespace common\models;
 
 use common\models\subject\Subject;
 use common\models\type\AddressType;
-use common\utilities\SaveSubjectCompletion;
+use common\utilities\FromAddressSaveSubjectCompletion;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -45,10 +45,7 @@ class Address extends ActiveRecord
 	public function behaviors()
 	{
 		return [
-			'saveSubjectCompletion' => [
-				'class' => SaveSubjectCompletion::className(),
-				'subject_id' => Yii::$app->request->get('relation_id')
-			]
+			'saveSubjectCompletion' => FromAddressSaveSubjectCompletion::className()
 		];
 	}
 

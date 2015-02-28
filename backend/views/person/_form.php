@@ -37,9 +37,9 @@ $typeList = ArrayHelper::map(PersonType::find()->orderBy('title')->asArray()->al
             <div class="col-sm-offset-2 col-sm-8">
                 <h2><?= Yii::t('back', 'Phones'); ?></h2>
                 <?= GridView::widget([
+	                'layout' => "{items}",
                     'dataProvider' => new ActiveDataProvider([
-                        'query' => $model->getPhones(),
-                        'pagination' => false
+                        'query' => $model->getPhones()
                     ]),
                     'columns' => [
                         'number',
@@ -72,9 +72,9 @@ $typeList = ArrayHelper::map(PersonType::find()->orderBy('title')->asArray()->al
 
                 <h2><?= Yii::t('back', 'Emails'); ?></h2>
                 <?= GridView::widget([
+	                'layout' => "{items}",
                     'dataProvider' => new ActiveDataProvider([
-                        'query' => $model->getEmails(),
-                        'pagination' => false
+                        'query' => $model->getEmails()
                     ]),
                     'columns' => [
                         'address',

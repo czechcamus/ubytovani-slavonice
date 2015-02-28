@@ -3,7 +3,6 @@
 use common\models\subject\Subject;
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
 /* @var $model common\models\Address */
 /* @var $relation_id integer */
