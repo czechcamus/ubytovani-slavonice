@@ -19,6 +19,7 @@ use common\models\subject\Subject;
 use common\models\subject\Person;
 use common\models\type\FacilityType;
 use common\models\type\PlaceType;
+use common\models\TypeModel;
 use Yii;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
@@ -73,7 +74,7 @@ class FacilityForm extends Model
 		return [
 			[['title', 'subject_id', 'person_id', 'city', 'postal_code'], 'required', 'on' => ['create', 'update']],
 			[['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_type_id', 'stars'], 'integer', 'on' => ['create', 'update']],
-			[['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to'], 'date', 'format' => 'HH:mm', 'on' => ['create', 'update']],
+			[['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to'], 'date', 'format' => 'HH:mm:ss', 'on' => ['create', 'update']],
 			['partner', 'boolean', 'on' => ['create', 'update']],
 			['description', 'string'],
 			[['title', 'weburl', 'certificate'], 'string', 'max' => 100, 'on' => ['create', 'update']],
@@ -133,17 +134,14 @@ class FacilityForm extends Model
 		/** @var PropertyModel $property */
 		foreach ($properties as $key => $property) {
 			$propertyInputs = Yii::$app->request->post('FacilityForm')['properties'][$key];
-			if (isset($propertyInputs['id'])) {
-				$propertyInputs = Yii::$app->request->post('FacilityForm')['properties'][$key];
+			if ($propertyInputs['id']) {
 				$objectProperty = ObjectProperty::findOne($propertyInputs['id']);
-				$objectProperty->property_value = isset($propertyInputs['property_value']) ? $propertyInputs['property_value'] : false;
-				$objectProperty->property_note = $propertyInputs['property_note'];
 			} else {
 				$objectProperty = new ObjectProperty();
 				$objectProperty->id = 0;
-				$objectProperty->property_value = 0;
-				$objectProperty->property_note = '';
 			}
+			$objectProperty->property_value = isset($propertyInputs['property_value']) ? 1 : 0;
+			$objectProperty->property_note = $propertyInputs['property_note'];
 			$objectProperty->object_id = $facility->id;
 			$objectProperty->property_id = $property->id;
 			$objectProperty->save(false);
@@ -268,5 +266,19 @@ class FacilityForm extends Model
 		return Fee::find()->where([
 			'object_property_id' => $property_id
 		]);
+	}
+
+	/**
+	 * Check existence of free property types
+	 * @param $property_id
+	 * @param $object_property_id
+	 *
+	 * @return bool
+	 */
+	public function existsFreeTypes($property_id, $object_property_id) {
+		$property = PropertyModel::findOne($property_id);
+		$types_count = TypeModel::find()->where(['model_type' => $property->model_type])->count();
+		$used_types_count = ObjectPropertyType::find()->where(['object_property_id' => $object_property_id])->count();
+		return $types_count > $used_types_count;
 	}
 }

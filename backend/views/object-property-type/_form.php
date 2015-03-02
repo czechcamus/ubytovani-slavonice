@@ -15,7 +15,8 @@ use yii\bootstrap\ActiveForm;
 	    'fieldConfig' => Yii::$app->params['fieldConfig']
     ]); ?>
 
-    <?= $form->field($model, 'type_id')->dropDownList($model->getPropertyTypeOptions($model->objectProperty->property->model_type, $model->object_property_id)) ?>
+    <?= $form->field($model, 'type_id')->dropDownList($model->isNewRecord ? $model->getPropertyTypeOptions($model->objectProperty->property->model_type, $model->object_property_id) :
+	    $model->getPropertyTypeOptions($model->objectProperty->property->model_type, $model->object_property_id, $model->type_id)) ?>
 
 	<?= Html::activeHiddenInput($model, 'object_property_id'); ?>
 

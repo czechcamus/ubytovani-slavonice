@@ -49,9 +49,9 @@ use yii\helpers\Html;
 					[
 						'class' => ActionColumn::className(),
 						'controller' => 'object-property-type',
-						'header' => Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
-						                    Yii::t('back', 'Add new'), ['object-property-type/create', 'relation_id' => $property['id']]),
-						'template' => '{update} {delete}',
+						'header' => $model->existsFreeTypes($property['property_id'], $property['id']) ? Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
+						                    Yii::t('back', 'Add new'), ['object-property-type/create', 'relation_id' => $property['id']]) : '',
+						'template' => $model->existsFreeTypes($property['property_id'], $property['id']) ? '{update} {delete}' : '{delete}',
 						'buttons' => [
 							'update' => function($url, $model) {
 								return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->object_property_id, [

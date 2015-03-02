@@ -67,11 +67,15 @@ class ObjectPropertyType extends ActiveRecord
 	 *
 	 * @param integer $model_type
 	 * @param $object_property_id
+	 * @param int $type_id
 	 *
 	 * @return array
 	 */
-	public function getPropertyTypeOptions($model_type, $object_property_id) {
-		$usedTypes = ArrayHelper::getColumn(ObjectPropertyType::find()->select('type_id')->where(['object_property_id' => $object_property_id])->all(), 'type_id');
+	public function getPropertyTypeOptions($model_type, $object_property_id, $type_id = 0) {
+		$query = ObjectPropertyType::find()->select('type_id')->where(['object_property_id' => $object_property_id]);
+		if ($type_id)
+			$query->andWhere(['not', ['type_id' => $type_id]]);
+		$usedTypes = ArrayHelper::getColumn($query->all(), 'type_id');
 		return ArrayHelper::map(TypeModel::find()->where(['model_type' => $model_type])
 			->andWhere(['not in', 'id', $usedTypes])->all(), 'id', 'title');
 	}

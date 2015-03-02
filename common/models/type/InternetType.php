@@ -2,7 +2,6 @@
 
 namespace common\models\type;
 
-use common\models\facility\Facility;
 use common\models\TypeModel;
 use common\utilities\ModelTypeAttribute;
 use Yii;
