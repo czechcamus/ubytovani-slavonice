@@ -54,5 +54,23 @@ return [
 	        'showScriptName' => false
         ]
     ],
+    'controllerMap' => [
+	    'room-type' => 'backend\controllers\type\RoomTypeController',
+	    'place-type' => 'backend\controllers\type\PlaceTypeController',
+	    'phone-type' => 'backend\controllers\type\PhoneTypeController',
+	    'person-type' => 'backend\controllers\type\PersonTypeController',
+	    'parking-type' => 'backend\controllers\type\ParkingTypeController',
+	    'internet-type' => 'backend\controllers\type\InternetTypeController',
+	    'facility-type' => 'backend\controllers\type\FacilityTypeController',
+	    'email-type' => 'backend\controllers\type\EmailTypeController',
+	    'address-type' => 'backend\controllers\type\AddressTypeController',
+	    'room-property' => 'backend\controllers\property\RoomPropertyController',
+	    'facility-property' => 'backend\controllers\property\FacilityPropertyController',
+	    'subject' => 'backend\controllers\subject\SubjectController',
+	    'person' => 'backend\controllers\subject\PersonController',
+	    'price' => 'backend\controllers\facility\PriceController',
+	    'object-property-type' => 'backend\controllers\facility\ObjectPropertyTypeController',
+	    'facility' => 'backend\controllers\facility\FacilityController'
+    ],
     'params' => $params,
 ];

@@ -8,7 +8,6 @@
 
 namespace backend\utilities;
 
-
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
