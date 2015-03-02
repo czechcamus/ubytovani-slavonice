@@ -87,7 +87,9 @@ class SubjectController extends Controller
      */
     public function actionUpdate($id)
     {
-        $this->storeReturnUrl();
+	    // Stores actual url to user session
+	    Yii::$app->user->returnUrl = Yii::$app->request->url;
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
@@ -123,13 +125,5 @@ class SubjectController extends Controller
         } else {
             throw new NotFoundHttpException(Yii::t('back', 'The requested page does not exist.'));
         }
-    }
-
-    /**
-     * Stores actual page url.
-     */
-    private function storeReturnUrl()
-    {
-        Yii::$app->user->returnUrl = Yii::$app->request->url;
     }
 }

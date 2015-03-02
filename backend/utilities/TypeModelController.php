@@ -24,6 +24,10 @@ class TypeModelController extends Controller
     /** @var  string name of the main ActiveRecord model class */
     public $modelClass;
 
+	/**
+	 * Access control etc.
+	 * @return array
+	 */
 	public function behaviors()
 	{
 		return [

@@ -72,7 +72,7 @@ class FacilityForm extends Model
 	public function rules() {
 		return [
 			[['title', 'subject_id', 'person_id', 'city', 'postal_code'], 'required', 'on' => ['create', 'update']],
-			[['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_type_id'], 'integer', 'on' => ['create', 'update']],
+			[['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_type_id', 'stars'], 'integer', 'on' => ['create', 'update']],
 			[['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to'], 'date', 'format' => 'HH:mm', 'on' => ['create', 'update']],
 			['partner', 'boolean', 'on' => ['create', 'update']],
 			['description', 'string'],

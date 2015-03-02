@@ -86,7 +86,9 @@ class FacilityController extends Controller
      */
     public function actionUpdate($id)
     {
-	    $this->storeReturnUrl();
+	    // Stores actual url to user session
+	    Yii::$app->user->returnUrl = Yii::$app->request->url;
+
         $model = new FacilityForm();
 	    $model->loadModel($id);
 	    $model->scenario = 'update';
@@ -113,11 +115,4 @@ class FacilityController extends Controller
         return $this->redirect(['index']);
     }
 
-	/**
-	 * Stores actual page url.
-	 */
-	private function storeReturnUrl()
-	{
-		Yii::$app->user->returnUrl = Yii::$app->request->url;
-	}
 }

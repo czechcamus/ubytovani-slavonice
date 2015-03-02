@@ -4,27 +4,47 @@ namespace backend\utilities;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 
 /**
  * SubModelController implements the CRUD actions for ActiveRecord model.
  */
-class SubModelController extends TypeModelController
+class SubModelController extends Controller
 {
     /** @var  string name of relation_id property */
     public $relationName;
 
-    /**
-     * @return array overwrites not implemented actions
-     */
-    public function actions()
-    {
-        $actions = parent::actions();
-        return array_merge($actions, [
-            'index' => ['class' => NotFoundAction::className(), 'route' => $this->relationName . '/index'],
-            'view' => ['class' => NotFoundAction::className(), 'route' => $this->relationName . '/view'],
-        ]);
-    }
+	/** @var  string name of the main ActiveRecord model class */
+	public $modelClass;
+
+	/**
+	 * Access control etc.
+	 * @return array
+	 */
+	public function behaviors()
+	{
+		return [
+			'verbs' => [
+				'class' => VerbFilter::className(),
+				'actions' => [
+					'delete' => ['post'],
+				],
+			],
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'roles' => ['@'],
+						'allow' => true
+					]
+				]
+			]
+		];
+	}
 
     /**
      * Creates a new ActiveRecord model.
@@ -42,7 +62,6 @@ class SubModelController extends TypeModelController
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if ($session->has('returnUrl')) {
-	            $session->remove('returnUrl');
                 return $this->redirect($session->get('returnUrl'));
             }
 
@@ -69,7 +88,6 @@ class SubModelController extends TypeModelController
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if ($session->has('returnUrl')) {
-	            $session->remove('returnUrl');
                 return $this->redirect($session->get('returnUrl'));
             }
 
@@ -92,10 +110,25 @@ class SubModelController extends TypeModelController
         $this->findModel($id)->delete();
 
         if ($session->has('returnUrl')) {
-	        $session->remove('returnUrl');
             return $this->redirect($session->get('returnUrl'));
         }
 
         return $this->goBack();
     }
+
+	/**
+	 * Finds the ActiveRecord model based on its primary key value.
+	 * If the model is not found, a 404 HTTP exception will be thrown.
+	 * @param integer $id
+	 * @return ActiveRecord the loaded model
+	 * @throws NotFoundHttpException if the model cannot be found
+	 */
+	protected function findModel($id)
+	{
+		$model = call_user_func([$this->modelClass, 'findOne'], $id);
+		if (!$model)
+			throw new NotFoundHttpException(Yii::t('back', 'The requested page does not exist.'));
+
+		return $model;
+	}
 }
