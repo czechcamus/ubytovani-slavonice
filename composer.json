@@ -16,7 +16,8 @@
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-jui": "~2.0",
         "kartik-v/yii2-datecontrol": "dev-master",
-        "kartik-v/yii2-widget-timepicker": "*"
+        "kartik-v/yii2-widgets": "*",
+        "kartik-v/yii2-field-range": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -90,9 +90,9 @@ use yii\helpers\Html;
 					],
 					[
 						'class' => ActionColumn::className(),
-						'controller' => 'fee',
+						'controller' => 'object-property-fee',
 						'header' => Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
-						                    Yii::t('back', 'Add new'), ['fee/create', 'relation_id' => $property['id']]),
+						                    Yii::t('back', 'Add new'), ['object-property-fee/create', 'relation_id' => $property['id']]),
 						'template' => '{update} {delete}',
 						'buttons' => [
 							'update' => function($url, $model) {

@@ -1,33 +1,21 @@
 <?php
 
-use yii\bootstrap\ActiveField;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\widgets\MaskedInput;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\ObjectPropertyFee */
+/* @var $model common\models\type\CateringType */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
-<div class="object-property-fee-form">
+<div class="catering-type-form">
 
 	<?php $form = ActiveForm::begin([
 		'layout' => 'horizontal',
 		'fieldConfig' => Yii::$app->params['fieldConfig']
 	]); ?>
 
-	<?= $form->field($model, 'title')->textInput() ?>
-
-	<?= $form->field($model, 'value')->widget(MaskedInput::className(), ['clientOptions' => [
-		'alias' =>  'decimal',
-		'radixPoint' =>  ',',
-		'digits' => 2
-	]]) ?>
-
-	<?= $form->field($model, 'tax_id')->dropDownList($model->getTaxValueOptions()) ?>
-
-	<?= Html::activeHiddenInput($model, 'object_property_id'); ?>
+	<?= $form->field($model, 'title')->textInput(['maxlength' => 45]) ?>
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-8">

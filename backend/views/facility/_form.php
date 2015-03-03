@@ -58,10 +58,7 @@ FormFacilityAsset::register($this);
 		<?= $form->field($model, 'stars')->widget(Spinner::className()) ?>
 
 	    <?= $form->field($model, 'checkin_from')->widget(DateControl::classname(), [
-		    'type' => DateControl::FORMAT_TIME,
-		    'pluginOptions' => [
-			    'defaultTime' => false
-		    ]
+		    'type' => DateControl::FORMAT_TIME
 	    ]) ?>
 
 	    <?= $form->field($model, 'checkin_to')->widget(DateControl::classname(), [

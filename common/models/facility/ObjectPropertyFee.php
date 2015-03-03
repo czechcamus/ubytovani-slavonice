@@ -2,6 +2,7 @@
 
 namespace common\models\facility;
 
+use common\utilities\PrepareDecimalValue;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
@@ -28,6 +29,19 @@ class ObjectPropertyFee extends ActiveRecord
         return 'object_property_fee';
     }
 
+	/**
+	 * @return array configuration of behaviors.
+	 */
+	public function behaviors()
+	{
+		return [
+			'prepareDecimalValue' => [
+				'class'=> PrepareDecimalValue::className(),
+				'attributes' => ['value']
+			]
+		];
+	}
+
     /**
      * @inheritdoc
      */
@@ -35,7 +49,7 @@ class ObjectPropertyFee extends ActiveRecord
     {
         return [
             [['title', 'value'], 'required'],
-            [['value'], 'number'],
+            [['value'], 'number', 'numberPattern' => '/^\s*[+]?[0-9]*\,?[0-9]*$/'],
             [['tax_id', 'object_property_id'], 'integer'],
             [['title'], 'string', 'max' => 100]
         ];
@@ -50,8 +64,8 @@ class ObjectPropertyFee extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
             'value' => Yii::t('app', 'Value'),
-            'tax_id' => Yii::t('app', 'Tax ID'),
-            'object_property_id' => Yii::t('app', 'Object Property ID'),
+            'tax_id' => Yii::t('app', 'Tax'),
+            'object_property_id' => Yii::t('app', 'Object Property'),
         ];
     }
 
@@ -76,6 +90,13 @@ class ObjectPropertyFee extends ActiveRecord
 	 * @return array
 	 */
 	public function getTaxValueOptions() {
-		return ArrayHelper::map(Tax::find()->orderBy(['value' => SORT_DESC])->all(), 'id', 'value');
+		$items = ArrayHelper::map(Tax::find()->orderBy(['tax_value' => SORT_DESC])->all(), 'id', 'tax_value');
+		$valueUpdater = function(&$item){
+			$item = "$item %";
+		};
+		if (array_walk($items, $valueUpdater))
+			return $items;
+		else
+			return [];
 	}
 }

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\facility\Facility */
+/* @var $model backend\models\FacilityForm */
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Facilities'), 'url' => ['index']];
@@ -28,12 +28,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'subject_id',
-            'person_id',
-            'partner',
-            'place_type_id',
-            'facility_type_id',
+	        [
+		        'attribute' => 'subject_id',
+		        'value' => $model->subject->title
+	        ],
+	        [
+		        'attribute' => 'person_id',
+		        'value' => $model->person->name . ' ' . $model->person->surname
+	        ],
+            [
+	            'attribute' => 'partner',
+	            'value' => $model->partner ? Yii::t('back', 'Yes') : Yii::t('back', 'No')
+            ],
+	        [
+		        'attribute' => 'place_type_id',
+		        'value' => $model->placeType->title
+	        ],
+	        [
+		        'attribute' => 'facility_type_id',
+		        'value' => $model->facilityType->title
+	        ],
             'title',
             'weburl:url',
             'street',
@@ -47,10 +61,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'certificate',
             'stars',
             'description:ntext',
-            'created_at',
-            'created_by',
-            'updated_at',
-            'updated_by',
+	        [
+		        'attribute' => 'created_at',
+		        'format' => 'datetime',
+	        ],
+	        [
+		        'attribute' => 'created_by',
+		        'value' => $model->creator->username,
+	        ],
+	        [
+		        'attribute' => 'updated_at',
+		        'format' => 'datetime',
+	        ],
+	        [
+		        'attribute' => 'updated_by',
+		        'value' => $model->updater->username,
+	        ],
         ],
     ]) ?>
 

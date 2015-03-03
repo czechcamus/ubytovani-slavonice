@@ -265,7 +265,7 @@ class FacilityForm extends Model
 	public function getPropertyFees($property_id) {
 		return ObjectPropertyFee::find()->where([
 			'object_property_id' => $property_id
-		]);
+		])->orderBy(['value' => SORT_ASC]);
 	}
 
 	/**

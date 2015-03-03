@@ -3,6 +3,7 @@
 namespace backend\controllers\facility;
 
 use backend\models\FacilityForm;
+use common\models\facility\Facility;
 use Yii;
 use common\models\facility\SearchFacility;
 use yii\filters\AccessControl;
@@ -54,8 +55,7 @@ class FacilityController extends Controller
      */
     public function actionView($id)
     {
-	    $model = new FacilityForm();
-	    $model->loadModel($id);
+	    $model = Facility::findOne($id);
 
         return $this->render('view', compact('model'));
     }

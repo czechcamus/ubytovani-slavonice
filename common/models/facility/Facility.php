@@ -7,12 +7,14 @@ use common\models\subject\Person;
 use common\models\subject\Subject;
 use common\models\type\FacilityType;
 use common\models\type\PlaceType;
+use common\models\User;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 
+//TODO dodělat active pole pro možnost vypínání
 /**
  * This is the model class for table "facility".
  *
@@ -47,6 +49,8 @@ use yii\db\Expression;
  * @property FacilityProperty[] $facilityProperties
  * @property Subject $subject
  * @property Person $person
+ * @property User $creator
+ * @property User $updater
  */
 class Facility extends ActiveRecord
 {
@@ -166,5 +170,21 @@ class Facility extends ActiveRecord
 	 */
 	public function getPerson() {
 		return $this->hasOne(Person::className(), ['id' => 'person_id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getCreator()
+	{
+		return $this->hasOne(User::className(), ['id' => 'created_by']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getUpdater()
+	{
+		return $this->hasOne(User::className(), ['id' => 'updated_by']);
 	}
 }

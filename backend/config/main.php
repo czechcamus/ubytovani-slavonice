@@ -55,6 +55,7 @@ return [
         ]
     ],
     'controllerMap' => [
+	    'catering-type' => 'backend\controllers\type\CateringTypeController',
 	    'room-type' => 'backend\controllers\type\RoomTypeController',
 	    'place-type' => 'backend\controllers\type\PlaceTypeController',
 	    'phone-type' => 'backend\controllers\type\PhoneTypeController',
@@ -70,6 +71,7 @@ return [
 	    'person' => 'backend\controllers\subject\PersonController',
 	    'price' => 'backend\controllers\facility\PriceController',
 	    'object-property-type' => 'backend\controllers\facility\ObjectPropertyTypeController',
+	    'object-property-fee' => 'backend\controllers\facility\ObjectPropertyFeeController',
 	    'facility' => 'backend\controllers\facility\FacilityController'
     ],
     'params' => $params,
