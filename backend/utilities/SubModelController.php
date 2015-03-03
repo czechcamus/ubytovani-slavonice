@@ -48,7 +48,6 @@ class SubModelController extends Controller
 
     /**
      * Creates a new ActiveRecord model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
      * @param integer $relation_id of main model
      * @return mixed
      */
@@ -73,7 +72,6 @@ class SubModelController extends Controller
 
     /**
      * Updates an existing ActiveRecord model.
-     * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @param integer $relation_id
      * @throws \yii\web\NotFoundHttpException
@@ -99,7 +97,6 @@ class SubModelController extends Controller
 
     /**
      * Deletes an existing ActiveRecord model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */

@@ -10,8 +10,8 @@ namespace backend\models;
 
 
 use common\models\facility\Facility;
-use common\models\facility\Fee;
 use common\models\facility\ObjectProperty;
+use common\models\facility\ObjectPropertyFee;
 use common\models\facility\ObjectPropertyType;
 use common\models\property\FacilityProperty;
 use common\models\PropertyModel;
@@ -260,10 +260,10 @@ class FacilityForm extends Model
 	/**
 	 * Gets fees related to facility property with given property_id
 	 * @param $property_id
-	 * @return Fee[]
+	 * @return ObjectPropertyFee[]
 	 */
-	public function getFees($property_id) {
-		return Fee::find()->where([
+	public function getPropertyFees($property_id) {
+		return ObjectPropertyFee::find()->where([
 			'object_property_id' => $property_id
 		]);
 	}

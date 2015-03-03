@@ -17,7 +17,6 @@ class ObjectPropertyTypeController extends SubModelController
 
 	/**
 	 * Updates an existing ObjectPropertyType model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
 	 *
 	 * @param int $object_property_id
 	 * @param int|null $type_id
@@ -38,7 +37,6 @@ class ObjectPropertyTypeController extends SubModelController
 
 	/**
 	 * Deletes an existing ActiveRecord model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
 	 *
 	 * @param int $object_property_id
 	 * @param $type_id

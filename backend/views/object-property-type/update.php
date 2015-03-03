@@ -22,7 +22,7 @@ if ($model->objectProperty->property->property_type == PropertyModel::FACILITY_P
 }
 $modelClass = Yii::t('back', 'Object Property Type');
 $this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass'));
-$this->params['breadcrumbs'][] = ['label' => Yii::t('back', '{objectModelClass}', compact('objectModelClass')), 'url' => $indexUrl];
+$this->params['breadcrumbs'][] = ['label' => $objectModelClass, 'url' => $indexUrl];
 $this->params['breadcrumbs'][] = ['label' => $objectModel->title, 'url' => $updateUrl];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -79,12 +79,15 @@ use yii\helpers\Html;
 			echo GridView::widget([
 				'layout' => "{items}",
 				'dataProvider' => new ActiveDataProvider([
-					'query' => $model->getFees($property['id'])
+					'query' => $model->getPropertyFees($property['id'])
 				]),
 				'columns' => [
 					'title',
-					'values',
-					'tax.tax_value',
+					'value',
+					[
+						'label' => Yii::t('back', 'Value Added Tax'),
+						'attribute' => 'tax.tax_value'
+					],
 					[
 						'class' => ActionColumn::className(),
 						'controller' => 'fee',
