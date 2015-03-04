@@ -54,28 +54,40 @@ $this->params['breadcrumbs'][] = $this->title;
             'house_nr',
             'city',
             'postal_code',
-            'checkin_from',
-            'checkin_to',
-            'checkout_from',
-            'checkout_to',
+	        [
+		        'attribute' => 'checkin_from',
+		        'format' => 'time'
+	        ],
+	        [
+		        'attribute' => 'checkin_to',
+		        'format' => 'time'
+	        ],
+	        [
+		        'attribute' => 'checkout_from',
+		        'format' => 'time'
+	        ],
+	        [
+		        'attribute' => 'checkout_to',
+		        'format' => 'time'
+	        ],
             'certificate',
             'stars',
             'description:ntext',
 	        [
 		        'attribute' => 'created_at',
-		        'format' => 'datetime',
+		        'format' => 'datetime'
 	        ],
 	        [
 		        'attribute' => 'created_by',
-		        'value' => $model->creator->username,
+		        'value' => $model->creator->username
 	        ],
 	        [
 		        'attribute' => 'updated_at',
-		        'format' => 'datetime',
+		        'format' => 'datetime'
 	        ],
 	        [
 		        'attribute' => 'updated_by',
-		        'value' => $model->updater->username,
+		        'value' => $model->updater->username
 	        ],
         ],
     ]) ?>

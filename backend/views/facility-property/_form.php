@@ -20,7 +20,7 @@ use yii\bootstrap\ActiveForm;
 
 	<?= $form->field($model, 'types')->checkbox(['id' => 'typeSwitch']) ?>
 
-	<div class="type-options">
+	<div class="type-options<?= $model->types ? ' visible' : ''; ?>">
 		<?= $form->field($model, 'model_type')->dropDownList($model->getTypeOptions()) ?>
 	</div>
 

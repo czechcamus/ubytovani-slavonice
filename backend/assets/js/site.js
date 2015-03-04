@@ -3,5 +3,9 @@
  */
 
 $('#typeSwitch').on('click', function() {
-    $('.type-options').toggle();
+    if ($(this).prop('checked') == true) {
+        $('.type-options').show();
+    } else {
+        $('.type-options').hide();
+    }
 });

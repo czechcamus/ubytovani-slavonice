@@ -11,6 +11,7 @@ return [
         'formatter' => [
 	        'dateFormat' => 'dd.MM.yyyy',
 	        'timeFormat' => 'HH:mm',
+	        'datetimeFormat' => 'dd.MM.yyyy HH:mm:ss',
 	        'defaultTimeZone' => 'Europe/Prague',
 	        'decimalSeparator' => ',',
 	        'thousandSeparator' => ' ',

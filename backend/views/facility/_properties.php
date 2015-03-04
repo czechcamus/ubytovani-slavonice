@@ -33,7 +33,6 @@ use yii\helpers\Html;
 		]);
 		if (isset($model->facility_id) && $property['id'] && $property['types']) {
 			echo '<div style="padding-top: 10px">';
-			echo '<em>' . Yii::t('back', 'Types') . '</em>';
 			echo GridView::widget([
 				'layout' => "{items}",
 				'dataProvider' => new ActiveDataProvider([
@@ -41,7 +40,7 @@ use yii\helpers\Html;
 				]),
 				'columns' => [
 					[
-						'label' => Yii::t('back', 'Property Type'),
+						'label' => Yii::t('back', 'Type'),
 						'value' => function ($data) {
 							return $data->type->title;
 						},
@@ -75,14 +74,16 @@ use yii\helpers\Html;
 		}
 		if (isset($model->facility_id) && $property['id'] && $property['fees']) {
 			echo '<div style="padding-top: 10px">';
-			echo '<em>' . Yii::t('back', 'Fees') . '</em>';
 			echo GridView::widget([
 				'layout' => "{items}",
 				'dataProvider' => new ActiveDataProvider([
 					'query' => $model->getPropertyFees($property['id'])
 				]),
 				'columns' => [
-					'title',
+					[
+						'label' => Yii::t('back', 'Fee'),
+						'attribute' => 'title'
+					],
 					'value',
 					[
 						'label' => Yii::t('back', 'Value Added Tax'),

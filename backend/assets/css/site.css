@@ -86,3 +86,9 @@ a.desc:after {
 .type-options {
   display: none;
 }
+.type-options.visible {
+  display: block;
+}
+.property-details th {
+  background: #ece8da;
+}
