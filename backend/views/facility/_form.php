@@ -2,6 +2,9 @@
 
 use backend\assets\FormFacilityAsset;
 use kartik\datecontrol\DateControl;
+use yii\data\ActiveDataProvider;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\jui\Spinner;
@@ -20,6 +23,8 @@ FormFacilityAsset::register($this);
 	    'layout' => 'horizontal',
 	    'fieldConfig' => Yii::$app->params['fieldConfig']
     ]); ?>
+
+	<?= $form->field($model, 'active')->checkbox() ?>
 
 	<?= $form->field($model, 'facility_type_id')->dropDownList($model->getFacilityTypeOptions()) ?>
 
@@ -80,6 +85,48 @@ FormFacilityAsset::register($this);
 		?>
 
 	</div>
+
+	<?php if (isset($model->facility_id)) {
+		echo '<h2>' . Yii::t('back', 'Rooms') . '</h2>';
+		echo GridView::widget([
+			'layout' => "{items}",
+			'dataProvider' => new ActiveDataProvider([
+				'query' => $model->getRooms($model->facility_id)
+			]),
+			'columns' => [
+				'title',
+				[
+					'label' => Yii::t('back', 'Type'),
+					'value' => function ($data) {
+						return $data->type->title;
+					},
+				],
+				[
+					'class' => ActionColumn::className(),
+					'controller' => 'object-property-type',
+					'header' => $model->existsFreeTypes($property['property_id'], $property['id']) ? Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
+					                                                                                         Yii::t('back', 'Add new'), ['object-property-type/create', 'relation_id' => $property['id']]) : '',
+					'template' => $model->existsFreeTypes($property['property_id'], $property['id']) ? '{update} {delete}' : '{delete}',
+					'buttons' => [
+						'update' => function($url, $model) {
+							return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->object_property_id, [
+								'title' => Yii::t('back', 'Update'),
+								'data-pjax' => '0',
+							]);
+						},
+						'delete' => function($url, $model) {
+							return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url . '&relation_id=' . $model->object_property_id, [
+								'title' => Yii::t('back', 'Delete'),
+								'data-method' => 'post',
+								'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+								'data-pjax' => '0',
+							]);
+						}
+					]
+				]
+			]
+		]);
+	} ?>
 
     <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-8">

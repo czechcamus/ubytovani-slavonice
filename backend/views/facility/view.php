@@ -29,6 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
 	        [
+		        'attribute' => 'active',
+		        'value' => $model->active ? Yii::t('back', 'Yes') : Yii::t('back', 'No')
+	        ],
+	        [
 		        'attribute' => 'subject_id',
 		        'value' => $model->subject->title
 	        ],

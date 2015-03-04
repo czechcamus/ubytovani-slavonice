@@ -54,6 +54,12 @@ $this->params['breadcrumbs'][] = $this->title;
 			        return $model->partner ? Yii::t('back', 'Yes') : Yii::t('back', 'No');
 		        }
 	        ],
+	        [
+		        'attribute' => 'active',
+		        'value' => function($model) {
+			        return $model->active ? Yii::t('back', 'Yes') : Yii::t('back', 'No');
+		        }
+	        ],
 
             [
 	            'class' => 'yii\grid\ActionColumn',

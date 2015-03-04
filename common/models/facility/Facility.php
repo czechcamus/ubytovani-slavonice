@@ -38,6 +38,7 @@ use yii\db\Expression;
  * @property integer $stars
  * @property string $description
  * @property integer $completed
+ * @property integer $active
  * @property string $created_at
  * @property integer $created_by
  * @property string $updated_at
@@ -86,6 +87,7 @@ class Facility extends ActiveRecord
             [['subject_id', 'person_id', 'partner', 'place_type_id', 'facility_type_id', 'stars', 'created_by', 'updated_by'], 'integer'],
             [['title', 'city', 'postal_code'], 'required'],
             [['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to', 'created_at', 'updated_at', 'completed'], 'safe'],
+	        ['active', 'boolean'],
             [['description'], 'string'],
             [['title', 'weburl', 'certificate'], 'string', 'max' => 100],
             [['street', 'city'], 'string', 'max' => 45],
@@ -119,6 +121,7 @@ class Facility extends ActiveRecord
             'stars' => Yii::t('app', 'Stars'),
             'description' => Yii::t('app', 'Description'),
             'completed' => Yii::t('app', 'Completed'),
+            'active' => Yii::t('app', 'Active'),
             'created_at' => Yii::t('app', 'Created At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_at' => Yii::t('app', 'Updated At'),

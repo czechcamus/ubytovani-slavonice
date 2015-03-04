@@ -50,6 +50,8 @@ class FacilityForm extends Model
 	public $weburl;
 	/** @var boolean */
 	public $partner;
+	/** @var boolean */
+	public $active;
 	/** @var string */
 	public $certificate;
 	/** @var integer */
@@ -76,6 +78,7 @@ class FacilityForm extends Model
 			[['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_type_id', 'stars'], 'integer', 'on' => ['create', 'update']],
 			[['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to'], 'date', 'format' => 'HH:mm:ss', 'on' => ['create', 'update']],
 			['partner', 'boolean', 'on' => ['create', 'update']],
+			['active', 'boolean'],
 			['description', 'string'],
 			[['title', 'weburl', 'certificate'], 'string', 'max' => 100, 'on' => ['create', 'update']],
 			[['street', 'city'], 'string', 'max' => 45, 'on' => ['create', 'update']],
@@ -103,6 +106,7 @@ class FacilityForm extends Model
 			'partner' => Yii::t('back', 'Partner'),
 			'certificate' => Yii::t('back', 'Certificate'),
 			'stars' => Yii::t('back', 'Stars'),
+			'active'=> Yii::t('back', 'Active'),
 			'checkin_from' => Yii::t('back', 'Checkin From'),
 			'checkin_to' => Yii::t('back', 'Checkin To'),
 			'checkout_from' => Yii::t('back', 'Checkout From'),
@@ -153,6 +157,7 @@ class FacilityForm extends Model
 	 * @param $id
 	 */
 	public function loadModel($id) {
+		/** @var Facility $facility */
 		$facility = Facility::findOne($id);
 		foreach ($facility->attributes as $key => $value) {
 			if (property_exists($this, $key))
@@ -169,6 +174,7 @@ class FacilityForm extends Model
 	 * @throws \Exception
 	 */
 	public function deleteModel($id) {
+		/** @var Facility $facility */
 		$facility = Facility::findOne($id);
 		$facility->delete();
 		//TODO dodělat mazání součástí a relací

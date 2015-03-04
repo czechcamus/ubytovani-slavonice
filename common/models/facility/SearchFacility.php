@@ -17,7 +17,7 @@ class SearchFacility extends Facility
     public function rules()
     {
         return [
-            [['id', 'subject_id', 'person_id', 'partner', 'place_type_id', 'facility_type_id', 'stars', 'created_by', 'updated_by'], 'integer'],
+            [['id', 'subject_id', 'person_id', 'place_type_id', 'facility_type_id', 'stars', 'created_by', 'updated_by'], 'integer'],
             [['title', 'weburl', 'street', 'house_nr', 'city', 'postal_code', 'checkin_from', 'checkin_to', 'checkout_from', 'checkout_to', 'certificate', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -54,7 +54,6 @@ class SearchFacility extends Facility
             'id' => $this->id,
             'subject_id' => $this->subject_id,
             'person_id' => $this->person_id,
-            'partner' => $this->partner,
             'place_type_id' => $this->place_type_id,
             'facility_type_id' => $this->facility_type_id,
             'checkin_from' => $this->checkin_from,

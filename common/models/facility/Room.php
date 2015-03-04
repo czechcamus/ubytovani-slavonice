@@ -2,7 +2,8 @@
 
 namespace common\models\facility;
 
-use common\models\subject\Subject;
+use common\models\property\RoomProperty;
+use common\models\type\RoomType;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -10,16 +11,17 @@ use yii\db\ActiveRecord;
  * This is the model class for table "room".
  *
  * @property integer $id
- * @property integer $subject_id
+ * @property integer $facility_id
  * @property integer $room_type_id
  * @property string $title
+ * @property integer $bed_nr
  * @property integer $nr
  * @property string $note
  *
  * @property Price[] $prices
- * @property RoomType $roomType
- * @property Subject $subject
- * @property RoomRoomProperty[] $roomRoomProperties
+ * @property RoomType $type
+ * @property Facility $facility
+ * @property ObjectProperty[] $objectProperties
  * @property RoomProperty[] $roomProperties
  */
 class Room extends ActiveRecord
@@ -38,7 +40,7 @@ class Room extends ActiveRecord
     public function rules()
     {
         return [
-            [['subject_id', 'room_type_id', 'nr'], 'integer'],
+            [['facility_id', 'room_type_id', 'nr', 'bed_nr'], 'integer'],
             [['title'], 'string', 'max' => 45],
             [['note'], 'string', 'max' => 150]
         ];
@@ -51,9 +53,10 @@ class Room extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'subject_id' => Yii::t('app', 'Subject ID'),
-            'room_type_id' => Yii::t('app', 'Room Type ID'),
+            'facility_id' => Yii::t('app', 'Facility'),
+            'room_type_id' => Yii::t('app', 'Room Type'),
             'title' => Yii::t('app', 'Title'),
+	        'bed_nr' => Yii::t('app', 'Bed Nr.'),
             'nr' => Yii::t('app', 'Nr'),
             'note' => Yii::t('app', 'Note'),
         ];
@@ -78,17 +81,17 @@ class Room extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSubject()
+    public function getFacility()
     {
-        return $this->hasOne(Subject::className(), ['id' => 'subject_id']);
+        return $this->hasOne(Facility::className(), ['id' => 'facility_id']);
     }
 
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getRoomRoomProperties()
+	public function getObjectProperties()
 	{
-		return $this->hasMany(RoomRoomProperty::className(), ['room_id' => 'id']);
+		return $this->hasMany(ObjectProperty::className(), ['room_id' => 'id']);
 	}
 
 	/**
