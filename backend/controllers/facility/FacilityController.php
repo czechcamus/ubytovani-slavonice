@@ -95,7 +95,7 @@ class FacilityController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 	        $model->saveModel(false);
-            return $this->redirect(['index']);
+	        $this->refresh();
         }
 
         return $this->render('update', compact('model'));

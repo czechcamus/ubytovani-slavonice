@@ -154,23 +154,25 @@ class FacilityForm extends Model {
 			$this->facility_id = $facility->id;
 		}
 
-		//Properties
-		/** @noinspection PhpUndefinedMethodInspection */
-		$properties = FacilityProperty::find()->orderBy('title')->all();
-		/** @var PropertyModel $property */
-		foreach ($properties as $key => $property) {
-			$propertyInputs = Yii::$app->request->post('FacilityForm')['properties'][ $key ];
-			if ($propertyInputs['id']) {
-				$objectProperty = ObjectProperty::findOne($propertyInputs['id']);
-			} else {
-				$objectProperty     = new ObjectProperty();
-				$objectProperty->id = 0;
+		if ($this->partner) {
+			/** @noinspection PhpUndefinedMethodInspection */
+			$properties = FacilityProperty::find()->orderBy('title')->all();
+			/** @var PropertyModel $property */
+			foreach ($properties as $key => $property) {
+				$propertyInputs = [];
+				if (isset(Yii::$app->request->post('FacilityForm')['properties'])) {
+					$propertyInputs = Yii::$app->request->post('FacilityForm')['properties'][ $key ];
+					$objectProperty = ObjectProperty::findOne($propertyInputs['id']);
+				} else {
+					$objectProperty                   = new ObjectProperty();
+					$objectProperty->id               = 0;
+				}
+				$objectProperty->property_value = isset($propertyInputs['property_value']) ? 1 : 0;
+				$objectProperty->property_note  = isset($propertyInputs['property_note']) ? $propertyInputs['property_note'] : '';
+				$objectProperty->object_id      = $facility->id;
+				$objectProperty->property_id    = $property->id;
+				$objectProperty->save(false);
 			}
-			$objectProperty->property_value = isset($propertyInputs['property_value']) ? 1 : 0;
-			$objectProperty->property_note  = $propertyInputs['property_note'];
-			$objectProperty->object_id      = $facility->id;
-			$objectProperty->property_id    = $property->id;
-			$objectProperty->save(false);
 		}
 	}
 

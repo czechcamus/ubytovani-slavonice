@@ -24,21 +24,28 @@ FormFacilityAsset::register($this);
 			'label'   => Yii::t('back', 'Facility basic info'),
 			'content' => $this->render('_facility', compact('model', 'form')),
 			'active'  => ( ! isset($model->actualTab) || ($model->actualTab == FacilityForm::FACILITIES_TAB)) ? true : false
-		],
-		[
-			'label'   => Yii::t('back', 'Facility rooms'),
-			'content' => $this->render('_rooms', compact('model')),
-			'active'  => ($model->actualTab == FacilityForm::ROOMS_TAB) ? true : false
 		]
 	];
+	$items_rooms = $items_properties = $items_images = [];
 
-	if ($model->partner) {
-		$items_extended = [
+	if ($model->facility_id) {
+		if ($model->partner) {
+			$items_properties = [
+				[
+					'label'   => Yii::t('back', 'Facility properties'),
+					'content' => $this->render('_properties', compact('model')),
+					'active'  => ($model->actualTab == FacilityForm::PROPERTIES_TAB) ? true : false
+				]
+			];
+		}
+		$items_rooms = [
 			[
-				'label'   => Yii::t('back', 'Facility properties'),
-				'content' => $this->render('_properties', compact('model')),
-				'active'  => ($model->actualTab == FacilityForm::PROPERTIES_TAB) ? true : false
-			],
+				'label'   => Yii::t('back', 'Facility rooms'),
+				'content' => $this->render('_rooms', compact('model')),
+				'active'  => ($model->actualTab == FacilityForm::ROOMS_TAB) ? true : false
+			]
+		];
+		$items_images = [
 			[
 				'label'   => Yii::t('back', 'Facility images'),
 				'content' => $this->render('_images', compact('model')),
@@ -47,19 +54,19 @@ FormFacilityAsset::register($this);
 		];
 	}
 
-	$items = ArrayHelper::merge($items_basic, $items_extended);
+	$items = ArrayHelper::merge($items_basic, $items_properties, $items_rooms, $items_images);
 	?>
 
 	<?= Tabs::widget([
 		'itemOptions' => [
-			'style' => 'padding: 30px 0'
+			'style' => 'padding: 30px 0 15px'
 		],
 		'items' => $items
 	]); ?>
 
 	<div class="form-group">
-		<?= Html::submitButton($model->scenario == 'create' ? Yii::t('back', 'Create') : Yii::t('back', 'Update'),
-			['class' => $model->scenario == 'create' ? 'btn btn-success' : 'btn btn-primary']) ?>
+		<?= Html::submitButton(Yii::t('back', 'Save'),
+			['class' => 'btn btn-primary']) ?>
 	</div>
 
 	<?php ActiveForm::end(); ?>

@@ -67,28 +67,60 @@ use yii\jui\Spinner;
 
 <div id="partner-fields"<?= $model->partner ? ' class="visible"' : ''; ?>>
 
-	<?= $form->field($model, 'certificate')->textInput(['maxlength' => 100]) ?>
+	<div class="row">
 
-	<?= $form->field($model, 'stars')->widget(Spinner::className()) ?>
+		<div class="col-sm-12 col-md-6">
 
-	<?= $form->field($model, 'checkin_from')->widget(DateControl::classname(), [
-		'type' => DateControl::FORMAT_TIME
-	]) ?>
+			<?= $form->field($model, 'certificate')->textInput(['maxlength' => 100]) ?>
 
-	<?= $form->field($model, 'checkin_to')->widget(DateControl::classname(), [
-		'type' => DateControl::FORMAT_TIME
-	]) ?>
+		</div>
 
-	<?= $form->field($model, 'checkout_from')->widget(DateControl::classname(), [
-		'type' => DateControl::FORMAT_TIME
-	]) ?>
+		<div class="col-sm-12 col-md-6">
 
-	<?= $form->field($model, 'checkout_to')->widget(DateControl::classname(), [
-		'type' => DateControl::FORMAT_TIME
-	]) ?>
+			<?= $form->field($model, 'stars', [
+				'inputTemplate' => '<div>{input}</div>'
+			])->widget(Spinner::className()) ?>
+
+		</div>
+
+	</div>
+
+	<div class="row">
+
+		<div class="col-sm-6 col-md-3">
+
+			<?= $form->field($model, 'checkin_from')->widget(DateControl::classname(), [
+				'type' => DateControl::FORMAT_TIME
+			]) ?>
+
+		</div>
+
+		<div class="col-sm-6 col-md-3">
+
+			<?= $form->field($model, 'checkin_to')->widget(DateControl::classname(), [
+				'type' => DateControl::FORMAT_TIME
+			]) ?>
+
+		</div>
+
+		<div class="col-sm-6 col-md-3">
+
+			<?= $form->field($model, 'checkout_from')->widget(DateControl::classname(), [
+				'type' => DateControl::FORMAT_TIME
+			]) ?>
+
+		</div>
+
+		<div class="col-sm-6 col-md-3">
+
+			<?= $form->field($model, 'checkout_to')->widget(DateControl::classname(), [
+				'type' => DateControl::FORMAT_TIME
+			]) ?>
+
+		</div>
+
+	</div>
 
 	<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-</div>
 
 </div>

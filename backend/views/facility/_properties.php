@@ -7,114 +7,125 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\FacilityForm */
-?>
 
-<div class="form-group">
-
-	<?php
-	foreach ($model->properties as $key => $property) {
-		echo '<div class="col-sm-offset-2 col-sm-8"><div class="checkbox">';
-		echo Html::hiddenInput('FacilityForm[properties][' . $key . '][id]', $property['id']);
-		echo Html::hiddenInput('FacilityForm[properties][' . $key . '][property_id]', $property['property_id']);
-		echo Html::checkbox('FacilityForm[properties][' . $key . '][property_value]', $property['property_value'], [
-			'label' => $property['property_title'],
-			'labelOptions' => [
-				'id' => 'property_' . $property['property_id'],
-				'class' => 'propertySwitch'
-			],
-			'onclick' => 'togglePropertyNote(' . $property['property_id'] . ')'
-		]);
-		echo '<div class="property-details' . ($property['property_value'] ? ' visible' : '') . '">';
-		echo Html::textInput('FacilityForm[properties][' . $key . '][property_note]', $property['property_note'], [
-			'class' => 'form-control',
-			'placeholder' => Yii::t('back', 'Property Note')
-		]);
-		if (isset($model->facility_id) && $property['id'] && $property['types']) {
-			echo '<div style="padding-top: 10px">';
-			echo GridView::widget([
-				'layout' => "{items}",
-				'dataProvider' => new ActiveDataProvider([
-					'query' => $model->getPropertyTypes($property['id'])
-				]),
-				'columns' => [
-					[
-						'label' => Yii::t('back', 'Type'),
-						'value' => function ($data) {
-							return $data->type->title;
-						},
-					],
-					[
-						'class' => ActionColumn::className(),
-						'controller' => 'object-property-type',
-						'header' => $model->existsFreeTypes($property['property_id'], $property['id']) ? Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
-						                    Yii::t('back', 'Add new'), ['object-property-type/create', 'relation_id' => $property['id']]) : '',
-						'template' => $model->existsFreeTypes($property['property_id'], $property['id']) ? '{update} {delete}' : '{delete}',
-						'buttons' => [
-							'update' => function($url, $model) {
-								return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->object_property_id, [
-									'title' => Yii::t('back', 'Update'),
-									'data-pjax' => '0',
-								]);
-							},
-							'delete' => function($url, $model) {
-								return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url . '&relation_id=' . $model->object_property_id, [
-									'title' => Yii::t('back', 'Delete'),
-									'data-method' => 'post',
-									'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
-									'data-pjax' => '0',
-								]);
-							}
-						]
-					]
-				]
-			]);
-			echo '</div>';
-		}
-		if (isset($model->facility_id) && $property['id'] && $property['fees']) {
-			echo '<div style="padding-top: 10px">';
-			echo GridView::widget([
-				'layout' => "{items}",
-				'dataProvider' => new ActiveDataProvider([
-					'query' => $model->getPropertyFees($property['id'])
-				]),
-				'columns' => [
-					[
-						'label' => Yii::t('back', 'Fee'),
-						'attribute' => 'title'
-					],
-					'value',
-					[
-						'label' => Yii::t('back', 'Value Added Tax'),
-						'attribute' => 'tax.tax_value'
-					],
-					[
-						'class' => ActionColumn::className(),
-						'controller' => 'object-property-fee',
-						'header' => Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
-						                    Yii::t('back', 'Add new'), ['object-property-fee/create', 'relation_id' => $property['id']]),
-						'template' => '{update} {delete}',
-						'buttons' => [
-							'update' => function($url, $model) {
-								return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->object_property_id, [
-									'title' => Yii::t('back', 'Update'),
-									'data-pjax' => '0',
-								]);
-							},
-							'delete' => function($url, $model) {
-								return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url . '&relation_id=' . $model->object_property_id, [
-									'title' => Yii::t('back', 'Delete'),
-									'data-method' => 'post',
-									'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
-									'data-pjax' => '0',
-								]);
-							}
-						]
-					]
-				]
-			]);
-			echo '</div>';
-		}
-		echo '</div></div></div>';
+$i = 0;
+$close = false;
+foreach ($model->properties as $key => $property) {
+	if (($i % 2) == 0) {
+		echo '<div class="row">';
+		$close = true;
 	}
-	?>
-</div>
+	echo '<div class="col-sm-12 col-md-6"><div class="checkbox">';
+	echo Html::hiddenInput('FacilityForm[properties][' . $key . '][id]', $property['id']);
+	echo Html::hiddenInput('FacilityForm[properties][' . $key . '][property_id]', $property['property_id']);
+	echo Html::checkbox('FacilityForm[properties][' . $key . '][property_value]', $property['property_value'], [
+		'label'        => $property['property_title'],
+		'labelOptions' => [
+			'id'    => 'property_' . $property['property_id'],
+			'class' => 'propertySwitch'
+		],
+		'onclick'      => 'togglePropertyNote(' . $property['property_id'] . ')'
+	]);
+	echo '<div class="property-details' . ($property['property_value'] ? ' visible' : '') . '">';
+	echo Html::textInput('FacilityForm[properties][' . $key . '][property_note]', $property['property_note'], [
+		'class'       => 'form-control',
+		'placeholder' => Yii::t('back', 'Property Note')
+	]);
+	if (isset($model->facility_id) && $property['id'] && $property['types']) {
+		echo '<div style="padding-top: 10px">';
+		echo GridView::widget([
+			'layout'       => "{items}",
+			'dataProvider' => new ActiveDataProvider([
+				'query' => $model->getPropertyTypes($property['id'])
+			]),
+			'columns'      => [
+				[
+					'label' => Yii::t('back', 'Type'),
+					'value' => function ($data) {
+						return $data->type->title;
+					},
+				],
+				[
+					'class'      => ActionColumn::className(),
+					'controller' => 'object-property-type',
+					'header'     => $model->existsFreeTypes($property['property_id'],
+						$property['id']) ? Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
+					                               Yii::t('back', 'Add new'),
+						['object-property-type/create', 'relation_id' => $property['id']]) : '',
+					'template'   => $model->existsFreeTypes($property['property_id'],
+						$property['id']) ? '{update} {delete}' : '{delete}',
+					'buttons'    => [
+						'update' => function ($url, $model) {
+							return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
+								$url . '&relation_id=' . $model->object_property_id, [
+									'title'     => Yii::t('back', 'Update'),
+									'data-pjax' => '0',
+								]);
+						},
+						'delete' => function ($url, $model) {
+							return Html::a('<span class="glyphicon glyphicon-trash"></span>',
+								$url . '&relation_id=' . $model->object_property_id, [
+									'title'        => Yii::t('back', 'Delete'),
+									'data-method'  => 'post',
+									'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+									'data-pjax'    => '0',
+								]);
+						}
+					]
+				]
+			]
+		]);
+		echo '</div>';
+	}
+	if (isset($model->facility_id) && $property['id'] && $property['fees']) {
+		echo '<div style="padding-top: 10px">';
+		echo GridView::widget([
+			'layout'       => "{items}",
+			'dataProvider' => new ActiveDataProvider([
+				'query' => $model->getPropertyFees($property['id'])
+			]),
+			'columns'      => [
+				[
+					'label'     => Yii::t('back', 'Fee'),
+					'attribute' => 'title'
+				],
+				'value',
+				[
+					'class'      => ActionColumn::className(),
+					'controller' => 'object-property-fee',
+					'header'     => Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
+					                        Yii::t('back', 'Add new'),
+						['object-property-fee/create', 'relation_id' => $property['id']]),
+					'template'   => '{update} {delete}',
+					'buttons'    => [
+						'update' => function ($url, $model) {
+							return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
+								$url . '&relation_id=' . $model->object_property_id, [
+									'title'     => Yii::t('back', 'Update'),
+									'data-pjax' => '0',
+								]);
+						},
+						'delete' => function ($url, $model) {
+							return Html::a('<span class="glyphicon glyphicon-trash"></span>',
+								$url . '&relation_id=' . $model->object_property_id, [
+									'title'        => Yii::t('back', 'Delete'),
+									'data-method'  => 'post',
+									'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+									'data-pjax'    => '0',
+								]);
+						}
+					]
+				]
+			]
+		]);
+		echo '</div>';
+	}
+	echo '</div></div></div>';
+	if (($i % 2) != 0) {
+		echo '</div>';
+		$close = false;
+	}
+	++$i;
+}
+if ($close)
+	echo '</div>';
