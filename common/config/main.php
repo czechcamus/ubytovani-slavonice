@@ -8,6 +8,10 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+	    'assetManager' => [
+		    'class' => 'yii\web\AssetManager',
+		    'appendTimestamp' => true
+	    ],
         'formatter' => [
 	        'dateFormat' => 'dd.MM.yyyy',
 	        'timeFormat' => 'HH:mm',

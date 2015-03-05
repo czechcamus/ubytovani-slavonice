@@ -11,8 +11,6 @@ use yii\helpers\Html;
 
 <div class="form-group">
 
-	<h4><?= Yii::t('back', 'Facility Properties') ?></h4>
-
 	<?php
 	foreach ($model->properties as $key => $property) {
 		echo '<div class="col-sm-offset-2 col-sm-8"><div class="checkbox">';
