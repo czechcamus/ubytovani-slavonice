@@ -15,6 +15,7 @@ if ($model->objectProperty->property->property_type == PropertyModel::FACILITY_P
 	$indexUrl = ['facility/index'];
 	$updateUrl = ['facility/update', 'id' => $model->objectProperty->object_id];
 } else {
+	/* @var $objectModel Room */
 	$objectModel = Room::findOne($model->objectProperty->object_id);
 	$objectModelClass = Yii::t('back', 'Rooms');
 	$indexUrl = ['room/index'];

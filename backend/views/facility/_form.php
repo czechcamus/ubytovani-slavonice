@@ -80,14 +80,14 @@ FormFacilityAsset::register($this);
 	]); ?>
 
 	<div class="form-group">
-		<?= Html::submitButton(Yii::t('back', 'Save'),
-			['class' => 'btn btn-primary']) ?>
-		<?= Html::submitButton(Yii::t('back', 'Cancel'), [
+		<?= Html::submitButton(Yii::t('back', 'Save'), [
+			'class' => 'btn btn-primary'
+		]) ?>
+		<?= Html::submitButton(Yii::t('back', 'Close'), [
 			'id' => 'cancel-btn',
 			'class' => 'btn btn-warning',
 			'data-cancel-url' => Url::to(['index'])
 		]) ?>
-
 	</div>
 
 	<?php ActiveForm::end(); ?>

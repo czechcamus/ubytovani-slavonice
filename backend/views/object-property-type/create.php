@@ -7,14 +7,16 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\facility\ObjectPropertyType */
-/* @var $relation_id integer */
+/* @var $returnUrl string */
 
 if ($model->objectProperty->property->property_type == PropertyModel::FACILITY_PROPERTY) {
+	/* @var $objectModel Facility */
 	$objectModel = Facility::findOne($model->objectProperty->object_id);
 	$objectModelClass = Yii::t('back', 'Facilities');
 	$indexUrl = ['facility/index'];
 	$updateUrl = ['facility/update', 'id' => $model->objectProperty->object_id];
 } else {
+	/* @var $objectModel Room */
 	$objectModel = Room::findOne($model->objectProperty->object_id);
 	$objectModelClass = Yii::t('back', 'Rooms');
 	$indexUrl = ['room/index'];
@@ -30,6 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form', compact('model', 'returnUrl')) ?>
 
 </div>

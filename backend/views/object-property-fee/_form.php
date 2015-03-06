@@ -10,7 +10,6 @@ use yii\widgets\MaskedInput;
 /* @var $model common\models\facility\ObjectPropertyFee */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $returnUrl string */
-
 ?>
 
 <div class="object-property-fee-form">
@@ -41,7 +40,7 @@ use yii\widgets\MaskedInput;
 
 	<div class="form-group">
 		<?= Html::submitButton($model->isNewRecord ? Yii::t('back', 'Create') : Yii::t('back', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-		<?= Html::submitButton(Yii::t('back', 'Cancel'), [
+		<?= Html::submitButton(Yii::t('back', 'Close'), [
 			'id' => 'cancel-btn',
 			'class' => 'btn btn-warning',
 			'data-cancel-url' => $returnUrl

@@ -21,6 +21,9 @@ class SubModelController extends Controller
 	/** @var  string name of the main ActiveRecord model class */
 	public $modelClass;
 
+	/** @var bool indicates if actual model has submodels */
+	public $isParentModel = false;
+
 	/**
 	 * Access control etc.
 	 * @return array
@@ -73,12 +76,25 @@ class SubModelController extends Controller
      */
     public function actionUpdate($id, $relation_id = null)
     {
-        /** @var ActiveRecord $model */
-        $model = $this->findModel($id);
 	    $returnUrl = $this->getReturnUrl();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save())
+        /** @var ActiveRecord $model */
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+	        if ($this->isParentModel) {
+		        $session = Yii::$app->session;
+		        if ($session->has('returnUrl')) {
+			        $session->remove('returnUrl');
+		        }
+	        }
 	        return $this->redirect($returnUrl);
+        }
+
+        if ($this->isParentModel) {
+	        $session = Yii::$app->session;
+	        $session->set('returnUrl', Yii::$app->request->url);
+        }
 
         return $this->render('update', compact('model', 'relation_id', 'returnUrl'));
     }
@@ -92,7 +108,7 @@ class SubModelController extends Controller
     {
         $this->findModel($id)->delete();
 
-		return $this->redirect($this->getReturnUrl());
+		return $this->redirect(Yii::$app->user->returnUrl);
     }
 
 	/**
@@ -112,15 +128,16 @@ class SubModelController extends Controller
 	}
 
 	/**
-	 * Gets return url
+	 * Gets url of returned page
 	 * @return mixed|string
 	 */
-	protected function getReturnUrl()
+	private function getReturnUrl()
 	{
 		$session = Yii::$app->session;
-		if ($session->has('returnUrl'))
+		if ($session->has('returnUrl')) {
 			return $session->get('returnUrl');
-		else
+		} else {
 			return Yii::$app->user->returnUrl;
+		}
 	}
 }

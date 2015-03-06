@@ -5,11 +5,11 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Subject */
 /* @var $form yii\bootstrap\ActiveForm */
-//TODO: místo odpovědné osoby, kontaktní osoby
 ?>
 
 <div class="subject-form">
@@ -130,8 +130,14 @@ use yii\bootstrap\ActiveForm;
 	</div>
 
 	<div class="form-group">
-		<?= Html::submitButton($model->isNewRecord ? Yii::t('back', 'Create') : Yii::t('back', 'Update'),
-			['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+		<?= Html::submitButton(Yii::t('back', 'Save'), [
+			'class' => 'btn btn-primary'
+		]) ?>
+		<?= Html::submitButton(Yii::t('back', 'Close'), [
+			'id' => 'cancel-btn',
+			'class' => 'btn btn-warning',
+			'data-cancel-url' => Url::to(['index'])
+		]) ?>
 	</div>
 
 	<?php ActiveForm::end(); ?>

@@ -29,11 +29,12 @@ class ObjectPropertyTypeController extends SubModelController
     public function actionUpdate($object_property_id, $type_id, $relation_id)
     {
         $model = $this->findModel($object_property_id, $type_id);
+	    $returnUrl = $this->getReturnUrl();
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->goBack();
+            return $this->redirect($returnUrl);
 
-        return $this->render('update', compact('model', 'relation_id'));
+        return $this->render('update', compact('model', 'relation_id', 'returnUrl'));
     }
 
 	/**
@@ -49,14 +50,9 @@ class ObjectPropertyTypeController extends SubModelController
 	 */
 	public function actionDelete($object_property_id, $type_id)
 	{
-		$session = Yii::$app->session;
-
 		$this->findModel($object_property_id, $type_id)->delete();
 
-		if ($session->has('returnUrl'))
-			return $this->redirect($session->get('returnUrl'));
-
-		return $this->goBack();
+		return $this->redirect($this->getReturnUrl());
 	}
 
 	/**

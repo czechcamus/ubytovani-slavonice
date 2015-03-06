@@ -93,7 +93,7 @@ class SubjectController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->redirect(['index']);
+            $this->refresh();
 
         return $this->render('update', compact('model'));
     }

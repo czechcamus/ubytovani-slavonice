@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $model common\models\subject\Person */
 /* @var $relation_id integer */
 /* @var $subjectModel common\models\subject\Subject */
+/* @var $returnUrl string */
 
 $subjectModel = Subject::findOne($relation_id);
 $modelClass = Yii::t('back', 'Person');
@@ -19,6 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form', compact('model', 'returnUrl')) ?>
 
 </div>

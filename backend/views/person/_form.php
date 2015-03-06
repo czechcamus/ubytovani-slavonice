@@ -11,30 +11,34 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Person */
 /* @var $form yii\bootstrap\ActiveForm */
+/* @var $returnUrl string */
 
 $typeList = ArrayHelper::map(PersonType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
 ?>
 
 <div class="person-form">
 
-    <?php $form = ActiveForm::begin([
-        'layout' => 'horizontal',
-        'fieldConfig' => Yii::$app->params['fieldConfig']
-    ]); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'person_type_id')->dropDownList($typeList, ['prompt' => Yii::t('back', '-- choose a type --')]) ?>
+	<div class="row">
 
-    <?= $form->field($model, 'front_title')->textInput(['maxlength' => 20]) ?>
+		<div class="col-sm-12 col-md-6">
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => 30]) ?>
+			<?= $form->field($model, 'person_type_id')->dropDownList($typeList, ['prompt' => Yii::t('back', '-- choose a type --')]) ?>
 
-    <?= $form->field($model, 'surname')->textInput(['maxlength' => 30]) ?>
+		    <?= $form->field($model, 'front_title')->textInput(['maxlength' => 20]) ?>
 
-    <?= $form->field($model, 'back_title')->textInput(['maxlength' => 20]) ?>
+		    <?= $form->field($model, 'name')->textInput(['maxlength' => 30]) ?>
 
-    <?php if (!$model->isNewRecord): ?>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8">
+		    <?= $form->field($model, 'surname')->textInput(['maxlength' => 30]) ?>
+
+		    <?= $form->field($model, 'back_title')->textInput(['maxlength' => 20]) ?>
+
+		</div>
+
+		<div class="col-sm-12 col-md-6">
+
+		    <?php if (!$model->isNewRecord): ?>
                 <h2><?= Yii::t('back', 'Phones'); ?></h2>
                 <?= GridView::widget([
 	                'layout' => "{items}",
@@ -104,14 +108,21 @@ $typeList = ArrayHelper::map(PersonType::find()->orderBy('title')->asArray()->al
                         ]
                     ]
                 ]); ?>
-            </div>
-        </div>
-    <?php endif; ?>
+		    <?php endif; ?>
+
+		</div>
+
+	</div>
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-8">
-            <?= Html::submitButton($model->isNewRecord ? Yii::t('back', 'Create') : Yii::t('back', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        </div>
+        <?= Html::submitButton(Yii::t('back', 'Save'), [
+	        'class' => 'btn btn-primary'
+        ]) ?>
+        <?= Html::submitButton(Yii::t('back', 'Close'), [
+	        'id' => 'cancel-btn',
+	        'class' => 'btn btn-warning',
+	        'data-cancel-url' => $returnUrl
+        ]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
