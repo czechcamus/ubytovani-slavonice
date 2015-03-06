@@ -18,7 +18,7 @@ use yii\db\ActiveRecord;
  *
  * @property PropertyModel $property
  * @propertx ObjectPropertyType[] $objectPropertyTypes
- * @property Fee[] $fees
+ * @property ObjectPropertyFee[] $fees
  */
 class ObjectProperty extends ActiveRecord
 {
@@ -78,7 +78,7 @@ class ObjectProperty extends ActiveRecord
 	 * @return \yii\db\ActiveQuery
 	 */
 	public function getFees() {
-		return $this->hasMany(Fee::className(), ['object_property_id' => 'id']);
+		return $this->hasMany(ObjectPropertyFee::className(), ['object_property_id' => 'id']);
 	}
 
 	/**

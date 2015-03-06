@@ -53,21 +53,15 @@ class SubModelController extends Controller
      */
     public function actionCreate($relation_id)
     {
-        $session = Yii::$app->session;
-
         /** @var ActiveRecord $model */
         $model = new $this->modelClass;
         $model->{$this->relationName . '_id'} = $relation_id;
+	    $returnUrl = $this->getReturnUrl();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if ($session->has('returnUrl')) {
-                return $this->redirect($session->get('returnUrl'));
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+	        return $this->redirect($returnUrl);
 
-            return $this->goBack();
-        }
-
-        return $this->render('create', compact('model', 'relation_id'));
+        return $this->render('create', compact('model', 'relation_id', 'returnUrl'));
     }
 
     /**
@@ -79,20 +73,14 @@ class SubModelController extends Controller
      */
     public function actionUpdate($id, $relation_id = null)
     {
-        $session = Yii::$app->session;
-
         /** @var ActiveRecord $model */
         $model = $this->findModel($id);
+	    $returnUrl = $this->getReturnUrl();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if ($session->has('returnUrl')) {
-                return $this->redirect($session->get('returnUrl'));
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+	        return $this->redirect($returnUrl);
 
-            return $this->goBack();
-        }
-
-        return $this->render('update', compact('model', 'relation_id'));
+        return $this->render('update', compact('model', 'relation_id', 'returnUrl'));
     }
 
     /**
@@ -102,15 +90,9 @@ class SubModelController extends Controller
      */
     public function actionDelete($id)
     {
-        $session = Yii::$app->session;
-
         $this->findModel($id)->delete();
 
-        if ($session->has('returnUrl')) {
-            return $this->redirect($session->get('returnUrl'));
-        }
-
-        return $this->goBack();
+		return $this->redirect($this->getReturnUrl());
     }
 
 	/**
@@ -127,5 +109,18 @@ class SubModelController extends Controller
 			throw new NotFoundHttpException(Yii::t('back', 'The requested page does not exist.'));
 
 		return $model;
+	}
+
+	/**
+	 * Gets return url
+	 * @return mixed|string
+	 */
+	protected function getReturnUrl()
+	{
+		$session = Yii::$app->session;
+		if ($session->has('returnUrl'))
+			return $session->get('returnUrl');
+		else
+			return Yii::$app->user->returnUrl;
 	}
 }

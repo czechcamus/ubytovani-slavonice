@@ -6,10 +6,13 @@ use yii\bootstrap\Tabs;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\FacilityForm */
 /* @var $form yii\bootstrap\ActiveForm */
+
+$session = Yii::$app->session;
 
 FormFacilityAsset::register($this);
 ?>
@@ -23,7 +26,10 @@ FormFacilityAsset::register($this);
 		[
 			'label'   => Yii::t('back', 'Facility basic info'),
 			'content' => $this->render('_facility', compact('model', 'form')),
-			'active'  => ( ! isset($model->actualTab) || ($model->actualTab == FacilityForm::FACILITIES_TAB)) ? true : false
+			'active'  => ($session->get('actual_tab') == FacilityForm::FACILITIES_TAB || (!$session->has('actual_tab'))) ? true : false,
+			'linkOptions' => [
+				'data-tab-url' => Url::to(['facility/set-actual-tab', 'tab_id' => FacilityForm::FACILITIES_TAB])
+			]
 		]
 	];
 	$items_rooms = $items_properties = $items_images = [];
@@ -34,7 +40,10 @@ FormFacilityAsset::register($this);
 				[
 					'label'   => Yii::t('back', 'Facility properties'),
 					'content' => $this->render('_properties', compact('model')),
-					'active'  => ($model->actualTab == FacilityForm::PROPERTIES_TAB) ? true : false
+					'active'  => ($session->get('actual_tab') == FacilityForm::PROPERTIES_TAB) ? true : false,
+					'linkOptions' => [
+						'data-tab-url' => Url::to(['facility/set-actual-tab', 'tab_id' => FacilityForm::PROPERTIES_TAB])
+					]
 				]
 			];
 		}
@@ -42,14 +51,20 @@ FormFacilityAsset::register($this);
 			[
 				'label'   => Yii::t('back', 'Facility rooms'),
 				'content' => $this->render('_rooms', compact('model')),
-				'active'  => ($model->actualTab == FacilityForm::ROOMS_TAB) ? true : false
+				'active'  => ($session->get('actual_tab') == FacilityForm::ROOMS_TAB) ? true : false,
+				'linkOptions' => [
+					'data-tab-url' => Url::to(['facility/set-actual-tab', 'tab_id' => FacilityForm::ROOMS_TAB])
+				]
 			]
 		];
 		$items_images = [
 			[
 				'label'   => Yii::t('back', 'Facility images'),
 				'content' => $this->render('_images', compact('model')),
-				'active'  => ($model->actualTab == FacilityForm::IMAGES_TAB) ? true : false
+				'active'  => ($session->get('actual_tab') == FacilityForm::IMAGES_TAB) ? true : false,
+				'linkOptions' => [
+					'data-tab-url' => Url::to(['facility/set-actual-tab', 'tab_id' => FacilityForm::IMAGES_TAB])
+				]
 			]
 		];
 	}
@@ -67,8 +82,13 @@ FormFacilityAsset::register($this);
 	<div class="form-group">
 		<?= Html::submitButton(Yii::t('back', 'Save'),
 			['class' => 'btn btn-primary']) ?>
+		<?= Html::submitButton(Yii::t('back', 'Cancel'), [
+			'id' => 'cancel-btn',
+			'class' => 'btn btn-warning',
+			'data-cancel-url' => Url::to(['index'])
+		]) ?>
+
 	</div>
 
 	<?php ActiveForm::end(); ?>
-
 </div>

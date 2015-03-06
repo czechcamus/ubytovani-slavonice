@@ -1,6 +1,5 @@
 <?php
 
-
 use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;

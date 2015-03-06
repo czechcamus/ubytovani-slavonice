@@ -29,6 +29,10 @@ return [
                 ],
             ],
         ],
+        'user' => [
+	        'class' => 'common\components\ConsoleUser',
+	        'identityClass' => 'common\models\User'
+        ]
     ],
     'params' => $params,
 ];

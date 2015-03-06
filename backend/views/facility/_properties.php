@@ -8,18 +8,20 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\FacilityForm */
 
+$secondColNr = ceil((count($model->properties) / 2));
 $i = 0;
 $close = false;
+echo '<div class="row">';
 foreach ($model->properties as $key => $property) {
-	if (($i % 2) == 0) {
-		echo '<div class="row">';
+	if (($i == 0) || ($i == $secondColNr)) {
+		echo '<div class="col-sm-12 col-md-6">';
 		$close = true;
 	}
-	echo '<div class="col-sm-12 col-md-6"><div class="checkbox">';
+	echo '<div class="checkbox">';
 	echo Html::hiddenInput('FacilityForm[properties][' . $key . '][id]', $property['id']);
 	echo Html::hiddenInput('FacilityForm[properties][' . $key . '][property_id]', $property['property_id']);
 	echo Html::checkbox('FacilityForm[properties][' . $key . '][property_value]', $property['property_value'], [
-		'label'        => $property['property_title'],
+		'label'        => Html::tag('strong', $property['property_title']),
 		'labelOptions' => [
 			'id'    => 'property_' . $property['property_id'],
 			'class' => 'propertySwitch'
@@ -120,8 +122,8 @@ foreach ($model->properties as $key => $property) {
 		]);
 		echo '</div>';
 	}
-	echo '</div></div></div>';
-	if (($i % 2) != 0) {
+	echo '</div></div>';
+	if (($i == ($secondColNr - 1)) || ($i == (2 * $secondColNr - 1))) {
 		echo '</div>';
 		$close = false;
 	}
@@ -129,3 +131,4 @@ foreach ($model->properties as $key => $property) {
 }
 if ($close)
 	echo '</div>';
+echo '</div>';

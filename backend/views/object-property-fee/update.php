@@ -6,9 +6,10 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\facility\ObjectPropertyFee */
-/* @var $relation_id \common\models\facility\ObjectProperty */
+/* @var $returnUrl string */
 
 if ($model->objectProperty->property->property_type == PropertyModel::FACILITY_PROPERTY) {
+	/* @var $objectModel Facility */
 	$objectModel = Facility::findOne($model->objectProperty->object_id);
 	$objectModelClass = Yii::t('back', 'Facilities');
 	$indexUrl = ['facility/index'];
@@ -29,6 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-	<?= $this->render('_form', compact('model', 'relation_id')) ?>
+	<?= $this->render('_form', compact('model', 'returnUrl')) ?>
 
 </div>

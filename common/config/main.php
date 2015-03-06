@@ -20,7 +20,9 @@ return [
 	        'decimalSeparator' => ',',
 	        'thousandSeparator' => ' ',
 	        'currencyCode' => 'CZK',
-        ]
+        ],
+        'authManager' => 'common\components\RbacManager',
+	    'mailer' => 'common\components\Mailer'
     ],
 	'modules' =>[
 		'datecontrol' =>  [

@@ -15,6 +15,7 @@ return [
     'modules' => [],
     'components' => [
         'user' => [
+	        'class' => 'common\components\User',
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
@@ -28,6 +29,7 @@ return [
             ],
         ],
         'errorHandler' => [
+	        'class' => 'common\components\ErrorHandler',
             'errorAction' => 'site/error',
         ],
         'i18n' => [
@@ -52,7 +54,8 @@ return [
         'urlManager' => [
 	        'enablePrettyUrl' => true,
 	        'showScriptName' => false
-        ]
+        ],
+	    'response' => 'common\components\Response'
     ],
     'controllerMap' => [
 	    'catering-type' => 'backend\controllers\type\CateringTypeController',

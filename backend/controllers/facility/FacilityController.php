@@ -42,6 +42,9 @@ class FacilityController extends Controller
      */
     public function actionIndex()
     {
+	    $session = Yii::$app->session;
+	    $session->remove('actual_tab');
+
         $searchModel = new SearchFacility();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -115,4 +118,12 @@ class FacilityController extends Controller
         return $this->redirect(['index']);
     }
 
+	/**
+	 * Sets actual tab value
+	 * @param $tab_id
+	 */
+	public function actionSetActualTab($tab_id) {
+		$session = Yii::$app->session;
+		$session->set('actual_tab', $tab_id);
+	}
 }

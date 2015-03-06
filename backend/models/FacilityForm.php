@@ -69,8 +69,6 @@ class FacilityForm extends Model {
 	public $description;
 	/** @var array */
 	public $properties = [];
-	/** @var integer */
-	public $actualTab;
 
 	/** Constants for selecting right tab on form */
 	const FACILITIES_TAB = 1;

@@ -43,3 +43,10 @@ function togglePropertyNote(id) {
         propertySwitch.next().hide();
     }
 }
+
+// Sets actual_tab session
+$('a[data-toggle="tab"]').on('click', function() {
+    $.ajax({
+        url: $(this).attr('data-tab-url')
+    });
+});

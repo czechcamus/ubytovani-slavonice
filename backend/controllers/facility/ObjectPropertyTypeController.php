@@ -3,6 +3,7 @@
 namespace backend\controllers\facility;
 
 use backend\utilities\SubModelController;
+use common\models\facility\ObjectProperty;
 use common\models\facility\ObjectPropertyType;
 use Yii;
 use yii\web\NotFoundHttpException;
