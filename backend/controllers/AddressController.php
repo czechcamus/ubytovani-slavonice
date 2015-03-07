@@ -12,4 +12,15 @@ class AddressController extends SubModelController
 {
     public $modelClass = 'common\models\Address';
     public $relationName = 'subject';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->urlParams = [
+			'subject/update',
+			'id' => Yii::$app->request->get('relation_id')
+		];
+	}
 }

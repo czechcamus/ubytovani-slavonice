@@ -16,7 +16,17 @@ class PersonController extends SubModelController
 {
     public $modelClass = 'common\models\subject\Person';
     public $relationName = 'subject';
-	public $isParentModel = true;
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->urlParams = [
+			'subject/update',
+			'id' => Yii::$app->request->get('relation_id')
+		];
+	}
 
 	/**
 	 * Gets people list of given subject

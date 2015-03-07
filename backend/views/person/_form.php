@@ -12,8 +12,6 @@ use yii\bootstrap\ActiveForm;
 /* @var $model common\models\subject\Person */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $returnUrl string */
-
-$typeList = ArrayHelper::map(PersonType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
 ?>
 
 <div class="person-form">
@@ -24,7 +22,7 @@ $typeList = ArrayHelper::map(PersonType::find()->orderBy('title')->asArray()->al
 
 		<div class="col-sm-12 col-md-6">
 
-			<?= $form->field($model, 'person_type_id')->dropDownList($typeList, ['prompt' => Yii::t('back', '-- choose a type --')]) ?>
+			<?= $form->field($model, 'person_type_id')->dropDownList($model->getPersonTypeOptions(), ['prompt' => Yii::t('back', '-- choose a type --')]) ?>
 
 		    <?= $form->field($model, 'front_title')->textInput(['maxlength' => 20]) ?>
 

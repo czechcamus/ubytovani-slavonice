@@ -6,6 +6,7 @@ use Yii;
 use common\models\subject\Subject;
 use common\models\subject\SearchSubject;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -15,6 +16,10 @@ use yii\filters\VerbFilter;
  */
 class SubjectController extends Controller
 {
+	/**
+	 * Access control etc.
+	 * @return array
+	 */
     public function behaviors()
     {
         return [
@@ -87,9 +92,6 @@ class SubjectController extends Controller
      */
     public function actionUpdate($id)
     {
-	    // Stores actual url to user session
-	    Yii::$app->user->returnUrl = Yii::$app->request->url;
-
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save())

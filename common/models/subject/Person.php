@@ -8,6 +8,7 @@ use common\models\type\PersonType;
 use common\utilities\PersonsRelationsDelete;
 use Yii;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "person".
@@ -130,5 +131,13 @@ class Person extends ActiveRecord
 			'surname',
 			'back_title'
 		];
+	}
+
+	/**
+	 * Gets person type options
+	 * @return array
+	 */
+	public function getPersonTypeOptions() {
+		return ArrayHelper::map(PersonType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
 	}
 }

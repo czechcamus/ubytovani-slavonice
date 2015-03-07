@@ -7,6 +7,7 @@ use common\models\type\AddressType;
 use common\utilities\FromAddressSaveSubjectCompletion;
 use Yii;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "address".
@@ -98,4 +99,20 @@ class Address extends ActiveRecord
     {
         return $this->hasOne(Subject::className(), ['id' => 'subject_id']);
     }
+
+	/**
+	 * Gets address type options
+	 * @return array
+	 */
+	public function getAddressTypeOptions() {
+		return ArrayHelper::map(AddressType::find()->orderBy('title')->asArray()->all(), 'id', 'title');
+	}
+
+	/**
+	 * Gets state options
+	 * @return array
+	 */
+	public function getStateOptions() {
+		return ArrayHelper::map(State::find()->orderBy('name')->asArray()->all(), 'id', 'name');
+	}
 }

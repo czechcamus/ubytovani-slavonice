@@ -6,6 +6,7 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -21,8 +22,11 @@ class SubModelController extends Controller
 	/** @var  string name of the main ActiveRecord model class */
 	public $modelClass;
 
-	/** @var bool indicates if actual model has submodels */
-	public $isParentModel = false;
+	/** @var  string page url for return */
+	public $returnUrl;
+
+	/** @var  array params for creating page url */
+	public $urlParams;
 
 	/**
 	 * Access control etc.
@@ -56,15 +60,20 @@ class SubModelController extends Controller
      */
     public function actionCreate($relation_id)
     {
+	    $this->setReturnUrl();
+
         /** @var ActiveRecord $model */
         $model = new $this->modelClass;
         $model->{$this->relationName . '_id'} = $relation_id;
-	    $returnUrl = $this->getReturnUrl();
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-	        return $this->redirect($returnUrl);
+	        return $this->redirect($this->returnUrl);
 
-        return $this->render('create', compact('model', 'relation_id', 'returnUrl'));
+        return $this->render('create',[
+	        'model' => $model,
+	        'relation_id' => $relation_id,
+	        'returnUrl' => $this->returnUrl
+        ]);
     }
 
     /**
@@ -76,27 +85,19 @@ class SubModelController extends Controller
      */
     public function actionUpdate($id, $relation_id = null)
     {
-	    $returnUrl = $this->getReturnUrl();
+	    $this->setReturnUrl();
 
         /** @var ActiveRecord $model */
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-	        if ($this->isParentModel) {
-		        $session = Yii::$app->session;
-		        if ($session->has('returnUrl')) {
-			        $session->remove('returnUrl');
-		        }
-	        }
-	        return $this->redirect($returnUrl);
-        }
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+	        return $this->redirect($this->returnUrl);
 
-        if ($this->isParentModel) {
-	        $session = Yii::$app->session;
-	        $session->set('returnUrl', Yii::$app->request->url);
-        }
-
-        return $this->render('update', compact('model', 'relation_id', 'returnUrl'));
+        return $this->render('update', [
+	        'model' => $model,
+	        'relation_id' => $relation_id,
+	        'returnUrl' => $this->returnUrl
+        ]);
     }
 
     /**
@@ -128,16 +129,9 @@ class SubModelController extends Controller
 	}
 
 	/**
-	 * Gets url of returned page
-	 * @return mixed|string
+	 * Sets return url
 	 */
-	private function getReturnUrl()
-	{
-		$session = Yii::$app->session;
-		if ($session->has('returnUrl')) {
-			return $session->get('returnUrl');
-		} else {
-			return Yii::$app->user->returnUrl;
-		}
+	protected function setReturnUrl() {
+		$this->returnUrl = Url::to($this->urlParams);
 	}
 }
