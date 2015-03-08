@@ -1,10 +1,8 @@
 <?php
 
-use common\models\type\PersonType;
 use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 

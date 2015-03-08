@@ -9,10 +9,9 @@
 namespace backend\models;
 
 
+use backend\utilities\ObjectForm;
 use common\models\facility\Facility;
 use common\models\facility\ObjectProperty;
-use common\models\facility\ObjectPropertyFee;
-use common\models\facility\ObjectPropertyType;
 use common\models\facility\Room;
 use common\models\property\FacilityProperty;
 use common\models\PropertyModel;
@@ -20,13 +19,11 @@ use common\models\subject\Subject;
 use common\models\subject\Person;
 use common\models\type\FacilityType;
 use common\models\type\PlaceType;
-use common\models\TypeModel;
 use Yii;
-use yii\base\Model;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 
-class FacilityForm extends Model {
+class FacilityForm extends ObjectForm {
 	/** @var integer */
 	public $facility_id;
 	/** @var integer */
@@ -133,27 +130,23 @@ class FacilityForm extends Model {
 	}
 
 	/**
-	 * Saves Facility model and his relations
+	 * Saves Facility model and his properties
 	 *
 	 * @param bool $insert
 	 */
 	public function saveModel($insert = true) {
 		$facility = new Facility();
-		if ($this->facility_id) {
+		if ($this->facility_id)
 			$facility->id = $this->facility_id;
-		}
 		$facility->isNewRecord = $insert;
 		$facility->attributes  = $this->toArray();
-		if ($insert) {
+		if ($insert)
 			$facility->completed = false;
-		}
 		$facility->save(false);
-		if ($insert) {
+		if ($insert)
 			$this->facility_id = $facility->id;
-		}
 
 		if ($this->partner) {
-			/** @noinspection PhpUndefinedMethodInspection */
 			$properties = FacilityProperty::find()->orderBy('title')->all();
 			/** @var PropertyModel $property */
 			foreach ($properties as $key => $property) {
@@ -161,10 +154,15 @@ class FacilityForm extends Model {
 				if (isset(Yii::$app->request->post('FacilityForm')['properties'])) {
 					$propertyInputs = Yii::$app->request->post('FacilityForm')['properties'][ $key ];
 					$objectProperty = ObjectProperty::findOne($propertyInputs['id']);
+					if ( ! $objectProperty) {
+						$objectProperty     = new ObjectProperty();
+						$objectProperty->id = 0;
+					}
 				} else {
-					$objectProperty                   = new ObjectProperty();
-					$objectProperty->id               = 0;
+					$objectProperty     = new ObjectProperty();
+					$objectProperty->id = 0;
 				}
+				$objectProperty->object_type    = PropertyModel::FACILITY_PROPERTY;
 				$objectProperty->property_value = isset($propertyInputs['property_value']) ? 1 : 0;
 				$objectProperty->property_note  = isset($propertyInputs['property_note']) ? $propertyInputs['property_note'] : '';
 				$objectProperty->object_id      = $facility->id;
@@ -176,7 +174,6 @@ class FacilityForm extends Model {
 
 	/**
 	 * Loads Facility model into FacilityForm
-	 *
 	 * @param $id
 	 */
 	public function loadModel($id) {
@@ -193,9 +190,7 @@ class FacilityForm extends Model {
 
 	/**
 	 * Deletes Facility model
-	 *
 	 * @param $id
-	 *
 	 * @throws \Exception
 	 */
 	public function deleteModel($id) {
@@ -280,53 +275,8 @@ class FacilityForm extends Model {
 	}
 
 	/**
-	 * Gets property types related to facility property with given property_id
-	 *
-	 * @param $property_id
-	 *
-	 * @return ObjectPropertyType[]
-	 */
-	public function getPropertyTypes($property_id) {
-		return ObjectPropertyType::find()->where([
-			'object_property_id' => $property_id
-		]);
-	}
-
-	/**
-	 * Gets fees related to facility property with given property_id
-	 *
-	 * @param $property_id
-	 *
-	 * @return ObjectPropertyFee[]
-	 */
-	public function getPropertyFees($property_id) {
-		return ObjectPropertyFee::find()->where([
-			'object_property_id' => $property_id
-		])->orderBy(['value' => SORT_ASC]);
-	}
-
-	/**
-	 * Check existence of free property types
-	 *
-	 * @param $property_id
-	 * @param $object_property_id
-	 *
-	 * @return bool
-	 */
-	public function existsFreeTypes($property_id, $object_property_id) {
-		/** @var PropertyModel $property */
-		$property         = PropertyModel::findOne($property_id);
-		$types_count      = TypeModel::find()->where(['model_type' => $property->model_type])->count();
-		$used_types_count = ObjectPropertyType::find()->where(['object_property_id' => $object_property_id])->count();
-
-		return $types_count > $used_types_count;
-	}
-
-	/**
 	 * Returns rooms data provider
-	 *
 	 * @param $facility_id
-	 *
 	 * @return ActiveQuery
 	 */
 	public function getRooms($facility_id) {

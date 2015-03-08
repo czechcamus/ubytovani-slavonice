@@ -109,7 +109,7 @@ class SubModelController extends Controller
     {
         $this->findModel($id)->delete();
 
-		return $this->redirect(Yii::$app->user->returnUrl);
+		return $this->redirect($this->returnUrl);
     }
 
 	/**

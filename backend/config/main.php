@@ -75,7 +75,8 @@ return [
 	    'price' => 'backend\controllers\facility\PriceController',
 	    'object-property-type' => 'backend\controllers\facility\ObjectPropertyTypeController',
 	    'object-property-fee' => 'backend\controllers\facility\ObjectPropertyFeeController',
-	    'facility' => 'backend\controllers\facility\FacilityController'
+	    'facility' => 'backend\controllers\facility\FacilityController',
+	    'room' => 'backend\controllers\facility\RoomController'
     ],
     'params' => $params,
 ];

@@ -5,6 +5,7 @@ namespace backend\controllers\facility;
 use backend\utilities\SubModelController;
 use common\models\facility\ObjectProperty;
 use common\models\facility\ObjectPropertyType;
+use common\models\PropertyModel;
 use Yii;
 use yii\web\NotFoundHttpException;
 
@@ -15,6 +16,20 @@ class ObjectPropertyTypeController extends SubModelController
 {
 	public $modelClass = 'common\models\facility\ObjectPropertyType';
 	public $relationName = 'object_property';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		/** @var ObjectProperty $objectProperty */
+		$objectProperty = ObjectProperty::findOne(\Yii::$app->request->get('relation_id'));
+		$controllerName = $objectProperty->object_type == PropertyModel::FACILITY_PROPERTY ? 'facility' : 'room';
+		$this->urlParams = [
+			$controllerName . '/update',
+			'id' => $objectProperty->object_id
+		];
+	}
 
 	/**
 	 * Updates an existing ObjectPropertyType model.
@@ -28,13 +43,18 @@ class ObjectPropertyTypeController extends SubModelController
 	 */
     public function actionUpdate($object_property_id, $type_id, $relation_id)
     {
+	    $this->setReturnUrl();
+
         $model = $this->findModel($object_property_id, $type_id);
-	    $returnUrl = $this->getReturnUrl();
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->redirect($returnUrl);
+            return $this->redirect($this->returnUrl);
 
-        return $this->render('update', compact('model', 'relation_id', 'returnUrl'));
+        return $this->render('update', [
+	        'model' => $model,
+	        'relation_id' => $relation_id,
+	        'returnUrl' => $this->returnUrl
+        ]);
     }
 
 	/**
@@ -52,7 +72,7 @@ class ObjectPropertyTypeController extends SubModelController
 	{
 		$this->findModel($object_property_id, $type_id)->delete();
 
-		return $this->redirect($this->getReturnUrl());
+		return $this->redirect($this->returnUrl);
 	}
 
 	/**

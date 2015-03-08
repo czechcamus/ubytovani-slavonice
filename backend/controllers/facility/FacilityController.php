@@ -15,6 +15,9 @@ use yii\filters\VerbFilter;
  */
 class FacilityController extends Controller
 {
+	/**
+	 * @inheritdoc
+	 */
     public function behaviors()
     {
         return [
@@ -65,7 +68,6 @@ class FacilityController extends Controller
 
     /**
      * Creates a new Facility model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
@@ -83,15 +85,11 @@ class FacilityController extends Controller
 
     /**
      * Updates an existing Facility model.
-     * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
-	    // Stores actual url to user session
-	    Yii::$app->user->returnUrl = Yii::$app->request->url;
-
         $model = new FacilityForm();
 	    $model->loadModel($id);
 	    $model->scenario = 'update';

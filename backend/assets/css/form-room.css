@@ -1,0 +1,6 @@
+.property-details {
+  display: none;
+}
+.property-details.visible {
+  display: block;
+}

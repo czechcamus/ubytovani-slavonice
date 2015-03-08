@@ -15,7 +15,7 @@ use yii\bootstrap\ActiveForm;
 
 	<div class="row">
 
-		<div class="col-sm-6 col-md-4">
+		<div class="col-sm-12 col-md-6">
 	    <?= $form->field($model, 'type_id')->dropDownList($model->isNewRecord ? $model->getPropertyTypeOptions($model->objectProperty->property->model_type, $model->object_property_id) :
 		    $model->getPropertyTypeOptions($model->objectProperty->property->model_type, $model->object_property_id, $model->type_id)) ?>
 		</div>

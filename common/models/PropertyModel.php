@@ -24,6 +24,9 @@ class PropertyModel extends ActiveRecord
 	const PARKING_MODEL = TypeModel::PARKING_TYPE;
 	const CATERING_MODEL = TypeModel::CATERING_TYPE;
 
+	//TODO přidat behaviors na mazání záznamů z object_property po smazání property
+	//TODO přidat behaviors na přidání záznamů do object_property po přidání property
+
     /**
      * @inheritdoc
      */
