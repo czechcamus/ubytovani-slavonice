@@ -22,7 +22,7 @@ class PersonController extends SubModelController
 	 */
 	public function init() {
 		parent::init();
-		$this->urlParams = [
+		$this->returnUrlParams = [
 			'subject/update',
 			'id' => Yii::$app->request->get('relation_id')
 		];

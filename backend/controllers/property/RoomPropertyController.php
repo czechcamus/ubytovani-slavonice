@@ -11,4 +11,14 @@ use Yii;
 class RoomPropertyController extends PropertyModelController
 {
 	public $modelClass = 'common\models\property\RoomProperty';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'room-property/index'
+		];
+	}
 }

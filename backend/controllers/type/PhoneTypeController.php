@@ -11,4 +11,14 @@ use Yii;
 class PhoneTypeController extends TypeModelController
 {
     public $modelClass = 'common\models\type\PhoneType';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'phone-type/index'
+		];
+	}
 }

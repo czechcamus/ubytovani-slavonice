@@ -10,6 +10,7 @@ namespace common\utilities;
 
 
 use common\models\facility\ObjectProperty;
+use common\models\facility\ObjectPropertyFee;
 use common\models\facility\ObjectPropertyType;
 use yii\base\Behavior;
 
@@ -31,12 +32,7 @@ class ObjectPropertysRelationsDelete extends Behavior
 	public function deleteRelations() {
 		/** @var ObjectProperty $objectProperty */
 		$objectProperty = $this->owner;
-		/** @var ObjectPropertyType $objectPropertyType */
-		foreach ($objectProperty->objectPropertyTypes as $objectPropertyType) {
-			$objectPropertyType->delete();
-		}
-		foreach ($objectProperty->fees as $fee) {
-			$fee->delete();
-		}
+		ObjectPropertyType::deleteAll(['object_property_id' => $objectProperty->id]);
+		ObjectPropertyFee::deleteAll(['object_property_id' => $objectProperty->id]);
 	}
 }

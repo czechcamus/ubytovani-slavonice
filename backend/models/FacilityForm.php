@@ -197,7 +197,6 @@ class FacilityForm extends ObjectForm {
 		/** @var Facility $facility */
 		$facility = Facility::findOne($id);
 		$facility->delete();
-		//TODO dodělat mazání součástí a relací
 	}
 
 	/**
@@ -216,7 +215,7 @@ class FacilityForm extends ObjectForm {
 			if ($objectProperty) {
 				$propertyValues = ArrayHelper::toArray($objectProperty, ['property_value', 'property_note', 'id']);
 			} else {
-				$propertyValues['property_value'] = false;
+				$propertyValues['property_value'] = 0;
 				$propertyValues['property_note']  = '';
 				$propertyValues['id']             = null;
 			}

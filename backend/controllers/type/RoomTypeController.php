@@ -11,4 +11,15 @@ use backend\utilities\TypeModelController;
 class RoomTypeController extends TypeModelController
 {
     public $modelClass = 'common\models\type\RoomType';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'room-type/index'
+		];
+	}
+
 }

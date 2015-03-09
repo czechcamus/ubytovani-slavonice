@@ -41,8 +41,8 @@ class RoomForm extends ObjectForm {
 	 */
 	public function rules() {
 		return [
-			[['room_id', 'facility_id', 'room_type_id', 'title', 'bed_nr', 'nr'], 'required', 'on' => ['create', 'update']],
-			[['room_id', 'facility_id', 'room_type_id', 'bed_nr', 'nr'], 'integer', 'on' => ['create', 'update']],
+			[['room_type_id', 'title', 'bed_nr', 'nr'], 'required', 'on' => ['create', 'update']],
+			[['room_type_id', 'bed_nr', 'nr'], 'integer', 'on' => ['create', 'update']],
 			['title', 'string', 'max' => 45, 'on' => ['create', 'update']],
 			['note', 'string', 'on' => ['create', 'update']],
 			['properties', 'safe', 'on' => ['create', 'update']]
@@ -130,7 +130,6 @@ class RoomForm extends ObjectForm {
 		/** @var Room $room */
 		$room = Room::findOne($id);
 		$room->delete();
-		//TODO dodělat mazání součástí a relací
 	}
 
 	protected function initProperties() {

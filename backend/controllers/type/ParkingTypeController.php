@@ -11,4 +11,14 @@ use backend\utilities\TypeModelController;
 class ParkingTypeController extends TypeModelController
 {
     public $modelClass = 'common\models\type\ParkingType';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'parking-type/index'
+		];
+	}
 }

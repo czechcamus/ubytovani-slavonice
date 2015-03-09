@@ -2,44 +2,17 @@
 
 namespace backend\controllers\subject;
 
+use backend\utilities\BaseModelController;
 use Yii;
 use common\models\subject\Subject;
 use common\models\subject\SearchSubject;
-use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * SubjectController implements the CRUD actions for Subject model.
  */
-class SubjectController extends Controller
+class SubjectController extends BaseModelController
 {
-	/**
-	 * Access control etc.
-	 * @return array
-	 */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-	            'class' => AccessControl::className(),
-	            'rules' => [
-		            [
-			            'roles' => ['@'],
-			            'allow' => true
-		            ]
-	            ]
-            ]
-        ];
-    }
-
     /**
      * Lists all Subject models.
      * @return mixed

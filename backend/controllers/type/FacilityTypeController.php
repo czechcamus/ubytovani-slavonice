@@ -11,4 +11,14 @@ use backend\utilities\TypeModelController;
 class FacilityTypeController extends TypeModelController
 {
     public $modelClass = 'common\models\type\FacilityType';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'facility-type/index'
+		];
+	}
 }

@@ -12,4 +12,14 @@ use Yii;
 class AddressTypeController extends TypeModelController
 {
     public $modelClass = 'common\models\type\AddressType';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'address-type/index'
+		];
+	}
 }

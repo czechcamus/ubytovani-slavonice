@@ -33,7 +33,7 @@ foreach ($model->properties as $key => $property) {
 		'class'       => 'form-control',
 		'placeholder' => Yii::t('back', 'Property Note')
 	]);
-	if (isset($model->facility_id) && $property['id'] && $property['types']) {
+	if (isset($model->facility_id) && $property['property_value'] && $property['types']) {
 		echo '<div style="padding-top: 10px">';
 		echo GridView::widget([
 			'layout'       => "{items}",
@@ -79,7 +79,7 @@ foreach ($model->properties as $key => $property) {
 		]);
 		echo '</div>';
 	}
-	if (isset($model->facility_id) && $property['id'] && $property['fees']) {
+	if (isset($model->facility_id) && $property['property_value'] && $property['fees']) {
 		echo '<div style="padding-top: 10px">';
 		echo GridView::widget([
 			'layout'       => "{items}",

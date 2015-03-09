@@ -11,7 +11,7 @@ use yii\helpers\Html;
 
 $facilityModel = Facility::findOne($relation_id);
 $modelClass = Yii::t('back', 'Room');
-$this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->name . ' ' . $model->surname;
+$this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Facilities'), 'url' => ['facility/index']];
 $this->params['breadcrumbs'][] = ['label' => $facilityModel->title, 'url' => ['facility/update', 'id' => $facilityModel->id]];
 $this->params['breadcrumbs'][] = $this->title;
@@ -20,6 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-	<?= $this->render('_form', compact('model', 'returnUrl')) ?>
+	<?= $this->render('_form', compact('model', 'returnUrl', 'facilityModel')) ?>
 
 </div>

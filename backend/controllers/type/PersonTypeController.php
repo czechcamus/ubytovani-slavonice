@@ -11,4 +11,14 @@ use backend\utilities\TypeModelController;
 class PersonTypeController extends TypeModelController
 {
     public $modelClass = 'common\models\type\PersonType';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'person-type/index'
+		];
+	}
 }

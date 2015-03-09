@@ -26,7 +26,7 @@ class ObjectPropertyFeeController extends SubModelController
 		/** @var ObjectProperty $objectProperty */
 		$objectProperty = ObjectProperty::findOne(\Yii::$app->request->get('relation_id'));
 		$controllerName = $objectProperty->object_type == PropertyModel::FACILITY_PROPERTY ? 'facility' : 'room';
-		$this->urlParams = [
+		$this->returnUrlParams = [
 			$controllerName . '/update',
 			'id' => $objectProperty->object_id
 		];

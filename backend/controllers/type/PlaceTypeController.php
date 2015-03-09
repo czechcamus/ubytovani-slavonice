@@ -11,4 +11,14 @@ use backend\utilities\TypeModelController;
 class PlaceTypeController extends TypeModelController
 {
     public $modelClass = 'common\models\type\PlaceType';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'place-type/index'
+		];
+	}
 }

@@ -20,7 +20,7 @@ use yii\helpers\Html;
 			[
 				'label' => Yii::t('back', 'Type'),
 				'value' => function ($data) {
-					return $data->type->title;
+					return $data->roomType->title;
 				},
 			],
 			[
@@ -30,13 +30,13 @@ use yii\helpers\Html;
 				'template' => '{update} {delete}',
 				'buttons' => [
 					'update' => function($url, $model) {
-						return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->object_property_id, [
+						return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url . '&relation_id=' . $model->facility_id, [
 							'title' => Yii::t('back', 'Update'),
 							'data-pjax' => '0',
 						]);
 					},
 					'delete' => function($url, $model) {
-						return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url . '&relation_id=' . $model->object_property_id, [
+						return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url . '&relation_id=' . $model->facility_id, [
 							'title' => Yii::t('back', 'Delete'),
 							'data-method' => 'post',
 							'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),

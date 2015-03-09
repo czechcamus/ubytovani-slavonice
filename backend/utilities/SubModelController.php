@@ -4,54 +4,19 @@ namespace backend\utilities;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use yii\helpers\Url;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 
 /**
  * SubModelController implements the CRUD actions for ActiveRecord model.
  */
-class SubModelController extends Controller
+class SubModelController extends BaseModelController
 {
     /** @var  string name of relation_id property */
     public $relationName;
 
 	/** @var  string name of the main ActiveRecord model class */
 	public $modelClass;
-
-	/** @var  string page url for return */
-	public $returnUrl;
-
-	/** @var  array params for creating page url */
-	public $urlParams;
-
-	/**
-	 * Access control etc.
-	 * @return array
-	 */
-	public function behaviors()
-	{
-		return [
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['post'],
-				],
-			],
-			'access' => [
-				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'roles' => ['@'],
-						'allow' => true
-					]
-				]
-			]
-		];
-	}
 
     /**
      * Creates a new ActiveRecord model.
@@ -60,19 +25,17 @@ class SubModelController extends Controller
      */
     public function actionCreate($relation_id)
     {
-	    $this->setReturnUrl();
-
         /** @var ActiveRecord $model */
         $model = new $this->modelClass;
         $model->{$this->relationName . '_id'} = $relation_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-	        return $this->redirect($this->returnUrl);
+	        return $this->redirect($this->getReturnUrl());
 
         return $this->render('create',[
 	        'model' => $model,
 	        'relation_id' => $relation_id,
-	        'returnUrl' => $this->returnUrl
+	        'returnUrl' => $this->getReturnUrl()
         ]);
     }
 
@@ -85,18 +48,16 @@ class SubModelController extends Controller
      */
     public function actionUpdate($id, $relation_id = null)
     {
-	    $this->setReturnUrl();
-
         /** @var ActiveRecord $model */
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-	        return $this->redirect($this->returnUrl);
+	        return $this->redirect($this->getReturnUrl());
 
         return $this->render('update', [
 	        'model' => $model,
 	        'relation_id' => $relation_id,
-	        'returnUrl' => $this->returnUrl
+	        'returnUrl' => $this->getReturnUrl()
         ]);
     }
 
@@ -109,7 +70,7 @@ class SubModelController extends Controller
     {
         $this->findModel($id)->delete();
 
-		return $this->redirect($this->returnUrl);
+		return $this->redirect($this->getReturnUrl());
     }
 
 	/**
@@ -126,12 +87,5 @@ class SubModelController extends Controller
 			throw new NotFoundHttpException(Yii::t('back', 'The requested page does not exist.'));
 
 		return $model;
-	}
-
-	/**
-	 * Sets return url
-	 */
-	protected function setReturnUrl() {
-		$this->returnUrl = Url::to($this->urlParams);
 	}
 }

@@ -3,42 +3,16 @@
 namespace backend\controllers\facility;
 
 use backend\models\FacilityForm;
+use backend\utilities\BaseModelController;
 use common\models\facility\Facility;
 use Yii;
 use common\models\facility\SearchFacility;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
 
 /**
  * FacilityController implements the CRUD actions for Facility model.
  */
-class FacilityController extends Controller
+class FacilityController extends BaseModelController
 {
-	/**
-	 * @inheritdoc
-	 */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-	            'class' => AccessControl::className(),
-	            'rules' => [
-		            [
-			            'roles' => ['@'],
-			            'allow' => true
-		            ]
-	            ]
-            ]
-        ];
-    }
-
     /**
      * Lists all Facility models.
      * @return mixed
@@ -103,8 +77,7 @@ class FacilityController extends Controller
     }
 
     /**
-     * Deletes an existing Facility model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Deletes an existing FacilityForm model.
      * @param integer $id
      * @return mixed
      */

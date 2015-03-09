@@ -25,6 +25,7 @@ use yii\helpers\ArrayHelper;
  * @property Subject $subject
  * @property Phone[] $phones
  * @property PersonType $personType
+ *
  */
 class Person extends ActiveRecord
 {

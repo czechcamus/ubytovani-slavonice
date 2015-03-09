@@ -22,7 +22,7 @@ class EmailController extends SubModelController
 		parent::init();
 		/** @var Person $person */
 		$person = Person::findOne(Yii::$app->request->get('relation_id'));
-		$this->urlParams = [
+		$this->returnUrlParams = [
 			'person/update',
 			'id' => $person->id,
 			'relation_id' => $person->subject_id

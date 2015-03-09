@@ -18,7 +18,7 @@ use yii\db\ActiveRecord;
  * @property integer $property_value
  *
  * @property PropertyModel $property
- * @propertx ObjectPropertyType[] $objectPropertyTypes
+ * @property ObjectPropertyType[] $objectPropertyTypes
  * @property ObjectPropertyFee[] $fees
  * @property Facility $facility
  * @property Room $room

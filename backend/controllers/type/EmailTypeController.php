@@ -11,4 +11,14 @@ use Yii;
 class EmailTypeController extends TypeModelController
 {
     public $modelClass = 'common\models\type\EmailType';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'email-type/index'
+		];
+	}
 }

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\property\FacilityProperty */
+/* @var $returnUrl string */
 
 $modelClass = Yii::t('back', 'Facility Property');
 $this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->title;
@@ -14,6 +15,6 @@ $this->params['breadcrumbs'][] = $model->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form', compact('model', 'returnUrl')) ?>
 
 </div>

@@ -8,6 +8,7 @@ use common\models\subject\Subject;
 use common\models\type\FacilityType;
 use common\models\type\PlaceType;
 use common\models\User;
+use common\utilities\ObjectsRelationsDelete;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -74,7 +75,7 @@ class Facility extends ActiveRecord
 				'value' => new Expression('NOW()'),
 			],
 			'blame' => BlameableBehavior::className(),
-			//'relationsDelete' => SubjectsRelationsDelete::className()
+			'relationsDelete' => ObjectsRelationsDelete::className()
 		];
 	}
 

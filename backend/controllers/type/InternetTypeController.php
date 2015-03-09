@@ -11,4 +11,14 @@ use backend\utilities\TypeModelController;
 class InternetTypeController extends TypeModelController
 {
     public $modelClass = 'common\models\type\InternetType';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'internet-type/index'
+		];
+	}
 }

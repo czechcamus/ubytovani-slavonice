@@ -11,36 +11,12 @@ namespace backend\utilities;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class PropertyModelController extends Controller
+class PropertyModelController extends BaseModelController
 {
 	/** @var  string name of the main ActiveRecord model class */
 	public $modelClass;
-
-	public function behaviors()
-	{
-		return [
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['post'],
-				],
-			],
-			'access' => [
-				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'roles' => ['@'],
-						'allow' => true
-					]
-				]
-			]
-		];
-	}
 
 	/**
 	 * Lists all ActiveRecord models.
@@ -67,9 +43,12 @@ class PropertyModelController extends Controller
 		$model = new $this->modelClass;
 
 		if ($model->load(Yii::$app->request->post()) && $model->save())
-			return $this->redirect(['index']);
+			return $this->redirect($this->getReturnUrl());
 
-		return $this->render('create', compact('model'));
+		return $this->render('create', [
+			'model' => $model,
+			'returnUrl' => $this->getReturnUrl()
+		]);
 	}
 
 	/**
@@ -83,9 +62,12 @@ class PropertyModelController extends Controller
 		$model = $this->findModel($id);
 
 		if ($model->load(Yii::$app->request->post()) && $model->save())
-			return $this->redirect(['index']);
+			return $this->redirect($this->getReturnUrl());
 
-		return $this->render('update', compact('model'));
+		return $this->render('update', [
+			'model' => $model,
+			'returnUrl' => $this->getReturnUrl()
+		]);
 	}
 
 	/**
@@ -98,7 +80,7 @@ class PropertyModelController extends Controller
 	{
 		$this->findModel($id)->delete();
 
-		return $this->redirect(['index']);
+		return $this->redirect($this->getReturnUrl());
 	}
 
 	/**

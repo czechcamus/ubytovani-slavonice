@@ -11,43 +11,15 @@ namespace backend\utilities;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
-use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * SubModelController implements the CRUD actions for ActiveRecord model.
  */
-class TypeModelController extends Controller
+class TypeModelController extends BaseModelController
 {
     /** @var  string name of the main ActiveRecord model class */
     public $modelClass;
-
-	/**
-	 * Access control etc.
-	 * @return array
-	 */
-	public function behaviors()
-	{
-		return [
-			'verbs' => [
-				'class' => VerbFilter::className(),
-				'actions' => [
-					'delete' => ['post'],
-				],
-			],
-			'access' => [
-				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'roles' => ['@'],
-						'allow' => true
-					]
-				]
-			]
-		];
-	}
 
     /**
      * Lists all ActiveRecord models.
@@ -74,9 +46,12 @@ class TypeModelController extends Controller
         $model = new $this->modelClass;
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->redirect(['index']);
+            return $this->redirect($this->getReturnUrl());
 
-        return $this->render('create', compact('model'));
+	    return $this->render('create', [
+		    'model' => $model,
+		    'returnUrl' => $this->getReturnUrl()
+	    ]);
     }
 
     /**
@@ -90,9 +65,12 @@ class TypeModelController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->redirect(['index']);
+            return $this->redirect($this->getReturnUrl());
 
-        return $this->render('update', compact('model'));
+	    return $this->render('update', [
+		    'model' => $model,
+		    'returnUrl' => $this->getReturnUrl()
+	    ]);
     }
 
     /**
@@ -105,7 +83,7 @@ class TypeModelController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect($this->getReturnUrl());
     }
 
     /**
