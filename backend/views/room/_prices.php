@@ -14,11 +14,12 @@ echo GridView::widget([
 		'query' => $model->getPrices()
 	]),
 	'columns'      => [
+		'title',
+		'fee',
 		[
-			'label'     => Yii::t('back', 'Fee'),
-			'attribute' => 'title'
+			'label' => Yii::t('back', 'VAT'),
+			'attribute' => 'tax.tax_value'
 		],
-		'value',
 		[
 			'class'      => ActionColumn::className(),
 			'controller' => 'price',

@@ -5,7 +5,6 @@ namespace common\models\facility;
 use common\utilities\PrepareDecimalValue;
 use Yii;
 use yii\db\ActiveRecord;
-use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "fee".
@@ -84,19 +83,4 @@ class ObjectPropertyFee extends ActiveRecord
     {
         return $this->hasOne(Tax::className(), ['id' => 'tax_id']);
     }
-
-	/**
-	 * Gets value added tax values options
-	 * @return array
-	 */
-	public function getTaxValueOptions() {
-		$items = ArrayHelper::map(Tax::find()->orderBy(['tax_value' => SORT_DESC])->all(), 'id', 'tax_value');
-		$valueUpdater = function(&$item){
-			$item = "$item %";
-		};
-		if (array_walk($items, $valueUpdater))
-			return $items;
-		else
-			return [];
-	}
 }

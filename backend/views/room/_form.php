@@ -3,9 +3,11 @@
 use backend\assets\FormRoomAsset;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\RoomForm */
+/* @var $relation_id integer */
 /* @var $facilityModel common\models\facility\Facility */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $returnUrl string */
@@ -47,11 +49,15 @@ FormRoomAsset::register($this);
 
             <?= $form->field($model, 'note')->textInput(['maxlength' => 150]) ?>
 
-			<?=	$this->render('_prices', compact('model'));	?>
+			<?php if ($model->room_id): ?>
+
+				<?=	$this->render('_prices', compact('model'));	?>
+
+			<?php endif; ?>
 
 		</div>
 
-		<?php if ($facilityModel->partner): ?>
+		<?php if ($facilityModel->partner && $model->room_id): ?>
 
 			<div class="col-sm-12 col-md-6">
 
@@ -67,6 +73,13 @@ FormRoomAsset::register($this);
 	    <?= Html::submitButton(Yii::t('back', 'Save'), [
 		    'class' => 'btn btn-primary'
 	    ]) ?>
+	    <?php if ($model->room_id) {
+		    echo Html::submitButton(Yii::t('back', 'Create'), [
+			    'id' => 'create-btn',
+			    'class' => 'btn btn-success',
+			    'data-create-url' => Url::to(['create', 'relation_id' => $relation_id])
+		    ]);
+	    } ?>
 	    <?= Html::submitButton(Yii::t('back', 'Close'), [
 		    'id' => 'cancel-btn',
 		    'class' => 'btn btn-warning',

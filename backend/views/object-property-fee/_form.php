@@ -1,9 +1,8 @@
 <?php
 
-use yii\bootstrap\ActiveField;
+use common\models\facility\Tax;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\helpers\Url;
 use yii\widgets\MaskedInput;
 
 /* @var $this yii\web\View */
@@ -18,11 +17,15 @@ use yii\widgets\MaskedInput;
 
 	<div class="row">
 
-		<div class="col-sm-6 col-md-8">
+		<div class="col-sm-12 col-md-6">
 			<?= $form->field($model, 'title')->textInput() ?>
 		</div>
 
-		<div class="col-sm-3 col-md-2">
+	</div>
+
+	<div class="row">
+
+		<div class="col-sm-4 col-md-2">
 			<?= $form->field($model, 'value')->widget(MaskedInput::className(), ['clientOptions' => [
 				'alias' =>  'decimal',
 				'radixPoint' =>  ',',
@@ -30,8 +33,8 @@ use yii\widgets\MaskedInput;
 			]]) ?>
 		</div>
 
-		<div class="col-sm-3 col-md-2">
-			<?= $form->field($model, 'tax_id')->dropDownList($model->getTaxValueOptions()) ?>
+		<div class="col-sm-8 col-md-4">
+			<?= $form->field($model, 'tax_id')->dropDownList(Tax::getTaxValueOptions()) ?>
 		</div>
 
 	</div>

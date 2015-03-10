@@ -83,6 +83,13 @@ FormFacilityAsset::register($this);
 		<?= Html::submitButton(Yii::t('back', 'Save'), [
 			'class' => 'btn btn-primary'
 		]) ?>
+		<?php if ($model->facility_id) {
+			echo Html::submitButton(Yii::t('back', 'Create'), [
+				'id' => 'create-btn',
+				'class' => 'btn btn-success',
+				'data-create-url' => Url::to(['create'])
+			]);
+		} ?>
 		<?= Html::submitButton(Yii::t('back', 'Close'), [
 			'id' => 'cancel-btn',
 			'class' => 'btn btn-warning',

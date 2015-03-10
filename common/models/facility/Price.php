@@ -12,8 +12,10 @@ use yii\db\ActiveRecord;
  * @property integer $room_id
  * @property string $title
  * @property string $fee
+ * @property integer $tax_id
  *
  * @property Room $room
+ * @property Tax $tax
  */
 class Price extends ActiveRecord
 {
@@ -31,8 +33,8 @@ class Price extends ActiveRecord
     public function rules()
     {
         return [
-            [['room_id'], 'integer'],
-            [['title', 'fee'], 'required'],
+            [['room_id', 'tax_id'], 'integer'],
+            [['title', 'fee', 'tax_id'], 'required'],
             [['fee'], 'number'],
             [['title'], 'string', 'max' => 100]
         ];
@@ -48,6 +50,7 @@ class Price extends ActiveRecord
             'room_id' => Yii::t('app', 'Room ID'),
             'title' => Yii::t('app', 'Title'),
             'fee' => Yii::t('app', 'Fee'),
+	        'tax_id' => Yii::t('app', 'Tax')
         ];
     }
 
@@ -58,4 +61,11 @@ class Price extends ActiveRecord
     {
         return $this->hasOne(Room::className(), ['id' => 'room_id']);
     }
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getTax() {
+		return $this->hasOne(Tax::className(), ['id' => 'tax_id']);
+	}
 }

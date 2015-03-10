@@ -10,7 +10,7 @@ namespace common\utilities;
 
 
 use common\models\facility\Facility;
-use common\models\facility\ObjectProperty;
+use common\models\facility\Price;
 use common\models\facility\Room;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
@@ -34,6 +34,9 @@ class ObjectsRelationsDelete extends Behavior
 		$object = $this->owner;
 		foreach ($object->objectProperties as $objectProperty) {
 			$objectProperty->delete();
+		}
+		if (get_class($object) == Room::className()) {
+			Price::deleteAll(['room_id' => $object->id]);
 		}
 	}
 }

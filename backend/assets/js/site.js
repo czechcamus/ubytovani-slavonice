@@ -16,3 +16,9 @@ $('#cancel-btn').on('click', function(e) {
     e.preventDefault();
     location.href = $(this).attr('data-cancel-url');
 });
+
+// fires action on cancel button click
+$('#create-btn').on('click', function(e) {
+    e.preventDefault();
+    location.href = $(this).attr('data-create-url');
+});

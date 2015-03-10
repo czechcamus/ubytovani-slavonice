@@ -1,5 +1,6 @@
 <?php
 
+use backend\utilities\PriceColumn;
 use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
@@ -22,6 +23,11 @@ use yii\helpers\Html;
 				'value' => function ($data) {
 					return $data->roomType->title;
 				},
+			],
+			'bed_nr',
+			'nr',
+			[
+				'class' => PriceColumn::className()
 			],
 			[
 				'class' => ActionColumn::className(),

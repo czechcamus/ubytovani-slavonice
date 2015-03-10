@@ -20,6 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-	<?= $this->render('_form', compact('model', 'returnUrl', 'facilityModel')) ?>
+	<?= $this->render('_form', compact('model', 'relation_id', 'returnUrl', 'facilityModel')) ?>
 
 </div>

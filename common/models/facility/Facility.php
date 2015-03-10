@@ -49,6 +49,7 @@ use yii\db\Expression;
  * @property PlaceType $placeType
  * @property ObjectProperty[] $objectProperties
  * @property FacilityProperty[] $facilityProperties
+ * @property Room[] $rooms
  * @property Subject $subject
  * @property Person $person
  * @property User $creator
@@ -160,6 +161,13 @@ class Facility extends ActiveRecord
 	public function getFacilityProperties()
 	{
 		return $this->hasMany(FacilityProperty::className(), ['id' => 'facility_property_id'])->via('objectProperties');
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getRooms() {
+		return $this->hasMany(Room::className(), ['facility_id' => 'id']);
 	}
 
 	/**

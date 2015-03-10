@@ -1,5 +1,6 @@
 <?php
 
+use backend\utilities\BedNrColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -47,6 +48,9 @@ $this->params['breadcrumbs'][] = $this->title;
 		        'value' => function($model) {
 			        return $model->placeType->title;
 		        }
+	        ],
+	        [
+		        'class' => BedNrColumn::className()
 	        ],
 	        [
 		        'attribute' => 'partner',

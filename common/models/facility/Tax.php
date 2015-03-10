@@ -4,6 +4,7 @@ namespace common\models\facility;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "tax".
@@ -11,7 +12,7 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property string $tax_value
  *
- * @property Fee[] $fees
+ * @property ObjectPropertyFee[] $fees
  */
 class Tax extends ActiveRecord
 {
@@ -50,6 +51,21 @@ class Tax extends ActiveRecord
      */
     public function getFees()
     {
-        return $this->hasMany(Fee::className(), ['tax_id' => 'id']);
+        return $this->hasMany(ObjectPropertyFee::className(), ['tax_id' => 'id']);
     }
+
+	/**
+	 * Gets formatted value added tax values options
+	 * @return array
+	 */
+	public static function getTaxValueOptions() {
+		$items = ArrayHelper::map(self::find()->orderBy(['tax_value' => SORT_DESC])->all(), 'id', 'tax_value');
+		$valueUpdater = function(&$item){
+			$item = "$item %";
+		};
+		if (array_walk($items, $valueUpdater))
+			return $items;
+		else
+			return [];
+	}
 }
