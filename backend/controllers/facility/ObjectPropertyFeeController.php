@@ -30,5 +30,7 @@ class ObjectPropertyFeeController extends SubModelController
 			$controllerName . '/update',
 			'id' => $objectProperty->object_id
 		];
+		if ($controllerName == 'room')
+			$this->returnUrlParams['relation_id'] = $objectProperty->object->facility_id;
 	}
 }

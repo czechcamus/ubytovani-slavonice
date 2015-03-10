@@ -11,19 +11,18 @@ use yii\helpers\Html;
 if ($model->objectProperty->property->property_type == PropertyModel::FACILITY_PROPERTY) {
 	/* @var $objectModel Facility */
 	$objectModel = Facility::findOne($model->objectProperty->object_id);
-	$objectModelClass = Yii::t('back', 'Facilities');
-	$indexUrl = ['facility/index'];
 	$updateUrl = ['facility/update', 'id' => $model->objectProperty->object_id];
 } else {
 	/* @var $objectModel Room */
 	$objectModel = Room::findOne($model->objectProperty->object_id);
-	$objectModelClass = Yii::t('back', 'Rooms');
-	$indexUrl = ['room/index'];
-	$updateUrl = ['room/update', 'id' => $model->objectProperty->object_id];
+	$facilityModel = $objectModel->facility;
+	$updateUrl = ['room/update', 'id' => $model->objectProperty->object_id, 'relation_id' => $facilityModel->id];
 }
 $modelClass = Yii::t('back', 'Object Property Fee');
 $this->title = Yii::t('back', 'Create {modelClass}', compact('modelClass'));
-$this->params['breadcrumbs'][] = ['label' => $objectModelClass, 'url' => $indexUrl];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Facilities'), 'url' => ['facility/index']];
+if (isset($facilityModel))
+	$this->params['breadcrumbs'][] = ['label' => $facilityModel->title, 'url' => ['facility/update', 'id' => $facilityModel->id]];
 $this->params['breadcrumbs'][] = ['label' => $objectModel->title, 'url' => $updateUrl];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

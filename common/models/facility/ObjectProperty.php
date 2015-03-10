@@ -20,8 +20,7 @@ use yii\db\ActiveRecord;
  * @property PropertyModel $property
  * @property ObjectPropertyType[] $objectPropertyTypes
  * @property ObjectPropertyFee[] $fees
- * @property Facility $facility
- * @property Room $room
+ * @property Facility|Room $object
  */
 class ObjectProperty extends ActiveRecord
 {
@@ -95,15 +94,10 @@ class ObjectProperty extends ActiveRecord
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getFacility() {
-		return $this->hasOne(Facility::className(), ['id' => 'object_id'])->where(['object_type' => PropertyModel::FACILITY_PROPERTY]);
-
-	}
-
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getRoom() {
-		return $this->hasOne(Room::className(), ['id' => 'object_id'])->where(['object_type' => PropertyModel::ROOM_PROPERTY]);
+	public function getObject() {
+		if ($this->object_type == PropertyModel::FACILITY_PROPERTY)
+			return $this->hasOne(Facility::className(), ['id' => 'object_id']);
+		else
+			return $this->hasOne(Room::className(), ['id' => 'object_id']);
 	}
 }

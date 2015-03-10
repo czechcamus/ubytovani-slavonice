@@ -29,6 +29,8 @@ class ObjectPropertyTypeController extends SubModelController
 			$controllerName . '/update',
 			'id' => $objectProperty->object_id
 		];
+		if ($controllerName == 'room')
+			$this->returnUrlParams['relation_id'] = $objectProperty->object->facility_id;
 	}
 
 	/**
@@ -43,17 +45,15 @@ class ObjectPropertyTypeController extends SubModelController
 	 */
     public function actionUpdate($object_property_id, $type_id, $relation_id)
     {
-	    $this->setReturnUrl();
-
         $model = $this->findModel($object_property_id, $type_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
-            return $this->redirect($this->returnUrl);
+            return $this->redirect($this->getReturnUrl());
 
         return $this->render('update', [
 	        'model' => $model,
 	        'relation_id' => $relation_id,
-	        'returnUrl' => $this->returnUrl
+	        'returnUrl' => $this->getReturnUrl()
         ]);
     }
 
@@ -72,7 +72,7 @@ class ObjectPropertyTypeController extends SubModelController
 	{
 		$this->findModel($object_property_id, $type_id)->delete();
 
-		return $this->redirect($this->returnUrl);
+		return $this->redirect($this->getReturnUrl());
 	}
 
 	/**

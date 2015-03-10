@@ -47,10 +47,7 @@ FormRoomAsset::register($this);
 
             <?= $form->field($model, 'note')->textInput(['maxlength' => 150]) ?>
 
-			<?php
-			//$this->render('_prices', compact('model'));
-			//TODO dodělat prices
-			 ?>
+			<?=	$this->render('_prices', compact('model'));	?>
 
 		</div>
 

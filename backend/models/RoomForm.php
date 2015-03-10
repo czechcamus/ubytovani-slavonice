@@ -11,6 +11,7 @@ namespace backend\models;
 
 use backend\utilities\ObjectForm;
 use common\models\facility\ObjectProperty;
+use common\models\facility\Price;
 use common\models\facility\Room;
 use common\models\property\RoomProperty;
 use common\models\PropertyModel;
@@ -169,5 +170,11 @@ class RoomForm extends ObjectForm {
 	public function getRoomTypeOptions() {
 		/** @noinspection PhpUndefinedMethodInspection */
 		return ArrayHelper::map(RoomType::find()->orderBy('title')->all(), 'id', 'title');
+	}
+
+	public function getPrices() {
+		return Price::find()->where([
+			'room_id' => $this->room_id
+		])->orderBy(['fee' => SORT_ASC]);
 	}
 }
