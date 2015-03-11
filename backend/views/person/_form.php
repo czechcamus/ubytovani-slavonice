@@ -5,9 +5,11 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Person */
+/* @var $relation_id integer */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $returnUrl string */
 ?>
@@ -114,6 +116,13 @@ use yii\bootstrap\ActiveForm;
         <?= Html::submitButton(Yii::t('back', 'Save'), [
 	        'class' => 'btn btn-primary'
         ]) ?>
+        <?php if (!$model->isNewRecord) {
+	        echo Html::submitButton(Yii::t('back', 'Create'), [
+		        'id' => 'create-btn',
+		        'class' => 'btn btn-success',
+		        'data-create-url' => Url::to(['create', 'relation_id' => $relation_id])
+	        ]);
+        } ?>
         <?= Html::submitButton(Yii::t('back', 'Close'), [
 	        'id' => 'cancel-btn',
 	        'class' => 'btn btn-warning',

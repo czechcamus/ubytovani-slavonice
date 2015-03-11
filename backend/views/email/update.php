@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Email */
 /* @var $relation_id integer id of Person model */
+/* @var $returnUrl string */
 /* @var $personModel common\models\subject\Person */
 /* @var $subjectModel common\models\subject\Subject */
 
@@ -23,6 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form', compact('model', 'returnUrl')) ?>
 
 </div>
