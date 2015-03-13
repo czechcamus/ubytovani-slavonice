@@ -95,5 +95,5 @@ $this->params['breadcrumbs'][] = $this->title;
 	        ],
         ],
     ]) ?>
-
+<?php //TODO přidat vlastnosti, pokoje, obrázky ?>
 </div>

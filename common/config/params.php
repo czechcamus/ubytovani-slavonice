@@ -2,5 +2,6 @@
 return [
     'adminEmail' => 'ja@camus.cz',
     'supportEmail' => 'ja@camus.cz',
-    'user.passwordResetTokenExpire' => 3600
+    'user.passwordResetTokenExpire' => 3600,
+	'uploadDir' => 'uploads'
 ];

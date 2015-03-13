@@ -26,6 +26,7 @@ use yii\helpers\Url;
 			'facility_id' => $model->facility_id
 		],
 		'maxFileCount'    => 10,
+		'msgValidationError' => Yii::t('back', 'File Upload Error'),
 		'browseLabel' => Yii::t('back', 'Browse....'),
 		'removeLabel' => Yii::t('back', 'Remove'),
 		'removeTitle' => Yii::t('back', 'Clear selected files'),
