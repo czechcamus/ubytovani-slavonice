@@ -1,7 +1,9 @@
 <?php
 
 use kartik\widgets\FileInput;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\FacilityForm */
@@ -44,4 +46,19 @@ use yii\helpers\Url;
 	]
 ]);
 
-//TODO tady budou již nahrané obrázky s možností úprav (listView)
+echo '<div class="row">';
+echo ListView::widget([
+	'layout' => '{items}',
+	'options' => [
+		'style' => 'margin-top: 30px;'
+	],
+	'emptyTextOptions' => [
+		'class' => 'col-md-12'
+	],
+	'dataProvider' => new ActiveDataProvider([
+		'query' => $model->getImages()
+	]),
+	'itemView' => '_image'
+]);
+echo '</div>';
+?>

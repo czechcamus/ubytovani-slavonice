@@ -2,6 +2,7 @@
 
 namespace common\models\facility;
 
+use common\utilities\ImageDelete;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -26,6 +27,16 @@ class Image extends ActiveRecord
     {
         return 'image';
     }
+
+	/**
+	 * @return array configuration of behaviors.
+	 */
+	public function behaviors()
+	{
+		return [
+			'imageDelete' => ImageDelete::className()
+		];
+	}
 
     /**
      * @inheritdoc
@@ -74,11 +85,13 @@ class Image extends ActiveRecord
 		$success = null;
 		$data = [];
 		$ext = explode('.', basename($imageName));
-		$target = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Yii::$app->params['uploadDir'] . DIRECTORY_SEPARATOR . md5(uniqid()) . '.' . array_pop($ext);
+		$saveName = md5(uniqid()) . '.' . array_pop($ext);
+		$target = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Yii::$app->params['uploadDir'] . DIRECTORY_SEPARATOR . $saveName;
 		if (move_uploaded_file($imageTmpName, $target)) {
+			\yii\imagine\Image::thumbnail($target, 254, 254)->save(Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Yii::$app->params['uploadDir'] . DIRECTORY_SEPARATOR . 'thumbnails' . DIRECTORY_SEPARATOR . $saveName, ['quality' => 50]);
 			$success = true;
 			$data['title'] = Yii::t('back', 'Photo');
-			$data['filename'] = $imageName;
+			$data['filename'] = $saveName;
 		} else {
 			$success = false;
 		}

@@ -50,3 +50,13 @@ $('a[data-toggle="tab"]').on('click', function() {
         url: $(this).attr('data-tab-url')
     });
 });
+
+// Switch main property of image model
+$('.main-image-checkbox').on('click', function() {
+    if ($(this).prop('checked') == true) {
+        $('.main-image-checkbox:not(:focus)').prop('checked', false);
+        $.ajax({
+            url: $(this).attr('data-main-switch-url')
+        });
+    }
+});

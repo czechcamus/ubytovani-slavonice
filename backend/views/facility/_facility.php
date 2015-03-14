@@ -121,6 +121,14 @@ use yii\jui\Spinner;
 
 	</div>
 
-	<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+	<div class="row">
+
+		<div class="col-md-12">
+
+			<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+		</div>
+
+	</div>
 
 </div>

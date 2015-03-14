@@ -7,8 +7,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\facility\Price */
 /* @var $returnUrl string */
-
 /* @var $objectModel Room */
+
 $objectModel = Room::findOne($model->room_id);
 $facilityModel = $objectModel->facility;
 $updateUrl = ['room/update', 'id' => $model->room_id, 'relation_id' => $facilityModel->id];

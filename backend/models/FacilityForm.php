@@ -11,6 +11,7 @@ namespace backend\models;
 
 use backend\utilities\ObjectForm;
 use common\models\facility\Facility;
+use common\models\facility\Image;
 use common\models\facility\ObjectProperty;
 use common\models\facility\Room;
 use common\models\property\FacilityProperty;
@@ -275,10 +276,17 @@ class FacilityForm extends ObjectForm {
 
 	/**
 	 * Returns rooms data provider
-	 * @param $facility_id
 	 * @return ActiveQuery
 	 */
-	public function getRooms($facility_id) {
-		return Room::find()->where(['facility_id' => $facility_id]);
+	public function getRooms() {
+		return Room::find()->where(['facility_id' => $this->facility_id]);
+	}
+
+	/**
+	 * Returns images data provuder
+	 * @return static
+	 */
+	public function getImages() {
+		return Image::find()->where(['facility_id' => $this->facility_id]);
 	}
 }

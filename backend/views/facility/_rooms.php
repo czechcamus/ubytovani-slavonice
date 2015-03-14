@@ -14,7 +14,7 @@ use yii\helpers\Html;
 	echo GridView::widget([
 		'layout' => "{items}",
 		'dataProvider' => new ActiveDataProvider([
-			'query' => $model->getRooms($model->facility_id)
+			'query' => $model->getRooms()
 		]),
 		'columns' => [
 			'title',
