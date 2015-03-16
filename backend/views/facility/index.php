@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\facility\SearchFacility */
+/* @var $searchModel common\models\facility\FacilitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $modelClass = Yii::t('back', 'Facility');
@@ -29,28 +29,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	        'title',
 	        [
-		        'attribute' => 'facility_type_id',
+		        'attribute' => 'facilityTypeTitle',
 		        'label' => Yii::t('back', 'Facility Type'),
-		        'value' => function($model) {
-			        return $model->facilityType->title;
-		        }
+		        'value' =>  'facilityType.title'
 	        ],
 	        [
-		        'attribute' => 'subject_id',
+		        'attribute' => 'subjectTitle',
 		        'label' => Yii::t('back', 'Subject'),
-		        'value' => function($model) {
-			        return $model->subject->title;
-		        }
+		        'value' => 'subject.title'
 	        ],
 	        [
-		        'attribute' => 'place_type_id',
-		        'label' => Yii::t('back', 'Place Type'),
-		        'value' => function($model) {
-			        return $model->placeType->title;
-		        }
-	        ],
-	        [
-		        'class' => BedNrColumn::className()
+		        'attribute' => 'placeTitle',
+		        'label' => Yii::t('back', 'Place'),
+		        'value' => 'place.title'
 	        ],
 	        [
 		        'attribute' => 'partner',
@@ -63,6 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
 		        'value' => function($model) {
 			        return $model->active ? Yii::t('back', 'Yes') : Yii::t('back', 'No');
 		        }
+	        ],
+	        [
+		        'class' => BedNrColumn::className(),
 	        ],
 
             [

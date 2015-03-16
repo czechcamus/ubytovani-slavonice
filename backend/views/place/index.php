@@ -6,16 +6,17 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$modelClass = Yii::t('back', 'Place Type');
-$this->title = Yii::t('back', 'Place Types');
+$modelClass = Yii::t('back', 'Place');
+$this->title = Yii::t('back', 'Places');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="place-type-index">
+<div class="place-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('back', 'Create {modelClass}', compact('modelClass')), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('back', 'Create {modelClass}', compact('modelClass')),
+            ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

@@ -6,7 +6,7 @@ use backend\models\FacilityForm;
 use backend\utilities\BaseModelController;
 use common\models\facility\Facility;
 use Yii;
-use common\models\facility\SearchFacility;
+use common\models\facility\FacilitySearch;
 
 /**
  * FacilityController implements the CRUD actions for Facility model.
@@ -22,7 +22,7 @@ class FacilityController extends BaseModelController
 	    $session = Yii::$app->session;
 	    $session->remove('actual_tab');
 
-        $searchModel = new SearchFacility();
+        $searchModel = new FacilitySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', compact('searchModel', 'dataProvider'));

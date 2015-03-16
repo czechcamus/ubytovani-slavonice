@@ -9,7 +9,7 @@ use yii\data\ActiveDataProvider;
 /**
  * SearchSubject represents the model behind the search form about `common\models\subject\Subject`.
  */
-class SearchSubject extends Subject
+class SubjectSearch extends Subject
 {
     /**
      * @inheritdoc

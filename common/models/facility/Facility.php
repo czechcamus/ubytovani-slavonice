@@ -2,11 +2,11 @@
 
 namespace common\models\facility;
 
+use common\models\Place;
 use common\models\property\FacilityProperty;
 use common\models\subject\Person;
 use common\models\subject\Subject;
 use common\models\type\FacilityType;
-use common\models\type\PlaceType;
 use common\models\User;
 use common\utilities\ObjectsRelationsDelete;
 use Yii;
@@ -23,7 +23,7 @@ use yii\db\Expression;
  * @property integer $subject_id
  * @property integer $person_id
  * @property integer $partner
- * @property integer $place_type_id
+ * @property integer $place_id
  * @property integer $facility_type_id
  * @property string $title
  * @property string $weburl
@@ -46,7 +46,7 @@ use yii\db\Expression;
  * @property integer $updated_by
  *
  * @property FacilityType $facilityType
- * @property PlaceType $placeType
+ * @property Place $place
  * @property ObjectProperty[] $objectProperties
  * @property FacilityProperty[] $facilityProperties
  * @property Room[] $rooms
@@ -86,7 +86,7 @@ class Facility extends ActiveRecord
     public function rules()
     {
         return [
-            [['subject_id', 'person_id', 'partner', 'place_type_id', 'facility_type_id', 'stars', 'created_by', 'updated_by'], 'integer'],
+            [['subject_id', 'person_id', 'partner', 'place_id', 'facility_type_id', 'stars', 'created_by', 'updated_by'], 'integer'],
             [['title', 'city', 'postal_code'], 'required'],
             [['checkin_from', 'checkin_to', 'checkout_from', 'checkout_to', 'created_at', 'updated_at', 'completed'], 'safe'],
 	        ['active', 'boolean'],
@@ -107,7 +107,7 @@ class Facility extends ActiveRecord
             'subject_id' => Yii::t('app', 'Subject'),
             'person_id' => Yii::t('app', 'Person'),
             'partner' => Yii::t('app', 'Partner'),
-            'place_type_id' => Yii::t('app', 'Place Type'),
+            'place_id' => Yii::t('app', 'Place'),
             'facility_type_id' => Yii::t('app', 'Facility Type'),
             'title' => Yii::t('app', 'Title'),
             'weburl' => Yii::t('app', 'Weburl'),
@@ -142,9 +142,9 @@ class Facility extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPlaceType()
+    public function getPlace()
     {
-        return $this->hasOne(PlaceType::className(), ['id' => 'place_type_id']);
+        return $this->hasOne(Place::className(), ['id' => 'place_id']);
     }
 
 	/**

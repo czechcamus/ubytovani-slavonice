@@ -19,7 +19,7 @@ use common\models\PropertyModel;
 use common\models\subject\Subject;
 use common\models\subject\Person;
 use common\models\type\FacilityType;
-use common\models\type\PlaceType;
+use common\models\Place;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
@@ -36,7 +36,7 @@ class FacilityForm extends ObjectForm {
 	/** @var integer */
 	public $person_id;
 	/** @var integer */
-	public $place_type_id;
+	public $place_id;
 	/** @var string */
 	public $street;
 	/** @var string */
@@ -81,7 +81,7 @@ class FacilityForm extends ObjectForm {
 		return [
 			[['title', 'subject_id', 'person_id', 'city', 'postal_code'], 'required', 'on' => ['create', 'update']],
 			[
-				['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_type_id', 'stars'],
+				['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_id', 'stars'],
 				'integer',
 				'on' => ['create', 'update']
 			],
@@ -97,7 +97,7 @@ class FacilityForm extends ObjectForm {
 			[['title', 'weburl', 'certificate'], 'string', 'max' => 100, 'on' => ['create', 'update']],
 			[['street', 'city'], 'string', 'max' => 45, 'on' => ['create', 'update']],
 			[['house_nr', 'postal_code'], 'string', 'max' => 10, 'on' => ['create', 'update']],
-			[['facility_type_id', 'place_type_id', 'properties'], 'safe', 'on' => ['create', 'update']]
+			[['facility_type_id', 'place_id', 'properties'], 'safe', 'on' => ['create', 'update']]
 		];
 	}
 
@@ -111,7 +111,7 @@ class FacilityForm extends ObjectForm {
 			'title'            => Yii::t('back', 'Title'),
 			'subject_id'       => Yii::t('back', 'Subject'),
 			'person_id'        => Yii::t('back', 'Person'),
-			'place_type_id'    => Yii::t('back', 'Place Type'),
+			'place_id'         => Yii::t('back', 'Place'),
 			'street'           => Yii::t('back', 'Street'),
 			'house_nr'         => Yii::t('back', 'House Nr.'),
 			'city'             => Yii::t('back', 'City'),
@@ -251,11 +251,11 @@ class FacilityForm extends ObjectForm {
 	}
 
 	/**
-	 * Gets place types for drop down list
+	 * Gets places for drop down list
 	 * @return array
 	 */
-	public function getPlaceTypeOptions() {
-		return ArrayHelper::map(PlaceType::find()->orderBy('title')->all(), 'id', 'title');
+	public function getPlaceOptions() {
+		return ArrayHelper::map(Place::find()->orderBy('title')->all(), 'id', 'title');
 	}
 
 	/**

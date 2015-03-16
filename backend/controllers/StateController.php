@@ -11,4 +11,14 @@ use Yii;
 class StateController extends TypeModelController
 {
     public $modelClass = 'common\models\State';
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		parent::init();
+		$this->returnUrlParams = [
+			'state/index'
+		];
+	}
 }

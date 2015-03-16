@@ -4,12 +4,12 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\type\PlaceType */
+/* @var $model common\models\Place */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $returnUrl string */
 ?>
 
-<div class="place-type-form">
+<div class="place-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -20,7 +20,7 @@ use yii\bootstrap\ActiveForm;
             <?= $form->field($model, 'title')->textInput(['maxlength' => 45]) ?>
 
 		</div>
-
+		
 	</div>
 
     <div class="form-group">

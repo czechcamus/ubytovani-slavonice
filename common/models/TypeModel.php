@@ -21,9 +21,8 @@ class TypeModel extends ActiveRecord
 	const PARKING_TYPE = 5;
 	const PERSON_TYPE = 6;
 	const PHONE_TYPE = 7;
-	const PLACE_TYPE = 8;
-	const ROOM_TYPE = 9;
-	const CATERING_TYPE = 10;
+	const ROOM_TYPE = 8;
+	const CATERING_TYPE = 9;
 
     /**
      * @inheritdoc

@@ -52,6 +52,7 @@ AppAsset::register($this);
 	                '<li role="presentation" class="divider"></li>',
 	                ['label' => Yii::t('back', 'Value Added Taxes'), 'url' => ['/tax/index']],
                     '<li role="presentation" class="divider"></li>',
+	                ['label' => Yii::t('back', 'Places'), 'url' => ['/place/index']],
                     ['label' => Yii::t('back', 'States'), 'url' => ['/state/index']],
                 ]],
             ];

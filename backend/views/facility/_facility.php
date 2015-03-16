@@ -29,7 +29,7 @@ use yii\jui\Spinner;
 			'data-value' => $model->person_id
 		]) ?>
 
-		<?= $form->field($model, 'place_type_id')->dropDownList($model->getPlaceTypeOptions()) ?>
+		<?= $form->field($model, 'place_id')->dropDownList($model->getPlaceOptions()) ?>
 
 	</div>
 

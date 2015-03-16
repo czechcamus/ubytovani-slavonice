@@ -3,15 +3,15 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\type\PlaceType */
+/* @var $model common\models\Place */
 /* @var $returnUrl string */
 
-$modelClass = Yii::t('back', 'Place Type');
+$modelClass = Yii::t('back', 'Place');
 $this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Place Types'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('back', 'Places'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->title;
 ?>
-<div class="place-type-update">
+<div class="place-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -60,7 +60,6 @@ return [
     'controllerMap' => [
 	    'catering-type' => 'backend\controllers\type\CateringTypeController',
 	    'room-type' => 'backend\controllers\type\RoomTypeController',
-	    'place-type' => 'backend\controllers\type\PlaceTypeController',
 	    'phone-type' => 'backend\controllers\type\PhoneTypeController',
 	    'person-type' => 'backend\controllers\type\PersonTypeController',
 	    'parking-type' => 'backend\controllers\type\ParkingTypeController',

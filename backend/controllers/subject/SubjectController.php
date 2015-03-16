@@ -5,7 +5,7 @@ namespace backend\controllers\subject;
 use backend\utilities\BaseModelController;
 use Yii;
 use common\models\subject\Subject;
-use common\models\subject\SearchSubject;
+use common\models\subject\SubjectSearch;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -19,7 +19,7 @@ class SubjectController extends BaseModelController
      */
     public function actionIndex()
     {
-        $searchModel = new SearchSubject();
+        $searchModel = new SubjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', compact('searchModel', 'dataProvider'));

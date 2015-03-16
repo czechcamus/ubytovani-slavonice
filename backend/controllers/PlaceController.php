@@ -6,11 +6,11 @@ use backend\utilities\TypeModelController;
 use Yii;
 
 /**
- * TaxController implements the CRUD actions for Tax model.
+ * PlaceController implements the CRUD actions for Place model.
  */
-class TaxController extends TypeModelController
+class PlaceController extends TypeModelController
 {
-	public $modelClass = 'common\models\facility\Tax';
+	public $modelClass = 'common\models\Place';
 
 	/**
 	 * @inheritdoc
@@ -18,7 +18,7 @@ class TaxController extends TypeModelController
 	public function init() {
 		parent::init();
 		$this->returnUrlParams = [
-			'tax/index'
+			'place/index'
 		];
 	}
 }

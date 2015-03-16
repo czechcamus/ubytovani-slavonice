@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\State */
+/* @var $returnUrl string */
 
 $modelClass = Yii::t('back', 'State');
 $this->title = Yii::t('back', 'Update {modelClass}: ', compact('modelClass')) . ' ' . $model->name;
@@ -14,6 +15,6 @@ $this->params['breadcrumbs'][] = $model->name;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form', compact('model', 'returnUrl')) ?>
 
 </div>
