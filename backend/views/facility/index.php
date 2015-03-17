@@ -1,6 +1,7 @@
 <?php
 
-use backend\utilities\BedNrColumn;
+use common\models\Place;
+use common\models\type\FacilityType;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -31,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        [
 		        'attribute' => 'facilityTypeTitle',
 		        'label' => Yii::t('back', 'Facility Type'),
+		        'filter' => FacilityType::getFacilityTypeOptions(),
 		        'value' =>  'facilityType.title'
 	        ],
 	        [
@@ -41,23 +43,30 @@ $this->params['breadcrumbs'][] = $this->title;
 	        [
 		        'attribute' => 'placeTitle',
 		        'label' => Yii::t('back', 'Place'),
+		        'filter' => Place::getPlaceOptions(),
 		        'value' => 'place.title'
 	        ],
 	        [
 		        'attribute' => 'partner',
+		        'filter' => [
+			        Yii::t('back', 'No'),
+			        Yii::t('back', 'Yes')
+		        ],
 		        'value' => function($model) {
 			        return $model->partner ? Yii::t('back', 'Yes') : Yii::t('back', 'No');
 		        }
 	        ],
 	        [
 		        'attribute' => 'active',
+		        'filter' => [
+			        Yii::t('back', 'No'),
+			        Yii::t('back', 'Yes')
+		        ],
 		        'value' => function($model) {
 			        return $model->active ? Yii::t('back', 'Yes') : Yii::t('back', 'No');
 		        }
 	        ],
-	        [
-		        'class' => BedNrColumn::className(),
-	        ],
+			'bedNr',
 
             [
 	            'class' => 'yii\grid\ActionColumn',

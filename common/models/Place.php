@@ -4,6 +4,8 @@ namespace common\models;
 
 use common\models\facility\Facility;
 use Yii;
+use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "place".
@@ -13,7 +15,7 @@ use Yii;
  *
  * @property Facility[] $facilities
  */
-class Place extends \yii\db\ActiveRecord
+class Place extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -52,4 +54,13 @@ class Place extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Facility::className(), ['place_id' => 'id']);
     }
+
+	/**
+	 * Gets places for drop down list
+	 * @return array
+	 */
+	public static function getPlaceOptions() {
+		return ArrayHelper::map(self::find()->orderBy('title')->all(), 'id', 'title');
+	}
+
 }

@@ -15,7 +15,6 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 
-//TODO dodělat active pole pro možnost vypínání
 /**
  * This is the model class for table "facility".
  *
@@ -54,6 +53,7 @@ use yii\db\Expression;
  * @property Person $person
  * @property User $creator
  * @property User $updater
+ * @property integer $bedNr
  */
 class Facility extends ActiveRecord
 {
@@ -128,6 +128,7 @@ class Facility extends ActiveRecord
             'created_by' => Yii::t('app', 'Created By'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'updated_by' => Yii::t('app', 'Updated By'),
+	        'bedNr' => Yii::t('app', 'Bed Nr')
         ];
     }
 
@@ -198,5 +199,12 @@ class Facility extends ActiveRecord
 	public function getUpdater()
 	{
 		return $this->hasOne(User::className(), ['id' => 'updated_by']);
+	}
+
+	/**
+	 * Number of beds of all rooms in the facility
+	 */
+	public function getBedNr() {
+		return $this->hasMany(Room::className(), ['facility_id' => 'id'])->sum('bed_nr * nr');
 	}
 }

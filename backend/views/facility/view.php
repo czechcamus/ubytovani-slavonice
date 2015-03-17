@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 	        [
 		        'attribute' => 'place_type_id',
-		        'value' => $model->placeType->title
+		        'value' => $model->place->title
 	        ],
 	        [
 		        'attribute' => 'facility_type_id',

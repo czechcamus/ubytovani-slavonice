@@ -1,5 +1,6 @@
 <?php
 
+use common\models\type\FacilityType;
 use kartik\datecontrol\DateControl;
 use yii\helpers\Url;
 use yii\jui\Spinner;
@@ -13,7 +14,7 @@ use yii\jui\Spinner;
 
 	<div class="col-sm-12 col-md-6">
 
-		<?= $form->field($model, 'facility_type_id')->dropDownList($model->getFacilityTypeOptions()) ?>
+		<?= $form->field($model, 'facility_type_id')->dropDownList(FacilityType::getFacilityTypeOptions()) ?>
 
 		<?= $form->field($model, 'title')->textInput(['maxlength' => 100]) ?>
 

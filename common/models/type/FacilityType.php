@@ -6,6 +6,7 @@ use common\models\facility\Facility;
 use common\models\TypeModel;
 use common\utilities\ModelTypeAttribute;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the Facility Type model class
@@ -45,4 +46,12 @@ class FacilityType extends TypeModel
     {
         return $this->hasMany(Facility::className(), ['facility_type_id' => 'id']);
     }
+
+	/**
+	 * Gets facility types for drop down list
+	 * @return array
+	 */
+	public static function getFacilityTypeOptions() {
+		return ArrayHelper::map(self::find()->orderBy('title')->all(), 'id', 'title');
+	}
 }

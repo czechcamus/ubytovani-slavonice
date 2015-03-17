@@ -234,28 +234,11 @@ class FacilityForm extends ObjectForm {
 	}
 
 	/**
-	 * Gets facility types for drop down list
-	 * @return array
-	 */
-	public function getFacilityTypeOptions() {
-		/** @noinspection PhpUndefinedMethodInspection */
-		return ArrayHelper::map(FacilityType::find()->orderBy('title')->all(), 'id', 'title');
-	}
-
-	/**
 	 * Gets subjects for drop down list
 	 * @return array
 	 */
 	public function getSubjectOptions() {
 		return ArrayHelper::map(Subject::find()->completed()->orderBy('title')->all(), 'id', 'title');
-	}
-
-	/**
-	 * Gets places for drop down list
-	 * @return array
-	 */
-	public function getPlaceOptions() {
-		return ArrayHelper::map(Place::find()->orderBy('title')->all(), 'id', 'title');
 	}
 
 	/**
