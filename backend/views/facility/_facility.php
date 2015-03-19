@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Place;
 use common\models\type\FacilityType;
 use kartik\datecontrol\DateControl;
 use yii\helpers\Url;
@@ -30,7 +31,7 @@ use yii\jui\Spinner;
 			'data-value' => $model->person_id
 		]) ?>
 
-		<?= $form->field($model, 'place_id')->dropDownList($model->getPlaceOptions()) ?>
+		<?= $form->field($model, 'place_id')->dropDownList(Place::getPlaceOptions()) ?>
 
 	</div>
 
