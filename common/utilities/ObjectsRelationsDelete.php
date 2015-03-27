@@ -37,6 +37,10 @@ class ObjectsRelationsDelete extends Behavior
 		}
 		if (get_class($object) == Room::className()) {
 			Price::deleteAll(['room_id' => $object->id]);
+		} else {
+			foreach ($object->rooms as $room) {
+				$room->delete();
+			}
 		}
 	}
 }

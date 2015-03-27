@@ -14,7 +14,10 @@ use yii\helpers\Html;
 	echo GridView::widget([
 		'layout' => "{items}",
 		'dataProvider' => new ActiveDataProvider([
-			'query' => $model->getRooms()
+			'query' => $model->getRooms(),
+			'pagination' => [
+				'pageSize' => 0,
+			]
 		]),
 		'columns' => [
 			'title',
