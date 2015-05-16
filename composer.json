@@ -18,7 +18,8 @@
         "kartik-v/yii2-datecontrol": "dev-master",
         "kartik-v/yii2-widgets": "*",
         "kartik-v/yii2-field-range": "*",
-        "yiisoft/yii2-imagine": "~2.0"
+        "yiisoft/yii2-imagine": "~2.0",
+        "webmaxx/yii2-materialize": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
