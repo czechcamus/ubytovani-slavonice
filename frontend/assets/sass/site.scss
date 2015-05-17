@@ -3,4 +3,9 @@
 $blue-color: #221e95;
 
 body {
+  .parallax-container {
+    h1 {
+      text-shadow: 1px 1px white;
+    }
+  }
 }

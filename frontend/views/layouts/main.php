@@ -2,9 +2,7 @@
 use yii\helpers\Html;
 use webmaxx\materialize\Nav;
 use webmaxx\materialize\NavBar;
-use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
-use frontend\widgets\Alert;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -37,8 +35,18 @@ AppAsset::register($this);
         ]);
         $menuItems = [
             ['label' => 'Úvod', 'url' => ['/site/index']],
-            ['label' => 'Ubytování', 'url' => ['/site/about']],
-            ['label' => 'Slavonice', 'url' => ['/site/contact']],
+            ['label' => 'Ubytování', 'items' => [
+	            ['label' => 'První položka', 'url' => '#'],
+	            ['label' => 'Druhá položka', 'url' => '#'],
+	            ['label' => 'Třetí položka', 'url' => '#']
+            ]],
+            ['label' => 'Slavonice', 'items' => [
+	            ['label' => 'První položka', 'url' => '#'],
+	            ['label' => 'Druhá položka', 'url' => '#'],
+	            ['label' => 'Třetí položka', 'url' => '#'],
+	            ['label' => 'Čtvrtá položka', 'url' => '#'],
+	            ['label' => 'Pátá položka', 'url' => '#'],
+            ]],
         ];
         echo Nav::widget([
             'options' => [
@@ -46,6 +54,7 @@ AppAsset::register($this);
             'items' => $menuItems,
         ]);
 	    echo Nav::widget([
+		    'buttonCollapse' => true,
 		    'options' => [
 			    'id' => 'nav-mobile',
 			    'class' => 'side-nav'],
@@ -54,17 +63,27 @@ AppAsset::register($this);
         NavBar::end();
     ?>
 
-    <div class="container">
-	    <?= Breadcrumbs::widget([
-	        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-	    ]) ?>
-	    <?= Alert::widget() ?>
-	    <?= $content ?>
+    <div id="index-banner" class="parallax-container">
+	    <div class="section no-pad-bot">
+		    <div class="container">
+			    <br><br>
+			    <h1 class="header center blue-text">Nadpis carousela</h1>
+			    <div class="row center">
+				    <h5 class="header col s12 light blue white-text">A modern responsive front-end framework based on Material Design</h5>
+			    </div>
+			    <div class="row center">
+				    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light blue darken-2">Get Started</a>
+			    </div>
+			    <br><br>
+
+		    </div>
+	    </div>
+	    <div class="parallax"><img src="<?php echo Yii::$app->request->baseUrl; ?>/images/slavonice.jpg" alt="obrázek - Slavonice"></div>
     </div>
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Slavonická renesanční o.p.s. <?= date('Y') ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>
