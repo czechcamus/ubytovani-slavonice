@@ -1,8 +1,8 @@
 <?php
+use frontend\assets\AppAsset;
 use yii\helpers\Html;
 use webmaxx\materialize\Nav;
 use webmaxx\materialize\NavBar;
-use frontend\assets\AppAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -26,7 +26,6 @@ AppAsset::register($this);
             'brandLabel' => 'Ubytování ve Slavonicích',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
-                'class' => 'blue',
                 'role' => 'navigation',
             ],
             'wraperContainerOptions' => [
@@ -64,18 +63,20 @@ AppAsset::register($this);
     ?>
 
     <div id="index-banner" class="parallax-container">
-	    <div class="section no-pad-bot">
+	    <div class="section">
 		    <div class="container">
-			    <br><br>
-			    <h1 class="header center blue-text">Nadpis carousela</h1>
-			    <div class="row center">
-				    <h5 class="header col s12 light blue white-text">A modern responsive front-end framework based on Material Design</h5>
+			    <br /><br />
+			    <div class="row">
+				    <div class="col s12 m6">
+			            <h1><span>Hotel Arkáda</span></h1>
+					    <p class="flow-text white-text">Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí je neobyčejným zážitkem i ideální základnou k vychutnání krás Slavonic a České Kanady...</p>
+					    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light">Více informací</a>
+				    </div>
+				    <div class="col s12 m5 offset-m1">
+						<img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/440621488b927705d1a7bcb2698dbaa2.jpg" class="responsive-img" />
+				    </div>
 			    </div>
-			    <div class="row center">
-				    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light blue darken-2">Get Started</a>
-			    </div>
-			    <br><br>
-
+			    <br /><br />
 		    </div>
 	    </div>
 	    <div class="parallax"><img src="<?php echo Yii::$app->request->baseUrl; ?>/images/slavonice.jpg" alt="obrázek - Slavonice"></div>

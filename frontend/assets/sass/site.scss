@@ -1,11 +1,26 @@
-//@import '../materialize/sass/_materialize';
+@import '../materialize/sass/materialize';
+@import 'my-variables';
 
-$blue-color: #221e95;
+// variables
+$translucent-white: rgba(#fff, 0.8);
+$translucent-black: rgba(#000, 0.5);
 
 body {
   .parallax-container {
     h1 {
-      text-shadow: 1px 1px white;
+      margin-top: 0;
+      span {
+        padding: 0 10px;
+        background-color: $translucent-white;
+      }
+    }
+    p {
+      padding: 0 10px;
+      background-color: $translucent-black;
+    }
+    img {
+      border-radius: 10px;
+      border: 10px solid $translucent-white;
     }
   }
 }
