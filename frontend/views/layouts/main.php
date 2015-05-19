@@ -13,14 +13,16 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="<?= Yii::$app->charset ?>" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,400&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Yii::$app->name . ' - ' . Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
     <?php $this->beginBody() ?>
+    <header>
     <?php
         NavBar::begin([
             'brandLabel' => 'Ubytování ve Slavonicích',
@@ -61,25 +63,58 @@ AppAsset::register($this);
 	    ]);
         NavBar::end();
     ?>
+    </header>
 
     <div id="index-banner" class="parallax-container">
 	    <div class="section">
 		    <div class="container">
-			    <br /><br />
-			    <div class="row">
-				    <div class="col s12 m6">
-			            <h1><span>Hotel Arkáda</span></h1>
-					    <p class="flow-text white-text">Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí je neobyčejným zážitkem i ideální základnou k vychutnání krás Slavonic a České Kanady...</p>
-					    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light">Více informací</a>
-				    </div>
-				    <div class="col s12 m5 offset-m1">
-						<img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/440621488b927705d1a7bcb2698dbaa2.jpg" class="responsive-img" />
-				    </div>
+			    <div class="slider">
+				    <ul class="slides">
+					    <li>
+						    <div class="row">
+							    <div class="col s12 m8 caption left-align">
+								    <h1><span>Hotel Arkáda</span></h1>
+								    <p class="flow-text white-text">Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí je neobyčejným zážitkem i ideální základnou k vychutnání krás Slavonic a České Kanady...</p>
+								    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light">Detail ubytování</a>
+							    </div>
+							    <div class="col m4 offset-m8 hide-on-small-and-down">
+							        <img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/440621488b927705d1a7bcb2698dbaa2.jpg" class="responsive-img" />
+								</div>
+						    </div>
+					    </li>
+					    <li>
+						    <div class="row">
+							    <div class="col s12 m8 caption left-align">
+								    <h1><span>Hotel Besídka</span></h1>
+								    <p class="flow-text white-text">Hotel Besídka se nachází v budově z 16. století, která je kulturní památkou. Nabízí moderně zařízené pokoje, restauraci a keramickou dílnu...</p>
+								    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light">Detail ubytování</a>
+							    </div>
+							    <div class="col m4 offset-m8 hide-on-small-and-down">
+								    <img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/db8cc72393da98297aafb648dcae230f.jpg" class="responsive-img" />
+							    </div>
+						    </div>
+					    </li>
+					    <li>
+						    <div class="row">
+							    <div class="col s12 m8 caption left-align">
+								    <h1><span>Hotel U Růže</span></h1>
+								    <p class="flow-text white-text">Hotel U Růže se nachází přímo na náměstí a nabízí wellness centrum a nekuřácké pokoje s bezplatným Wi-Fi a satelitní LCD TV...</p>
+								    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light">Detail ubytování</a>
+							    </div>
+							    <div class="col m4 offset-m8 hide-on-small-and-down">
+								    <img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/d7ebe16ec7f9b184a7077483fe0f27a5.jpg" class="responsive-img" />
+							    </div>
+						    </div>
+					    </li>
+				    </ul>
 			    </div>
-			    <br /><br />
 		    </div>
 	    </div>
 	    <div class="parallax"><img src="<?php echo Yii::$app->request->baseUrl; ?>/images/slavonice.jpg" alt="obrázek - Slavonice"></div>
+    </div>
+
+    <div class="container section">
+	    <?= $content ?>
     </div>
 
     <footer class="footer">

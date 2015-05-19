@@ -10,6 +10,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'name' => 'Ubytování ve Slavonicích',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'user' => [

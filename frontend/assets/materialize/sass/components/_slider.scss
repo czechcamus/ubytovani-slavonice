@@ -24,7 +24,7 @@
   }
 
   .slides {
-    background-color: color('grey', 'base');
+    background-color: transparent;
     margin: 0;
     height: 400px;
 
@@ -39,18 +39,15 @@
       overflow: hidden;
 
       img {
-        height: 100%;
-        width: 100%;
-        background-size: cover;
-        background-position: center;
+        background-position: right;
       }
 
       .caption {
         color: #fff;
         position: absolute;
         top: 15%;
-        left: 15%;
-        width: 70%;
+        left: 0;
+        width: 60%;
         opacity: 0;
 
         p { color: color('grey', 'lighten-2'); }
