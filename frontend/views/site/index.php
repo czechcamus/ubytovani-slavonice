@@ -10,7 +10,7 @@ $this->title = 'úvod';
 					<h4 class="white-text light"><i class="mdi-action-search left"></i> Najít ubytování ve Slavonicích</h4>
 				</div>
 				<div class="col s12 input-field">
-					<select class="white-text">
+					<select id="place_type" class="white-text">
 						<option value="1" selected> kdekoli </option>
 						<option value="2"> centrum města </option>
 						<option value="3"> okraj města </option>
@@ -19,10 +19,10 @@ $this->title = 'úvod';
 						<option value="6"> polosamota </option>
 						<option value="7"> samota </option>
 					</select>
-					<label class="orange-text text-lighten-4">Výběr polohy ubytovacího zařízení</label>
+					<label for="place_type" class="orange-text text-lighten-4">Výběr polohy ubytovacího zařízení</label>
 				</div>
 				<div class="col s12 input-field">
-					<select class="white-text">
+					<select id="facility_type" class="white-text">
 						<option value="1" selected> cokoli </option>
 						<option value="2"> hotel </option>
 						<option value="3"> penzion </option>
@@ -31,7 +31,19 @@ $this->title = 'úvod';
 						<option value="6"> chalupa </option>
 						<option value="7"> chata </option>
 					</select>
-					<label class="orange-text text-lighten-4">Výběr typu ubytovacího zařízení</label>
+					<label for="facility_type" class="orange-text text-lighten-4">Výběr typu ubytovacího zařízení</label>
+				</div>
+				<div class="col s12">
+					<div class="row">
+						<div class="col s12 m6 input-field">
+							<input id="price_from" type="number" class="validate">
+							<label for="price_from" class="orange-text text-lighten-4">Cena v CZK za osobu a noc od</label>
+						</div>
+						<div class="col s12 m6 input-field">
+							<input id="price_to" type="number" class="validate">
+							<label for="price_to" class="orange-text text-lighten-4">Cena v CZK za osobu a noc do</label>
+						</div>
+					</div>
 				</div>
 				<div class="col s12">
 					<ul class="collapsible" data-collapsible="accordion">
@@ -97,6 +109,21 @@ $this->title = 'úvod';
 				</div>
 			</div>
 		</form>
+		<div class="row">
+			<div class="col s12 facility-partner">
+				<div class="row">
+					<div class="col s6 m3">
+						<img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/thumbnails/440621488b927705d1a7bcb2698dbaa2.jpg" alt="obrázek - Hotel Arkádia" class="responsive-img" />
+					</div>
+					<div class="col s6 m9">
+						<h5 class="light"><a href="#" class="black-text">Hotel Arkáda</a></h5>
+						<p class="place_type"><a href="#">Slavonice</a> - <a href="#">centrum města</a></p>
+						<p>Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí je neobyčejným zážitkem i ideální základnou k vychutnání krás Slavonic a České Kanady...</p>
+						<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div><!-- end of left column -->
 	<div class="col s12 m6">
 		<div class="main-event row">

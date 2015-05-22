@@ -5,6 +5,8 @@ $translucent-white: rgba(#fff, 0.8);
 $translucent-black: rgba(#000, 0.5);
 $grey: #777;
 $white: #fff;
+$orange-lighten4: #ffe0b2;
+$link-hover-color: darken($link-color, 50%);
 
 html {
   font-family: 'Open Sans', sans-serif;
@@ -31,17 +33,32 @@ body {
       border-radius: 20px;
       border: 10px solid $translucent-white;
     }
+    a:hover {
+      background: red;
+      color: $link-hover-color;
+    }
   }
   .facility-select-form {
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
-    .select-wrapper {
-      input {
-        border-color: $white !important;
+    margin-bottom: 20px;
+    i, .select-wrapper i {
+      color: $white;
+    }
+    .input-field {
+      .prefix.active {
+        color: $orange-lighten4;
       }
-      i {
+      .valid {
+        border-color: $white;
+        box-shadow: none;
+      }
+      input {
         color: $white;
+        &:focus {
+          border-color: $orange-lighten4;
+        }
       }
     }
     .collapsible {
@@ -62,9 +79,12 @@ body {
       }
     }
   }
-  .main-event {
+  .main-event, .facility-partner {
     h5 {
       margin-top: 0;
     }
+  }
+  .place_type {
+    margin-top: 0;
   }
 }

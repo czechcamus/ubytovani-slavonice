@@ -3,7 +3,7 @@ $primary-color: color("blue", "lighten-2") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
 
-$secondary-color: color("blue", "darken-1") !default;
+$secondary-color: darken($primary-color, 15%) !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
@@ -41,7 +41,7 @@ $icons-font-path: "../font/material-design-icons/" !default;
 
 /*** Forms ***/
 // Text Inputs + Textarea
-$input-border-color: color("grey", "base") !default;
+$input-border-color: #fff !default;
 $input-error-color: $error-color !default;
 $input-success-color: $success-color !default;
 $input-focus-color: $secondary-color !default;
@@ -52,11 +52,11 @@ $input-disabled-solid-color: #BDBDBD !default;
 
 // Radio Buttons
 $radio-fill-color: $secondary-color !default;
-$radio-empty-color: #5a5a5a !default;
+$radio-empty-color: #fff !default;
 
 // Switches
-$switch-bg-color: $secondary-color !default;
-$switch-checked-lever-bg: desaturate(lighten($secondary-color, 25%), 25%) !default;
+$switch-bg-color: #fff !default;
+$switch-checked-lever-bg: #fff !default;
 $switch-unchecked-bg: #F1F1F1 !default;
 $switch-unchecked-lever-bg: #818181 !default;
 
