@@ -8009,14 +8009,11 @@ body {
   body .parallax-container img {
     border-radius: 20px;
     border: 10px solid rgba(255, 255, 255, 0.8); }
-  body .parallax-container a:hover {
-    background: red;
-    color: black; }
   body .facility-select-form {
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
-    margin-bottom: 20px; }
+    margin-bottom: 30px; }
     body .facility-select-form i, body .facility-select-form .select-wrapper i {
       color: #fff; }
     body .facility-select-form .input-field .prefix.active {
@@ -8045,5 +8042,7 @@ body {
     margin-top: 0; }
   body .place_type {
     margin-top: 0; }
+    body .place_type a:hover {
+      color: #01579b; }
 
 /*# sourceMappingURL=site.css.map */

@@ -113,12 +113,34 @@ $this->title = 'úvod';
 			<div class="col s12 facility-partner">
 				<div class="row">
 					<div class="col s6 m3">
-						<img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/thumbnails/440621488b927705d1a7bcb2698dbaa2.jpg" alt="obrázek - Hotel Arkádia" class="responsive-img" />
+						<a href="#"><img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/thumbnails/440621488b927705d1a7bcb2698dbaa2.jpg" alt="obrázek - Hotel Arkádia" class="responsive-img" /></a>
 					</div>
 					<div class="col s6 m9">
+						<p class="place_type right"><a href="#">Slavonice</a> - <a href="#">centrum města</a></p>
 						<h5 class="light"><a href="#" class="black-text">Hotel Arkáda</a></h5>
-						<p class="place_type"><a href="#">Slavonice</a> - <a href="#">centrum města</a></p>
-						<p>Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí je neobyčejným zážitkem i ideální základnou k vychutnání krás Slavonic a České Kanady...</p>
+						<p>Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí je neobyčejným zážitkem...</p>
+						<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s6 m3">
+						<a href="#"><img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/thumbnails/db8cc72393da98297aafb648dcae230f.jpg" alt="obrázek - Hotel Besídka" class="responsive-img" /></a>
+					</div>
+					<div class="col s6 m9">
+						<p class="place_type right"><a href="#">Slavonice</a> - <a href="#">centrum města</a></p>
+						<h5 class="light"><a href="#" class="black-text">Hotel Besídka</a></h5>
+						<p>Hotel Besídka se nachází v budově z 16. století, která je kulturní památkou. Nabízí moderně zařízené pokoje...</p>
+						<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s6 m3">
+						<a href="#"><img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/thumbnails/c97fcd680de7bfd96c5bcbd7a63e0a54.jpg" alt="obrázek - Hotel U Růže" class="responsive-img" /></a>
+					</div>
+					<div class="col s6 m9">
+						<p class="place_type right"><a href="#">Slavonice</a> - <a href="#">centrum města</a></p>
+						<h5 class="light"><a href="#" class="black-text">Hotel U Růže</a></h5>
+						<p>Hotel U Růže se nachází přímo na náměstí a nabízí wellness centrum a nekuřácké pokoje...</p>
 						<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
 					</div>
 				</div>
