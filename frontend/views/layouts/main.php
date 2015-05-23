@@ -71,7 +71,7 @@ AppAsset::register($this);
 			    <div class="slider">
 				    <ul class="slides">
 					    <li>
-						    <img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/440621488b927705d1a7bcb2698dbaa2.jpg" class="hide-on-med-and-down" />
+						    <img src="http://localhost/projekty/ubytovani-slavonice/backend/web/uploads/440621488b927705d1a7bcb2698dbaa2.jpg" class="hide-on-med-and-down" />
 						    <div class="caption left-align">
 							    <h1><span>Hotel Arkáda</span></h1>
 							    <p class="flow-text white-text">Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí je neobyčejným zážitkem i ideální základnou k vychutnání krás Slavonic a České Kanady...</p>
@@ -79,7 +79,7 @@ AppAsset::register($this);
 						    </div>
 					    </li>
 					    <li>
-						    <img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/db8cc72393da98297aafb648dcae230f.jpg" class="hide-on-med-and-down" />
+						    <img src="http://localhost/projekty/ubytovani-slavonice/backend/web/uploads/db8cc72393da98297aafb648dcae230f.jpg" class="hide-on-med-and-down" />
 						    <div class="caption center-align">
 							    <h1><span>Hotel Besídka</span></h1>
 							    <p class="flow-text white-text">Hotel Besídka se nachází v budově z 16. století, která je kulturní památkou. Nabízí moderně zařízené pokoje, restauraci a keramickou dílnu...</p>
@@ -87,7 +87,7 @@ AppAsset::register($this);
 						    </div>
 					    </li>
 					    <li>
-						    <img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/c97fcd680de7bfd96c5bcbd7a63e0a54.jpg" class="hide-on-med-and-down" />
+						    <img src="http://localhost/projekty/ubytovani-slavonice/backend/web/uploads/c97fcd680de7bfd96c5bcbd7a63e0a54.jpg" class="hide-on-med-and-down" />
 						    <div class="caption right-align">
 							    <h1><span>Hotel U Růže</span></h1>
 							    <p class="flow-text white-text">Hotel U Růže se nachází přímo na náměstí a nabízí wellness centrum a nekuřácké pokoje s bezplatným Wi-Fi a satelitní LCD TV...</p>

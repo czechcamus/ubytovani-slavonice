@@ -37,11 +37,11 @@ $this->title = 'úvod';
 					<div class="row">
 						<div class="col s12 m6 input-field">
 							<input id="price_from" type="number" class="validate">
-							<label for="price_from" class="orange-text text-lighten-4">Cena v CZK za osobu a noc od</label>
+							<label for="price_from" class="orange-text text-lighten-4">Cena / osoba a noc od</label>
 						</div>
 						<div class="col s12 m6 input-field">
 							<input id="price_to" type="number" class="validate">
-							<label for="price_to" class="orange-text text-lighten-4">Cena v CZK za osobu a noc do</label>
+							<label for="price_to" class="orange-text text-lighten-4">Cena / osoba a noc do</label>
 						</div>
 					</div>
 				</div>
@@ -112,35 +112,35 @@ $this->title = 'úvod';
 		<div class="row">
 			<div class="col s12 facility-partner">
 				<div class="row">
-					<div class="col s6 m3">
-						<a href="#"><img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/thumbnails/440621488b927705d1a7bcb2698dbaa2.jpg" alt="obrázek - Hotel Arkádia" class="responsive-img" /></a>
+					<div class="col s12 m6 l4">
+						<a href="#"><img src="http://localhost/projekty/ubytovani-slavonice/backend/web/uploads/thumbnails/440621488b927705d1a7bcb2698dbaa2.jpg" alt="obrázek - Hotel Arkádia" class="responsive-img" /></a>
 					</div>
-					<div class="col s6 m9">
-						<p class="place_type right"><a href="#">Slavonice</a> - <a href="#">centrum města</a></p>
+					<div class="col s12 m6 l8">
+						<p class="place_type right"><a href="#">centrum města</a></p>
 						<h5 class="light"><a href="#" class="black-text">Hotel Arkáda</a></h5>
-						<p>Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí je neobyčejným zážitkem...</p>
+						<p>Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí...</p>
 						<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col s6 m3">
-						<a href="#"><img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/thumbnails/db8cc72393da98297aafb648dcae230f.jpg" alt="obrázek - Hotel Besídka" class="responsive-img" /></a>
+					<div class="col s12 m6 l4">
+						<a href="#"><img src="http://localhost/projekty/ubytovani-slavonice/backend/web/uploads/thumbnails/db8cc72393da98297aafb648dcae230f.jpg" alt="obrázek - Hotel Besídka" class="responsive-img" /></a>
 					</div>
-					<div class="col s6 m9">
-						<p class="place_type right"><a href="#">Slavonice</a> - <a href="#">centrum města</a></p>
+					<div class="col s12 m6 l8">
+						<p class="place_type right"><a href="#">centrum města</a></p>
 						<h5 class="light"><a href="#" class="black-text">Hotel Besídka</a></h5>
-						<p>Hotel Besídka se nachází v budově z 16. století, která je kulturní památkou. Nabízí moderně zařízené pokoje...</p>
+						<p>Hotel Besídka se nachází v budově z 16. století, která je kulturní památkou...</p>
 						<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col s6 m3">
-						<a href="#"><img src="http://nb_projects/ubytovani-slavonice/backend/web/uploads/thumbnails/c97fcd680de7bfd96c5bcbd7a63e0a54.jpg" alt="obrázek - Hotel U Růže" class="responsive-img" /></a>
+					<div class="col s12 m6 l4">
+						<a href="#"><img src="http://localhost/projekty/ubytovani-slavonice/backend/web/uploads/thumbnails/c97fcd680de7bfd96c5bcbd7a63e0a54.jpg" alt="obrázek - Hotel U Růže" class="responsive-img" /></a>
 					</div>
-					<div class="col s6 m9">
-						<p class="place_type right"><a href="#">Slavonice</a> - <a href="#">centrum města</a></p>
+					<div class="col s12 m6 l8">
+						<p class="place_type right"><a href="#">centrum města</a></p>
 						<h5 class="light"><a href="#" class="black-text">Hotel U Růže</a></h5>
-						<p>Hotel U Růže se nachází přímo na náměstí a nabízí wellness centrum a nekuřácké pokoje...</p>
+						<p>Hotel U Růže se nachází přímo na náměstí a nabízí wellness centrum...</p>
 						<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
 					</div>
 				</div>
@@ -166,6 +166,36 @@ $this->title = 'úvod';
 				<h5 class="light"><a href="http://www.slavonice.cz/o-nas/projekty/slavnosti-trojmezi/slavnosti-trojmezi-2014/29,732" class="black-text"><i class="mdi-action-event blue-text left"></i> Slavnosti Trojmezí</a></h5>
 				<p>Letošní SLAVNOSTI TROJMEZÍ se odehrávají na několika místech ve SLAVONICÍCH. Zde je popis, jak se na msíta dostat. Pořadatel: spolek Slavonická renesanční společnost, o.s.
 					Přijďte, těšíme se na Vás! <a href="http://www.slavonice.cz/o-nas/projekty/slavnosti-trojmezi/slavnosti-trojmezi-2014/29,732"><i class="mdi-navigation-arrow-forward"></i></a></p>
+			</div>
+		</div>
+		<div class="info row">
+			<div class="col s12">
+				<h6 class="light"><a href="#" class="black-text"><i class="mdi-maps-directions-walk blue-text left"></i> Graselovy stezky</a></h6>
+				<p>Vydejte se s námi po stezkách místy, kde loupil a skrýval se „grázl“ Johann Georg Grasel. <a href="#"><i class="mdi-navigation-arrow-forward"></i></a></p>
+			</div>
+		</div>
+		<div class="info row">
+			<div class="col s12">
+				<h6 class="light"><a href="#" class="black-text"><i class="mdi-maps-directions-bike blue-text left"></i> Cyklotrasy na Slavonicku</a></h6>
+				<p>Můžete si vybrat z několika tématických okruhů i z různých profilů tras. <a href="#"><i class="mdi-navigation-arrow-forward"></i></a></p>
+			</div>
+		</div>
+		<div class="info row">
+			<div class="col s12">
+				<h6 class="light"><a href="#" class="black-text"><i class="mdi-maps-local-attraction blue-text left"></i> Pamětihodnosti v okolí</a></h6>
+				<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In dolor elit, pellentesque non velit et, euismod molestie urna. <a href="#"><i class="mdi-navigation-arrow-forward"></i></a></p>
+			</div>
+		</div>
+		<div class="info row">
+			<div class="col s12">
+				<h6 class="light"><a href="#" class="black-text"><i class="mdi-maps-local-attraction blue-text left"></i> Sakrální památky</a></h6>
+				<p>Donec malesuada nibh tellus, a imperdiet metus tempor sed. Lorem ipsum dolor sit amet. <a href="#"><i class="mdi-navigation-arrow-forward"></i></a></p>
+			</div>
+		</div>
+		<div class="info row">
+			<div class="col s12">
+				<h6 class="light"><a href="#" class="black-text"><i class="mdi-image-nature blue-text left"></i> Přírodní zajímavosti</a></h6>
+				<p>In dolor elit, pellentesque non velit et, euismod molestie urna. Donec malesuada nibh tellus. <a href="#"><i class="mdi-navigation-arrow-forward"></i></a></p>
 			</div>
 		</div>
 	</div><!-- end of right column -->

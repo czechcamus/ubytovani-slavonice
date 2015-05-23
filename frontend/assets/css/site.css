@@ -8040,6 +8040,9 @@ body {
           color: #fff !important; }
   body .main-event h5, body .facility-partner h5 {
     margin-top: 0; }
+  body .info h6 {
+    font-size: 120%;
+    margin-top: 0; }
   body .place_type {
     margin-top: 0; }
     body .place_type a:hover {
