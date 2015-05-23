@@ -6,6 +6,7 @@ $translucent-black: rgba(#000, 0.5);
 $grey: #777;
 $white: #fff;
 $orange-lighten4: #ffe0b2;
+$blue-lighten3: #90caf9;
 $link-hover-color: color("light-blue", "darken-4");
 
 html {
@@ -91,5 +92,30 @@ body {
     a:hover {
       color: $link-hover-color;
     }
+  }
+  footer {
+    .contact-form {
+      i {
+        color: $white;
+      }
+      .input-field {
+        input, textarea {
+          color: $white;
+          &:focus {
+            border-color: $blue-lighten3;
+          }
+        }
+      }
+    }
+  }
+  .footer-copyright a {
+    color: $blue-lighten3;
+  }
+  .cd-top.cd-is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+  .cd-top.cd-fade-out {
+    opacity: .5;
   }
 }

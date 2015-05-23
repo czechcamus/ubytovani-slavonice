@@ -8047,5 +8047,18 @@ body {
     margin-top: 0; }
     body .place_type a:hover {
       color: #01579b; }
+  body footer .contact-form i {
+    color: #fff; }
+  body footer .contact-form .input-field input, body footer .contact-form .input-field textarea {
+    color: #fff; }
+    body footer .contact-form .input-field input:focus, body footer .contact-form .input-field textarea:focus {
+      border-color: #90caf9; }
+  body .footer-copyright a {
+    color: #90caf9; }
+  body .cd-top.cd-is-visible {
+    visibility: visible;
+    opacity: 1; }
+  body .cd-top.cd-fade-out {
+    opacity: .5; }
 
 /*# sourceMappingURL=site.css.map */

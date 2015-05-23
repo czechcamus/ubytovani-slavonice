@@ -36,11 +36,11 @@ $this->title = 'úvod';
 				<div class="col s12">
 					<div class="row">
 						<div class="col s12 m6 input-field">
-							<input id="price_from" type="number" class="validate">
+							<input id="price_from" type="number" />
 							<label for="price_from" class="orange-text text-lighten-4">Cena / osoba a noc od</label>
 						</div>
 						<div class="col s12 m6 input-field">
-							<input id="price_to" type="number" class="validate">
+							<input id="price_to" type="number" />
 							<label for="price_to" class="orange-text text-lighten-4">Cena / osoba a noc do</label>
 						</div>
 					</div>

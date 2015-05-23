@@ -105,13 +105,67 @@ AppAsset::register($this);
 	    <?= $content ?>
     </div>
 
-    <footer class="footer">
+    <footer class="page-footer blue">
         <div class="container">
-        <p class="pull-left">&copy; Slavonická renesanční o.p.s. <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
+	        <div class="row">
+		        <div class="col s12 l8">
+			        <form class="contact-form">
+				        <div class="row">
+					        <div class="col s12">
+						        <h5 class="white-text light">Kontaktní formulář:</h5>
+					        </div>
+				        </div>
+				        <div class="row">
+					        <div class="col s12 l6 input-field">
+						        <i class="mdi-action-account-circle prefix"></i>
+								<input id="name" type="text" />
+						        <label for="name" class="blue-text text-lighten-4">Vaše jméno</label>
+					        </div>
+					        <div class="col s12 l6 input-field">
+						        <i class="mdi-communication-email prefix"></i>
+						        <input id="email" type="email" />
+						        <label for="email" class="blue-text text-lighten-4">Váš email</label>
+					        </div>
+				        </div>
+				        <div class="row">
+							<div class="col s12 input-field">
+								<i class="mdi-editor-mode-edit prefix"></i>
+								<textarea id="message" class="materialize-textarea"></textarea>
+								<label for="message" class="blue-text text-lighten-4">Vaše zpráva</label>
+							</div>
+				        </div>
+				        <div class="row">
+					        <div class="col s4 white-text">
+								X C S a
+					        </div>
+					        <div class="col s8 input-field">
+						        <input id="code" type="text" />
+						        <label for="code" class="blue-text text-lighten-4">Opište kód z obrázku</label>
+					        </div>
+				        </div>
+				        <div class="row">
+					        <div class="col s12">
+						        <button class="btn orange waves-effect waves-light" type="submit" name="action">Odeslat
+							        <i class="mdi-content-send right"></i>
+						        </button>
+					        </div>
+				        </div>
+			        </form>
+		        </div>
+		        <div class="col s12 l4 center-align">
+			        komunikátor
+		        </div>
+	        </div>
         </div>
+	    <div class="footer-copyright">
+		    <div class="container">
+			    <div class="right right-align"><?= Yii::powered() ?></div>
+			    <div>&copy; Slavonická renesanční o.p.s. <?= date('Y') ?></div>
+		    </div>
+	    </div>
     </footer>
 
+    <a href="#0" class="cd-top"><i class="mdi-navigation-expand-less"></i></a>
     <?php $this->endBody() ?>
 </body>
 </html>
