@@ -18,11 +18,9 @@ class AppAsset extends AssetBundle
     public $sourcePath = '@app/assets';
     public $baseUrl = '@web';
     public $css = [
-	    //'back-to-top/css/style.css',
         'css/site.css'
     ];
     public $js = [
-	    'back-to-top/js/main.js',
 	    'js/site.js'
     ];
     public $depends = [

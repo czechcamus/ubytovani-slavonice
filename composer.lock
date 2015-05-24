@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0d11745c92d49255f522aaab68c6d8fb",
+    "hash": "40abaca1731953d5ee3b3383643f8cb4",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -287,6 +287,22 @@
             }
         },
         {
+            "name": "bower-asset/scroll-to-top",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/geniuscarrier/scrollToTop.git",
+                "reference": "b689f7345e825e66965ace26f918f4af4bad812e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/geniuscarrier/scrollToTop/zipball/b689f7345e825e66965ace26f918f4af4bad812e",
+                "reference": "b689f7345e825e66965ace26f918f4af4bad812e",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
+        },
+        {
             "name": "bower-asset/yii2-pjax",
             "version": "v2.0.4",
             "source": {
@@ -567,16 +583,16 @@
         },
         {
             "name": "kartik-v/dependent-dropdown",
-            "version": "v1.4.0",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/dependent-dropdown.git",
-                "reference": "cbab8a3487cfc2a2fd6a2d63812915523f648a80"
+                "reference": "a938210be3276606b1d81d82776aff0e4962d3c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/cbab8a3487cfc2a2fd6a2d63812915523f648a80",
-                "reference": "cbab8a3487cfc2a2fd6a2d63812915523f648a80",
+                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/a938210be3276606b1d81d82776aff0e4962d3c9",
+                "reference": "a938210be3276606b1d81d82776aff0e4962d3c9",
                 "shasum": ""
             },
             "type": "library",
@@ -587,7 +603,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -605,7 +621,7 @@
                 "option",
                 "select"
             ],
-            "time": "2015-02-01 13:03:27"
+            "time": "2015-05-22 12:25:10"
         },
         {
             "name": "kartik-v/php-date-formatter",
@@ -1091,16 +1107,16 @@
         },
         {
             "name": "kartik-v/yii2-widget-depdrop",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-depdrop.git",
-                "reference": "f508999940da61568b197ef4030b5f03f86b0d65"
+                "reference": "69acb9e2ca35c789e6de09c6ea9a94b68a36776b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/f508999940da61568b197ef4030b5f03f86b0d65",
-                "reference": "f508999940da61568b197ef4030b5f03f86b0d65",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-depdrop/zipball/69acb9e2ca35c789e6de09c6ea9a94b68a36776b",
+                "reference": "69acb9e2ca35c789e6de09c6ea9a94b68a36776b",
                 "shasum": ""
             },
             "require": {
@@ -1115,7 +1131,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -1136,7 +1152,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-08 19:07:46"
+            "time": "2015-05-22 10:15:23"
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
@@ -1792,6 +1808,51 @@
                 "mailer"
             ],
             "time": "2015-03-14 06:06:39"
+        },
+        {
+            "name": "uran1980/yii2-scroll-to-top",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uran1980/yii2-scroll-to-top.git",
+                "reference": "cb26d954df0b337059a0c34ad86c9bfb5fa50ae7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uran1980/yii2-scroll-to-top/zipball/cb26d954df0b337059a0c34ad86c9bfb5fa50ae7",
+                "reference": "cb26d954df0b337059a0c34ad86c9bfb5fa50ae7",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/scroll-to-top": "*",
+                "yiisoft/yii2": "~2"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "uran1980\\yii\\widgets\\scrollToTop\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Yakovlev",
+                    "email": "uran1980@gmail.com",
+                    "homepage": "https://github.com/uran1980",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Scroll-to-top button widget for Yii2",
+            "homepage": "https://github.com/uran1980/yii2-scroll-to-top",
+            "keywords": [
+                "scrollToTop",
+                "widgets",
+                "yii2"
+            ],
+            "time": "2015-03-12 23:33:25"
         },
         {
             "name": "webmaxx/yii2-materialize",
@@ -2480,7 +2541,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kartik-v/yii2-datecontrol": 20
+        "kartik-v/yii2-datecontrol": 20,
+        "uran1980/yii2-scroll-to-top": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

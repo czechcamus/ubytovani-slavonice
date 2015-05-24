@@ -165,7 +165,8 @@ AppAsset::register($this);
 	    </div>
     </footer>
 
-    <a href="#0" class="cd-top"><i class="mdi-navigation-expand-less"></i></a>
+    <?php echo uran1980\yii\widgets\scrollToTop\ScrollToTop::widget(); ?>
+
     <?php $this->endBody() ?>
 </body>
 </html>
