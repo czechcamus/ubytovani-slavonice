@@ -169,5 +169,23 @@ AppAsset::register($this);
 
     <?php $this->endBody() ?>
 </body>
+<!-- Chatwoo -->
+<script type='text/javascript'>
+	function chatwoo_a() {
+		var s = document.createElement('script');
+		s.type = 'text/javascript';
+		s.src = 'https://chatwoo.com/c1.jsp?host=' + window.location.host + '&hostname=https://chatwoo.com/' ;
+		document.getElementsByTagName('head')[0].appendChild(s);
+	}
+
+	function chatwoo_d(r) {
+		var s = document.createElement('script');
+		s.type = 'text/javascript';
+		s.src = r.d;
+		document.getElementsByTagName('head')[0].appendChild(s);
+	}
+	chatwoo_a();
+</script>
+<!-- End of Chatwoo-->
 </html>
 <?php $this->endPage() ?>
