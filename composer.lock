@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "40abaca1731953d5ee3b3383643f8cb4",
+    "hash": "52e284a82241a0afaca6e9268e434caf",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -177,85 +177,6 @@
                 "jquery",
                 "mask",
                 "plugins"
-            ]
-        },
-        {
-            "name": "bower-asset/materialize",
-            "version": "v0.96.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Dogfalo/materialize.git",
-                "reference": "b3698e6282997eecd4cd9abf8720d4e605a762ee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Dogfalo/materialize/zipball/b3698e6282997eecd4cd9abf8720d4e605a762ee",
-                "reference": "b3698e6282997eecd4cd9abf8720d4e605a762ee",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/jquery": ">=2.1.1"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "bin/materialize.css",
-                    "bin/materialize.js",
-                    "font/material-design-icons/Material-Design-Icons.eot",
-                    "font/material-design-icons/Material-Design-Icons.svg",
-                    "font/material-design-icons/Material-Design-Icons.ttf",
-                    "font/material-design-icons/Material-Design-Icons.woff",
-                    "font/material-design-icons/Material-Design-Icons.woff2",
-                    "font/roboto/Roboto-Bold.ttf",
-                    "font/roboto/Roboto-Bold.woff",
-                    "font/roboto/Roboto-Bold.woff2",
-                    "font/roboto/Roboto-Light.ttf",
-                    "font/roboto/Roboto-Light.woff",
-                    "font/roboto/Roboto-Light.woff2",
-                    "font/roboto/Roboto-Medium.ttf",
-                    "font/roboto/Roboto-Medium.woff",
-                    "font/roboto/Roboto-Medium.woff2",
-                    "font/roboto/Roboto-Regular.ttf",
-                    "font/roboto/Roboto-Regular.woff",
-                    "font/roboto/Roboto-Regular.woff2",
-                    "font/roboto/Roboto-Thin.ttf",
-                    "font/roboto/Roboto-Thin.woff",
-                    "font/roboto/Roboto-Thin.woff2"
-                ],
-                "bower-asset-ignore": [
-                    "jade/",
-                    ".gitignore",
-                    "CNAME",
-                    "css/",
-                    "bower.json",
-                    "README.md",
-                    "images/",
-                    "js/jquery.timeago.js",
-                    "js/init.js",
-                    "js/prism.js",
-                    "res/",
-                    "sass/style.scss",
-                    "sass/ghpages-materialize.scss",
-                    "**/*.html",
-                    "**/*.zip",
-                    "**/*.txt",
-                    "sitemap.xml",
-                    "package.json",
-                    "Gruntfile.js"
-                ]
-            },
-            "description": "A modern responsive front-end framework based on Material Design",
-            "keywords": [
-                "css",
-                "design",
-                "framework",
-                "front-end",
-                "js",
-                "material",
-                "mobile-first",
-                "responsive",
-                "sass",
-                "ux"
             ]
         },
         {
@@ -1853,53 +1774,6 @@
                 "yii2"
             ],
             "time": "2015-03-12 23:33:25"
-        },
-        {
-            "name": "webmaxx/yii2-materialize",
-            "version": "v1.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webmaxx/yii2-materialize.git",
-                "reference": "4a9eb794d0d283fa9c748d06403206141fb233a2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/webmaxx/yii2-materialize/zipball/4a9eb794d0d283fa9c748d06403206141fb233a2",
-                "reference": "4a9eb794d0d283fa9c748d06403206141fb233a2",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/materialize": "@stable",
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "asset-installer-paths": {
-                    "npm-asset-library": "vendor/npm",
-                    "bower-asset-library": "vendor/bower"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "webmaxx\\materialize\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "webmaxx",
-                    "email": "webmaxx@webmaxx.name"
-                }
-            ],
-            "description": "The Materialize extension for the Yii framework",
-            "keywords": [
-                "materialize",
-                "yii2"
-            ],
-            "time": "2015-03-27 12:46:12"
         },
         {
             "name": "yiisoft/yii2",

@@ -24,7 +24,6 @@ class AppAsset extends AssetBundle
 	    'js/site.js'
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-	    'webmaxx\materialize\MaterializeAsset',
+	    'frontend\assets\MaterializeAsset',
     ];
 }

@@ -13,12 +13,15 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class HomeAsset extends AssetBundle
+class PageAsset extends AssetBundle
 {
     public $sourcePath = '@app/assets';
     public $baseUrl = '@web';
+	public $css = [
+		'css/page.css'
+	];
     public $js = [
-	    'js/home.js'
+	    'js/page.js'
     ];
     public $depends = [
         'frontend\assets\AppAsset'

@@ -56,7 +56,7 @@ class FacilitySearch extends Facility
 		]);
 
 		$dataProvider->setSort([
-			'attributes' => 'active DESC'
+			'attributes' => ['active DESC']
 		]);
 
 		if (!($this->load($params) && $this->validate())) {

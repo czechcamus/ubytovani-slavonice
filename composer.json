@@ -19,7 +19,6 @@
         "kartik-v/yii2-widgets": "*",
         "kartik-v/yii2-field-range": "*",
         "yiisoft/yii2-imagine": "~2.0",
-        "webmaxx/yii2-materialize": "~1.0",
         "uran1980/yii2-scroll-to-top": "dev-master"
     },
     "require-dev": {

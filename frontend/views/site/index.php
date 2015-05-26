@@ -1,5 +1,7 @@
 <?php
 /* @var $this yii\web\View */
+use frontend\assets\HomeAsset;
+
 $this->title = 'úvod';
 
 HomeAsset::register($this);
