@@ -13,10 +13,11 @@ return [
     'name' => 'Ubytování ve Slavonicích',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-        ],
+	    'user' => [
+		    'class' => 'common\components\User',
+		    'identityClass' => 'common\models\User',
+		    'enableAutoLogin' => true,
+	    ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -28,6 +29,29 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+        'i18n' => [
+	        'translations' => [
+		        'front*' => [
+			        'class' => 'yii\i18n\PhpMessageSource',
+			        'fileMap' => [
+				        'front' => 'front.php',
+				        'front/error' => 'error.php',
+			        ],
+		        ],
+		        'app*' => [
+			        'class' => 'yii\i18n\PhpMessageSource',
+			        'basePath' => '@common/messages',
+			        'fileMap' => [
+				        'app' => 'app.php',
+				        'app/error' => 'error.php',
+			        ],
+		        ],
+	        ],
+        ],
+        'urlManager' => [
+	        'enablePrettyUrl' => true,
+	        'showScriptName' => false
         ],
     ],
     'params' => $params,

@@ -7,7 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * SearchFacility represents the model behind the search form about `common\models\facility\Facility`.
+ * FacilitySearch represents the model behind the search form about `common\models\facility\Facility`.
  */
 class FacilitySearch extends Facility
 {
