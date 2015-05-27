@@ -10,9 +10,10 @@ $this->title = 'Seznam ubytování';
 echo ListView::widget([
 	'dataProvider' => $dataProvider,
 	'options' => [
-		'class' => 'list-view section container'
+		'class' => 'section container'
 	],
-	'summary' => '',
+	//'summary' => '',
+	'layout' => "<div class='row'>{items}</div>\n{pager}",
 	'pager' => [
 		'class' => LinkPager::className()
 	],

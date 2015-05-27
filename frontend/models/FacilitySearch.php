@@ -52,11 +52,15 @@ class FacilitySearch extends Facility
 		$query->leftJoin(['roomSum' => $subQuery], 'roomSum.facility_id = facility.id');
 
 		$dataProvider = new ActiveDataProvider([
-			'query' => $query
-		]);
-
-		$dataProvider->setSort([
-			'attributes' => ['active DESC']
+			'query' => $query,
+			'sort' => [
+				'defaultOrder' => [
+					'partner' => SORT_DESC
+				]
+			],
+			'pagination' => [
+				'pageSize' => 10
+			]
 		]);
 
 		if (!($this->load($params) && $this->validate())) {

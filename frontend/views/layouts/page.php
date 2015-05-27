@@ -11,7 +11,7 @@ PageAsset::register($this);
 
 	<div id="page-banner" class="parallax-container">
 		<div class="section container">
-			<h1><span><?= Html::encode($this->title); ?></span></h1>
+			<h1 class="center-align"><span><?= Html::encode($this->title); ?></span></h1>
 		</div>
 		<div class="parallax"><img src="<?php echo Yii::$app->request->baseUrl; ?>/images/slavonice2.jpg" alt="obrázek - Slavonice"></div>
 	</div>
