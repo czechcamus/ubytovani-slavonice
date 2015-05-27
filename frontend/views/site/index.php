@@ -16,7 +16,7 @@ HomeAsset::register($this);
 						<div class="caption left-align">
 							<h1><span>Hotel Arkáda</span></h1>
 							<p class="flow-text white-text">Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí je neobyčejným zážitkem i ideální základnou k vychutnání krás Slavonic a České Kanady...</p>
-							<a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light">Detail ubytování</a>
+							<a href="http://materializecss.com/getting-started.html" class="btn-large waves-effect waves-light">Detail ubytování</a>
 						</div>
 					</li>
 					<li>
@@ -24,7 +24,7 @@ HomeAsset::register($this);
 						<div class="caption center-align">
 							<h1><span>Hotel Besídka</span></h1>
 							<p class="flow-text white-text">Hotel Besídka se nachází v budově z 16. století, která je kulturní památkou. Nabízí moderně zařízené pokoje, restauraci a keramickou dílnu...</p>
-							<a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light">Detail ubytování</a>
+							<a href="http://materializecss.com/getting-started.html" class="btn-large waves-effect waves-light">Detail ubytování</a>
 						</div>
 					</li>
 					<li>
@@ -32,7 +32,7 @@ HomeAsset::register($this);
 						<div class="caption right-align">
 							<h1><span>Hotel U Růže</span></h1>
 							<p class="flow-text white-text">Hotel U Růže se nachází přímo na náměstí a nabízí wellness centrum a nekuřácké pokoje s bezplatným Wi-Fi a satelitní LCD TV...</p>
-							<a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light">Detail ubytování</a>
+							<a href="http://materializecss.com/getting-started.html" class="btn-large waves-effect waves-light">Detail ubytování</a>
 						</div>
 					</li>
 				</ul>
@@ -161,7 +161,6 @@ HomeAsset::register($this);
 							<a href="#"><img src="http://localhost/projekty/ubytovani-slavonice/backend/web/uploads/thumbnails/440621488b927705d1a7bcb2698dbaa2.jpg" alt="obrázek - Hotel Arkádia" class="responsive-img" /></a>
 						</div>
 						<div class="col s12 m6 l8">
-							<p class="place_type right"><a href="#">centrum města</a></p>
 							<h5 class="light"><a href="#" class="black-text">Hotel Arkáda</a></h5>
 							<p>Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí...</p>
 							<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
@@ -172,7 +171,6 @@ HomeAsset::register($this);
 							<a href="#"><img src="http://localhost/projekty/ubytovani-slavonice/backend/web/uploads/thumbnails/db8cc72393da98297aafb648dcae230f.jpg" alt="obrázek - Hotel Besídka" class="responsive-img" /></a>
 						</div>
 						<div class="col s12 m6 l8">
-							<p class="place_type right"><a href="#">centrum města</a></p>
 							<h5 class="light"><a href="#" class="black-text">Hotel Besídka</a></h5>
 							<p>Hotel Besídka se nachází v budově z 16. století, která je kulturní památkou...</p>
 							<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
@@ -183,7 +181,6 @@ HomeAsset::register($this);
 							<a href="#"><img src="http://localhost/projekty/ubytovani-slavonice/backend/web/uploads/thumbnails/c97fcd680de7bfd96c5bcbd7a63e0a54.jpg" alt="obrázek - Hotel U Růže" class="responsive-img" /></a>
 						</div>
 						<div class="col s12 m6 l8">
-							<p class="place_type right"><a href="#">centrum města</a></p>
 							<h5 class="light"><a href="#" class="black-text">Hotel U Růže</a></h5>
 							<p>Hotel U Růže se nachází přímo na náměstí a nabízí wellness centrum...</p>
 							<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>

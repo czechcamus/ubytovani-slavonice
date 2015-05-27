@@ -174,6 +174,13 @@ class Facility extends ActiveRecord
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
+	public function getImages() {
+		return $this->hasMany(Image::className(), ['facility_id' => 'id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
 	public function getSubject() {
 		return $this->hasOne(Subject::className(), ['id' => 'subject_id']);
 	}

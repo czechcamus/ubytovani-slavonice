@@ -1,4 +1,7 @@
 body .parallax-container {
   height: 150px; }
+body .partner-facility h3, body .facility h3 {
+  font-size: 2rem;
+  margin: 0; }
 
 /*# sourceMappingURL=page.css.map */

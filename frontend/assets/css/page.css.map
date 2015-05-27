@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AACE,wBAAoB;EAClB,MAAM,EAAE,KAAK",
+"mappings": "AACE,wBAAoB;EAClB,MAAM,EAAE,KAAK;AAGb,4CAAG;EACD,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,CAAC",
 "sources": ["../sass/page.scss"],
 "names": [],
 "file": "page.css"

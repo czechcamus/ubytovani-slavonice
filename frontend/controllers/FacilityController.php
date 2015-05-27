@@ -31,7 +31,7 @@ class FacilityController extends Controller
 	    $searchModel = new FacilitySearch();
 	    $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
 
-        return $this->render('index', compact('searchModel', 'dataProvider'));
+        return $this->render('index', compact('dataProvider'));
     }
 
 	/**
