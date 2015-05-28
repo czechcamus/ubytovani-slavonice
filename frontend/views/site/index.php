@@ -1,5 +1,7 @@
 <?php
 /* @var $this yii\web\View */
+/* @var $searchModel frontend\models\FacilitySearch */
+
 use frontend\assets\HomeAsset;
 
 $this->title = 'úvod';
@@ -45,115 +47,7 @@ HomeAsset::register($this);
 <div class="container section">
 	<div class="row">
 		<div class="col s12 m6">
-			<form class="facility-select-form orange">
-				<div class="row">
-					<div class="col s12">
-						<h4 class="white-text light"><i class="mdi-action-search left"></i> Najít ubytování ve Slavonicích</h4>
-					</div>
-					<div class="col s12 input-field">
-						<select id="place_type" class="white-text">
-							<option value="1" selected> kdekoli </option>
-							<option value="2"> centrum města </option>
-							<option value="3"> okraj města </option>
-							<option value="4"> centrum obce </option>
-							<option value="5"> okraj obce </option>
-							<option value="6"> polosamota </option>
-							<option value="7"> samota </option>
-						</select>
-						<label for="place_type" class="orange-text text-lighten-4">Výběr polohy ubytovacího zařízení</label>
-					</div>
-					<div class="col s12 input-field">
-						<select id="facility_type" class="white-text">
-							<option value="1" selected> cokoli </option>
-							<option value="2"> hotel </option>
-							<option value="3"> penzion </option>
-							<option value="4"> ubytovna </option>
-							<option value="5"> privat </option>
-							<option value="6"> chalupa </option>
-							<option value="7"> chata </option>
-						</select>
-						<label for="facility_type" class="orange-text text-lighten-4">Výběr typu ubytovacího zařízení</label>
-					</div>
-					<div class="col s12">
-						<div class="row">
-							<div class="col s12 m6 input-field">
-								<input id="price_from" type="number" />
-								<label for="price_from" class="orange-text text-lighten-4">Cena / osoba a noc od</label>
-							</div>
-							<div class="col s12 m6 input-field">
-								<input id="price_to" type="number" />
-								<label for="price_to" class="orange-text text-lighten-4">Cena / osoba a noc do</label>
-							</div>
-							<div class="col s12 m6 input-field">
-								<input id="bed_nr" type="number" />
-								<label for="bed_nr" class="orange-text text-lighten-4">Počet lůžek</label>
-							</div>
-						</div>
-					</div>
-					<div class="col s12">
-						<ul class="collapsible" data-collapsible="accordion">
-							<li>
-								<div class="collapsible-header white-text">rošířené možnosti vyhledávání <i class="mdi-hardware-keyboard-arrow-down"></i></div>
-								<div class="collapsible-body white-text">
-									<div class="row">
-										<div class="col s12">
-											<h5 class="light">Požadované vlastnosti ubytovacího zařízení</h5>
-										</div>
-										<div class="col s12 m6">
-											<input type="checkbox" id="no-barriers" />
-											<label for="no-barriers" class="white-text">bezbariérovost</label><br />
-											<input type="checkbox" id="bikers" />
-											<label for="bikers">cyklisté vítáni</label><br />
-											<input type="checkbox" id="children" />
-											<label for="children">děti</label><br />
-											<input type="checkbox" id="animals" />
-											<label for="animals">zvířata</label>
-										</div>
-										<div class="col s12 m6">
-											<input type="checkbox" id="internet" />
-											<label for="internet">internet</label><br />
-											<input type="checkbox" id="food-in-price" />
-											<label for="food-in-price">jídlo v ceně</label><br />
-											<input type="checkbox" id="food-optional" />
-											<label for="food-optional">možnost jídla</label><br />
-											<input type="checkbox" id="parking" />
-											<label for="parking">parkování</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col s12">
-											<h5 class="light">Požadované vlastnosti pokoje</h5>
-										</div>
-										<div class="col s12 m6">
-											<input type="checkbox" id="room-internet" />
-											<label for="room-internet">internet</label><br />
-											<input type="checkbox" id="bathroom" />
-											<label for="bathroom">koupelna</label><br />
-											<input type="checkbox" id="douche" />
-											<label for="douche">sprcha</label>
-										</div>
-										<div class="col s12 m6">
-											<input type="checkbox" id="phone" />
-											<label for="phone">telefon</label><br />
-											<input type="checkbox" id="tv" />
-											<label for="tv">TV</label><br />
-											<input type="checkbox" id="wc" />
-											<label for="wc">WC</label>
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col s12">
-						<button class="btn waves-effect waves-light" type="submit" name="action">Najít
-							<i class="mdi-action-search right"></i>
-						</button>
-					</div>
-				</div>
-			</form>
+			<?= $this->renderFile('@app/views/general/facilitySelectForm.php', compact('searchModel')); ?>
 			<div class="row">
 				<div class="col s12 facility-partner">
 					<div class="row">

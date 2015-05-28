@@ -10,8 +10,11 @@ namespace frontend\models;
 
 use common\models\facility\Facility;
 use common\models\facility\Room;
+use common\models\property\FacilityProperty;
+use common\models\property\RoomProperty;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class FacilitySearch represents the model behind the frontend search form
@@ -22,13 +25,38 @@ class FacilitySearch extends Facility
 	public $priceFrom;
 	public $priceTo;
 	public $bedNr;
+	public $verifyCode;
+	public $facilityProperties = [];
+	public $roomProperties = [];
+
+	/**
+	 * @inheritdoc
+	 */
+	public function __construct() {
+		$this->facilityProperties = ArrayHelper::map(FacilityProperty::find()->orderBy('title')->all(), 'id', 'title');
+		$this->roomProperties = ArrayHelper::map(RoomProperty::find()->orderBy('title')->all(), 'id', 'title');
+	}
 
 	/**
 	 * @inheritdoc
 	 */
 	public function rules() {
 		return [
-			[['priceFrom', 'priceTo', 'bedNr'], 'integer']
+			[['priceFrom', 'priceTo', 'bedNr'], 'integer'],
+			['verifyCode', 'captcha']
+		];
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function attributeLabels()
+	{
+		return [
+			'priceFrom' => \Yii::t('front', 'Price from (person and night)'),
+			'priceTo' => \Yii::t('front', 'Price to (person and night)'),
+			'bedNr' => \Yii::t('front', 'Number of beds'),
+			'verifyCode' => \Yii::t('front', 'Verification code'),
 		];
 	}
 

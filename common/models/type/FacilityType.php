@@ -49,9 +49,15 @@ class FacilityType extends TypeModel
 
 	/**
 	 * Gets facility types for drop down list
+	 * @param bool $selectAllOption wheter do display "anywhere" as first option
 	 * @return array
 	 */
-	public static function getFacilityTypeOptions() {
-		return ArrayHelper::map(self::find()->orderBy('title')->all(), 'id', 'title');
+	public static function getFacilityTypeOptions($selectAllOption = false) {
+		$options = ArrayHelper::map(self::find()->orderBy('title')->all(), 'id', 'title');
+		if ($selectAllOption == true) {
+			$allOption = ['0' => Yii::t('app', 'anything')];
+			$options = array_merge($allOption, $options);
+		}
+		return $options;
 	}
 }

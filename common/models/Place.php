@@ -57,10 +57,16 @@ class Place extends ActiveRecord
 
 	/**
 	 * Gets places for drop down list
+	 * @param bool $selectAllOption wheter do display "anywhere" as first option
 	 * @return array
 	 */
-	public static function getPlaceOptions() {
-		return ArrayHelper::map(self::find()->orderBy('title')->all(), 'id', 'title');
+	public static function getPlaceOptions($selectAllOption = false) {
+		$options = ArrayHelper::map(self::find()->orderBy('title')->all(), 'id', 'title');
+		if ($selectAllOption == true) {
+			$allOption = ['0' => Yii::t('app', 'anywhere')];
+			$options = array_merge($allOption, $options);
+		}
+		return $options;
 	}
 
 }
