@@ -4,6 +4,7 @@
 
 use common\models\Place;
 use common\models\type\FacilityType;
+use frontend\components\FacilitySearchPropertyList;
 use frontend\utilities\materialize\ActiveForm;
 use yii\helpers\Html;
 
@@ -52,53 +53,27 @@ use yii\helpers\Html;
 							<div class="col s12">
 								<h5 class="light"><?= Yii::t('front', 'Requested attributes of accommodations facility'); ?></h5>
 							</div>
-							<?php
-							$i = 0;
-							$testValue = 0;
-							$elementCnt = count($searchModel->facilityProperties);
-							$divider = ceil($elementCnt / 2);
-							foreach ( $searchModel->facilityProperties as $key => $title ) {
-								$testValue = $i % $divider;
-								if ($testValue == 0) {
-									echo "<div class=\"col s12 m6\">\n";
-								}
-								$id = 'facilitysearch-facilityproperties-fp_' . $key;
-								echo Html::checkbox('FacilitySearch[facilityProperties][fp_' . $key . ']', false, [
-									'id' => $id,
-									'value' => 0
-								]);
-								echo Html::label($title, $id);
-								echo "<br />\n";
-								if ($testValue == ($divider - 1)) {
-									echo "</div>\n";
-								}
-								++$i;
-							}
-							if ($testValue != ($divider - 1)) {
-								echo "</div>\n";
-							}
+							<?= FacilitySearchPropertyList::widget([
+								'properties' => $searchModel->facilityProperties,
+								'propertyName' => 'FacilitySearch[facilityProperties]',
+								'wrapperOptions' => [
+									'class' => 'col s12 m6'
+								]
+							]);
 							?>
 						</div>
 						<div class="row">
 							<div class="col s12">
 								<h5 class="light"><?= Yii::t('front', 'Requested attributes of room'); ?></h5>
 							</div>
-							<div class="col s12 m6">
-								<input type="checkbox" id="bathroom" />
-								<label for="bathroom">koupelna</label><br />
-								<input type="checkbox" id="douche" />
-								<label for="douche">sprcha</label>
-								<input type="checkbox" id="wc" />
-								<label for="wc">WC</label>
-							</div>
-							<div class="col s12 m6">
-								<input type="checkbox" id="room-internet" />
-								<label for="room-internet">internet</label><br />
-								<input type="checkbox" id="phone" />
-								<label for="phone">telefon</label><br />
-								<input type="checkbox" id="tv" />
-								<label for="tv">TV</label><br />
-							</div>
+							<?= FacilitySearchPropertyList::widget([
+								'properties' => $searchModel->roomProperties,
+								'propertyName' => 'FacilitySearch[roomProperties]',
+								'wrapperOptions' => [
+									'class' => 'col s12 m6'
+								]
+							]);
+							?>
 						</div>
 					</div>
 				</li>
@@ -107,9 +82,9 @@ use yii\helpers\Html;
 	</div>
 	<div class="row">
 		<div class="col s12">
-			<button class="btn waves-effect waves-light" type="submit" name="action"><?= Yii::t('front', 'Search'); ?>
-				<i class="mdi-action-search right"></i>
-			</button>
+			<?= Html::submitButton(Yii::t('front', 'Search') . '<i class="mdi-action-search right"></i>', [
+				'class' => 'btn waves-effect waves-light'
+			]); ?>
 		</div>
 	</div>
 <?php ActiveForm::end(); ?>

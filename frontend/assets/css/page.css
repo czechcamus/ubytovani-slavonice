@@ -6,7 +6,7 @@ body .partner-facility h3 {
 body .facility h4 {
   font-size: 1.6rem;
   margin: 0; }
-body .facility p {
-  margin: 5px 0; }
+body .place {
+  margin: 0 0 5px; }
 
 /*# sourceMappingURL=page.css.map */

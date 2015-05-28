@@ -17,15 +17,17 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Please contact us if you think this is a server error. Thank you.' => 'Pokud si myslíte, že je to chyba serveru, tak nás kontaktujte. Díky ;)',
+    'The above error occurred while the Web server was processing your request.' => 'Při zpracování požadavku nastala výše uvedená chyba.',
     'Advanced options of searching' => 'Rozšířené možnosti vyhledávání',
+    'Number of beds' => 'Počet lůžek',
+    'Place of accomodation facility' => 'Poloha ubytovacího zařízení',
+    'Price from (person and night)' => 'Cena od (osoba a noc)',
+    'Price to (person and night)' => 'Cena do (osoba a noc)',
     'Requested attributes of accommodations facility' => 'Požadované vlastnosti ubytovacího zařízení',
     'Requested attributes of room' => 'Požadované vlastnosti pokoje',
     'Search' => 'Hledat',
     'Search for accomodation in Slavonice' => 'Hledat ubytování ve Slavonicích',
-    'Number of beds' => 'Počet lůžek',
-    'Place of accommodation facility' => 'Poloha ubytování',
-    'Price from (person and night)' => 'Cena od (osoba a noc)',
-    'Price to (person and night)' => 'Cena do (osoba a noc)',
-    'Type of accommodation facility' => 'Typ ubytovacího zařízení',
+    'Type of accomodation facility' => 'Typ ubytovacího zařízení',
     'Verification code' => 'Ověřovací kód',
 ];

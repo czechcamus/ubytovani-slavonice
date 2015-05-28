@@ -57,6 +57,8 @@ class FacilitySearch extends Facility
 			'priceTo' => \Yii::t('front', 'Price to (person and night)'),
 			'bedNr' => \Yii::t('front', 'Number of beds'),
 			'verifyCode' => \Yii::t('front', 'Verification code'),
+			'place_id' => \Yii::t('front', 'Place of accomodation facility'),
+			'facility_type_id' => \Yii::t('front', 'Type of accomodation facility')
 		];
 	}
 

@@ -37,7 +37,7 @@ AppAsset::register($this);
         $menuItems = [
             ['label' => 'Úvod', 'url' => ['/site/index']],
             ['label' => 'Ubytování', 'items' => [
-	            ['label' => 'První položka', 'url' => '#'],
+	            ['label' => 'Seznam ubytování', 'url' => ['facility/index']],
 	            ['label' => 'Druhá položka', 'url' => '#'],
 	            ['label' => 'Třetí položka', 'url' => '#']
             ]],
