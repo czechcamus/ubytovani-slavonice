@@ -96,14 +96,30 @@ class FacilitySearch extends Facility
 		if (!($this->load($params) && $this->validate())) {
 			return $dataProvider;
 		} else {
+			$query->distinct();
 			if (isset($params['FacilitySearch']['facilityProperties'])) {
 				$activeProperties = array_keys($params['FacilitySearch']['facilityProperties']);
 				$propertyCount = count($activeProperties);
 				$query->innerJoinWith(['facilityProperties']);
-				$query->andWhere(['object_property.property_id' => $activeProperties]);
 				$query->andWhere([
-					'object_property.property_value' => 1,
+					'object_property.property_id' => $activeProperties,
+					'object_property.property_value' => 1
 				]);
+				$query->groupBy('facility.id');
+				$query->having(['COUNT(*)' => $propertyCount]);
+			}
+			//$query->innerJoinWith('rooms.prices');
+			//$query->andFilterWhere(['between', 'price.fee', $params['FacilitySearch']['priceFrom'], $params['FacilitySearch']['priceTo']]);
+			if (isset($params['FacilitySearch']['roomProperties'])) {
+				$activeProperties = array_keys($params['FacilitySearch']['roomProperties']);
+				$propertyCount = count($activeProperties);
+				$query->innerJoinWith(['rooms.roomProperties']);
+				$query->andWhere([
+					'object_property.property_id' => $activeProperties,
+					'object_property.property_value' => 1
+				]);
+				$query->groupBy('room.id');
+				$query->having(['COUNT(*)' => $propertyCount]);
 			}
 		}
 
