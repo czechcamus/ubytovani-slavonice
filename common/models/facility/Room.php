@@ -3,6 +3,7 @@
 namespace common\models\facility;
 
 use common\models\property\RoomProperty;
+use common\models\PropertyModel;
 use common\models\type\RoomType;
 use common\utilities\ObjectsRelationsDelete;
 use Yii;
@@ -22,7 +23,6 @@ use yii\db\ActiveRecord;
  * @property Price[] $prices
  * @property RoomType $roomType
  * @property Facility $facility
- * @property ObjectProperty[] $objectProperties
  * @property RoomProperty[] $roomProperties
  */
 class Room extends ActiveRecord
@@ -100,16 +100,8 @@ class Room extends ActiveRecord
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getObjectProperties()
-	{
-		return $this->hasMany(ObjectProperty::className(), ['object_id' => 'id']);
-	}
-
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
 	public function getRoomProperties()
 	{
-		return $this->hasMany(RoomProperty::className(), ['id' => 'room_property_id'])->via('objectProperties');
+		return $this->hasMany(ObjectProperty::className(), ['object_id' => 'id'])->where(['object_type' => PropertyModel::ROOM_PROPERTY]);
 	}
 }

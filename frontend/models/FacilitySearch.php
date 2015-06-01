@@ -14,6 +14,7 @@ use common\models\property\FacilityProperty;
 use common\models\property\RoomProperty;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\db\Query;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -25,7 +26,6 @@ class FacilitySearch extends Facility
 	public $priceFrom;
 	public $priceTo;
 	public $bedNr;
-	public $verifyCode;
 	public $facilityProperties = [];
 	public $roomProperties = [];
 
@@ -42,8 +42,7 @@ class FacilitySearch extends Facility
 	 */
 	public function rules() {
 		return [
-			[['priceFrom', 'priceTo', 'bedNr'], 'integer'],
-			['verifyCode', 'captcha']
+			[['priceFrom', 'priceTo', 'bedNr'], 'integer']
 		];
 	}
 
@@ -56,7 +55,6 @@ class FacilitySearch extends Facility
 			'priceFrom' => \Yii::t('front', 'Price from (person and night)'),
 			'priceTo' => \Yii::t('front', 'Price to (person and night)'),
 			'bedNr' => \Yii::t('front', 'Number of beds'),
-			'verifyCode' => \Yii::t('front', 'Verification code'),
 			'place_id' => \Yii::t('front', 'Place of accomodation facility'),
 			'facility_type_id' => \Yii::t('front', 'Type of accomodation facility')
 		];
@@ -76,10 +74,12 @@ class FacilitySearch extends Facility
 	 */
 	public function search( $params ) {
 		$query = Facility::find();
+		/*
 		$subQuery = Room::find()
             ->select('facility_id, SUM(bed_nr * nr) AS total_bed_nr')
             ->groupBy('facility_id');
 		$query->leftJoin(['roomSum' => $subQuery], 'roomSum.facility_id = facility.id');
+		*/
 
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,
@@ -95,6 +95,16 @@ class FacilitySearch extends Facility
 
 		if (!($this->load($params) && $this->validate())) {
 			return $dataProvider;
+		} else {
+			if (isset($params['FacilitySearch']['facilityProperties'])) {
+				$activeProperties = array_keys($params['FacilitySearch']['facilityProperties']);
+				$propertyCount = count($activeProperties);
+				$query->innerJoinWith(['facilityProperties']);
+				$query->andWhere(['object_property.property_id' => $activeProperties]);
+				$query->andWhere([
+					'object_property.property_value' => 1,
+				]);
+			}
 		}
 
 		return $dataProvider;

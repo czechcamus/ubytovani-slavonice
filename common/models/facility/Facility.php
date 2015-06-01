@@ -4,6 +4,7 @@ namespace common\models\facility;
 
 use common\models\Place;
 use common\models\property\FacilityProperty;
+use common\models\PropertyModel;
 use common\models\subject\Person;
 use common\models\subject\Subject;
 use common\models\type\FacilityType;
@@ -46,7 +47,6 @@ use yii\db\Expression;
  *
  * @property FacilityType $facilityType
  * @property Place $place
- * @property ObjectProperty[] $objectProperties
  * @property FacilityProperty[] $facilityProperties
  * @property Room[] $rooms
  * @property Subject $subject
@@ -151,17 +151,9 @@ class Facility extends ActiveRecord
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
-	public function getObjectProperties()
-	{
-		return $this->hasMany(ObjectProperty::className(), ['object_id' => 'id']);
-	}
-
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
 	public function getFacilityProperties()
 	{
-		return $this->hasMany(FacilityProperty::className(), ['id' => 'facility_property_id'])->via('objectProperties');
+		return $this->hasMany(ObjectProperty::className(), ['object_id' => 'id'])->where(['object_type' => PropertyModel::FACILITY_PROPERTY]);
 	}
 
 	/**
