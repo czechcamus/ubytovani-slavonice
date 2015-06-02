@@ -56,7 +56,7 @@ class FacilityType extends TypeModel
 		$options = ArrayHelper::map(self::find()->orderBy('title')->all(), 'id', 'title');
 		if ($selectAllOption == true) {
 			$allOption = ['0' => Yii::t('app', 'anything')];
-			$options = array_merge($allOption, $options);
+			$options = $allOption + $options;
 		}
 		return $options;
 	}

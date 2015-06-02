@@ -64,7 +64,7 @@ class Place extends ActiveRecord
 		$options = ArrayHelper::map(self::find()->orderBy('title')->all(), 'id', 'title');
 		if ($selectAllOption == true) {
 			$allOption = ['0' => Yii::t('app', 'anywhere')];
-			$options = array_merge($allOption, $options);
+			$options = $allOption + $options;
 		}
 		return $options;
 	}

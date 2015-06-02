@@ -42,7 +42,7 @@ class FacilitySearch extends Facility
 	 */
 	public function rules() {
 		return [
-			[['priceFrom', 'priceTo', 'bedNr'], 'integer']
+			[['place_id', 'facility_type_id', 'priceFrom', 'priceTo', 'bedNr'], 'integer']
 		];
 	}
 
@@ -96,6 +96,18 @@ class FacilitySearch extends Facility
 		if (!($this->load($params) && $this->validate())) {
 			return $dataProvider;
 		} else {
+			// first selection of facilities
+			if ($params['FacilitySearch']['place_id'] > 0)
+				$query->andWhere(['place_id' => $params['FacilitySearch']['place_id']]);
+			if ($params['FacilitySearch']['facility_type_id'] > 0)
+				$query->andWhere(['facility_type_id' => $params['FacilitySearch']['facility_type_id']]);
+
+			// suitable rooms count
+			if ($params['FacilitySearch']['bedNr'] > 0) {
+				$roomsCountSubQuery = Room::find()->select(['facility_id'])->andWhere(['facility_id' => $query->column()])->groupBy(['facility_id'])->having(['>=', 'SUM( bed_nr * nr )', $params['FacilitySearch']['bedNr']]);
+				$query->andWhere(['id' => $roomsCountSubQuery]);
+			}
+			/*
 			$query->distinct();
 			if (isset($params['FacilitySearch']['facilityProperties'])) {
 				$activeProperties = array_keys($params['FacilitySearch']['facilityProperties']);
@@ -121,6 +133,7 @@ class FacilitySearch extends Facility
 				$query->groupBy('room.id');
 				$query->having(['COUNT(*)' => $propertyCount]);
 			}
+			*/
 		}
 
 		return $dataProvider;
