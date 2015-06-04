@@ -55,23 +55,24 @@ class FacilitySearchPropertyList extends Widget {
 			$testValue = 0;
 			$elementCnt = count($this->properties);
 			$divider = ceil($elementCnt / $this->colCnt);
-			foreach ( $this->properties as $key => $title ) {
+			while ($property = current($this->properties)) {
 				$testValue = $i % $divider;
 				if ($testValue == 0) {
 					echo Html::beginTag($this->wrapperTag, $this->wrapperOptions);
 				}
-				$name = $this->propertyName . '[' . $key . ']';
-				$id = Inflector::camel2id(strtr($this->propertyName, '[]', '--')) . '_' . $key;
-				echo Html::checkbox($name, false, [
+				$name = $this->propertyName . '[' . key($this->properties) . ']';
+				$id = Inflector::camel2id(strtr($this->propertyName, '[]', '--')) . '_' . key($this->properties);
+				echo Html::checkbox($name, ($property['value'] == 1 ? true : false), [
 					'id' => $id,
-					'value' => null
+					'value' => $property['value']
 				]);
-				echo Html::label($title, $id);
+				echo Html::label($property['title'], $id);
 				echo "<br />\n";
 				if ($testValue == ($divider - 1)) {
 					echo Html::endTag($this->wrapperTag);
 				}
 				++$i;
+				next($this->properties);
 			}
 			if ($testValue != ($divider - 1)) {
 				echo Html::endTag($this->wrapperTag);

@@ -51,6 +51,8 @@ FormRoomAsset::register($this);
 
 			<?php if ($model->room_id): ?>
 
+				<strong><?= Yii::t('back', 'Prices'); ?></strong>
+
 				<?=	$this->render('_prices', compact('model'));	?>
 
 			<?php endif; ?>
@@ -70,17 +72,17 @@ FormRoomAsset::register($this);
 	</div>
 
     <div class="form-group">
-	    <?= Html::submitButton(Yii::t('back', 'Save'), [
+	    <?= Html::submitButton(Yii::t('back', 'Save room'), [
 		    'class' => 'btn btn-primary'
 	    ]) ?>
 	    <?php if ($model->room_id) {
-		    echo Html::submitButton(Yii::t('back', 'Create'), [
+		    echo Html::submitButton(Yii::t('back', 'Create room'), [
 			    'id' => 'create-btn',
 			    'class' => 'btn btn-success',
 			    'data-create-url' => Url::to(['create', 'relation_id' => $relation_id])
 		    ]);
 	    } ?>
-	    <?= Html::submitButton(Yii::t('back', 'Close'), [
+	    <?= Html::submitButton(Yii::t('back', 'Close room'), [
 		    'id' => 'cancel-btn',
 		    'class' => 'btn btn-warning',
 		    'data-cancel-url' => $returnUrl

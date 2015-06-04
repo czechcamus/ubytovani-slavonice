@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\models\FacilitySearch */
+/* @var $searchModel frontend\models\FacilitySearchForm */
 
 use common\models\Place;
 use common\models\type\FacilityType;
@@ -47,7 +47,7 @@ use yii\helpers\Html;
 		<div class="col s12">
 			<ul class="collapsible" data-collapsible="accordion">
 				<li>
-					<div class="collapsible-header white-text"><?= Yii::t('front', 'Advanced options of searching'); ?> <i class="mdi-hardware-keyboard-arrow-down"></i></div>
+					<div class="collapsible-header white-text"><?= Yii::t('front', 'Advanced options of searching'); ?> <i class="mdi-hardware-keyboard-arrow-down"></i> *</div>
 					<div class="collapsible-body white-text">
 						<div class="row">
 							<div class="col s12">
@@ -55,7 +55,7 @@ use yii\helpers\Html;
 							</div>
 							<?= FacilitySearchPropertyList::widget([
 								'properties' => $searchModel->facilityProperties,
-								'propertyName' => 'FacilitySearch[facilityProperties]',
+								'propertyName' => 'FacilitySearchForm[facilityProperties]',
 								'wrapperOptions' => [
 									'class' => 'col s12 m6'
 								]
@@ -68,12 +68,17 @@ use yii\helpers\Html;
 							</div>
 							<?= FacilitySearchPropertyList::widget([
 								'properties' => $searchModel->roomProperties,
-								'propertyName' => 'FacilitySearch[roomProperties]',
+								'propertyName' => 'FacilitySearchForm[roomProperties]',
 								'wrapperOptions' => [
 									'class' => 'col s12 m6'
 								]
 							]);
 							?>
+						</div>
+						<div class="row">
+							<div class="col s12">
+								* rozšířené možnosti vyhledávání se uplatní pouze u partnerských ubytovacích zařízení
+							</div>
 						</div>
 					</div>
 				</li>

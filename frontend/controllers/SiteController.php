@@ -1,7 +1,7 @@
 <?php
 namespace frontend\controllers;
 
-use frontend\models\FacilitySearch;
+use frontend\models\FacilitySearchForm;
 use Yii;
 use frontend\models\ContactForm;
 use yii\web\Controller;
@@ -45,7 +45,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-	    $searchModel = new FacilitySearch();
+	    $searchModel = new FacilitySearchForm();
         return $this->render('index', compact('searchModel'));
     }
 

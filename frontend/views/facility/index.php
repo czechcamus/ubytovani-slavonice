@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $searchModel frontend\models\FacilitySearch */
+/* @var $searchModel frontend\models\FacilitySearchForm */
 
 use frontend\utilities\materialize\LinkPager;
 use yii\widgets\ListView;

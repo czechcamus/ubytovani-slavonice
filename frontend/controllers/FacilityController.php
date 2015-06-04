@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use frontend\models\FacilitySearch;
+use frontend\models\FacilitySearchForm;
 use yii\web\Controller;
 
 /**
@@ -28,7 +28,7 @@ class FacilityController extends Controller
 	 */
     public function actionIndex()
     {
-	    $searchModel = new FacilitySearch();
+	    $searchModel = new FacilitySearchForm();
 	    $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
 
         return $this->render('index', compact('dataProvider', 'searchModel'));
