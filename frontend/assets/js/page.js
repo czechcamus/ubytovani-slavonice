@@ -6,5 +6,6 @@
 ( function($) {
     $(document).ready(function(){
         $('.parallax').parallax();
+        $('.materialboxed').materialbox();
     });
 } )( jQuery );

@@ -17,4 +17,13 @@ body {
   .place {
     margin: 0 0 5px;
   }
+  .breadcrumb {
+    margin-top: 0;
+    li {
+      display: inline;
+    }
+  }
+  #map-canvas {
+    height: 100%;
+  }
 }

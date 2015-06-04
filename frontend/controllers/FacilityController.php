@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\facility\Facility;
 use frontend\models\FacilitySearchForm;
 use yii\web\Controller;
 
@@ -15,11 +16,14 @@ class FacilityController extends Controller
 
 	/**
 	 * Shows facility details
+	 * @param integer $id
 	 * @return string
 	 */
-    public function actionDetail()
+    public function actionDetail($id)
     {
-        return $this->render('detail');
+	    $model = Facility::findOne($id);
+
+        return $this->render('detail', compact('model'));
     }
 
 	/**

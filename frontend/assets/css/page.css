@@ -8,5 +8,11 @@ body .facility h4 {
   margin: 0; }
 body .place {
   margin: 0 0 5px; }
+body .breadcrumb {
+  margin-top: 0; }
+  body .breadcrumb li {
+    display: inline; }
+body #map-canvas {
+  height: 100%; }
 
 /*# sourceMappingURL=page.css.map */
