@@ -83,7 +83,7 @@ class FacilityForm extends ObjectForm {
 	 */
 	public function rules() {
 		return [
-			[['title', 'subject_id', 'person_id', 'city', 'postal_code'], 'required', 'on' => ['create', 'update']],
+			[['title', 'subject_id', 'person_id', 'city', 'postal_code', 'latitude', 'longitude'], 'required', 'on' => ['create', 'update']],
 			[
 				['facility_id', 'facility_type_id', 'subject_id', 'person_id', 'place_id', 'stars'],
 				'integer',

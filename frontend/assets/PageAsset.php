@@ -21,7 +21,6 @@ class PageAsset extends AssetBundle
 		'css/page.css'
 	];
     public $js = [
-	    'https://maps.googleapis.com/maps/api/js?key=AIzaSyB4C7dmE9B9wG2ZvfWQK8TYTwPrqAJgr58',
 	    'js/page.js'
     ];
     public $depends = [

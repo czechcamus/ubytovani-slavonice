@@ -2,27 +2,16 @@
 /* @var $this yii\web\View */
 /* @var $model common\models\facility\Facility */
 
+use dosamigos\google\maps\LatLng;
+use dosamigos\google\maps\Map;
+use dosamigos\google\maps\overlays\Marker;
 use frontend\components\FacilityImage;
-use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
 $this->title = $model->title;
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('front', 'seznam ubytování') . ' <i class="mdi-hardware-keyboard-arrow-right orange-text"></i>', 'url' => ['index'], 'encode' => false];
 $this->params['breadcrumbs'][] = $model->title;
-
-//TODO dodělat zadávání zeměpisné šířky
-$this->registerJs("
-function initialize() {
-	var mapOptions = {
-	  center: { lat: " . '-34.397' . ", lng: " . '150.644' . "},
-	  zoom: 8
-	};
-	var map = new google.maps.Map(document.getElementById('map-canvas'),
-	    mapOptions);
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-", View::POS_HEAD);
 ?>
 
 <div class="section container">
@@ -60,6 +49,23 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					?>
 				</div>
 			<?php endif; ?>
+			<div class="row">
+				<div class="col s12" style="overflow: hidden">
+					<?php
+						$coord = new LatLng(['lat' => $model->latitude, 'lng' => $model->longitude]);
+						$map = new Map([
+							'center' => $coord,
+							'zoom' => 16
+						]);
+						$marker = new Marker([
+							'position' => $coord,
+							'title' => $model->title
+						]);
+						$map->addOverlay($marker);
+						echo $map->display();
+					?>
+				</div>
+			</div>
 		</div>
 		<div class="col s12 m6">
 
