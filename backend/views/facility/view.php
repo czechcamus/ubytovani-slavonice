@@ -58,6 +58,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'house_nr',
             'city',
             'postal_code',
+	        'latitude',
+	        'longitude',
 	        [
 		        'attribute' => 'checkin_from',
 		        'format' => 'time'

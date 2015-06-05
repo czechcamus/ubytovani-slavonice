@@ -5,6 +5,7 @@ use common\models\type\FacilityType;
 use kartik\datecontrol\DateControl;
 use yii\helpers\Url;
 use yii\jui\Spinner;
+use yii\widgets\MaskedInput;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -33,6 +34,8 @@ use yii\jui\Spinner;
 
 		<?= $form->field($model, 'place_id')->dropDownList(Place::getPlaceOptions()) ?>
 
+		<?= $form->field($model, 'weburl')->textInput(['maxlength' => 100]) ?>
+
 	</div>
 
 	<div class="col-sm-12 col-md-6">
@@ -45,7 +48,29 @@ use yii\jui\Spinner;
 
 		<?= $form->field($model, 'postal_code')->textInput(['maxlength' => 10]) ?>
 
-		<?= $form->field($model, 'weburl')->textInput(['maxlength' => 100]) ?>
+		<div class="row">
+
+			<div class="col-sm-12 col-md-6">
+
+				<?= $form->field($model, 'latitude')->widget(MaskedInput::className(), ['clientOptions' => [
+					'alias' =>  'decimal',
+					'radixPoint' =>  '.',
+					'digits' => 6
+				]]) ?>
+
+			</div>
+
+			<div class="col-sm-12 col-md-6">
+
+				<?= $form->field($model, 'longitude')->widget(MaskedInput::className(), ['clientOptions' => [
+					'alias' =>  'decimal',
+					'radixPoint' =>  '.',
+					'digits' => 6
+				]]) ?>
+
+			</div>
+
+		</div>
 
 	</div>
 

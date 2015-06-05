@@ -40,6 +40,8 @@ use yii\db\Expression;
  * @property string $description
  * @property integer $completed
  * @property integer $active
+ * @property string $latitude
+ * @property string $longitude
  * @property string $created_at
  * @property integer $created_by
  * @property string $updated_at
@@ -93,7 +95,8 @@ class Facility extends ActiveRecord
             [['description'], 'string'],
             [['title', 'weburl', 'certificate'], 'string', 'max' => 100],
             [['street', 'city'], 'string', 'max' => 45],
-            [['house_nr', 'postal_code'], 'string', 'max' => 10]
+            [['house_nr', 'postal_code'], 'string', 'max' => 10],
+	        [['latitude', 'longitude'], 'number']
         ];
     }
 
@@ -124,11 +127,12 @@ class Facility extends ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'completed' => Yii::t('app', 'Completed'),
             'active' => Yii::t('app', 'Active'),
+	        'latitude' => Yii::t('app', 'Latitude'),
+	        'longitude' => Yii::t('app', 'Longitude'),
             'created_at' => Yii::t('app', 'Created At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'updated_by' => Yii::t('app', 'Updated By'),
-	        'bedNr' => Yii::t('app', 'Bed Nr')
+            'updated_by' => Yii::t('app', 'Updated By')
         ];
     }
 

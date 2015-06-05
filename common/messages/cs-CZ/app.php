@@ -18,16 +18,16 @@
  */
 return [
     'ID' => '',
+    'Latitude' => 'Zeměpisná šířka',
+    'Longitude' => 'Zeměpisná délka',
     'Partner' => '',
     'Tax ID' => '',
-    'anything' => 'cokoli',
     '-- not selected --' => '-- není zvoleno --',
     'Acronym' => 'Zkratka',
     'Active' => 'Aktivní',
     'Address' => 'Adresa',
     'Address Type ID' => 'Typ adresy',
     'Back Title' => 'Titul za jménem',
-    'Bed Nr' => 'Počet lůžek',
     'Bed Nr.' => 'Počet lůžek',
     'Certificate' => 'Certifikáty',
     'Checkin From' => 'Čas ubytování od',
@@ -90,5 +90,6 @@ return [
     'Updated By' => 'Změnil',
     'Value' => 'Hodnota',
     'Weburl' => 'URL webu',
+    'anything' => 'cokoli',
     'anywhere' => 'kdekoli',
 ];

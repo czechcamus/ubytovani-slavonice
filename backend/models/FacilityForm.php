@@ -46,6 +46,10 @@ class FacilityForm extends ObjectForm {
 	/** @var string */
 	public $postal_code;
 	/** @var string */
+	public $latitude;
+	/** @var string */
+	public $longitude;
+	/** @var string */
 	public $weburl;
 	/** @var boolean */
 	public $partner;
@@ -97,7 +101,8 @@ class FacilityForm extends ObjectForm {
 			[['title', 'weburl', 'certificate'], 'string', 'max' => 100, 'on' => ['create', 'update']],
 			[['street', 'city'], 'string', 'max' => 45, 'on' => ['create', 'update']],
 			[['house_nr', 'postal_code'], 'string', 'max' => 10, 'on' => ['create', 'update']],
-			[['facility_type_id', 'place_id', 'properties'], 'safe', 'on' => ['create', 'update']]
+			[['facility_type_id', 'place_id', 'properties'], 'safe', 'on' => ['create', 'update']],
+			[['latitude', 'longitude'], 'number']
 		];
 	}
 
@@ -116,6 +121,8 @@ class FacilityForm extends ObjectForm {
 			'house_nr'         => Yii::t('back', 'House Nr.'),
 			'city'             => Yii::t('back', 'City'),
 			'postal_code'      => Yii::t('back', 'Postal code'),
+			'latitude' => Yii::t('back', 'Latitude'),
+			'longitude' => Yii::t('back', 'Longitude'),
 			'weburl'           => Yii::t('back', 'Web URL'),
 			'partner'          => Yii::t('back', 'Partner'),
 			'certificate'      => Yii::t('back', 'Certificate'),
