@@ -50,10 +50,12 @@ $this->params['breadcrumbs'][] = $model->title;
 				</div>
 			<?php endif; ?>
 			<div class="row">
-				<div class="col s12" style="overflow: hidden">
+				<div class="col s12">
 					<?php
 						$coord = new LatLng(['lat' => $model->latitude, 'lng' => $model->longitude]);
 						$map = new Map([
+							'width' => '100%',
+							'height' => 400,
 							'center' => $coord,
 							'zoom' => 16
 						]);
