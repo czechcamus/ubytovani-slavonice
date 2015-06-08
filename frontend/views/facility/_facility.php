@@ -25,7 +25,7 @@ use yii\helpers\StringHelper;
 				Html::a(Html::encode($model->title), ['facility/detail', 'id' => $model->id], ['class' => 'black-text']),
 				['class' => 'light']); ?>
 			<div class="place"><?= Html::a(Html::encode($model->place->title),'#'); ?></div>
-			<?= Html::a('<i class="mdi-navigation-arrow-forward right"></i>' . Yii::t('front', 'Detaily ubytování'), ['facility/detail', 'id' => $model->id], [
+			<?= Html::a('<i class="mdi-navigation-arrow-forward right"></i>' . Yii::t('front', 'Details of accommodation'), ['facility/detail', 'id' => $model->id], [
 				'class' => 'btn waves-effect waves-light'
 			]); ?>
 		</div>

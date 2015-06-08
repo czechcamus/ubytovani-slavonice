@@ -6,7 +6,7 @@
 use frontend\utilities\materialize\LinkPager;
 use yii\widgets\ListView;
 
-$this->title = 'Seznam ubytování';
+$this->title = Yii::t('front', 'List of accommodation');
 ?>
 
 <div class="section container">

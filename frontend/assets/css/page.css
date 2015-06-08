@@ -1,11 +1,18 @@
+body strong {
+  font-weight: 700; }
 body .parallax-container {
-  height: 200px; }
+  height: 300px; }
+  body .parallax-container h1 {
+    font-weight: 700;
+    margin-top: 70px; }
 body .partner-facility h3 {
   font-size: 2rem;
   margin: 0; }
 body .facility h4 {
   font-size: 1.6rem;
   margin: 0; }
+body .facility-detail h2 {
+  margin-top: 0; }
 body .place {
   margin: 0 0 5px; }
 body .breadcrumb {
