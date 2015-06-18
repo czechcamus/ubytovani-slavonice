@@ -10,7 +10,8 @@ use yii\web\AssetBundle;
  */
 class MaterializeAsset extends AssetBundle
 {
-    public $sourcePath = '@app/assets/materialize';
+	public $basePath = '@webroot';
+	public $baseUrl = '@web';
     public $js = [
         'js/materialize.min.js',
     ];

@@ -51,14 +51,6 @@ return [
                 ],
             ],
         ],
-	    'assetManager' => [
-		    'converter' => [
-			    'class' => 'yii\web\AssetConverter',
-			    'commands' => [
-				    'css' => ['css', 'lessc {from} {to} --no-color']
-			    ]
-		    ]
-	    ],
         'urlManager' => [
 	        'enablePrettyUrl' => true,
 	        'showScriptName' => false

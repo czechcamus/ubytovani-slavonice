@@ -15,15 +15,15 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $sourcePath = '@app/assets';
+    public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css'
+        'css/ie.css'
     ];
-    public $js = [
-	    'js/site.js'
-    ];
+	public $cssOptions = [
+		'condition' => 'lte IE9'
+	];
     public $depends = [
-	    'frontend\assets\MaterializeAsset',
+	    'frontend\assets\BaseAsset'
     ];
 }

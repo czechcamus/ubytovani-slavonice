@@ -13,7 +13,7 @@ use kartik\base\AssetBundle;
 
 class FormRoomAsset extends AssetBundle
 {
-	public $sourcePath = '@app/assets';
+	public $basePath = '@webroot';
 	public $baseUrl = '@web';
 	public $css = [
 		'css/form-room.css'

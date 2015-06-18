@@ -1,5 +1,5 @@
 <?php
-use frontend\assets\AppAsset;
+use frontend\assets\BaseAsset;
 use frontend\utilities\materialize\Nav;
 use frontend\utilities\materialize\NavBar;
 use yii\helpers\Html;
@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-AppAsset::register($this);
+BaseAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

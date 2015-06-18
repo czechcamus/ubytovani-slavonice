@@ -15,7 +15,7 @@ use yii\web\AssetBundle;
  */
 class HomeAsset extends AssetBundle
 {
-    public $sourcePath = '@app/assets';
+	public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $js = [
 	    'js/home.js'
