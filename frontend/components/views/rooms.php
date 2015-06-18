@@ -7,7 +7,7 @@ use frontend\components\Properties;
 ?>
 
 <h3 class="light"><?= Yii::t('front', 'Our rooms'); ?></h3>
-<table class="striped">
+<table class="rooms striped">
 	<thead>
 		<tr><th><?= Yii::t('front', 'count'); ?></th><th><?= Yii::t('front', 'description'); ?></th><th><?= Yii::t('front', 'beds'); ?></th></tr>
 	</thead>

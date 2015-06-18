@@ -13,6 +13,8 @@ body .facility h4 {
   margin: 0; }
 body .facility-detail h2 {
   margin-top: 0; }
+body .facility-detail .prices {
+  padding-bottom: 50px; }
 body .place {
   margin: 0 0 5px; }
 body .breadcrumb {
