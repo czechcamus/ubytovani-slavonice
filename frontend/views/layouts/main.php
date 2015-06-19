@@ -65,7 +65,9 @@ BaseAsset::register($this);
     ?>
     </header>
 
-    <?= $content ?>
+    <main>
+        <?= $content ?>
+    </main>
 
     <footer class="page-footer blue">
         <div class="container">
