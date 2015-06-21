@@ -176,7 +176,7 @@ class Nav extends Widget
             Html::addCssClass($linkOptions, 'dropdown-button');
             $linkOptions['id'] = $dropdownId . '-btn';
             $linkOptions['data-activates'] = $dropdownId;
-            $label .= ' ' . Icon::widget(['name' => 'navigation-arrow-drop-down right']);
+            $label .= " &#x025BE;";
             if (is_array($items)) {
                 if ($this->activateItems) {
                     $items = $this->isChildActive($items, $active);

@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
         'css/ie.css'
     ];
 	public $cssOptions = [
-		'condition' => 'lte IE9'
+		'condition' => 'lte IE 9'
 	];
     public $depends = [
 	    'frontend\assets\BaseAsset'
