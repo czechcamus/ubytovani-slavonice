@@ -28,23 +28,29 @@ echo GridView::widget([
 				['price/create', 'relation_id' => $model->room_id]),
 			'template'   => '{update} {delete}',
 			'buttons'    => [
-				'update' => function ($url, $model) {
+				'update' => function ($url, $model, $key) {
 					return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
 						$url . '&relation_id=' . $model->room_id, [
 							'title'     => Yii::t('back', 'Update'),
 							'data-pjax' => '0',
 						]);
 				},
-				'delete' => function ($url, $model) {
+				'delete' => function ($url, $model, $key) {
 					return Html::a('<span class="glyphicon glyphicon-trash"></span>',
-						$url . '&relation_id=' . $model->room_id, [
+						$url, [
 							'title'        => Yii::t('back', 'Delete'),
-							'data-method'  => 'post',
 							'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
-							'data-pjax'    => '0',
+							'data-method' => 'post',
+							'data-pjax' => '0',
 						]);
 				}
-			]
+			],
+			'urlCreator' => function ($action, $model, $key, $index) {
+				if ($action === 'delete') {
+					$url ='price/' . $action . '?id=' . $model->id . '&relation_id=' . $model->room_id;
+					return $url;
+				}
+			}
 		]
 	]
 ]);
