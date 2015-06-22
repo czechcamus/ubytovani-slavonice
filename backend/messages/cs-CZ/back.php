@@ -131,7 +131,7 @@ return [
     'Title' => 'Označení',
     'Type' => 'Typ',
     'Update' => 'Změnit',
-    'Update {modelClass}' => 'Upravit',
+    'Update {modelClass}' => 'Změnit {modelClass}',
     'Update {modelClass}: ' => 'Změnit {modelClass}: ',
     'Upload' => 'Nahrát',
     'Upload Error' => 'Chyba při nahrání',

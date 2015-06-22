@@ -10,6 +10,7 @@ namespace backend\models;
 
 
 use backend\utilities\ObjectForm;
+use common\models\facility\Availability;
 use common\models\facility\ObjectProperty;
 use common\models\facility\Price;
 use common\models\facility\Room;
@@ -17,6 +18,7 @@ use common\models\property\RoomProperty;
 use common\models\PropertyModel;
 use common\models\type\RoomType;
 use Yii;
+use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 
 class RoomForm extends ObjectForm {
@@ -172,9 +174,23 @@ class RoomForm extends ObjectForm {
 		return ArrayHelper::map(RoomType::find()->orderBy('title')->all(), 'id', 'title');
 	}
 
+	/**
+	 * Gets prices of room
+	 * @return ActiveQuery
+	 */
 	public function getPrices() {
 		return Price::find()->where([
 			'room_id' => $this->room_id
 		])->orderBy(['fee' => SORT_ASC]);
+	}
+
+	/**
+	 * Gets availabilities of room
+	 * @return ActiveQuery
+	 */
+	public function getAvailabilities() {
+		return Availability::find()->where([
+			'room_id' => $this->room_id
+		])->orderBy(['date_from' => SORT_ASC]);
 	}
 }

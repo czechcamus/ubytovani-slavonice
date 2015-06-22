@@ -57,6 +57,14 @@ FormRoomAsset::register($this);
 
 			<?php endif; ?>
 
+			<?php if ($model->room_id): ?>
+
+				<strong><?= Yii::t('back', 'Availability'); ?></strong>
+
+				<?=	$this->render('_availabilities', compact('model'));	?>
+
+			<?php endif; ?>
+
 		</div>
 
 		<?php if ($facilityModel->partner && $model->room_id): ?>

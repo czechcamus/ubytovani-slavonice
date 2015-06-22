@@ -72,6 +72,7 @@ return [
 	    'subject' => 'backend\controllers\subject\SubjectController',
 	    'person' => 'backend\controllers\subject\PersonController',
 	    'price' => 'backend\controllers\facility\PriceController',
+	    'availability' => 'backend\controllers\facility\AvailabilityController',
 	    'object-property-type' => 'backend\controllers\facility\ObjectPropertyTypeController',
 	    'object-property-fee' => 'backend\controllers\facility\ObjectPropertyFeeController',
 	    'facility' => 'backend\controllers\facility\FacilityController',

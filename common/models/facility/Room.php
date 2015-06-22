@@ -21,6 +21,7 @@ use yii\db\ActiveRecord;
  * @property string $note
  *
  * @property Price[] $prices
+ * @property Availability[] $availabilities
  * @property RoomType $roomType
  * @property Facility $facility
  * @property RoomProperty[] $roomProperties
@@ -80,6 +81,14 @@ class Room extends ActiveRecord
     {
         return $this->hasMany(Price::className(), ['room_id' => 'id']);
     }
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getAvailabilities()
+	{
+		return $this->hasMany(Availability::className(), ['room_id' => 'id']);
+	}
 
     /**
      * @return \yii\db\ActiveQuery
