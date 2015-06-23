@@ -18,23 +18,33 @@ class SubModelController extends BaseModelController
 	/** @var  string name of the main ActiveRecord model class */
 	public $modelClass;
 
+	/** @var  integer id of relational model */
+	public $relationId;
+
+	/**
+	 * @inheritdoc
+	 */
+	public function init() {
+		if (!isset($this->relationId) && ($relationId = Yii::$app->request->get('relation_id')))
+			$this->relationId = $relationId;
+	}
+
     /**
      * Creates a new ActiveRecord model.
-     * @param integer $relation_id of main model
      * @return mixed
      */
-    public function actionCreate($relation_id)
+    public function actionCreate()
     {
         /** @var ActiveRecord $model */
         $model = new $this->modelClass;
-        $model->{$this->relationName . '_id'} = $relation_id;
+        $model->{$this->relationName . '_id'} = $this->relationId;
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
 	        return $this->redirect($this->getReturnUrl());
 
         return $this->render('create',[
 	        'model' => $model,
-	        'relation_id' => $relation_id,
+	        'relation_id' => $this->relationId,
 	        'returnUrl' => $this->getReturnUrl()
         ]);
     }
@@ -42,11 +52,10 @@ class SubModelController extends BaseModelController
     /**
      * Updates an existing ActiveRecord model.
      * @param integer $id
-     * @param integer $relation_id
      * @throws \yii\web\NotFoundHttpException
      * @return mixed
      */
-    public function actionUpdate($id, $relation_id = null)
+    public function actionUpdate($id)
     {
         /** @var ActiveRecord $model */
         $model = $this->findModel($id);
@@ -56,7 +65,7 @@ class SubModelController extends BaseModelController
 
         return $this->render('update', [
 	        'model' => $model,
-	        'relation_id' => $relation_id,
+	        'relation_id' => $this->relationId,
 	        'returnUrl' => $this->getReturnUrl()
         ]);
     }

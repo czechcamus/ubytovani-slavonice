@@ -1,5 +1,6 @@
 <?php
 
+use backend\assets\FormGridAsset;
 use backend\assets\FormRoomAsset;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -12,6 +13,7 @@ use yii\helpers\Url;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $returnUrl string */
 
+FormGridAsset::register($this);
 FormRoomAsset::register($this);
 ?>
 

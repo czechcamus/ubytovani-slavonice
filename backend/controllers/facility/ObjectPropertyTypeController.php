@@ -7,6 +7,7 @@ use common\models\facility\ObjectProperty;
 use common\models\facility\ObjectPropertyType;
 use common\models\PropertyModel;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -18,12 +19,32 @@ class ObjectPropertyTypeController extends SubModelController
 	public $relationName = 'object_property';
 
 	/**
+	 * Access control etc.
+	 * @return array
+	 */
+	public function behaviors()
+	{
+		return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'roles' => ['@'],
+						'allow' => true
+					]
+				]
+			]
+		];
+	}
+
+	/**
 	 * @inheritdoc
 	 */
 	public function init() {
 		parent::init();
 		/** @var ObjectProperty $objectProperty */
-		$objectProperty = ObjectProperty::findOne(\Yii::$app->request->get('relation_id'));
+		$this->relationId = \Yii::$app->request->get('object_property_id');
+		$objectProperty = ObjectProperty::findOne($this->relationId);
 		$controllerName = $objectProperty->object_type == PropertyModel::FACILITY_PROPERTY ? 'facility' : 'room';
 		$this->returnUrlParams = [
 			$controllerName . '/update',
@@ -38,12 +59,11 @@ class ObjectPropertyTypeController extends SubModelController
 	 *
 	 * @param int $object_property_id
 	 * @param int|null $type_id
-	 * @param integer $relation_id
 	 *
 	 * @return mixed
 	 * @throws \yii\web\NotFoundHttpException
 	 */
-    public function actionUpdate($object_property_id, $type_id, $relation_id)
+    public function actionUpdate($object_property_id, $type_id)
     {
         $model = $this->findModel($object_property_id, $type_id);
 
@@ -52,7 +72,6 @@ class ObjectPropertyTypeController extends SubModelController
 
         return $this->render('update', [
 	        'model' => $model,
-	        'relation_id' => $relation_id,
 	        'returnUrl' => $this->getReturnUrl()
         ]);
     }
@@ -88,7 +107,7 @@ class ObjectPropertyTypeController extends SubModelController
 	 */
 	protected function findModel($object_property_id, $type_id)
 	{
-		$model = call_user_func([$this->modelClass, 'findOne'], $object_property_id, $type_id);
+		$model = call_user_func([$this->modelClass, 'findOne'], compact('object_property_id', 'type_id'));
 		if (!$model)
 			throw new NotFoundHttpException(Yii::t('back', 'The requested page does not exist.'));
 

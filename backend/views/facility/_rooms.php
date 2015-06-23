@@ -47,9 +47,11 @@ use yii\helpers\Html;
 					'delete' => function($url, $model) {
 						return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url . '&relation_id=' . $model->facility_id, [
 							'title' => Yii::t('back', 'Delete'),
-							'data-method' => 'post',
-							'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
-							'data-pjax' => '0',
+							'class' => 'grid-delete-btn',
+							'data' => [
+								'confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+								'pjax' => '0'
+							]
 						]);
 					}
 				]

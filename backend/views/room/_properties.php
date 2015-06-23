@@ -52,25 +52,29 @@ foreach ($model->properties as $key => $property) {
 					'controller' => 'object-property-type',
 					'header'     => $model->existsFreeTypes($property['property_id'],
 						$property['id']) ? Html::a('<span class="glyphicon glyphicon-plus"></span>&nbsp;' .
-					                               Yii::t('back', 'Add new'),
-						['object-property-type/create', 'relation_id' => $property['id']]) : '',
+                            Yii::t('back', 'Add new'), [
+								'object-property-type/create',
+								'object_property_id' => $property['id']
+							]) : '',
 					'template'   => $model->existsFreeTypes($property['property_id'],
 						$property['id']) ? '{update} {delete}' : '{delete}',
 					'buttons'    => [
 						'update' => function ($url, $model) {
 							return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
-								$url . '&relation_id=' . $model->object_property_id, [
+								$url, [
 									'title'     => Yii::t('back', 'Update'),
 									'data-pjax' => '0',
 								]);
 						},
 						'delete' => function ($url, $model) {
 							return Html::a('<span class="glyphicon glyphicon-trash"></span>',
-								$url . '&relation_id=' . $model->object_property_id, [
+								$url, [
 									'title'        => Yii::t('back', 'Delete'),
-									'data-method'  => 'post',
-									'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
-									'data-pjax'    => '0',
+									'class' => 'grid-delete-btn',
+									'data' => [
+										'confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+										'pjax' => '0'
+									]
 								]);
 						}
 					]
@@ -111,9 +115,11 @@ foreach ($model->properties as $key => $property) {
 							return Html::a('<span class="glyphicon glyphicon-trash"></span>',
 								$url . '&relation_id=' . $model->object_property_id, [
 									'title'        => Yii::t('back', 'Delete'),
-									'data-method'  => 'post',
-									'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
-									'data-pjax'    => '0',
+									'class' => 'grid-delete-btn',
+									'data' => [
+										'confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+										'pjax' => '0'
+									]
 								]);
 						}
 					]

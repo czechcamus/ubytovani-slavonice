@@ -14,8 +14,14 @@ echo GridView::widget([
 		'query' => $model->getAvailabilities()
 	]),
 	'columns'      => [
-		'date_from',
-		'date_to',
+		[
+			'attribute' => 'date_from',
+			'format' => 'date'
+		],
+		[
+			'attribute' => 'date_to',
+			'format' => 'date'
+		],
 		'description',
 		[
 			'class'      => ActionColumn::className(),
@@ -36,9 +42,11 @@ echo GridView::widget([
 					return Html::a('<span class="glyphicon glyphicon-trash"></span>',
 						$url . '&relation_id=' . $model->room_id, [
 							'title'        => Yii::t('back', 'Delete'),
-							'data-method'  => 'post',
-							'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
-							'data-pjax'    => '0',
+							'class' => 'grid-delete-btn',
+							'data' => [
+								'confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+								'pjax' => '0'
+							]
 						]);
 				}
 			]

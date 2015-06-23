@@ -37,20 +37,16 @@ echo GridView::widget([
 				},
 				'delete' => function ($url, $model, $key) {
 					return Html::a('<span class="glyphicon glyphicon-trash"></span>',
-						$url, [
+						$url . '&relation_id=' . $model->room_id, [
 							'title'        => Yii::t('back', 'Delete'),
-							'data-confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
-							'data-method' => 'post',
-							'data-pjax' => '0',
+							'class' => 'grid-delete-btn',
+							'data' => [
+								'confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+								'pjax' => '0'
+							]
 						]);
 				}
-			],
-			'urlCreator' => function ($action, $model, $key, $index) {
-				if ($action === 'delete') {
-					$url ='price/' . $action . '?id=' . $model->id . '&relation_id=' . $model->room_id;
-					return $url;
-				}
-			}
+			]
 		]
 	]
 ]);

@@ -2,6 +2,7 @@
 
 namespace common\models\facility;
 
+use common\utilities\DateTimeDbConversion;
 use Yii;
 
 /**
@@ -25,6 +26,27 @@ class Availability extends \yii\db\ActiveRecord
         return 'availability';
     }
 
+	/**
+	 * @return array configuration of behaviors.
+	 */
+	public function behaviors()
+	{
+		return [
+			'dateTime' => [
+				'class' => DateTimeDbConversion::className(),
+				'attributes' =>[
+					[
+						'name' => 'date_from'
+					],
+					[
+						'name' => 'date_to'
+					]
+				]
+			]
+		];
+	}
+
+
     /**
      * @inheritdoc
      */
@@ -35,7 +57,7 @@ class Availability extends \yii\db\ActiveRecord
 	        [['date_from', 'date_to'], 'default', 'value' => null],
             [['date_from', 'date_to'], 'required'],
             [['date_from', 'date_to'], 'date'],
-	        ['date_to', 'compare', 'compareValue' => Yii::$app->formatter->asDate(time()), 'operator' => '>='],
+	        ['date_from', 'compare', 'compareValue' => Yii::$app->formatter->asDate(time()+86400), 'operator' => '>='],
 	        ['date_to', 'compare', 'compareAttribute' => 'date_from', 'operator' => '>='],
             [['description'], 'string', 'max' => 100]
         ];

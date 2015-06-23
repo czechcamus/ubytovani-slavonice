@@ -1,5 +1,6 @@
 <?php
 
+use backend\assets\FormGridAsset;
 use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
@@ -10,6 +11,8 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\subject\Subject */
 /* @var $form yii\bootstrap\ActiveForm */
+
+FormGridAsset::register($this);
 ?>
 
 <div class="subject-form">
@@ -67,10 +70,11 @@ use yii\helpers\Url;
 									return Html::a('<span class="glyphicon glyphicon-trash"></span>',
 										$url . '&relation_id=' . $model->subject_id, [
 											'title'        => Yii::t('back', 'Delete'),
-											'data-method'  => 'post',
-											'data-confirm' => Yii::t('back',
-												'Are you sure, you want to delete this item?'),
-											'data-pjax'    => '0',
+											'class' => 'grid-delete-btn',
+											'data' => [
+												'confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+												'pjax' => '0'
+											]
 										]);
 								}
 							]
@@ -110,13 +114,15 @@ use yii\helpers\Url;
 											'data-pjax' => '0',
 										]);
 								},
-								'delete' => function ($url) {
-									return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
+								'delete' => function ($url, $model) {
+									return Html::a('<span class="glyphicon glyphicon-trash"></span>',
+										$url . '&relation_id=' . $model->subject_id, [
 										'title'        => Yii::t('back', 'Delete'),
-										'data-method'  => 'post',
-										'data-confirm' => Yii::t('back',
-											'Are you sure, you want to delete this item?'),
-										'data-pjax'    => '0',
+										'class' => 'grid-delete-btn',
+										'data' => [
+											'confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+											'pjax' => '0'
+										]
 									]);
 								}
 							]

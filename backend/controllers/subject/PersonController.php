@@ -5,6 +5,7 @@ namespace backend\controllers\subject;
 use backend\utilities\SubModelController;
 use common\models\subject\Person;
 use Yii;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
 
@@ -16,6 +17,25 @@ class PersonController extends SubModelController
 {
     public $modelClass = 'common\models\subject\Person';
     public $relationName = 'subject';
+
+	/**
+	 * Access control etc.
+	 * @return array
+	 */
+	public function behaviors()
+	{
+		return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'roles' => ['@'],
+						'allow' => true
+					]
+				]
+			]
+		];
+	}
 
 	/**
 	 * @inheritdoc

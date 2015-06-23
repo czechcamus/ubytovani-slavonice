@@ -18,18 +18,18 @@ use yii\widgets\MaskedInput;
 
 	<div class="row">
 
-		<div class="col-sm-12 col-md-6">
+		<div class="col-sm-6 col-md-3">
 			<?= $form->field($model, 'date_from')->widget(DatePicker::className()); ?>
 		</div>
 
-		<div class="col-sm-12 col-md-6">
+		<div class="col-sm-6 col-md-3">
 			<?= $form->field($model, 'date_to')->widget(DatePicker::className()); ?>
 		</div>
 
 	</div>
 
 	<div class="row">
-		<div class="col-sm-12">
+		<div class="col-sm-12 col-md-6">
 			<?= $form->field($model, 'description')->textInput(['maxlength' => 100]); ?>
 		</div>
 

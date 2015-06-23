@@ -13,11 +13,31 @@ use backend\utilities\SubModelController;
 use common\models\facility\ObjectProperty;
 use common\models\PropertyModel;
 use Yii;
+use yii\filters\AccessControl;
 
 class ObjectPropertyFeeController extends SubModelController
 {
 	public $modelClass = 'common\models\facility\ObjectPropertyFee';
 	public $relationName = 'object_property';
+
+	/**
+	 * Access control etc.
+	 * @return array
+	 */
+	public function behaviors()
+	{
+		return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'roles' => ['@'],
+						'allow' => true
+					]
+				]
+			]
+		];
+	}
 
 	/**
 	 * @inheritdoc

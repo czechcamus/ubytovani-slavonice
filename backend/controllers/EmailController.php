@@ -5,6 +5,7 @@ namespace backend\controllers;
 use backend\utilities\SubModelController;
 use common\models\subject\Person;
 use Yii;
+use yii\filters\AccessControl;
 
 
 /**
@@ -14,6 +15,25 @@ class EmailController extends SubModelController
 {
     public $modelClass = 'common\models\Email';
     public $relationName = 'person';
+
+	/**
+	 * Access control etc.
+	 * @return array
+	 */
+	public function behaviors()
+	{
+		return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'roles' => ['@'],
+						'allow' => true
+					]
+				]
+			]
+		];
+	}
 
 	/**
 	 * @inheritdoc

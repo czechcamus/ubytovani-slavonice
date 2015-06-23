@@ -1,6 +1,7 @@
 <?php
 
 use backend\assets\FormFacilityAsset;
+use backend\assets\FormGridAsset;
 use backend\models\FacilityForm;
 use yii\bootstrap\Tabs;
 use yii\helpers\ArrayHelper;
@@ -14,6 +15,7 @@ use yii\helpers\Url;
 
 $session = Yii::$app->session;
 
+FormGridAsset::register($this);
 FormFacilityAsset::register($this);
 ?>
 

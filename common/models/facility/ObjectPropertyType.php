@@ -63,7 +63,7 @@ class ObjectPropertyType extends ActiveRecord
 	}
 
 	/**
-	 * Gets unused property type options
+	 * Gets (unused) property type options
 	 *
 	 * @param integer $model_type
 	 * @param $object_property_id
