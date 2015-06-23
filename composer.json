@@ -21,7 +21,8 @@
         "yiisoft/yii2-imagine": "~2.0",
         "uran1980/yii2-scroll-to-top": "dev-master",
         "2amigos/yii2-google-maps-library": "*",
-        "xj/yii2-bootbox-widget": "*"
+        "xj/yii2-bootbox-widget": "*",
+        "philippfrenzel/yii2fullcalendar":"*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

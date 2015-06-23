@@ -17,9 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Availability' => 'Obsazenost',
     'ID' => '',
-    'Latitude' => 'Zeměpisná šířka',
-    'Longitude' => 'Zeměpisná délka',
     'Partner' => '',
     '-- choose a country --' => '-- vyberte zemi --',
     '-- choose a type --' => '-- vyberte typ --',
@@ -82,6 +81,8 @@ return [
     'Internet Types' => 'Typy internetového připojení',
     'Invalid File Type' => 'Chybný typ souboru',
     'Invalid Image Type' => 'Chybný typ obrázku',
+    'Latitude' => 'Zeměpisná šířka',
+    'Longitude' => 'Zeměpisná délka',
     'No' => 'Ne',
     'Not uploaded yet' => 'Dosud nenahráno',
     'Note' => 'Poznámka',

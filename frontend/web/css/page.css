@@ -1,5 +1,9 @@
 body strong {
   font-weight: 700; }
+body .width-30proc {
+  width: 30%; }
+body .width-40proc {
+  width: 40%; }
 body .parallax-container {
   height: 300px; }
   body .parallax-container h1 {

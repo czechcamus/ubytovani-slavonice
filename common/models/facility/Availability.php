@@ -4,6 +4,7 @@ namespace common\models\facility;
 
 use common\utilities\DateTimeDbConversion;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "availability".
@@ -16,7 +17,7 @@ use Yii;
  *
  * @property Room $room
  */
-class Availability extends \yii\db\ActiveRecord
+class Availability extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -56,8 +57,8 @@ class Availability extends \yii\db\ActiveRecord
             [['room_id'], 'integer'],
 	        [['date_from', 'date_to'], 'default', 'value' => null],
             [['date_from', 'date_to'], 'required'],
-            [['date_from', 'date_to'], 'date'],
-	        ['date_from', 'compare', 'compareValue' => Yii::$app->formatter->asDate(time()+86400), 'operator' => '>='],
+            [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d'],
+	        ['date_from', 'compare', 'compareValue' => date('Y-m-d', time()+86400), 'operator' => '>='],
 	        ['date_to', 'compare', 'compareAttribute' => 'date_from', 'operator' => '>='],
             [['description'], 'string', 'max' => 100]
         ];

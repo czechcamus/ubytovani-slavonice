@@ -25,8 +25,7 @@ class DateTimeDbConversion extends Behavior
 	 */
 	public function events() {
 		return [
-			ActiveRecord::EVENT_BEFORE_INSERT => 'dateTimeDbConvert',
-			ActiveRecord::EVENT_BEFORE_UPDATE => 'dateTimeDbConvert'
+			ActiveRecord::EVENT_BEFORE_VALIDATE => 'dateTimeDbConvert',
 		];
 	}
 

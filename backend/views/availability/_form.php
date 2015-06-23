@@ -14,7 +14,9 @@ use yii\widgets\MaskedInput;
 
 <div class="availability-form">
 
-	<?php $form = ActiveForm::begin(); ?>
+	<?php $form = ActiveForm::begin([
+		'enableClientValidation' => false
+	]); ?>
 
 	<div class="row">
 

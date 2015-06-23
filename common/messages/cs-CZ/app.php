@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Date From' => 'Datum od',
+    'Date To' => 'Datum do',
     'ID' => '',
-    'Latitude' => 'Zeměpisná šířka',
-    'Longitude' => 'Zeměpisná délka',
     'Partner' => '',
     'Tax ID' => '',
     '-- not selected --' => '-- není zvoleno --',
@@ -50,6 +50,8 @@ return [
     'Filename' => 'Název souboru',
     'Front Title' => 'Titul před jménem',
     'House Nr' => 'ČP',
+    'Latitude' => 'Zeměpisná šířka',
+    'Longitude' => 'Zeměpisná délka',
     'Main' => 'Hlavní',
     'Model Type' => 'Typ modelu',
     'Name' => 'Jméno',

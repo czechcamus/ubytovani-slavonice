@@ -17,13 +17,14 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'unavailable' => 'obsazeno',
+    'Advanced options of searching' => 'Rozšířené možnosti vyhledávání',
+    'CZK' => 'Kč',
     'Certificate' => 'Certifikáty',
     'Check in from' => 'Přihlášení od',
     'Check in to' => 'Přihlášení do',
     'Check out from' => 'Odhlášení od',
     'Check out to' => 'Odhlášení do',
-    'Advanced options of searching' => 'Rozšířené možnosti vyhledávání',
-    'CZK' => 'Kč',
     'Details of accommodation' => 'Detaily ubytování',
     'Fees' => 'Poplatky',
     'List of accommodation' => 'Seznam ubytování',
@@ -43,10 +44,9 @@ return [
     'Total beds number' => 'Celkový počet lůžek',
     'Type of accomodation facility' => 'Typ ubytovacího zařízení',
     'beds' => 'lůžka',
-    'close' => 'zavřít',
     'count' => 'počet',
     'description' => 'popis',
     'detailed information of room' => 'detaily pokoje',
-    'incl. VAT' => 'včetně DPH',
+    'incl. VAT' => 's DPH',
     'list of accommodation' => 'seznam ubytování',
 ];
