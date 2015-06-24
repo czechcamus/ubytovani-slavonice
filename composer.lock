@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "56aefc5932b6416fa323232e3446b1b6",
+    "hash": "319f7d87560737631e4dac93a7701651",
     "packages": [
         {
             "name": "2amigos/yii2-google-maps-library",
