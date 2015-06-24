@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $model->title;
 						echo '<div class="col s6 m4 l3">';
 						echo FacilityImage::widget([
 							'imageId' => $image->id,
-							'thumbnail' => true,
+							'thumbnail' => false,
 							'options' => [
 								'class' => 'responsive-img materialboxed',
 								'data-caption' => $image->title
