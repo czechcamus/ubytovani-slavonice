@@ -3,13 +3,13 @@
 namespace frontend\controllers;
 
 use common\models\facility\Room;
-use yii\web\Controller;
+use frontend\utilities\FrontendController;
 
 /**
  * Class RoomController implements multiple view actions
  * @package frontend\controllers
  */
-class RoomController extends Controller
+class RoomController extends FrontendController
 {
 	public $layout = 'page';
 

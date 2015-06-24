@@ -4,13 +4,13 @@ namespace frontend\controllers;
 
 use common\models\facility\Facility;
 use frontend\models\FacilitySearchForm;
-use yii\web\Controller;
+use frontend\utilities\FrontendController;
 
 /**
  * Class FacilityController implements multiple view actions
  * @package frontend\controllers
  */
-class FacilityController extends Controller
+class FacilityController extends FrontendController
 {
 	public $layout = 'page';
 

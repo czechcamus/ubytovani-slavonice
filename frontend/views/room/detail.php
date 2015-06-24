@@ -6,6 +6,7 @@ use frontend\assets\CalendarAsset;
 use frontend\components\Calendar;
 use frontend\components\Prices;
 use frontend\components\Properties;
+use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 $this->title = $model->facility->title;
@@ -25,6 +26,7 @@ CalendarAsset::register($this);
 	<div class="row">
 		<div class="col s12">
 			<h2 class="light"><?= Yii::t('front', 'Room') . ': ' . $model->title; ?></h2>
+			<p><?= $model->roomType->title . ', ' . $model->note; ?></p>
 		</div>
 	</div>
 	<div class="row">
@@ -41,6 +43,13 @@ CalendarAsset::register($this);
 			<?= Calendar::widget([
 				'roomId' => $model->id
 			])?>
+			<?= Html::a('<i class="mdi-navigation-arrow-forward right"></i>' . Yii::t('front', 'Booking request'), '#modal-request', [
+				'class' => 'btn waves-effect waves-light modal-trigger'
+			]); ?>
 		</div>
 	</div>
 </div>
+<?= $this->renderFile('@app/views/general/modalRequest.php', [
+	'model' => $model,
+	'form' => true
+]); ?>

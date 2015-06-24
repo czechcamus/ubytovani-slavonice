@@ -2,31 +2,15 @@
 namespace frontend\controllers;
 
 use frontend\models\FacilitySearchForm;
+use frontend\utilities\FrontendController;
 use Yii;
 use frontend\models\ContactForm;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends FrontendController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * @inheritdoc
      */
