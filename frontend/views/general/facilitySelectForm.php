@@ -20,7 +20,7 @@ use yii\helpers\Html;
 
 	<div class="row">
 		<div class="col s12">
-			<h4 class="white-text light"><i class="mdi-action-search left"></i> <?= Yii::t('front', 'Search for accomodation in Slavonice'); ?></h4>
+			<h4 class="white-text light"><i class="material-icons left">search</i> <?= Yii::t('front', 'Search for accomodation in Slavonice'); ?></h4>
 		</div>
 
 		<?= $form->field($searchModel, 'place_id')->dropDownList( Place::getPlaceOptions(true) ); ?>
@@ -47,7 +47,7 @@ use yii\helpers\Html;
 		<div class="col s12">
 			<ul class="collapsible" data-collapsible="accordion">
 				<li>
-					<div class="collapsible-header white-text"><?= Yii::t('front', 'Advanced options of searching'); ?> <i class="mdi-hardware-keyboard-arrow-down"></i> *</div>
+					<div class="collapsible-header white-text"><?= Yii::t('front', 'Advanced options of searching'); ?> <i class="material-icons">keyboard_arrow_down</i> *</div>
 					<div class="collapsible-body white-text">
 						<div class="row">
 							<div class="col s12">
@@ -87,8 +87,8 @@ use yii\helpers\Html;
 	</div>
 	<div class="row">
 		<div class="col s12">
-			<?= Html::submitButton(Yii::t('front', 'Search') . '<i class="mdi-action-search right"></i>', [
-				'class' => 'btn waves-effect waves-light'
+			<?= Html::submitButton(Yii::t('front', 'Search') . '<i class="material-icons right">search</i>', [
+				'class' => 'btn waves-effect waves-light blue'
 			]); ?>
 		</div>
 	</div>

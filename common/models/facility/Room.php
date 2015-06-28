@@ -8,6 +8,7 @@ use common\models\type\RoomType;
 use common\utilities\ObjectsRelationsDelete;
 use Yii;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "room".
@@ -73,6 +74,16 @@ class Room extends ActiveRecord
             'note' => Yii::t('app', 'Note'),
         ];
     }
+
+	/**
+	 * Gets rooms options of facility for dropdown field
+	 * @param int $facility_id
+	 * @return array
+	 */
+	public function getFacilityRoomOptions($facility_id = 0)
+	{
+		return ArrayHelper::map(self::findAll(['facility_id' => $facility_id]), 'id', 'title');
+	}
 
     /**
      * @return \yii\db\ActiveQuery

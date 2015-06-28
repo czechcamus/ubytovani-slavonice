@@ -62,7 +62,7 @@ class FacilityImage extends Widget {
 		if ($image) {
 			$this->_tag = Html::img(\Yii::$app->params['imageUrl'] . ($this->thumbnail ? 'thumbnails/' : '') . $image->filename, $this->options);
 		} else {
-			$this->_tag = Html::tag('div', '<i class="white-text large mdi-content-block"></i>', ['class' => 'grey lighten-1 center-align']);
+			$this->_tag = Html::tag('div', '<i class="white-text large material-icons">block</i>', ['class' => 'grey lighten-1 center-align']);
 		}
 	}
 

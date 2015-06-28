@@ -79,17 +79,17 @@ BaseAsset::register($this);
 						        <h5 class="white-text light">Kontaktní formulář:</h5>
 					        </div>
 					        <div class="col s12 l6 input-field">
-						        <i class="mdi-action-account-circle prefix"></i>
+						        <i class="material-icons prefix white-text">account_circle</i>
 								<input id="name" type="text" />
 						        <label for="name" class="blue-text text-lighten-4">Vaše jméno</label>
 					        </div>
 					        <div class="col s12 l6 input-field">
-						        <i class="mdi-communication-email prefix"></i>
+						        <i class="material-icons prefix white-text">email</i>
 						        <input id="email" type="email" />
 						        <label for="email" class="blue-text text-lighten-4">Váš email</label>
 					        </div>
 							<div class="col s12 input-field">
-								<i class="mdi-editor-mode-edit prefix"></i>
+								<i class="material-icons prefix white-text">mode_edit</i>
 								<textarea id="message" class="materialize-textarea"></textarea>
 								<label for="message" class="blue-text text-lighten-4">Vaše zpráva</label>
 							</div>
@@ -102,7 +102,7 @@ BaseAsset::register($this);
 					        </div>
 					        <div class="col s12">
 						        <button class="btn orange waves-effect waves-light" type="submit" name="action">Odeslat
-							        <i class="mdi-content-send right"></i>
+							        <i class="material-icons right">send</i>
 						        </button>
 					        </div>
 				        </div>
@@ -118,7 +118,7 @@ BaseAsset::register($this);
 						        Slavonická renesanční o.p.s.<br />
 						        Na Potoku 629<br />
 						        378 81  Slavonice<br />
-						        <i class="mdi-communication-phone"></i> 384 493 884
+						        <i class="material-icons">phone</i> 384 493 884
 					        </address>
 				        </div>
 			        </div>

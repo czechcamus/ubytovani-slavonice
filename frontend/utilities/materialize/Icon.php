@@ -36,7 +36,7 @@ class Icon extends Widget
     {
         parent::init();
         $this->clientOptions = false;
-        Html::addCssClass($this->options, 'mdi-' . $this->name);
+        Html::addCssClass($this->options, 'material-icons');
     }
 
     /**
@@ -44,6 +44,6 @@ class Icon extends Widget
      */
     public function run()
     {
-        return Html::tag($this->tagName, '', $this->options);
+        return Html::tag($this->tagName, $this->name, $this->options);
     }
 }

@@ -9,9 +9,9 @@
 		if ($objectProperty->property_value == 1) {
 			echo "<li>\n";
 			echo "<div class=\"collapsible-header\">\n";
-			echo "<i class=\"mdi-toggle-check-box blue-text\"></i> " . $objectProperty->property->title;
+			echo "<i class=\"material-icons blue-text\">check_box</i> " . $objectProperty->property->title;
 			if ($objectProperty->property_note || $objectProperty->objectPropertyTypes || $objectProperty->fees) {
-				echo "<i class=\"mdi-navigation-expand-more right\"></i>";
+				echo "<i class=\"material-icons right\">keyboard_arrow_down</i>";
 			}
 			echo "</div>\n";
 			if ($objectProperty->property_note || $objectProperty->objectPropertyTypes || $objectProperty->fees) {

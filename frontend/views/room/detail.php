@@ -11,8 +11,8 @@ use yii\widgets\Breadcrumbs;
 
 $this->title = $model->facility->title;
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('front', 'list of accommodation') . ' <i class="mdi-hardware-keyboard-arrow-right orange-text"></i>', 'url' => ['facility/index'], 'encode' => false];
-$this->params['breadcrumbs'][] = ['label' => $model->facility->title . ' <i class="mdi-hardware-keyboard-arrow-right orange-text"></i>', 'url' => ['facility/detail', 'id' => $model->facility_id], 'encode' => false];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('front', 'list of accommodation') . Yii::$app->params['breadCrumbsDelimiter'], 'url' => ['facility/index'], 'encode' => false];
+$this->params['breadcrumbs'][] = ['label' => $model->facility->title . Yii::$app->params['breadCrumbsDelimiter'], 'url' => ['facility/detail', 'id' => $model->facility_id], 'encode' => false];
 $this->params['breadcrumbs'][] = $model->title;
 
 CalendarAsset::register($this);
@@ -43,7 +43,7 @@ CalendarAsset::register($this);
 			<?= Calendar::widget([
 				'roomId' => $model->id
 			])?>
-			<?= Html::a('<i class="mdi-navigation-arrow-forward right"></i>' . Yii::t('front', 'Booking request'), '#modal-request', [
+			<?= Html::a('<i class="material-icons right">arrow_forward</i>' . Yii::t('front', 'Booking request'), '#modal-request', [
 				'class' => 'btn waves-effect waves-light modal-trigger'
 			]); ?>
 		</div>
@@ -51,5 +51,6 @@ CalendarAsset::register($this);
 </div>
 <?= $this->renderFile('@app/views/general/modalRequest.php', [
 	'model' => $model,
-	'form' => true
+	'displayForm' => true,
+	'facilityId' => $model->facility_id
 ]); ?>

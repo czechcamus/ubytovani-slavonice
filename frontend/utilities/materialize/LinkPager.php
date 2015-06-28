@@ -80,12 +80,12 @@ class LinkPager extends Widget
      * @var string|boolean the label for the "next" page button. Note that this will NOT be HTML-encoded.
      * If this property is false, the "next" page button will not be displayed.
      */
-    public $nextPageLabel = '<i class="mdi-navigation-chevron-right"></i>';
+    public $nextPageLabel = '<i class="material-icons">keyboard_arrow_right</i>';
     /**
      * @var string|boolean the text label for the previous page button. Note that this will NOT be HTML-encoded.
      * If this property is false, the "previous" page button will not be displayed.
      */
-    public $prevPageLabel = '<i class="mdi-navigation-chevron-left"></i>';
+    public $prevPageLabel = '<i class="material-icons">keyboard_arrow_left</i>';
     /**
      * @var string|boolean the text label for the "first" page button. Note that this will NOT be HTML-encoded.
      * If it's specified as true, page number will be used as label.

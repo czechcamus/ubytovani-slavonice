@@ -9,7 +9,7 @@ use yii\widgets\ListView;
 $this->title = Yii::t('front', 'List of accommodation');
 ?>
 
-<div class="section container">
+<div class="page section container">
 	<div class="row">
 
 		<?= ListView::widget([

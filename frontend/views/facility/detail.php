@@ -12,7 +12,7 @@ use yii\widgets\Breadcrumbs;
 
 $this->title = $model->title;
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('front', 'list of accommodation') . ' <i class="mdi-hardware-keyboard-arrow-right orange-text"></i>', 'url' => ['index'], 'encode' => false];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('front', 'list of accommodation') . Yii::$app->params['breadCrumbsDelimiter'], 'url' => ['index'], 'encode' => false];
 $this->params['breadcrumbs'][] = $model->title;
 ?>
 
@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $model->title;
 		<div class="col s12 m6">
 			<div class="row">
 				<div class="col s12">
-					<?php if ($model->partner && ($model->stars > 0)) echo '<span class="right orange-text">' . str_repeat('<i class="mdi-action-grade"></i>', $model->stars) . '</span>'; ?>
+					<?php if ($model->partner && ($model->stars > 0)) echo '<span class="right orange-text rating">' . str_repeat('*', $model->stars) . '</span>'; ?>
 					<h2 class="light"><?= $model->title; ?></h2>
 					<div class="card blue">
 						<div class="card-content white-text">
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $model->title;
 								<?= $model->postal_code; ?>
 							</address>
 							<?php if ($model->weburl): ?>
-								<a href="<?= $model->weburl; ?>" class="orange-text"><i class="mdi-social-public"></i> <?= $model->weburl; ?></a>
+								<a href="<?= $model->weburl; ?>" class="orange-text"><i class="material-icons">public</i> <?= $model->weburl; ?></a>
 							<?php endif; ?>
 						</div>
 					</div>

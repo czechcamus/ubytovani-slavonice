@@ -1,5 +1,4 @@
 .container {
-  padding: 0 $gutter-width;
   margin: 0 auto;
   max-width: 1280px;
   width: 90%;
@@ -20,8 +19,8 @@
 }
 
 .section {
-	padding-top: 3rem;
-	padding-bottom: 3rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 
   &.no-pad {
     padding: 0;

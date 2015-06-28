@@ -57,7 +57,7 @@ HomeAsset::register($this);
 						<div class="col s12 m6 l8">
 							<h5 class="light"><a href="#" class="black-text">Hotel Arkáda</a></h5>
 							<p>Pobyt v Hotelu Arkáda v historické budově přímo na hlavním náměstí...</p>
-							<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
+							<a class="waves-effect waves-light btn"><i class="material-icons tiny right">arrow_forward</i>více</a>
 						</div>
 					</div>
 					<div class="row">
@@ -67,7 +67,7 @@ HomeAsset::register($this);
 						<div class="col s12 m6 l8">
 							<h5 class="light"><a href="#" class="black-text">Hotel Besídka</a></h5>
 							<p>Hotel Besídka se nachází v budově z 16. století, která je kulturní památkou...</p>
-							<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
+							<a class="waves-effect waves-light btn"><i class="material-icons tiny right">arrow_forward</i>více</a>
 						</div>
 					</div>
 					<div class="row">
@@ -77,7 +77,7 @@ HomeAsset::register($this);
 						<div class="col s12 m6 l8">
 							<h5 class="light"><a href="#" class="black-text">Hotel U Růže</a></h5>
 							<p>Hotel U Růže se nachází přímo na náměstí a nabízí wellness centrum...</p>
-							<a class="waves-effect waves-light btn"><i class="mdi-navigation-arrow-forward right"></i>více</a>
+							<a class="waves-effect waves-light btn"><i class="material-icons tiny right">arrow_forward</i>více</a>
 						</div>
 					</div>
 				</div>
@@ -89,9 +89,9 @@ HomeAsset::register($this);
 					<a href="http://www.slavonicefest.cz/"><img src="images/slavonice-fest-2015.gif" class="responsive-img" /></a>
 				</div>
 				<div class="col s12 m8">
-					<h5 class="light"><a href="http://www.slavonicefest.cz/" class="black-text"><i class="mdi-action-event blue-text left"></i> Slavonice Fest 2015 se blíží</a></h5>
+					<h5 class="light"><a href="http://www.slavonicefest.cz/" class="black-text"><i class="material-icons blue-text left">event</i> Slavonice Fest 2015 se blíží</a></h5>
 					<p>Slavonice Fest 2015 odstartuje večer ve čtvrtek 6. srpna a vyvrcholí velkou taneční párty v pondělí 10. srpna 2015!
-						Filmy, kapely, DJ´s , léto, pohoda, přátelská atmosféra, Slavonice, Maříž, rakouský Drosendorf  a vy. Těšíme se na vás! <a href="http://www.slavonicefest.cz/"><i class="mdi-navigation-arrow-forward"></i></a></p>
+						Filmy, kapely, DJ´s , léto, pohoda, přátelská atmosféra, Slavonice, Maříž, rakouský Drosendorf  a vy. Těšíme se na vás! <a href="http://www.slavonicefest.cz/"><i class="material-icons tiny">arrow_forward</i></a></p>
 				</div>
 			</div>
 			<div class="main-event row">
@@ -99,39 +99,39 @@ HomeAsset::register($this);
 					<a href="http://www.slavonice.cz/o-nas/projekty/slavnosti-trojmezi/slavnosti-trojmezi-2014/29,732"><img src="images/slavnosti-trojmezi.jpg" class="responsive-img" /></a>
 				</div>
 				<div class="col s12 m8">
-					<h5 class="light"><a href="http://www.slavonice.cz/o-nas/projekty/slavnosti-trojmezi/slavnosti-trojmezi-2014/29,732" class="black-text"><i class="mdi-action-event blue-text left"></i> Slavnosti Trojmezí</a></h5>
+					<h5 class="light"><a href="http://www.slavonice.cz/o-nas/projekty/slavnosti-trojmezi/slavnosti-trojmezi-2014/29,732" class="black-text"><i class="material-icons blue-text left">event</i> Slavnosti Trojmezí</a></h5>
 					<p>Letošní SLAVNOSTI TROJMEZÍ se odehrávají na několika místech ve SLAVONICÍCH. Zde je popis, jak se na msíta dostat. Pořadatel: spolek Slavonická renesanční společnost, o.s.
-						Přijďte, těšíme se na Vás! <a href="http://www.slavonice.cz/o-nas/projekty/slavnosti-trojmezi/slavnosti-trojmezi-2014/29,732"><i class="mdi-navigation-arrow-forward"></i></a></p>
+						Přijďte, těšíme se na Vás! <a href="http://www.slavonice.cz/o-nas/projekty/slavnosti-trojmezi/slavnosti-trojmezi-2014/29,732"><i class="material-icons tiny">arrow_forward</i></a></p>
 				</div>
 			</div>
 			<div class="info row">
 				<div class="col s12">
-					<h6 class="light"><a href="#" class="black-text"><i class="mdi-maps-directions-walk blue-text left"></i> Graselovy stezky</a></h6>
-					<p>Vydejte se s námi po stezkách místy, kde loupil a skrýval se „grázl“ Johann Georg Grasel. <a href="#"><i class="mdi-navigation-arrow-forward"></i></a></p>
+					<h6 class="light"><a href="#" class="black-text"><i class="material-icons blue-text left">directions_walk</i> Graselovy stezky</a></h6>
+					<p>Vydejte se s námi po stezkách místy, kde loupil a skrýval se „grázl“ Johann Georg Grasel. <a href="#"><i class="material-icons tiny">arrow_forward</i></a></p>
 				</div>
 			</div>
 			<div class="info row">
 				<div class="col s12">
-					<h6 class="light"><a href="#" class="black-text"><i class="mdi-maps-directions-bike blue-text left"></i> Cyklotrasy na Slavonicku</a></h6>
-					<p>Můžete si vybrat z několika tématických okruhů i z různých profilů tras. <a href="#"><i class="mdi-navigation-arrow-forward"></i></a></p>
+					<h6 class="light"><a href="#" class="black-text"><i class="material-icons blue-text left">directions_bike</i> Cyklotrasy na Slavonicku</a></h6>
+					<p>Můžete si vybrat z několika tématických okruhů i z různých profilů tras. <a href="#"><i class="material-icons tiny">arrow_forward</i></a></p>
 				</div>
 			</div>
 			<div class="info row">
 				<div class="col s12">
-					<h6 class="light"><a href="#" class="black-text"><i class="mdi-maps-local-attraction blue-text left"></i> Pamětihodnosti v okolí</a></h6>
-					<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In dolor elit, pellentesque non velit et, euismod molestie urna. <a href="#"><i class="mdi-navigation-arrow-forward"></i></a></p>
+					<h6 class="light"><a href="#" class="black-text"><i class="material-icons blue-text left">stars</i> Pamětihodnosti v okolí</a></h6>
+					<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In dolor elit, pellentesque non velit et, euismod molestie urna. <a href="#"><i class="material-icons tiny">arrow_forward</i></a></p>
 				</div>
 			</div>
 			<div class="info row">
 				<div class="col s12">
-					<h6 class="light"><a href="#" class="black-text"><i class="mdi-maps-local-attraction blue-text left"></i> Sakrální památky</a></h6>
-					<p>Donec malesuada nibh tellus, a imperdiet metus tempor sed. Lorem ipsum dolor sit amet. <a href="#"><i class="mdi-navigation-arrow-forward"></i></a></p>
+					<h6 class="light"><a href="#" class="black-text"><i class="material-icons blue-text left">stars</i> Sakrální památky</a></h6>
+					<p>Donec malesuada nibh tellus, a imperdiet metus tempor sed. Lorem ipsum dolor sit amet. <a href="#"><i class="material-icons tiny">arrow_forward</i></a></p>
 				</div>
 			</div>
 			<div class="info row">
 				<div class="col s12">
-					<h6 class="light"><a href="#" class="black-text"><i class="mdi-image-nature blue-text left"></i> Přírodní zajímavosti</a></h6>
-					<p>In dolor elit, pellentesque non velit et, euismod molestie urna. Donec malesuada nibh tellus. <a href="#"><i class="mdi-navigation-arrow-forward"></i></a></p>
+					<h6 class="light"><a href="#" class="black-text"><i class="material-icons blue-text left">nature</i> Přírodní zajímavosti</a></h6>
+					<p>In dolor elit, pellentesque non velit et, euismod molestie urna. Donec malesuada nibh tellus. <a href="#"><i class="material-icons tiny">arrow_forward</i></a></p>
 				</div>
 			</div>
 		</div><!-- end of right column -->
