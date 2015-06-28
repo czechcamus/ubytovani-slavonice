@@ -29,5 +29,5 @@ class ActiveField extends \yii\widgets\ActiveField
 	/**
 	 * @var array $labelOptions dafaults to nothing needed
 	 */
-	public $labelOptions = ['class' => 'orange-text text-lighten-4'];
+	public $labelOptions = [];
 }

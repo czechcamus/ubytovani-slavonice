@@ -2,6 +2,7 @@
 /* @var $this yii\web\View */
 /* @var $model common\models\facility\Room */
 
+use common\models\Request;
 use frontend\assets\CalendarAsset;
 use frontend\components\Calendar;
 use frontend\components\Prices;
@@ -51,6 +52,7 @@ CalendarAsset::register($this);
 </div>
 <?= $this->renderFile('@app/views/general/modalRequest.php', [
 	'model' => $model,
+	'requestModel' => new Request,
 	'displayForm' => true,
 	'facilityId' => $model->facility_id
 ]); ?>

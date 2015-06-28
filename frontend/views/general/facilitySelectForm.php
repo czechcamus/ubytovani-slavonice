@@ -10,7 +10,10 @@ use yii\helpers\Html;
 
 ?>
 
-<?php $form = ActiveForm::begin([
+<?php
+$labelOptions = ['class' => 'orange-text text-lighten-4'];
+
+$form = ActiveForm::begin([
 	'method' => 'get',
 	'action' => ['facility/index'],
 	'options' => [
@@ -23,23 +26,30 @@ use yii\helpers\Html;
 			<h4 class="white-text light"><i class="material-icons left">search</i> <?= Yii::t('front', 'Search for accomodation in Slavonice'); ?></h4>
 		</div>
 
-		<?= $form->field($searchModel, 'place_id')->dropDownList( Place::getPlaceOptions(true) ); ?>
+		<?= $form->field($searchModel, 'place_id', [
+			'labelOptions' => $labelOptions
+		])->dropDownList( Place::getPlaceOptions(true) ); ?>
 
-		<?= $form->field($searchModel, 'facility_type_id')->dropDownList( FacilityType::getFacilityTypeOptions(true) ); ?>
+		<?= $form->field($searchModel, 'facility_type_id', [
+			'labelOptions' => $labelOptions
+		])->dropDownList( FacilityType::getFacilityTypeOptions(true) ); ?>
 
 		<div class="col s12">
 			<div class="row">
 
 				<?= $form->field($searchModel, 'priceFrom', [
-					'options' => ['class' => 'input-field col s12 m6']
+					'options' => ['class' => 'input-field col s12 m6'],
+					'labelOptions' => $labelOptions
 				])->input('number'); ?>
 
 				<?= $form->field($searchModel, 'priceTo', [
-					'options' => ['class' => 'input-field col s12 m6']
+					'options' => ['class' => 'input-field col s12 m6'],
+					'labelOptions' => $labelOptions
 				])->input('number'); ?>
 
 				<?= $form->field($searchModel, 'bedNr', [
-					'options' => ['class' => 'input-field col s12 m6']
+					'options' => ['class' => 'input-field col s12 m6'],
+					'labelOptions' => $labelOptions
 				])->input('number'); ?>
 
 			</div>
