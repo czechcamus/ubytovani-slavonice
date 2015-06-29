@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $model common\models\facility\Room */
-/* @var $requestModel common\models\Request */
+/* @var $requestModel common\models\BookingRequest */
 /* @var $displayForm boolean */
 /* @var $facilityId integer */
 /* @var $form ActiveForm */
@@ -23,7 +23,7 @@ use yii\helpers\Html;
 	];
 	$form = ActiveForm::begin([
 		'id' => 'booking-request-form',
-		'action' => ['sendRequest'],
+		'action' => ['send-request'],
 		'options' => [
 			'class' => 'white-form'
 		]
@@ -44,6 +44,7 @@ use yii\helpers\Html;
 				echo '<i class="material-icons prefix grey-text">room</i>';
 				echo Html::input('text', 'roomTitle', $model->title, ['disabled' => 'disabled']);
 				echo Html::label(Yii::t('front', 'Room'));
+				echo $form->field($requestModel, 'room_id', ['template' => '{input}'])->hiddenInput(['value' => $model->id]);
 				echo '</div>';
 			} else {
 				echo $form->field($requestModel, 'room_id')->dropDownList($model->getFacilityRoomOptions($facilityId));

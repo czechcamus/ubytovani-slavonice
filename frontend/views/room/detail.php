@@ -2,13 +2,15 @@
 /* @var $this yii\web\View */
 /* @var $model common\models\facility\Room */
 
-use common\models\Request;
+use common\models\BookingRequest;
 use frontend\assets\CalendarAsset;
 use frontend\components\Calendar;
 use frontend\components\Prices;
 use frontend\components\Properties;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+
+$session = Yii::$app->session;
 
 $this->title = $model->facility->title;
 
@@ -20,6 +22,7 @@ CalendarAsset::register($this);
 ?>
 
 <div class="section container room-detail">
+
 	<?= Breadcrumbs::widget([
 		'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 		'homeLink' => false
@@ -50,9 +53,16 @@ CalendarAsset::register($this);
 		</div>
 	</div>
 </div>
+
 <?= $this->renderFile('@app/views/general/modalRequest.php', [
 	'model' => $model,
-	'requestModel' => new Request,
+	'requestModel' => new BookingRequest,
 	'displayForm' => true,
 	'facilityId' => $model->facility_id
 ]); ?>
+
+<?php if ($session->hasFlash('info')): ?>
+	<script language="text/javascript">
+		Materialize.toast('<?= $session->getFlash('info'); ?>', 5000);
+	</script>
+<?php endif; ?>

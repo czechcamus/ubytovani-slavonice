@@ -24,7 +24,7 @@ class ActiveField extends \yii\widgets\ActiveField
 	/**
 	 * @var array $inputOptions dafaults to nothing needed
 	 */
-	public $inputOptions = ['class' => 'white-text'];
+	public $inputOptions = [];
 
 	/**
 	 * @var array $labelOptions dafaults to nothing needed

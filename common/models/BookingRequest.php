@@ -25,7 +25,7 @@ use yii\db\ActiveRecord;
  * @property Room $room
  * @property User $settledBy
  */
-class Request extends ActiveRecord
+class BookingRequest extends ActiveRecord
 {
 	public $verifyCode;
 
@@ -37,19 +37,17 @@ class Request extends ActiveRecord
         return 'request';
     }
 
-	//TODO dodělat behaviors
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['date_from', 'date_to', 'email', 'verifyCode'], 'integer'],
+            [['room_id', 'date_from', 'date_to', 'email', 'verifyCode'], 'required'],
             [['room_id', 'settled'], 'integer'],
             [['note', 'settled_note'], 'string'],
             [['name'], 'string', 'max' => 25],
-            [['email'], 'string', 'max' => 50],
+            [['email'], 'email'],
             [['phone'], 'string', 'max' => 15],
             [['settled', 'settled_note', 'settled_by', 'settled_at'], 'safe']
         ];

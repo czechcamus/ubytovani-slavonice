@@ -2,10 +2,11 @@
 
 namespace frontend\controllers;
 
+use common\models\BookingRequest;
 use common\models\facility\Room;
-use common\models\Request;
 use frontend\utilities\FrontendController;
 use Yii;
+use yii\web\HttpException;
 
 /**
  * Class RoomController implements multiple view actions
@@ -29,25 +30,23 @@ class RoomController extends FrontendController
 
 	/**
 	 * Sends and saves booking request
-	 * @param $id
 	 * @return string
+	 * @throws HttpException
 	 */
-	public function actionSendRequest($id)
+	public function actionSendRequest()
 	{
-		/** @var Room $model */
-		$model = Room::findOne($id);
-		$requestModel = new Request;
+		$requestModel = new BookingRequest;
 
 		if ($requestModel->load(Yii::$app->request->post()) && $requestModel->save()) {
 
+			//TODO send email and update date fields
+
+			$session = Yii::$app->session;
+			$session->setFlash('info', Yii::t('front', 'Booking request successfully sent!'));
+
+			return $this->redirect(['detail', 'id' => $requestModel->room_id]);
+		} else {
+			throw new HttpException(404, Yii::t('front', 'Return page not found'));
 		}
-
-		return $this->renderFile('@app/views/general/modalRequest.php', [
-			'model' => $model,
-			'requestModel' => $requestModel,
-			'displayForm' => true,
-			'facilityId' => $model->facility_id
-		]);
 	}
-
 }
