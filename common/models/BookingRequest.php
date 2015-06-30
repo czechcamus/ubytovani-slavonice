@@ -4,7 +4,6 @@ namespace common\models;
 
 use common\models\facility\Room;
 use common\utilities\DateTimeDbConversion;
-use frontend\utilities\DateCompareValidator;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -73,6 +72,7 @@ class BookingRequest extends ActiveRecord
             [['name'], 'string', 'max' => 25],
             [['email'], 'email'],
             [['phone'], 'string', 'max' => 15],
+	        ['verifyCode', 'captcha'],
             [['settled', 'settled_note', 'settled_by', 'settled_at'], 'safe']
         ];
     }

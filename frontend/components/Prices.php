@@ -8,10 +8,7 @@
 
 namespace frontend\components;
 
-use common\models\facility\Image;
-use common\models\property\FacilityProperty;
 use yii\base\Widget;
-use yii\helpers\Html;
 
 /**
  * Class Prices displays prices of room

@@ -6447,7 +6447,7 @@ textarea.materialize-textarea {
     -ms-transform: translateY(-140%);
     -o-transform: translateY(-140%);
     transform: translateY(-140%); }
-  .input-field .prefix, body main .input-field .captcha-prefix {
+  .input-field .prefix, body .input-field .captcha-prefix {
     position: absolute;
     width: 3rem;
     font-size: 2rem;
@@ -6456,24 +6456,24 @@ textarea.materialize-textarea {
     -o-transition: color 0.2s;
     -ms-transition: color 0.2s;
     transition: color 0.2s; }
-    .input-field .prefix.active, body main .input-field .active.captcha-prefix {
+    .input-field .prefix.active, body .input-field .active.captcha-prefix {
       color: #ff9800; }
-  .input-field .prefix ~ input, body main .input-field .captcha-prefix ~ input,
+  .input-field .prefix ~ input, body .input-field .captcha-prefix ~ input,
   .input-field .prefix ~ textarea,
-  body main .input-field .captcha-prefix ~ textarea {
+  body .input-field .captcha-prefix ~ textarea {
     margin-left: 3rem;
     width: 92%;
     width: calc(100% - 3rem); }
-  .input-field .prefix ~ textarea, body main .input-field .captcha-prefix ~ textarea {
+  .input-field .prefix ~ textarea, body .input-field .captcha-prefix ~ textarea {
     padding-top: .8rem; }
-  .input-field .prefix ~ label, body main .input-field .captcha-prefix ~ label {
+  .input-field .prefix ~ label, body .input-field .captcha-prefix ~ label {
     margin-left: 3rem; }
   @media only screen and (max-width: 992px) {
-    .input-field .prefix ~ input, body main .input-field .captcha-prefix ~ input {
+    .input-field .prefix ~ input, body .input-field .captcha-prefix ~ input {
       width: 86%;
       width: calc(100% - 3rem); } }
   @media only screen and (max-width: 600px) {
-    .input-field .prefix ~ input, body main .input-field .captcha-prefix ~ input {
+    .input-field .prefix ~ input, body .input-field .captcha-prefix ~ input {
       width: 80%;
       width: calc(100% - 3rem); } }
 
@@ -8288,6 +8288,31 @@ body {
   color: #9e9e9e; }
   body address {
     font-style: normal; }
+  body .input-field .captcha-prefix {
+    width: 10rem; }
+  body .input-field .captcha-prefix ~ input,
+  body .input-field .captcha-prefix ~ textarea {
+    margin-left: 10rem;
+    width: calc(100% - 10rem); }
+  body .input-field .captcha-prefix ~ textarea {
+    padding-top: .8rem; }
+  body .input-field .captcha-prefix ~ label {
+    margin-left: 10rem; }
+  @media only screen and (max-width: 992px) {
+    body .input-field .captcha-prefix ~ input {
+      width: calc(100% - 10rem); } }
+  @media only screen and (max-width: 600px) {
+    body .input-field .captcha-prefix ~ input {
+      width: calc(100% - 10rem); } }
+  body .input-field .prefix ~ .select-wrapper, body .input-field .captcha-prefix ~ .select-wrapper {
+    margin-left: 3rem;
+    width: calc(100% - 3rem); }
+  @media only screen and (max-width: 992px) {
+    body .input-field .prefix ~ .select-wrapper, body .input-field .captcha-prefix ~ .select-wrapper {
+      width: calc(100% - 3rem); } }
+  @media only screen and (max-width: 600px) {
+    body .input-field .prefix ~ .select-wrapper, body .input-field .captcha-prefix ~ .select-wrapper {
+      width: calc(100% - 3rem); } }
   body main .parallax-container {
     padding-top: 35px;
     margin-bottom: 20px; }
@@ -8342,34 +8367,6 @@ body {
       border-left-color: transparent;
       border-right-color: #2196F3;
       border-bottom-color: #2196F3; }
-  body main .input-field .captcha-prefix {
-    width: 10rem; }
-  body main .input-field .captcha-prefix ~ input,
-  body main .input-field .captcha-prefix ~ textarea {
-    margin-left: 10rem;
-    width: calc(100% - 10rem); }
-  body main .input-field .captcha-prefix ~ textarea {
-    padding-top: .8rem; }
-  body main .input-field .captcha-prefix ~ label {
-    margin-left: 10rem; }
-  @media only screen and (max-width: 992px) {
-    body main .input-field .captcha-prefix ~ input {
-      width: calc(100% - 10rem); } }
-  @media only screen and (max-width: 600px) {
-    body main .input-field .captcha-prefix ~ input {
-      width: calc(100% - 10rem); } }
-  body main .input-field .prefix ~ .select-wrapper, body main .input-field .captcha-prefix ~ .select-wrapper {
-    margin-left: 3rem;
-    width: 92%;
-    width: calc(100% - 3rem); }
-  @media only screen and (max-width: 992px) {
-    body main .input-field .prefix ~ .select-wrapper, body main .input-field .captcha-prefix ~ .select-wrapper {
-      width: 86%;
-      width: calc(100% - 3rem); } }
-  @media only screen and (max-width: 600px) {
-    body main .input-field .prefix ~ .select-wrapper, body main .input-field .captcha-prefix ~ .select-wrapper {
-      width: 80%;
-      width: calc(100% - 3rem); } }
   body main .main-event h5, body main .facility-partner h5 {
     margin-top: 0; }
   body main .info h6 {
@@ -8386,7 +8383,7 @@ body {
     border-color: #2196F3; }
   body main .white-form .required label {
     color: #F44336; }
-  body footer .contact-form .prefix.active, body footer .contact-form main .input-field .active.captcha-prefix, body main .input-field footer .contact-form .active.captcha-prefix {
+  body footer .contact-form .prefix.active, body footer .contact-form .input-field .active.captcha-prefix, body .input-field footer .contact-form .active.captcha-prefix {
     color: #90CAF9; }
   body footer .contact-form .valid {
     border-color: #fff;
@@ -8395,6 +8392,8 @@ body {
     color: #fff; }
     body footer .contact-form .input-field input:focus, body footer .contact-form .input-field textarea:focus {
       border-color: #90CAF9; }
+  body footer .contact-form .help-block {
+    color: #90CAF9; }
   body .footer-copyright a {
     color: #90CAF9; }
 

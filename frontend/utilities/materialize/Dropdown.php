@@ -23,6 +23,10 @@ use yii\helpers\Html;
  */
 class Dropdown extends Widget
 {
+	/**
+	 * @var bool if dropdown is suitable for side nav component.
+	 */
+	public $sideNav = false;
     /**
      * @var string the tag to use to render the button
      */
@@ -67,7 +71,8 @@ class Dropdown extends Widget
     public function init()
     {
         parent::init();
-        Html::addCssClass($this->options, 'dropdown-content');
+	    if (!$this->sideNav)
+            Html::addCssClass($this->options, 'dropdown-content');
         Html::addCssClass($this->buttonOptions, 'btn');
         Html::addCssClass($this->buttonOptions, 'dropdown-button');
         $this->buttonOptions['id'] = $this->id . '-btn';

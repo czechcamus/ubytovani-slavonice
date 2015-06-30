@@ -11,8 +11,6 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
-$session = Yii::$app->session;
-
 $this->title = $model->facility->title;
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('front', 'list of accommodation') . Yii::$app->params['breadCrumbsDelimiter'], 'url' => ['facility/index'], 'encode' => false];
@@ -60,7 +58,3 @@ CalendarAsset::register($this);
 	'requestModel' => new BookingRequest,
 	'facilityId' => $model->facility_id
 ]); ?>
-
-<?php if ($session->hasFlash('info')) {
-	$this->registerJs("Materialize.toast('" . $session->getFlash('info') . "', 5000, 'orange white-text');", View::POS_LOAD);
-} ?>

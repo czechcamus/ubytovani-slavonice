@@ -24,6 +24,12 @@ class SiteController extends FrontendController
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+	        'contactCaptcha' => [
+		        'class' => 'yii\captcha\CaptchaAction',
+		        'backColor' => 0x2196f3,
+		        'foreColor' => 0x90caf9,
+		        'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+	        ]
         ];
     }
 
@@ -37,17 +43,13 @@ class SiteController extends FrontendController
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+	        $session = Yii::$app->session;
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                $session->setFlash('info', Yii::t('front', 'Thank you for contacting us. We will respond to you as soon as possible.'));
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending email.');
+                $session->setFlash('info', Yii::t('front', 'There was an error sending email.'));
             }
-
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
         }
+	    return $this->goBack();
     }
 }

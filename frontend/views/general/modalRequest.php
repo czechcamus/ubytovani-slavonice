@@ -95,7 +95,7 @@ use yii\helpers\Html;
 	</div>
 	<div class="modal-footer">
 		<a href="#" class="modal-action modal-close waves-effect waves-red btn-flat"><?= Yii::t('front', 'Close'); ?></a>
-		<?php echo Html::submitButton( Yii::t( 'front', 'Send request' ), [
+		<?= Html::submitButton( Yii::t( 'front', 'Send request' ), [
 				'class' => 'modal-action waves-effect waves-green btn-flat'
 		]); ?>
 	</div>

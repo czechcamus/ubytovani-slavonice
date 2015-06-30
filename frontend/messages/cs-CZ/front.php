@@ -17,7 +17,23 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'unavailable' => 'obsazeno',
+    'Booking request' => 'Požadavek na rezervaci',
+    'Booking request successfully sent!' => 'Váš požadavek na rezervaci byl úspěšně odeslán!',
+    'Close' => 'Zavřít',
+    'Contact form' => 'Kontaktní formulář',
+    'Details' => 'Detaily',
+    'Details of facility' => 'Detaily ubytování',
+    'Message from ' => 'Zpráva od',
+    'Return page not found' => 'Stránka pro návrat nebyla nalezena',
+    'Send message' => 'Poslat zprávu',
+    'Send request' => 'Poslat požadavek',
+    'Server operator' => 'Provozovatel serveru',
+    'Thank you for contacting us. We will respond to you as soon as possible.' => 'Děkujeme Vám, že jste nás kontaktovali. Odpovíme co nejdříve.',
+    'There was an error sending email.' => 'Při odesílání zprávy se vyskytla chyba',
+    'Verification Code' => 'Ověřovací kód',
+    'Your email' => 'Váš email',
+    'Your message' => 'Vaše zpráva',
+    'Your name' => 'Vaše jméno',
     'Advanced options of searching' => 'Rozšířené možnosti vyhledávání',
     'CZK' => 'Kč',
     'Certificate' => 'Certifikáty',
@@ -49,4 +65,5 @@ return [
     'detailed information of room' => 'detaily pokoje',
     'incl. VAT' => 's DPH',
     'list of accommodation' => 'seznam ubytování',
+    'unavailable' => 'obsazeno',
 ];

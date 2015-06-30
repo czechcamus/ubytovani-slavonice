@@ -57,6 +57,44 @@ body {
   address {
     font-style: normal;
   }
+  .input-field {
+    .captcha-prefix {
+      @extend .prefix;
+      width: 10rem;
+    }
+    .captcha-prefix ~ input,
+    .captcha-prefix ~ textarea {
+      margin-left: 10rem;
+      width: calc(100% - 10rem);
+    }
+    .captcha-prefix ~ textarea { padding-top: .8rem; }
+    .captcha-prefix ~ label { margin-left: 10rem; }
+
+    @media #{$medium-and-down} {
+      .captcha-prefix ~ input {
+        width: calc(100% - 10rem);
+      }
+    }
+    @media #{$small-and-down} {
+      .captcha-prefix ~ input {
+        width: calc(100% - 10rem);
+      }
+    }
+    .prefix ~ .select-wrapper {
+      margin-left: 3rem;
+      width: calc(100% - 3rem);
+    }
+    @media #{$medium-and-down} {
+      .prefix ~ .select-wrapper {
+        width: calc(100% - 3rem);
+      }
+    }
+    @media #{$small-and-down} {
+      .prefix ~ .select-wrapper {
+        width: calc(100% - 3rem);
+      }
+    }
+  }
   main {
     .parallax-container {
       padding-top: 35px;
@@ -137,47 +175,6 @@ body {
         }
       }
     }
-    .input-field {
-      .captcha-prefix {
-        @extend .prefix;
-        width: 10rem;
-      }
-      .captcha-prefix ~ input,
-      .captcha-prefix ~ textarea {
-        margin-left: 10rem;
-        width: calc(100% - 10rem);
-      }
-      .captcha-prefix ~ textarea { padding-top: .8rem; }
-      .captcha-prefix ~ label { margin-left: 10rem; }
-
-      @media #{$medium-and-down} {
-        .captcha-prefix ~ input {
-          width: calc(100% - 10rem);
-        }
-      }
-      @media #{$small-and-down} {
-        .captcha-prefix ~ input {
-          width: calc(100% - 10rem);
-        }
-      }
-      .prefix ~ .select-wrapper {
-        margin-left: 3rem;
-        width: 92%;
-        width: calc(100% - 3rem);
-      }
-      @media #{$medium-and-down} {
-        .prefix ~ .select-wrapper {
-          width: 86%;
-          width: calc(100% - 3rem);
-        }
-      }
-      @media #{$small-and-down} {
-        .prefix ~ .select-wrapper {
-          width: 80%;
-          width: calc(100% - 3rem);
-        }
-      }
-    }
     .main-event, .facility-partner {
       h5 {
         margin-top: 0;
@@ -224,6 +221,9 @@ body {
             border-color: $blue-lighten3;
           }
         }
+      }
+      .help-block {
+        color: $blue-lighten3;
       }
     }
   }
