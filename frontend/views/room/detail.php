@@ -8,6 +8,7 @@ use frontend\components\Calendar;
 use frontend\components\Prices;
 use frontend\components\Properties;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
 $session = Yii::$app->session;
@@ -57,12 +58,9 @@ CalendarAsset::register($this);
 <?= $this->renderFile('@app/views/general/modalRequest.php', [
 	'model' => $model,
 	'requestModel' => new BookingRequest,
-	'displayForm' => true,
 	'facilityId' => $model->facility_id
 ]); ?>
 
-<?php if ($session->hasFlash('info')): ?>
-	<script language="text/javascript">
-		Materialize.toast('<?= $session->getFlash('info'); ?>', 5000);
-	</script>
-<?php endif; ?>
+<?php if ($session->hasFlash('info')) {
+	$this->registerJs("Materialize.toast('" . $session->getFlash('info') . "', 5000, 'orange white-text');", View::POS_LOAD);
+} ?>

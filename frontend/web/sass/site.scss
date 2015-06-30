@@ -160,6 +160,23 @@ body {
           width: calc(100% - 10rem);
         }
       }
+      .prefix ~ .select-wrapper {
+        margin-left: 3rem;
+        width: 92%;
+        width: calc(100% - 3rem);
+      }
+      @media #{$medium-and-down} {
+        .prefix ~ .select-wrapper {
+          width: 86%;
+          width: calc(100% - 3rem);
+        }
+      }
+      @media #{$small-and-down} {
+        .prefix ~ .select-wrapper {
+          width: 80%;
+          width: calc(100% - 3rem);
+        }
+      }
     }
     .main-event, .facility-partner {
       h5 {

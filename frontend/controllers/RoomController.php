@@ -37,13 +37,13 @@ class RoomController extends FrontendController
 	{
 		$requestModel = new BookingRequest;
 
-		if ($requestModel->load(Yii::$app->request->post()) && $requestModel->save()) {
+		if ($requestModel->load(Yii::$app->request->post())) {
+			if ($requestModel->save()) {
+				//TODO send email and update date fields
 
-			//TODO send email and update date fields
-
-			$session = Yii::$app->session;
-			$session->setFlash('info', Yii::t('front', 'Booking request successfully sent!'));
-
+				$session = Yii::$app->session;
+				$session->setFlash('info', Yii::t('front', 'Booking request successfully sent!'));
+			}
 			return $this->redirect(['detail', 'id' => $requestModel->room_id]);
 		} else {
 			throw new HttpException(404, Yii::t('front', 'Return page not found'));

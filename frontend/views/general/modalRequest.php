@@ -2,7 +2,6 @@
 /* @var $this yii\web\View */
 /* @var $model common\models\facility\Room */
 /* @var $requestModel common\models\BookingRequest */
-/* @var $displayForm boolean */
 /* @var $facilityId integer */
 /* @var $form ActiveForm */
 
@@ -13,7 +12,8 @@ use yii\helpers\Html;
 ?>
 
 <div id="modal-request" class="modal modal-fixed-footer">
-	<?php if ($displayForm === true):
+	<?php
+	$template = "\n{input}\n{label}\n{hint}\n{error}";
 	$datePickerOptions = [
 		'template' => "<i class=\"material-icons prefix\">event</i>\n{label}\n{input}\n{hint}\n{error}",
 		'options' => ['class'=> 'input-field col s12 m6'],
@@ -23,10 +23,10 @@ use yii\helpers\Html;
 	];
 	$form = ActiveForm::begin([
 		'id' => 'booking-request-form',
-		'action' => ['send-request'],
+		'action' => ['room/send-request'],
 		'options' => [
 			'class' => 'white-form'
-		]
+		],
 	]);
 	?>
 
@@ -47,7 +47,11 @@ use yii\helpers\Html;
 				echo $form->field($requestModel, 'room_id', ['template' => '{input}'])->hiddenInput(['value' => $model->id]);
 				echo '</div>';
 			} else {
-				echo $form->field($requestModel, 'room_id')->dropDownList($model->getFacilityRoomOptions($facilityId));
+				$requestModel->room_id = $model->getFacilityRoomFirstId($facilityId);
+				echo $form->field($requestModel, 'room_id', [
+						'template' => "<i class=\"material-icons prefix\">room</i>$template",
+						'options' => ['class'=> 'input-field col s12']
+					])->listBox($model->getFacilityRoomOptions($facilityId));
 			}
 		?>
 		</div>
@@ -57,7 +61,7 @@ use yii\helpers\Html;
 		</div>
 		<div class="row">
 			<?= $form->field($requestModel, 'note', [
-				'template' => "<i class=\"material-icons prefix\">mode_edit</i>\n{input}\n{label}\n{hint}\n{error}",
+				'template' => "<i class=\"material-icons prefix\">mode_edit</i>$template",
 				'options' => ['class'=> 'input-field col s12'],
 				'inputOptions' => [
 					'class' => 'materialize-textarea'
@@ -66,17 +70,17 @@ use yii\helpers\Html;
 		</div>
 		<div class="row">
 			<?= $form->field($requestModel, 'name', [
-				'template' => "<i class=\"material-icons prefix\">account_circle</i>\n{input}\n{label}\n{hint}\n{error}",
+				'template' => "<i class=\"material-icons prefix\">account_circle</i>$template",
 				'options' => ['class'=> 'input-field col s12']
 			]); ?>
 		</div>
 		<div class="row">
 			<?= $form->field($requestModel, 'email', [
-				'template' => "<i class=\"material-icons prefix\">email</i>\n{input}\n{label}\n{hint}\n{error}",
+				'template' => "<i class=\"material-icons prefix\">email</i>$template",
 				'options' => ['class'=> 'input-field col s12 m6']
 			]); ?>
 			<?= $form->field($requestModel, 'phone', [
-				'template' => "<i class=\"material-icons prefix\">phone</i>\n{input}\n{label}\n{hint}\n{error}",
+				'template' => "<i class=\"material-icons prefix\">phone</i>$template",
 				'options' => ['class'=> 'input-field col s12 m6']
 			]); ?>
 		</div>
@@ -88,17 +92,12 @@ use yii\helpers\Html;
 				'imageOptions' => ['class' => 'captcha-prefix responsive-img']
 			]); ?>
 		</div>
-		<?php else: ?>
-			<p>Tady není ale vůbec žádný formulář</p>
-		<?php endif; ?>
 	</div>
 	<div class="modal-footer">
 		<a href="#" class="modal-action modal-close waves-effect waves-red btn-flat"><?= Yii::t('front', 'Close'); ?></a>
-		<?php if ($displayForm === true) {
-			echo Html::submitButton( Yii::t( 'front', 'Send request' ), [
+		<?php echo Html::submitButton( Yii::t( 'front', 'Send request' ), [
 				'class' => 'modal-action waves-effect waves-green btn-flat'
-			]);
-		} ?>
+		]); ?>
 	</div>
 
 	<?php ActiveForm::end(); ?>

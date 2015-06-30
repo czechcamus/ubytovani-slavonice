@@ -88,7 +88,7 @@ class Nav extends Widget
     /**
      * @var string the text of the button collapse. Note that this is not HTML-encoded.
      */
-    public $buttonCollapseLabel = '<i class="mdi-navigation-menu"></i>';
+    public $buttonCollapseLabel = '<i class="material-icons">menu</i>';
     /**
      * @var array the HTML attributes of the button collapse.
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
@@ -121,9 +121,6 @@ class Nav extends Widget
      */
     public function run()
     {
-        if ($this->buttonCollapse) {
-            $this->getView()->registerJs('$("#' . $this->id . '-button-collapse").sideNav();');
-        }
         return $this->renderItems();
     }
 
@@ -181,7 +178,7 @@ class Nav extends Widget
                 if ($this->activateItems) {
                     $items = $this->isChildActive($items, $active);
                 }
-                $items = $this->renderDropdown($items, $dropdownId);
+	            $items = $this->renderDropdown($items, $dropdownId);
             }
         }
 

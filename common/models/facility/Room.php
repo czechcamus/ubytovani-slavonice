@@ -85,6 +85,15 @@ class Room extends ActiveRecord
 		return ArrayHelper::map(self::findAll(['facility_id' => $facility_id]), 'id', 'title');
 	}
 
+	/**
+	 * Return the id of the first record
+	 * @param int $facility_id
+	 * @return integer
+	 */
+	public function getFacilityRoomFirstId($facility_id = 0) {
+		return self::find()->andWhere(['facility_id' => $facility_id])->scalar();
+	}
+
     /**
      * @return \yii\db\ActiveQuery
      */

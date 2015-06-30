@@ -23,44 +23,64 @@ BaseAsset::register($this);
 <body>
     <?php $this->beginBody() ?>
     <header>
+<!--
+	    <nav>
+		    <div class="nav-wrapper container">
+			    <a href="#!" class="brand-logo">Logo</a>
+			    <ul class="right hide-on-med-and-down">
+				    <li><a href="sass.html">Sass</a></li>
+				    <li><a href="badges.html">Components</a></li>
+				    <li><a href="collapsible.html">Javascript</a></li>
+				    <li><a href="mobile.html">Mobile</a></li>
+			    </ul>
+			    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+			    <ul class="side-nav" id="mobile-demo">
+				    <li><a href="sass.html">Sass</a></li>
+				    <li><a href="badges.html">Components</a></li>
+				    <li><a href="collapsible.html">Javascript</a></li>
+				    <li><a href="mobile.html">Mobile</a></li>
+			    </ul>
+		    </div>
+	    </nav>
+-->
     <?php
-        NavBar::begin([
-            'brandLabel' => 'Ubytování ve Slavonicích',
-            'brandUrl' => Yii::$app->homeUrl,
-            'options' => [
-                'role' => 'navigation',
-            ],
-            'wraperContainerOptions' => [
-	            'class' => 'nav-wrapper container'
-            ]
-        ]);
-        $menuItems = [
-            ['label' => 'Úvod', 'url' => ['/site/index']],
-            ['label' => 'Ubytování', 'items' => [
-	            ['label' => 'Seznam ubytování', 'url' => ['facility/index']],
-	            ['label' => 'Druhá položka', 'url' => '#'],
-	            ['label' => 'Třetí položka', 'url' => '#']
-            ]],
-            ['label' => 'Slavonice', 'items' => [
-	            ['label' => 'První položka', 'url' => '#'],
-	            ['label' => 'Druhá položka', 'url' => '#'],
-	            ['label' => 'Třetí položka', 'url' => '#'],
-	            ['label' => 'Čtvrtá položka', 'url' => '#'],
-	            ['label' => 'Pátá položka', 'url' => '#'],
-            ]],
-        ];
-        echo Nav::widget([
-            'options' => [
-                'class' => 'right hide-on-med-and-down'],
-            'items' => $menuItems,
-        ]);
-	    echo Nav::widget([
-		    'buttonCollapse' => true,
-		    'options' => [
-			    'id' => 'w4',
-			    'class' => 'side-nav'],
-		    'items' => $menuItems,
-	    ]);
+NavBar::begin([
+'brandLabel' => 'Ubytování ve Slavonicích',
+'brandUrl' => Yii::$app->homeUrl,
+'options' => [
+	'role' => 'navigation',
+],
+'wraperContainerOptions' => [
+	'class' => 'nav-wrapper container'
+]
+]);
+$menuItems = [
+['label' => 'Úvod', 'url' => ['/site/index']],
+['label' => 'Ubytování', 'items' => [
+	['label' => 'Seznam ubytování', 'url' => ['facility/index']],
+	['label' => 'Druhá položka', 'url' => '#'],
+	['label' => 'Třetí položka', 'url' => '#']
+]],
+['label' => 'Slavonice', 'items' => [
+	['label' => 'První položka', 'url' => '#'],
+	['label' => 'Druhá položka', 'url' => '#'],
+	['label' => 'Třetí položka', 'url' => '#'],
+	['label' => 'Čtvrtá položka', 'url' => '#'],
+	['label' => 'Pátá položka', 'url' => '#'],
+]],
+];
+echo Nav::widget([
+'options' => [
+	'class' => 'right hide-on-med-and-down'],
+'items' => $menuItems,
+]);
+echo Nav::widget([
+'id' => 'side-menu',
+'buttonCollapse' => true,
+'options' => [
+	'class' => 'side-nav'],
+'items' => $menuItems,
+]);
         NavBar::end();
     ?>
     </header>

@@ -2,12 +2,16 @@
 /* @var $this yii\web\View */
 /* @var $model common\models\facility\Facility */
 
+use common\models\BookingRequest;
+use common\models\facility\Room;
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\Map;
 use dosamigos\google\maps\overlays\Marker;
 use frontend\components\FacilityImage;
 use frontend\components\Properties;
 use frontend\components\Rooms;
+use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
 $this->title = $model->title;
@@ -68,6 +72,13 @@ $this->params['breadcrumbs'][] = $model->title;
 						$map->addOverlay($marker);
 						echo $map->display();
 					?>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<?= Html::a('<i class="material-icons right">arrow_forward</i>' . Yii::t('front', 'Booking request'), '#modal-request', [
+						'class' => 'btn waves-effect waves-light modal-trigger'
+					]); ?>
 				</div>
 			</div>
 		</div>
@@ -133,3 +144,9 @@ $this->params['breadcrumbs'][] = $model->title;
 		</div>
 	</div>
 </div>
+
+<?= $this->renderFile('@app/views/general/modalRequest.php', [
+	'model' => new Room,
+	'requestModel' => new BookingRequest,
+	'facilityId' => $model->id
+]); ?>

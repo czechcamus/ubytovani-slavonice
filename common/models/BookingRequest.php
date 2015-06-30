@@ -3,6 +3,8 @@
 namespace common\models;
 
 use common\models\facility\Room;
+use common\utilities\DateTimeDbConversion;
+use frontend\utilities\DateCompareValidator;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -37,13 +39,35 @@ class BookingRequest extends ActiveRecord
         return 'request';
     }
 
-    /**
+	/**
+	 * @return array configuration of behaviors.
+	 */
+	public function behaviors()
+	{
+		return [
+			'dateTime' => [
+				'class' => DateTimeDbConversion::className(),
+				'attributes' =>[
+					[
+						'name' => 'date_from'
+					],
+					[
+						'name' => 'date_to'
+					]
+				]
+			]
+		];
+	}
+
+	/**
      * @inheritdoc
      */
     public function rules()
     {
         return [
             [['room_id', 'date_from', 'date_to', 'email', 'verifyCode'], 'required'],
+	        [['date_from', 'date_to'], 'default', 'value' => null],
+	        [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d'],
             [['room_id', 'settled'], 'integer'],
             [['note', 'settled_note'], 'string'],
             [['name'], 'string', 'max' => 25],

@@ -8358,6 +8358,18 @@ body {
   @media only screen and (max-width: 600px) {
     body main .input-field .captcha-prefix ~ input {
       width: calc(100% - 10rem); } }
+  body main .input-field .prefix ~ .select-wrapper, body main .input-field .captcha-prefix ~ .select-wrapper {
+    margin-left: 3rem;
+    width: 92%;
+    width: calc(100% - 3rem); }
+  @media only screen and (max-width: 992px) {
+    body main .input-field .prefix ~ .select-wrapper, body main .input-field .captcha-prefix ~ .select-wrapper {
+      width: 86%;
+      width: calc(100% - 3rem); } }
+  @media only screen and (max-width: 600px) {
+    body main .input-field .prefix ~ .select-wrapper, body main .input-field .captcha-prefix ~ .select-wrapper {
+      width: 80%;
+      width: calc(100% - 3rem); } }
   body main .main-event h5, body main .facility-partner h5 {
     margin-top: 0; }
   body main .info h6 {
