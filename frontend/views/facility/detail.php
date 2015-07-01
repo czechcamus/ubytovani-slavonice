@@ -11,7 +11,6 @@ use frontend\components\FacilityImage;
 use frontend\components\Properties;
 use frontend\components\Rooms;
 use yii\helpers\Html;
-use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
 $this->title = $model->title;
@@ -27,6 +26,20 @@ $this->params['breadcrumbs'][] = $model->title;
 	]) ?>
 	<div class="row">
 		<div class="col s12 m6">
+			<?php if ($model->partner && ($model->stars > 0)) echo '<span class="right orange-text rating">' . str_repeat('*', $model->stars) . '</span>'; ?>
+			<h2 class="light"><?= $model->title; ?></h2>
+			<div class="card blue">
+				<div class="card-content white-text">
+					<address>
+						<?= $model->street . ' ' . $model->house_nr; ?><br />
+						<?= $model->city; ?><br />
+						<?= $model->postal_code; ?>
+					</address>
+					<?php if ($model->weburl): ?>
+						<a href="<?= $model->weburl; ?>" class="orange-text"><i class="material-icons">public</i> <?= $model->weburl; ?></a>
+					<?php endif; ?>
+				</div>
+			</div>
 			<?php if ($model->images): ?>
 				<div class="row">
 					<div class="col s12">
@@ -85,20 +98,6 @@ $this->params['breadcrumbs'][] = $model->title;
 		<div class="col s12 m6">
 			<div class="row">
 				<div class="col s12">
-					<?php if ($model->partner && ($model->stars > 0)) echo '<span class="right orange-text rating">' . str_repeat('*', $model->stars) . '</span>'; ?>
-					<h2 class="light"><?= $model->title; ?></h2>
-					<div class="card blue">
-						<div class="card-content white-text">
-							<address>
-								<?= $model->street . ' ' . $model->house_nr; ?><br />
-								<?= $model->city; ?><br />
-								<?= $model->postal_code; ?>
-							</address>
-							<?php if ($model->weburl): ?>
-								<a href="<?= $model->weburl; ?>" class="orange-text"><i class="material-icons">public</i> <?= $model->weburl; ?></a>
-							<?php endif; ?>
-						</div>
-					</div>
 					<?php if ($model->certificate) echo '<p><strong>' . Yii::t('front', 'Certificate') . ':</strong> <em>' . $model->certificate . '</em></p>'; ?>
 					<p><?= $model->description; ?></p>
 				</div>

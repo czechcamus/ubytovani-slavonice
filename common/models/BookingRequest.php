@@ -95,7 +95,7 @@ class BookingRequest extends ActiveRecord
             'settled_note' => Yii::t('app', 'Note'),
             'settled_at' => Yii::t('app', 'Settled at'),
             'settled_by' => Yii::t('app', 'Settled by'),
-            'verifyCode' => Yii::t('front', 'Verification code'),
+            'verifyCode' => Yii::t('app', 'Verification code'),
         ];
     }
 
@@ -127,7 +127,7 @@ class BookingRequest extends ActiveRecord
 		return Yii::$app->mailer->compose()
             ->setTo($email)
             ->setFrom([$this->email => $this->name])
-            ->setSubject(Yii::t('front', 'Booking request'))
+            ->setSubject(Yii::t('app', 'Booking request'))
             ->setTextBody($this->note)
             ->send();
 	}
