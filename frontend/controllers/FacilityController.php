@@ -44,7 +44,9 @@ class FacilityController extends FrontendController
 	 */
     public function actionMap()
     {
-        return $this->render('map');
+	    $models = Facility::find()->andWhere(['active' => 1])->all();
+
+        return $this->render('map', compact('models'));
     }
 
 }

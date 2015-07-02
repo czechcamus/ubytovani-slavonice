@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'prices' => 'ceny',
+    'Map of facilities' => 'Mapa ubytování',
     'Advanced options of searching' => 'Rozšířené možnosti vyhledávání',
     'Booking request' => 'Požadavek na rezervaci',
     'Booking request successfully sent!' => 'Váš požadavek na rezervaci byl úspěšně odeslán!',
@@ -65,5 +65,6 @@ return [
     'detailed information of room' => 'detaily pokoje',
     'incl. VAT' => 's DPH',
     'list of accommodation' => 'seznam ubytování',
+    'prices' => 'ceny',
     'unavailable' => 'obsazeno',
 ];

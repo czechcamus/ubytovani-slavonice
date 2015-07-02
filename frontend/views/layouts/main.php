@@ -46,8 +46,7 @@ BaseAsset::register( $this );
 			'label' => 'Ubytování',
 			'items' => [
 				[ 'label' => 'Seznam ubytování', 'url' => [ 'facility/index' ] ],
-				[ 'label' => 'Druhá položka', 'url' => '#' ],
-				[ 'label' => 'Třetí položka', 'url' => '#' ]
+				[ 'label' => 'Mapa ubytování', 'url' => [ 'facility/map' ] ]
 			]
 		],
 		[

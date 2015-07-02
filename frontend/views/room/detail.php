@@ -8,7 +8,6 @@ use frontend\components\Calendar;
 use frontend\components\Prices;
 use frontend\components\Properties;
 use yii\helpers\Html;
-use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
 $this->title = $model->facility->title;
@@ -34,7 +33,7 @@ CalendarAsset::register($this);
 	</div>
 	<div class="row">
 		<div class="col s12 m6">
-			<?= Properties::widget(['properties' => $model->roomProperties]); ?>
+			<?php if ($model->roomProperties) echo Properties::widget(['properties' => $model->roomProperties]); ?>
 			<h3 class="light"><?= Yii::t('front', 'Prices'); ?></h3>
 			<div class="card blue">
 				<div class="card-content white-text">
