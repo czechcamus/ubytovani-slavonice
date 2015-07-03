@@ -26,13 +26,13 @@ CalendarAsset::register($this);
 		'homeLink' => false
 	]) ?>
 	<div class="row">
-		<div class="col s12">
-			<h2 class="light"><?= Yii::t('front', 'Room') . ': ' . $model->title; ?></h2>
-			<p><?= $model->roomType->title . ', ' . $model->note; ?></p>
-		</div>
-	</div>
-	<div class="row">
 		<div class="col s12 m6">
+			<h2 class="light"><?= Yii::t('front', 'Room') . ': ' . $model->title; ?></h2>
+			<p><strong><?= Yii::t('front', 'Type of room'); ?>:</strong> <?= $model->roomType->title; ?></p>
+			<p><strong><?= Yii::t('front', 'Number of beds'); ?>:</strong> <?= $model->bed_nr; ?></p>
+			<?php if ($model->note) : ?>
+				<p><strong><?= Yii::t('front', 'Room note'); ?>:</strong> <?= $model->note; ?></p>
+			<?php endif; ?>
 			<?php if ($model->roomProperties) echo Properties::widget(['properties' => $model->roomProperties]); ?>
 			<h3 class="light"><?= Yii::t('front', 'Prices'); ?></h3>
 			<div class="card blue">
@@ -40,15 +40,18 @@ CalendarAsset::register($this);
 					<?= Prices::widget(['prices' => $model->prices]); ?>
 				</div>
 			</div>
-		</div>
-		<div class="col s12 m6">
-			<?= Calendar::widget([
-				'roomId' => $model->id
-			])?>
 			<?= Html::a('<i class="material-icons right">arrow_forward</i>' . Yii::t('front', 'Booking request'), '#modal-request', [
 				'class' => 'btn waves-effect waves-light modal-trigger'
 			]); ?>
 		</div>
+		<?php if ($model->facility->partner): ?>
+			<div class="col s12 m6">
+				<h3 class="light"><?= Yii::t('front', 'Availability'); ?></h3>
+				<?= Calendar::widget([
+					'roomId' => $model->id
+				])?>
+			</div>
+		<?php endif; ?>
 	</div>
 </div>
 

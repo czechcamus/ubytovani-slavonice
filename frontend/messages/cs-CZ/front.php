@@ -17,7 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Map of facilities' => 'Mapa ubytování',
+    'Availability' => 'Obsazenost',
+    'Room note' => 'Poznámka k pokoji',
+    'Type of room' => 'Typ pokoje',
     'Advanced options of searching' => 'Rozšířené možnosti vyhledávání',
     'Booking request' => 'Požadavek na rezervaci',
     'Booking request successfully sent!' => 'Váš požadavek na rezervaci byl úspěšně odeslán!',
@@ -34,6 +36,7 @@ return [
     'Details of facility' => 'Detaily ubytování',
     'Fees' => 'Poplatky',
     'List of accommodation' => 'Seznam ubytování',
+    'Map of facilities' => 'Mapa ubytování',
     'Message from ' => 'Zpráva od',
     'Number of beds' => 'Počet lůžek',
     'Our rooms' => 'Naše pokoje',
