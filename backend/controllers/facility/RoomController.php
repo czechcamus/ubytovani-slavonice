@@ -11,6 +11,7 @@ namespace backend\controllers\facility;
 use backend\models\RoomForm;
 use backend\utilities\BaseModelController;
 use Yii;
+use yii\filters\AccessControl;
 
 class RoomController extends BaseModelController
 {
@@ -26,13 +27,32 @@ class RoomController extends BaseModelController
 	}
 
 	/**
+	 * Access control etc.
+	 * @return array
+	 */
+	public function behaviors()
+	{
+		return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'roles' => ['@'],
+						'allow' => true
+					]
+				]
+			]
+		];
+	}
+
+	/**
 	 * Creates a new RoomForm model.
 	 * @param integer $relation_id of main model
 	 * @return mixed
 	 */
 	public function actionCreate($relation_id)
 	{
-		$model = new RoomForm();
+		$model = new RoomForm;
 		$model->scenario = 'create';
 		$model->facility_id = $relation_id;
 
@@ -60,7 +80,7 @@ class RoomController extends BaseModelController
 	 */
 	public function actionUpdate($id, $relation_id)
 	{
-		$model = new RoomForm();
+		$model = new RoomForm;
 		$model->loadModel($id);
 		$model->scenario = 'update';
 
@@ -83,7 +103,7 @@ class RoomController extends BaseModelController
 	 */
 	public function actionDelete($id)
 	{
-		$model = new RoomForm();
+		$model = new RoomForm;
 		$model->deleteModel($id);
 
 		return $this->redirect($this->getReturnUrl());

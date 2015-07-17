@@ -59,14 +59,14 @@ foreach ($model->properties as $key => $property) {
 					'template'   => $model->existsFreeTypes($property['property_id'],
 						$property['id']) ? '{update} {delete}' : '{delete}',
 					'buttons'    => [
-						'update' => function ($url, $model) {
+						'update' => function ($url) {
 							return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
 								$url, [
 									'title'     => Yii::t('back', 'Update'),
 									'data-pjax' => '0',
 								]);
 						},
-						'delete' => function ($url, $model) {
+						'delete' => function ($url) {
 							return Html::a('<span class="glyphicon glyphicon-trash"></span>',
 								$url, [
 									'title'        => Yii::t('back', 'Delete'),

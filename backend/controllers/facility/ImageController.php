@@ -5,6 +5,7 @@ namespace backend\controllers\facility;
 use backend\utilities\SubModelController;
 use common\models\facility\Image;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Response;
 
 /**
@@ -23,6 +24,25 @@ class ImageController extends SubModelController
 		$this->returnUrlParams = [
 			'facility/update',
 			'id' => Yii::$app->request->get('relation_id')
+		];
+	}
+
+	/**
+	 * Access control etc.
+	 * @return array
+	 */
+	public function behaviors()
+	{
+		return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'roles' => ['@'],
+						'allow' => true
+					]
+				]
+			]
 		];
 	}
 

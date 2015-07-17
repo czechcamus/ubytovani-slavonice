@@ -50,6 +50,7 @@ use yii\helpers\Html;
 							'class' => 'grid-delete-btn',
 							'data' => [
 								'confirm' => Yii::t('back', 'Are you sure, you want to delete this item?'),
+								//'method' => 'post',
 								'pjax' => '0'
 							]
 						]);

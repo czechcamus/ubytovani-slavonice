@@ -34,7 +34,8 @@ class ObjectsRelationsDelete extends Behavior
 	public function deleteRelations() {
 		/** @var Facility|Room $object */
 		$object = $this->owner;
-		foreach ($object->objectProperties as $objectProperty) {
+		$properties = get_class($object) == Facility::className() ? $object->facilityProperties : $object->roomProperties;
+		foreach ($properties as $objectProperty) {
 			/** @var $objectProperty ObjectProperty */
 			$objectProperty->delete();
 		}
