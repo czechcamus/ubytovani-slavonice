@@ -34,6 +34,7 @@ class FacilitySearchForm extends Model
 	 * @inheritdoc
 	 */
 	public function __construct() {
+		parent::__construct();
 		$facilityProperties = ArrayHelper::map(FacilityProperty::find()->orderBy('title')->all(), 'id', 'title');
 		$roomProperties = ArrayHelper::map(RoomProperty::find()->orderBy('title')->all(), 'id', 'title');
 		$selectedFacilityProperties = isset(\Yii::$app->request->queryParams['FacilitySearchForm']['facilityProperties']) ? \Yii::$app->request->queryParams['FacilitySearchForm']['facilityProperties'] : [];
